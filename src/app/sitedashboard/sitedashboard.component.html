@@ -1,0 +1,16 @@
+<div class="row mar-top">
+  <!-- <h2>{{this.user_details.user.full_name | uppercase}} welcome to site dashboard</h2>{{this.user_details.user.full_name}} -->
+</div>
+<div class="col-md-3">
+  <button class="btn btn-default" routerLink="user">User Module</button>
+</div>
+<div class="col-md-3">
+  <button class="btn btn-default" (click)="changeEleControl('program_module')">Programs module</button>
+</div>
+<div class="col-md-3">
+  <button class="btn btn-default" (click)="changeEleControl('framework_module')">FrameWork Module</button>
+</div>
+<div class="col-md-3">
+  <button class="btn btn-default">Program Control</button>
+</div>
+<router-outlet></router-outlet>
