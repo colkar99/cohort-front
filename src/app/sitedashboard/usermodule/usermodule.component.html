@@ -73,3 +73,37 @@
     </div>
   </div>
 </div>
+<div class="row">
+  <h2>List of users</h2>
+  <div class="col-md-12">
+  <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Contact no</th>
+          <th>User type</th>
+          <th>Roles</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of all_users">
+          <td>{{user.full_name}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.phone_number}}</td>
+          <td>{{user.user_type}}</td>
+          <td  *ngFor="let role of user.roles">
+            <p *ngIf="role.name">{{role.name }}</p>
+          </td>
+          <td *ngIf="user.roles.length <= 0">No roles</td>
+          <td>
+            <a>Edit</a> |
+            <a>Delete</a> |
+             <a>Show</a> 
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

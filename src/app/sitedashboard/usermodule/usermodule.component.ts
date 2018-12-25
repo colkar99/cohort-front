@@ -17,6 +17,7 @@ export class UsermoduleComponent implements OnInit{
     loggedIn: boolean;
     roles: any=[]
     isRolesAvailable: boolean = false;
+    all_users = []
     constructor(private formBuilder: FormBuilder,
                 private apiService: ApiCommunicationService,
                 private cookieService: CookieService){
@@ -31,6 +32,7 @@ export class UsermoduleComponent implements OnInit{
         }
     }
     ngOnInit(){
+        this.getUsersList();
     }
     createUserForm(){
         this.user =  this.formBuilder.group({
@@ -51,10 +53,17 @@ export class UsermoduleComponent implements OnInit{
           ]
     }
     onSubmit(user: {}){
-        console.log(this.user.value);
+        // console.log(this.user.value);
+        let data = JSON.stringify(this.user.value);
+        this.apiService.postDataWithToken('create-user-by-admin',data,this.auth)
+        .subscribe(
+            data => { 
+                console.log(data);
+            },
+            error => console.error("couldn't post because", error)
+      );
     }
     getRoles(user_type_role){
-        debugger
         let data = {user_role_type: user_type_role};
         this.apiService.postDataWithToken('get-roles-user-type',JSON.stringify(data),this.auth)
         .subscribe(
@@ -70,4 +79,14 @@ export class UsermoduleComponent implements OnInit{
     getCookie(key: string){
         return this.cookieService.get(key);
       }
+    getUsersList(): void{
+        this.apiService.getDataWithAuth('get-all-users',this.auth)
+        .subscribe(
+            data => { 
+                console.log(data);
+                this.all_users = data;
+            },
+            error => console.error("couldn't post because", error)
+      );
+    }  
 }
