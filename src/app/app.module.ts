@@ -9,8 +9,10 @@ import { CookieService } from 'ngx-cookie-service';
 import { LoginComponent } from './login/login.component';
 import { SitedashboardComponent } from './sitedashboard/sitedashboard.component';
 import { UsermoduleComponent } from './sitedashboard/usermodule/usermodule.component';
+import { UsercontrollerComponent } from './sitedashboard/usercontroller/usercontroller.component';
 import { StartupdashboardComponent } from './startupdashboard/startupdashboard.component';
 import { MentordashboardComponent } from './mentordashboard/mentordashboard.component';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { MentordashboardComponent } from './mentordashboard/mentordashboard.comp
     SitedashboardComponent,
     StartupdashboardComponent,
     MentordashboardComponent,
-    UsermoduleComponent
+    UsermoduleComponent,
+    UsercontrollerComponent
   ],
   imports: [
     BrowserModule,

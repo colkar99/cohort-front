@@ -40,6 +40,15 @@ export class ApiCommunicationService {
       catchError(this.handleError)
     );
   };
+  putDataWithToken(url: string,params: {},auth: string): Observable<any>{
+    this.domainUrl = `${this.url}${url}`;
+    let headers = this._headers.append('Authorization', auth);
+    debugger
+    return this.http.put<any>(this.domainUrl,params,{headers: headers})
+    .pipe(
+      catchError(this.handleError)
+    );
+  };  
 
   getDataWithAuth(url: string,auth: string): Observable<any>{
     this.domainUrl = `${this.url}${url}`;

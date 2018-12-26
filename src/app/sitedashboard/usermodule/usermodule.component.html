@@ -98,9 +98,7 @@
           </td>
           <td *ngIf="user.roles.length <= 0">No roles</td>
           <td>
-            <a>Edit</a> |
-            <a>Delete</a> |
-             <a>Show</a> 
+            <button routerLink="controller/{{user.id}}">Show user</button>
           </td>
         </tr>
       </tbody>
