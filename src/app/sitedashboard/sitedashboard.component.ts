@@ -38,7 +38,6 @@ export class SitedashboardComponent implements OnInit {
     this.authToken = this.getCookie('Authorization');
     if (this.authToken.length != 0){
       this.loggedIn = true;
-      alert("hi");
     } else {
       this.loggedIn = false;
       this.router.navigate(['/login']);

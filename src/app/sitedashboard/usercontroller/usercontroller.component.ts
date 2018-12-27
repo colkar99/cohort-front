@@ -95,7 +95,7 @@ declare var $: any;
         return this.cookieService.get(key);
       }
     getRoles(user_type_role){
-        debugger
+        
         let data = {user_role_type: user_type_role};
         this.apiService.postDataWithToken('get-roles-user-type',JSON.stringify(data),this.auth)
         .subscribe(
@@ -146,7 +146,7 @@ declare var $: any;
       );
     }
     onPrivilegeCreate(privilege: {}){
-        debugger
+        
         let refData = this.privilegeForm.value;
         let data = {"user_role": {
             "user_id": refData.user_id,"role_id": refData.role_id,"module_type_id": refData.module_type_id,
@@ -164,7 +164,6 @@ declare var $: any;
                 console.error("couldn't post because", error);
                 $('#createPrivilegemodel').modal('hide');
             }
-
       );
     }
     deletePrivilegesValue(privilege_id: number){
@@ -184,6 +183,28 @@ declare var $: any;
             return
         }
 
+
+    }
+    deleteRole(user_id: number,role_id: number){
+        
+        let data = {"user_id": user_id,role_id: role_id};
+        let confirmPopup = confirm(`Are you sure want to delete this role`);
+        if (confirmPopup) {
+            this.apiService.postDataWithToken('delete-role-user-by-admin',JSON.stringify(data),this.auth)
+            .subscribe(
+                data => { 
+                    // console.log(data);
+                    this.getUserData();
+                    // $('#createPrivilegemodel').modal('hide');
+                },
+                error => {
+                    console.error("couldn't post because", error);
+                    // $('#createPrivilegemodel').modal('hide');
+                }
+          );
+        } else {
+            return
+        }
 
     }                
   }
