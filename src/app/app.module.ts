@@ -12,7 +12,8 @@ import { UsermoduleComponent } from './sitedashboard/usermodule/usermodule.compo
 import { UsercontrollerComponent } from './sitedashboard/usercontroller/usercontroller.component';
 import { StartupdashboardComponent } from './startupdashboard/startupdashboard.component';
 import { MentordashboardComponent } from './mentordashboard/mentordashboard.component';
-
+import { ProgramModuleComponent } from './sitedashboard/programmodule/programmodule.component'
+import { CreateProgramComponent } from './sitedashboard/programmodule/createprogram/createprogram.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,9 @@ import { MentordashboardComponent } from './mentordashboard/mentordashboard.comp
     StartupdashboardComponent,
     MentordashboardComponent,
     UsermoduleComponent,
-    UsercontrollerComponent
+    UsercontrollerComponent,
+    ProgramModuleComponent,
+    CreateProgramComponent
   ],
   imports: [
     BrowserModule,

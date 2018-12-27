@@ -1,0 +1,175 @@
+<h2 class="mar-top">Create new program</h2>
+<div class="row">
+    <form [formGroup]='program'>
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="height:60px;">Select Program Type
+                    <button class="btn btn-success pull-right" data-toggle="modal" data-target="#programTypeModel">Create Program type</button>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-12 form-group">
+                            <div class="form-group">
+                                <label for="sel1">Select Program type:</label>
+                                <select class="form-control" id="sel1" formGroupName="program_type_id">
+                                        <option [value]=null></option>
+                                    <option [value]="1">program 1</option>
+                                    <option [value]="2">program 2</option>
+                                </select>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="height:60px;">Select program location
+                    <button class="btn btn-success pull-right">Create Program location</button>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-12 form-group">
+                            <div class="form-group">
+                                <label for="sel1">Select Program location:</label>
+                                <select class="form-control" id="sel1" formGroupName="ProgramLocation_id">
+                                    <option>program 1</option>
+                                    <option>program 2</option>
+                                </select>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="height:60px;">Select Framework
+                    <!-- <button class="btn btn-success pull-right">Create Program location</button> -->
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-12 form-group">
+                            <div class="form-group">
+                                <label for="sel1">Select Framework:</label>
+                                <select class="form-control" id="sel1" formGroupName="framework_id">
+                                    <option>program 1</option>
+                                    <option>program 2</option>
+                                </select>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="height:60px;">Program details
+                    <!-- <button class="btn btn-success pull-right">Create Program location</button> -->
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-4 form-group">
+                        <label>Title:</label>
+                        <input class="form-control" type="text" name="title" formGroupName="title"/>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label>Start date:</label>
+                        <input class="form-control" type="date" name="start_date" formGroupName="start_date" />
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label>End date:</label>
+                        <input class="form-control" type="date" name="end_date" formGroupName="end_date"/>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label>Enter seat capacity:</label>
+                        <input class="form-control" type="number" name="seat_size" formGroupName="seat_size"/>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label>Industry:</label>
+                        <input class="form-control" type="text" name="industry" formGroupName="industry"/>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label>Main image:</label>
+                        <input class="form-control" type="file" name="main_image" formGroupName="main_image"/>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label>Logo image:</label>
+                        <input class="form-control" type="file" name="logo_image" formGroupName="logo_image"/>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label>Duration in months:</label>
+                        <input class="form-control" type="text" name="duration" formGroupName="duration"/>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label>Program registration start date:</label>
+                        <input class="form-control" type="date" name="application_start_date" formGroupName="application_start_date"/>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label>Program registration end date:</label>
+                        <input class="form-control" type="date" name="application_end_date" formGroupName="application_end_date"/>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label>Program Description:</label>
+                        <textarea class="form-control"  name="description" formGroupName="description"></textarea>
+                    </div>  
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="height:60px;">Role assign
+                    <!-- <button class="btn btn-success pull-right">Create Program location</button> -->
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-4 form-group">
+                        <label for="sel1">Select program Admin:</label>
+                        <select class="form-control" id="sel1">
+                            <option>program 1</option>
+                            <option>program 2</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label for="sel1">Select program Director:</label>
+                        <select class="form-control" id="sel1">
+                            <option>program 1</option>
+                            <option>program 2</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label for="sel1">Select Application manager:</label>
+                        <select class="form-control" id="sel1">
+                            <option>program 1</option>
+                            <option>program 2</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label for="sel1">Select contract manager:</label>
+                        <select class="form-control" id="sel1">
+                            <option>program 1</option>
+                            <option>program 2</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 text-center">
+            <button class="btn btn-default">Create program</button>
+        </div>                        
+    </form>
+</div>
+
+
+
+<!--Model for new program type-->
+  <!-- Modal -->
+<div class="modal fade" id="programTypeModel" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+            <p>This is a large modal.</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+        </div>
+    </div>
+</div>
+
