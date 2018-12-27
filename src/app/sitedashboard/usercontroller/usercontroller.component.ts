@@ -166,5 +166,24 @@ declare var $: any;
             }
 
       );
+    }
+    deletePrivilegesValue(privilege_id: number){
+        let data = {"id": privilege_id};
+        let confirmPopup = confirm(`Are you sure want to delete this privilege`);
+        console.log(confirmPopup);
+        if (confirmPopup) {
+            this.apiService.putDataWithToken('delete-user-role',JSON.stringify(data),this.auth)
+                .subscribe(
+                    data => { 
+                        console.log(data);
+                        this.getUserData();
+                    },
+                    error => console.error("couldn't post because", error)
+            );
+        } else {
+            return
+        }
+
+
     }                
   }
