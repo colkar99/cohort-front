@@ -144,5 +144,27 @@ declare var $: any;
             },
             error => console.error("couldn't post because", error)
       );
-    }             
+    }
+    onPrivilegeCreate(privilege: {}){
+        debugger
+        let refData = this.privilegeForm.value;
+        let data = {"user_role": {
+            "user_id": refData.user_id,"role_id": refData.role_id,"module_type_id": refData.module_type_id,
+            "create_rule": refData.create_rule,"update_rule": refData.update_rule,"show_rule": refData.show_rule,
+            "delete_rule": refData.delete_rule }};
+        console.log(JSON.stringify(data));
+        this.apiService.postDataWithToken('create-user-role-by-admin',JSON.stringify(data),this.auth)
+        .subscribe(
+            data => { 
+                console.log(data);
+                this.getUserData();
+                $('#createPrivilegemodel').modal('hide');
+            },
+            error => {
+                console.error("couldn't post because", error);
+                $('#createPrivilegemodel').modal('hide');
+            }
+
+      );
+    }                
   }
