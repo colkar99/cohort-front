@@ -1,6 +1,6 @@
 <h2 class="mar-top">Create new program</h2>
 <div class="row">
-    <form [formGroup]='program'>
+    <form [formGroup]='program' *ngIf="showForm" (ngSubmit)=" onProgramSubmit(program,datas)" validate>
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading" style="height:60px;">Select Program Type
@@ -10,10 +10,8 @@
                     <div class="col-md-12 form-group">
                             <div class="form-group">
                                 <label for="sel1">Select Program type:</label>
-                                <select class="form-control" id="sel1" formGroupName="program_type_id">
-                                        <option [value]=null></option>
-                                    <option [value]="1">program 1</option>
-                                    <option [value]="2">program 2</option>
+                                <select class="form-control" id="sel1" formControlName="program_type_id" [ngClass]="{errmsg: !program.controls['program_type_id'].valid && submitted}">
+                                    <option *ngFor="let program_type of datas.program_types" [value]="program_type.id">{{program_type.program_type_title}}</option>
                                 </select>
                             </div>
                     </div>
@@ -29,12 +27,15 @@
                     <div class="col-md-12 form-group">
                             <div class="form-group">
                                 <label for="sel1">Select Program location:</label>
-                                <select class="form-control" id="sel1" formGroupName="ProgramLocation_id">
-                                    <option>program 1</option>
-                                    <option>program 2</option>
+                                <select class="form-control" id="sel1" formControlName="ProgramLocation_id" [ngClass]="{errmsg: !program.controls['ProgramLocation_id'].valid && submitted}">
+                                    <option [value]=" "></option>
+                                    <option *ngFor="let program_location of datas.program_locations" [value]="program_location.id">City: {{program_location.city}},State: {{program_location.state_province_region}}</option>
                                 </select>
                             </div>
                     </div>
+                    <!-- <div class="col-md-12">
+
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -47,9 +48,9 @@
                     <div class="col-md-12 form-group">
                             <div class="form-group">
                                 <label for="sel1">Select Framework:</label>
-                                <select class="form-control" id="sel1" formGroupName="framework_id">
-                                    <option>program 1</option>
-                                    <option>program 2</option>
+                                <select class="form-control" id="sel1" formControlName="framework_id" [ngClass]="{errmsg: !program.controls['framework_id'].valid && submitted}">
+                                    <option [value]=" "></option>
+                                    <option *ngFor="let framework of datas.frameworks" [value]="framework.id">{{framework.title}}</option>
                                 </select>
                             </div>
                     </div>
@@ -64,47 +65,58 @@
                 <div class="panel-body">
                     <div class="col-md-4 form-group">
                         <label>Title:</label>
-                        <input class="form-control" type="text" name="title" formGroupName="title"/>
+                        <input class="form-control" type="text" name="" formControlName="title"
+                         [ngClass]="{errmsg: !program.controls['title'].valid && submitted}"  required/>
                     </div>
                     <div class="col-md-4 form-group">
                         <label>Start date:</label>
-                        <input class="form-control" type="date" name="start_date" formGroupName="start_date" />
+                        <input class="form-control" type="date" name="start_date" formControlName="start_date"
+                        [ngClass]="{errmsg: !program.controls['start_date'].valid && submitted}" required />
                     </div>
                     <div class="col-md-4 form-group">
                         <label>End date:</label>
-                        <input class="form-control" type="date" name="end_date" formGroupName="end_date"/>
+                        <input class="form-control" type="date" name="end_date" formControlName="end_date" 
+                        [ngClass]="{errmsg: !program.controls['end_date'].valid && submitted}" required/>
                     </div>
                     <div class="col-md-4 form-group">
                         <label>Enter seat capacity:</label>
-                        <input class="form-control" type="number" name="seat_size" formGroupName="seat_size"/>
+                        <input class="form-control" type="number" name="seat_size" formControlName="seat_size"
+                        [ngClass]="{errmsg: !program.controls['seat_size'].valid && submitted}" required/>
                     </div>
                     <div class="col-md-4 form-group">
                         <label>Industry:</label>
-                        <input class="form-control" type="text" name="industry" formGroupName="industry"/>
+                        <input class="form-control" type="text" name="industry" formControlName="industry" 
+                        [ngClass]="{errmsg: !program.controls['industry'].valid && submitted}" required/>
                     </div>
                     <div class="col-md-4 form-group">
                         <label>Main image:</label>
-                        <input class="form-control" type="file" name="main_image" formGroupName="main_image"/>
+                        <input class="form-control" type="file" name="main_image" formControlName="main_image"
+                        [ngClass]="{errmsg: !program.controls['main_image'].valid && submitted}" required/>
                     </div>
                     <div class="col-md-4 form-group">
                         <label>Logo image:</label>
-                        <input class="form-control" type="file" name="logo_image" formGroupName="logo_image"/>
+                        <input class="form-control" type="file" name="logo_image" formControlName="logo_image" 
+                        [ngClass]="{errmsg: !program.controls['logo_image'].valid && submitted}" required/>
                     </div>
                     <div class="col-md-4 form-group">
                         <label>Duration in months:</label>
-                        <input class="form-control" type="text" name="duration" formGroupName="duration"/>
+                        <input class="form-control" type="text" name="duration" formControlName="duration"
+                        [ngClass]="{errmsg: !program.controls['duration'].valid && submitted}" required/>
                     </div>
                     <div class="col-md-4 form-group">
                         <label>Program registration start date:</label>
-                        <input class="form-control" type="date" name="application_start_date" formGroupName="application_start_date"/>
+                        <input class="form-control" type="date" name="application_start_date" formControlName="application_start_date" 
+                        [ngClass]="{errmsg: !program.controls['application_start_date'].valid && submitted}" required/>
                     </div>
                     <div class="col-md-4 form-group">
                         <label>Program registration end date:</label>
-                        <input class="form-control" type="date" name="application_end_date" formGroupName="application_end_date"/>
+                        <input class="form-control" type="date" name="application_end_date" formControlName="application_end_date" 
+                        [ngClass]="{errmsg: !program.controls['application_end_date'].valid && submitted}" required/>
                     </div>
                     <div class="col-md-4 form-group">
                         <label>Program Description:</label>
-                        <textarea class="form-control"  name="description" formGroupName="description"></textarea>
+                        <textarea class="form-control"  name="description" formControlName="description" 
+                        [ngClass]="{errmsg: !program.controls['description'].valid && submitted}" required></textarea>
                     </div>  
                 </div>
             </div>
@@ -117,37 +129,38 @@
                 <div class="panel-body">
                     <div class="col-md-4 form-group">
                         <label for="sel1">Select program Admin:</label>
-                        <select class="form-control" id="sel1">
-                            <option>program 1</option>
-                            <option>program 2</option>
+                        <select class="form-control" id="sel1" formControlName="program_admin" [ngClass]="{errmsg: !program.controls['program_admin'].valid && submitted}">
+                            <option [value]=" "> </option>
+                            <option *ngFor="let program_admin of datas.users.program_admin" [value]="program_admin.id">{{program_admin.full_name}}</option>
                         </select>
                     </div>
                     <div class="col-md-4 form-group">
                         <label for="sel1">Select program Director:</label>
-                        <select class="form-control" id="sel1">
-                            <option>program 1</option>
-                            <option>program 2</option>
+                        <select class="form-control" id="sel1" formControlName="program_director" [ngClass]="{errmsg: !program.controls['program_director'].valid && submitted}">
+                            <option [value]=" "></option>
+                            <option *ngFor="let program_director of datas.users.program_director" [value]="program_director.id">{{program_director.full_name}}</option>
                         </select>
                     </div>
                     <div class="col-md-4 form-group">
                         <label for="sel1">Select Application manager:</label>
-                        <select class="form-control" id="sel1">
-                            <option>program 1</option>
-                            <option>program 2</option>
+                        <select class="form-control" id="sel1" formControlName="application_manager" [ngClass]="{errmsg: !program.controls['application_manager'].valid && submitted}">
+                            <option [value]=" "></option>
+                            <option *ngFor="let application_manager of datas.users.application_manager" [value]="application_manager.id">{{application_manager.full_name}}</option>
                         </select>
                     </div>
                     <div class="col-md-4 form-group">
                         <label for="sel1">Select contract manager:</label>
-                        <select class="form-control" id="sel1">
-                            <option>program 1</option>
-                            <option>program 2</option>
+                        <select class="form-control" id="sel1" formControlName="contract_manager" [ngClass]="{errmsg: !program.controls['contract_manager'].valid && submitted}" required>
+                            <option [value]=" "> </option>
+                            <option *ngFor="let contract_manager of datas.users.contract_manager" [value]="contract_manager.id">{{contract_manager.full_name}}</option>
                         </select>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-12 text-center">
-            <button class="btn btn-default">Create program</button>
+            <button class="btn btn-default" type="submit"  >Create program</button>
+            <p style="color:red;" *ngIf="!program.controls.valid && submitted">Please fill up the following fields</p>
         </div>                        
     </form>
 </div>
@@ -168,6 +181,149 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="reviewAndSubmitModel" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Review and submit</h4>
+        </div>
+        <div class="modal-body" *ngIf="showReviewAndSubmit">
+            <div class="row">
+            <div class="col-md-12">
+                <h3 class="page-heading">Program Type</h3>
+                <div class="col-md-4">
+                    <label>Title:</label>
+                    <p>{{reviewAndSubmit.program_type.program_type_title}}</p>
+                </div>
+                <div class="col-md-4">
+                    <label>Description:</label>
+                    <p>{{reviewAndSubmit.program_type.program_type_description}}</p>
+                </div>
+                <div class="col-md-4">
+                    <label>Duration:</label>
+                    <p>{{reviewAndSubmit.program_type.program_type_duration}}</p>    
+                </div>
+            </div>
+            <div class="col-md-12">
+                <h3 class="page-heading">Program Location</h3>
+                <div class="col-md-3">
+                     <label>Address line 1:</label>
+                     <p>{{reviewAndSubmit.program_location.address_line_1}}</p>    
+                </div>
+                <div class="col-md-3">
+                    <label>Address line 2:</label>
+                    <p>{{reviewAndSubmit.program_location.address_line_2}}</p>    
+                </div>
+                <div class="col-md-3">
+                    <label>City:</label>
+                    <p>{{reviewAndSubmit.program_location.city}}</p>    
+                </div>
+                <div class="col-md-3">
+                    <label>State:</label>
+                    <p>{{reviewAndSubmit.program_location.state_province_region}}</p>    
+                </div>
+                <div class="col-md-3">
+                    <label>Country: </label>
+                    <p>{{reviewAndSubmit.program_location.country}}</p>    
+                </div>
+                <div class="col-md-3">
+                    <label>Pincode or Zip: </label>    
+                    <p>{{reviewAndSubmit.program_location.zip_pincode_postalcode}}</p>
+                </div>
+            </div>
+            <div class="col-md-12">
+                    <h3 class="page-heading">Framework</h3>
+
+                <div class="col-md-4">
+                    <label>Title: </label>
+                    <p>{{reviewAndSubmit.framework.title}}</p>      
+                </div>
+                <div class="col-md-4">
+                    <label>Description: </label>
+                    <p>{{reviewAndSubmit.framework.description}}</p>      
+                </div>
+                <div class="col-md-4">
+                    <label>Level: </label>
+                    <p>{{reviewAndSubmit.framework.level}}</p>      
+                </div>
+            </div>
+            <div class="col-md-12">
+                    <h3 class="page-heading">Program Details</h3>
+                <div class="col-md-3">
+                    <label>Title: </label>
+                    <p>{{reviewAndSubmit.program_details.title}}</p>      
+                </div>
+                <div class="col-md-3">
+                    <label>Description: </label>
+                    <p>{{reviewAndSubmit.program_details.description}}</p>      
+                </div>
+                <div class="col-md-3">
+                    <label>Start date:</label>     
+                    <p>{{reviewAndSubmit.program_details.start_date}}</p> 
+                </div>
+                <div class="col-md-3">
+                    <label>End date: </label>
+                    <p>{{reviewAndSubmit.program_details.end_date}}</p>      
+                </div>
+                <div class="col-md-3">
+                    <label>Seat size: </label>
+                    <p>{{reviewAndSubmit.program_details.seat_size}}</p>      
+                </div>
+                <div class="col-md-3">
+                    <label>Industry:</label>    
+                    <p>{{reviewAndSubmit.program_details.industry}}</p>  
+                </div>
+                <div class="col-md-3">
+                    <label>Main Image: </label>  
+                    <p>{{reviewAndSubmit.program_details.main_image}}</p>    
+                </div>
+                <div class="col-md-3">
+                    <label>Logo image: </label>
+                    <p>{{reviewAndSubmit.program_details.logo_image}}</p>      
+                </div>
+                <div class="col-md-3">
+                    <label>Duration: </label>
+                    <p>{{reviewAndSubmit.program_details.duration}}</p>      
+                </div>
+                <div class="col-md-3">
+                    <label>Application start date: </label>
+                    <p>{{reviewAndSubmit.program_details.application_start_date}}</p>      
+                </div>
+                <div class="col-md-3">
+                    <label>Application end date: </label>
+                    <p>{{reviewAndSubmit.program_details.application_end_date}}</p>      
+                </div>
+            </div>
+            <div class="col-md-12">
+                    <h2 class="page-heading">Program Administrators</h2>
+                <div class="col-md-3">
+                    <label>Program admin: </label>
+                    <p>{{reviewAndSubmit.program_admin.full_name}}</p>
+                </div>
+                <div class="col-md-3">
+                    <label>Program Director: </label>
+                    <p>{{reviewAndSubmit.program_director.full_name}}</p>      
+                </div>
+                <div class="col-md-3">
+                    <label>Application Manager: </label> 
+                    <p>{{reviewAndSubmit.application_manager.full_name}}</p>     
+                </div>
+                <div class="col-md-3">
+                    <label>Contract Manager: </label>
+                    <p>{{reviewAndSubmit.contract_manager.full_name}}</p>      
+                </div>
+            </div>
+            <div class="col-md-12 text-center">
+                <button class="btn btn-success" (click)="onSubmitProgramForms()">Submit</button>
+            </div>
+            </div>
         </div>
         </div>
     </div>

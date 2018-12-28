@@ -2,6 +2,9 @@ import { Component,OnInit } from '@angular/core';
 import { FormControl , FormGroup , FormBuilder, Validators } from '@angular/forms';
 import { ApiCommunicationService } from '../../../api-communication.service';
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
+declare var $: any;
+
 @Component({
     selector: 'app-createprogram',
     templateUrl: './createprogram.component.html',
@@ -13,10 +16,17 @@ export class CreateProgramComponent implements OnInit {
     auth: string;
     loggedIn:boolean;
     program: any =[];
+    showForm: boolean = false;
+    datas = [];
+    reviewAndSubmit: {} = {};
+    submitted = false;
+    showReviewAndSubmit = false;
     constructor(
         private cookieService: CookieService,
         private formBuilder: FormBuilder,
-        private apiService: ApiCommunicationService
+        private apiService: ApiCommunicationService,
+        private router: Router
+   
     ){
         this.auth = this.getCookie('Authorization');
         if (this.auth.length != 0){
@@ -60,11 +70,76 @@ export class CreateProgramComponent implements OnInit {
     getProgramModuleDatas(){
         this.apiService.getDataWithAuth("get-program-module",this.auth)
         .subscribe(data =>{
-            console.log(data);
+            debugger
+            this.datas = data;
+            this.showForm = true;
+            console.log(this.datas);
         }, error => {
             console.error("couldn't post because", error);
 
         })
+    }
+    onProgramSubmit(program: any,datas: any){
+        this.submitted = true;
+        let program_types: any[];
+        if (program.valid){
+            for(let item of datas.program_types){
+                if(item.id == program.value.program_type_id){
+                    this.reviewAndSubmit["program_type"] = item;
+                }
+                
+            }
+            for(let item of datas.program_locations){
+                if(item.id == program.value.ProgramLocation_id){
+                    this.reviewAndSubmit["program_location"] = item ;
+                }
+                
+            }
+            for(let item of datas.frameworks){
+                if(item.id == program.value.framework_id){
+                    this.reviewAndSubmit["framework"] = item;
+                } 
+            }
+            for(let item of datas.users.program_admin){
+                if(item.id == program.value.program_admin){
+                    this.reviewAndSubmit["program_admin"] = item;
+                } 
+            }
+            for(let item of datas.users.program_director){
+                if(item.id == program.value.program_director){
+                    this.reviewAndSubmit["program_director"] = item;
+                } 
+            }
+            for(let item of datas.users.application_manager){
+                if(item.id == program.value.application_manager){
+                    this.reviewAndSubmit["application_manager"] = item;
+                } 
+            }
+            for(let item of datas.users.contract_manager){
+                if(item.id == program.value.contract_manager){
+                    this.reviewAndSubmit['contract_manager'] = item;
+                }
+                this.showReviewAndSubmit = true; 
+            }
+            this.reviewAndSubmit['program_details'] =  program.value;
+            $('#reviewAndSubmitModel').modal('show');
+        }
+        console.log(this.reviewAndSubmit);
+        
+        
+    };
+    onSubmitProgramForms(){
+        debugger
+        let data = {"program": this.program.value};
+        this.apiService.postDataWithToken("create-program",JSON.stringify(data),this.auth)
+        .subscribe(data => {
+            console.log(data);
+            $('#reviewAndSubmitModel').modal('hide');
+            this.router.navigate(['/admin/dashboard/program']);
+
+        }, error =>{
+            console.log(`errors: ${error}`);
+        });
     }  
 
 } 
