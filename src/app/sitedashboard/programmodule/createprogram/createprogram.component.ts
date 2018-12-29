@@ -1,5 +1,5 @@
 import { Component,OnInit } from '@angular/core';
-import { FormControl , FormGroup , FormBuilder, Validators } from '@angular/forms';
+import { FormControl , FormGroup , FormBuilder,FormArray, Validators } from '@angular/forms';
 import { ApiCommunicationService } from '../../../api-communication.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
@@ -16,11 +16,13 @@ export class CreateProgramComponent implements OnInit {
     auth: string;
     loggedIn:boolean;
     program: any =[];
+    application_questions_ids: any = [];
     showForm: boolean = false;
     datas = [];
-    reviewAndSubmit: {} = {};
+    reviewAndSubmit: any = { application_questions:[] };
     submitted = false;
     showReviewAndSubmit = false;
+    hideArrayControl: boolean;
     constructor(
         private cookieService: CookieService,
         private formBuilder: FormBuilder,
@@ -36,7 +38,6 @@ export class CreateProgramComponent implements OnInit {
           this.loggedIn = false;
           window.location.href = '/login';
         }
-        this.initProgramForm();
         this.getProgramModuleDatas();
     }
     ngOnInit(){}
@@ -44,44 +45,55 @@ export class CreateProgramComponent implements OnInit {
     getCookie(key: string){
         return this.cookieService.get(key);
       }
-    initProgramForm(){
+    initProgramForm(controls: any){
         this.program = this.formBuilder.group({
-            title: ['',Validators.required],
-            description: ['',Validators.required],
-            start_date:['',Validators.required],
-            end_date: ['',Validators.required],
-            seat_size: [null, Validators.required],
-            industry: ['',Validators.required],
-            main_image: ['',Validators.required],
-            logo_image: ['',Validators.required],
-            duration: ['',Validators.required],
-            application_start_date: ['',Validators.required],
-            application_end_date: ['',Validators.required],
-            ProgramLocation_id: [null,Validators.required],
-            program_type_id: [null,Validators.required],
-            framework_id: [null,Validators.required],
-            program_admin: [null,Validators.required],
-            program_director: [null,Validators.required],
-            application_manager: [null,Validators.required],
-            contract_manager: [null,Validators.required],
+                title: ['',Validators.required],
+                description: ['',Validators.required],
+                start_date:['',Validators.required],
+                end_date: ['',Validators.required],
+                seat_size: [null, Validators.required],
+                industry: ['',Validators.required],
+                main_image: [''],
+                logo_image: [''],
+                duration: ['',Validators.required],
+                application_start_date: ['',Validators.required],
+                application_end_date: ['',Validators.required],
+                ProgramLocation_id: [null,Validators.required],
+                program_type_id: [null,Validators.required],
+                framework_id: [null,Validators.required],
+                program_admin: [null,Validators.required],
+                program_director: [null,Validators.required],
+                application_manager: [null,Validators.required],
+                contract_manager: [null,Validators.required],
+            application_questions: new FormArray(controls)
+        });
+        this.showForm = true;
+        this.hideArrayControl = true;
 
-        })
     };
+
     getProgramModuleDatas(){
         this.apiService.getDataWithAuth("get-program-module",this.auth)
         .subscribe(data =>{
-            debugger
             this.datas = data;
-            this.showForm = true;
+            const controls = data.application_questions.map(c => new FormControl(false));
+            controls[0].setValue(true); // Set the first checkbox to true (checked)
             console.log(this.datas);
+            this.initProgramForm(controls);
         }, error => {
             console.error("couldn't post because", error);
 
         })
     }
+
     onProgramSubmit(program: any,datas: any){
         this.submitted = true;
         let program_types: any[];
+        this.reviewAndSubmit["application_questions"] = [];
+        this.application_questions_ids = this.program.value.application_questions
+        .map((v, i) => v ? datas.application_questions[i].id : null)
+        .filter(v => v !== null);
+        console.log(this.application_questions_ids);
         if (program.valid){
             for(let item of datas.program_types){
                 if(item.id == program.value.program_type_id){
@@ -121,16 +133,23 @@ export class CreateProgramComponent implements OnInit {
                 }
                 this.showReviewAndSubmit = true; 
             }
+            for(let item of datas.application_questions){
+                for (let item2 of this.application_questions_ids){
+                    if (item.id == item2){
+                        this.reviewAndSubmit["application_questions"].push(item);
+                    }
+                }
+            }
             this.reviewAndSubmit['program_details'] =  program.value;
             $('#reviewAndSubmitModel').modal('show');
         }
         console.log(this.reviewAndSubmit);
         
-        
     };
     onSubmitProgramForms(){
-        debugger
-        let data = {"program": this.program.value};
+        this.program.removeControl('application_questions')
+        this.hideArrayControl = false
+        let data = {"program": this.program.value, "application_questions": this.reviewAndSubmit.application_questions};
         this.apiService.postDataWithToken("create-program",JSON.stringify(data),this.auth)
         .subscribe(data => {
             console.log(data);

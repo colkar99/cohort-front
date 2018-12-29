@@ -1,6 +1,7 @@
 <h2 class="mar-top">Create new program</h2>
 <div class="row">
     <form [formGroup]='program' *ngIf="showForm" (ngSubmit)=" onProgramSubmit(program,datas)" validate>
+        <div >
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading" style="height:60px;">Select Program Type
@@ -91,12 +92,12 @@
                     <div class="col-md-4 form-group">
                         <label>Main image:</label>
                         <input class="form-control" type="file" name="main_image" formControlName="main_image"
-                        [ngClass]="{errmsg: !program.controls['main_image'].valid && submitted}" required/>
+                        [ngClass]="{errmsg: !program.controls['main_image'].valid && submitted}" />
                     </div>
                     <div class="col-md-4 form-group">
                         <label>Logo image:</label>
                         <input class="form-control" type="file" name="logo_image" formControlName="logo_image" 
-                        [ngClass]="{errmsg: !program.controls['logo_image'].valid && submitted}" required/>
+                        [ngClass]="{errmsg: !program.controls['logo_image'].valid && submitted}" />
                     </div>
                     <div class="col-md-4 form-group">
                         <label>Duration in months:</label>
@@ -154,6 +155,23 @@
                             <option [value]=" "> </option>
                             <option *ngFor="let contract_manager of datas.users.contract_manager" [value]="contract_manager.id">{{contract_manager.full_name}}</option>
                         </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="col-md-12" formArrayName="application_questions" *ngIf="hideArrayControl">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Program registration questions
+                </div>
+                <div class="panel-body">
+                    <div class="row" *ngFor="let app_ques of program.controls.application_questions.controls; let i = index">
+                        <div class="col-md-12" >
+                            <input type="checkbox"  [formControlName]="i">
+                            <b>Questions: </b>
+                            <span>{{datas.application_questions[i].question}}</span>
+                          </div>
                     </div>
                 </div>
             </div>
@@ -318,6 +336,13 @@
                 <div class="col-md-3">
                     <label>Contract Manager: </label>
                     <p>{{reviewAndSubmit.contract_manager.full_name}}</p>      
+                </div>
+            </div>
+            <div class="col-md-12">
+                    <h2 class="page-heading">Application registration questions</h2>
+                <div class="col-md-12" *ngFor="let app_que of reviewAndSubmit.application_questions; let i = index">
+                    <label>Question No: {{i + 1}} </label>
+                    <p>{{app_que.question}}</p>
                 </div>
             </div>
             <div class="col-md-12 text-center">
