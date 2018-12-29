@@ -12,6 +12,7 @@ export class ProgramModuleComponent implements OnInit {
 
     auth: string;
     loggedIn:boolean;
+    programs: any[] =[];
     constructor(
         private cookieService: CookieService,
         private formBuilder: FormBuilder,
@@ -26,10 +27,21 @@ export class ProgramModuleComponent implements OnInit {
           window.location.href = '/login';
         }
     }
-    ngOnInit(){}
-
+    ngOnInit(){
+        this.getAllProgram();
+    }
     getCookie(key: string){
         return this.cookieService.get(key);
       }
+
+    getAllProgram(){
+        this.apiService.getDataWithAuth("",this.auth)
+        .subscribe(data => {
+            this.programs = data
+            console.log(data);
+        }, error => {
+            console.log(`Following error has occured: ${error}`);
+        });
+    }  
 
 } 
