@@ -12,7 +12,7 @@ export class ProgramModuleComponent implements OnInit {
 
     auth: string;
     loggedIn:boolean;
-    programs: any[] =[];
+    program_modules: any[] =[];
     constructor(
         private cookieService: CookieService,
         private formBuilder: FormBuilder,
@@ -35,9 +35,9 @@ export class ProgramModuleComponent implements OnInit {
       }
 
     getAllProgram(){
-        this.apiService.getDataWithAuth("",this.auth)
+        this.apiService.getDataWithAuth("show-programs",this.auth)
         .subscribe(data => {
-            this.programs = data
+            this.program_modules = data
             console.log(data);
         }, error => {
             console.log(`Following error has occured: ${error}`);

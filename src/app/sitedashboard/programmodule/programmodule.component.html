@@ -9,29 +9,77 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                        <th>Firstname</th>
-                        <th>Lastname</th>
-                        <th>Email</th>
+                        <th>Title</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Duration</th>
+                        <th>Seat Size</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                        <td>John</td>
-                        <td>Doe</td>
-                        <td>john@example.com</td>
-                        </tr>
-                        <tr>
-                        <td>Mary</td>
-                        <td>Moe</td>
-                        <td>mary@example.com</td>
-                        </tr>
-                        <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>july@example.com</td>
+                        <tr *ngFor="let program of program_modules.programs">
+                        <td>{{program.title}}</td>
+                        <td>{{program.start_date}}</td>
+                        <td>{{program.end_date}}</td>
+                        <td>{{program.duration}}</td>
+                        <td>{{program.seat_size}}</td>
                         </tr>
                     </tbody>
                 </table>
         </div>
     </div>
 </div>
+
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">List of Program types</div>
+        <div class="panel-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Logo</th>
+                        <th>Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let program_type of program_modules.program_types">
+                        <td>{{program_type.program_type_title}}</td>
+                        <td>{{program_type.program_type_description}}</td>
+                        <td>{{program_type.program_type_logo}}</td>
+                        <td>{{program_type.duration}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">List of Program Locations</div>
+            <div class="panel-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                            <th>Country</th>
+                            <th>State</th>
+                            <th>City</th>
+                            <th>Address</th>
+                            <th>Postalcode</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let program_location of program_modules.program_locations">
+                            <td>{{program_location.country}}</td>
+                            <td>{{program_location.state_province_region}}</td>
+                            <td>{{program_location.city}}</td>
+                            <td>{{program_location.address_line_1}}</td>
+                            <td>{{program_location.zip_pincode_postalcode}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+    </div>
