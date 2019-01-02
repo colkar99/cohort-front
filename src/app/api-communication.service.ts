@@ -59,6 +59,13 @@ export class ApiCommunicationService {
       catchError(this.handleError)
     );
   };
+  getDataWithoutAuth(url: string): Observable<any>{
+    this.domainUrl = `${this.url}${url}`;
+    return this.http.get<any>(this.domainUrl)
+    .pipe(
+      catchError(this.handleError)
+    );
+  };
   // getDate(url){
   //   this.domainUrl = `${this.url}${url}`;
   //   return this.http.get<any>(this.domainUrl)

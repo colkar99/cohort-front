@@ -1,0 +1,125 @@
+<h2 class="mar-top">Apply for program</h2>
+
+<div class="panel panel-default">
+        <div class="panel-body">
+            <form #registerform="ngForm" (ngSubmit)="handleFormSubmit(registerform)" validate>
+            <div class="row">        
+                <div class="col-md-6 form-group">
+                    <label>Startup Name</label>
+                    <input type="text" class="form-control" name="startup_name"  ngModel 
+                    placeholder="Startup name"
+                    [class.has-error]="registerform.startup_name.invalid" [class.has-success]="registerform.startup_name.valid"                     required/>
+                     <span *ngIf="registerform.startup_name.touched && !registerform.startup_name.valid">Please enter the startup name</span>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>Founded date</label>
+                    <input type="date" class="form-control" name="founded_date" ngModel required/>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>Website Url </label>
+                    <input type="text" class="form-control" name="website_url" ngModel placeholder="www.startup.com" required/>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>Entity Type </label>
+                    <input type="text" class="form-control" name="entity_type" ngModel placeholder="Entity type" required/>
+                </div>
+                <h3 class="page-heading">Founder info:</h3>
+                <div class="col-md-6 form-group">
+                    <label>Name</label>
+                    <input type="text" class="form-control" name="founder_name" ngModel placeholder="Enter founder name" required/>
+                </div> 
+                <div class="col-md-6 form-group">
+                    <label>Email</label>
+                    <input type="email" class="form-control" name="founder_email" ngModel placeholder="Founder@mail.com" required/>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>Contact No</label>
+                    <input type="number" class="form-control" name="founder_phone_number" ngModel placeholder="Enter your Contact Number" required/>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>Skills</label>
+                    <textarea class="form-control" name="founder_skills" ngModel placeholder="Enter your skills seperated by comma" required></textarea>               
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>Credentials</label>
+                    <textarea class="form-control" name="founder_credentials" ngModel placeholder="Enter credentials" required></textarea>               
+                 </div>
+                <div class="col-md-6 form-group">
+                    <label>Experience</label>
+                    <textarea class="form-control" name="founder_experience" ngModel placeholder="Enter your experience" required></textarea>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>Commitment</label>
+                    <textarea class="form-control" name="founder_commitment" ngModel placeholder="Enter your commitments" required></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <h3 class="page-heading">Startup Address</h3>
+                <div class="col-md-6 form-group">
+                    <label>Address line 1</label>
+                    <input type="text" class="form-control" name="startup_address_line_1" ngModel placeholder="Enter your startup address line 1" required/>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>Address line 2</label>
+                    <input type="text" class="form-control" name="startup_address_line_2" ngModel placeholder="Enter your startup address line 2" required/>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>City</label>
+                    <input type="text" class="form-control" name="startup_city" ngModel placeholder="Enter your city name" required/>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>State/Province/Region</label>
+                    <input type="text" class="form-control" name="startup_state_province_region" ngModel placeholder="Enter your State/Province/Region" required/>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>Country</label>
+                    <input type="text" class="form-control" name="startup_country" ngModel placeholder="Enter your country name" required/>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>Zipcode/postalcode</label>
+                    <input type="text" class="form-control" name="startup_zip_pincode_postalcode" ngModel placeholder="Enter your Zipcode/postalcode" required/>
+                </div>
+                <div class="col-md-12 text-center">
+                    <button class="btn btn-default" type="submit">Submit</button>
+                </div>
+            </div>
+            </form>                       
+        </div>
+</div>
+
+t.string "startup_name"
+t.string "founded_date"
+t.string "website_url"
+t.string "entity_type"
+t.integer "program_id"
+t.integer "program_status_id"
+t.datetime "created_at", null: false
+t.datetime "updated_at", null: false
+t.string "created_by"
+t.boolean "isDelete", default: false
+t.boolean "isActive", default: true
+t.datetime "deleted_at"
+t.string "deleted_by"
+t.string "founder_name"
+t.string "founder_email"
+t.string "founder_phone_number"
+t.text "founder_skills"
+t.text "founder_credentials"
+t.text "founder_experience"
+t.text "founder_commitment"
+t.string "startup_address_line_1"
+t.string "startup_address_line_2"
+t.string "startup_city"
+t.string "startup_state_province_region"
+t.string "startup_zip_pincode_postalcode"
+t.string "startup_country"
+t.string "startup_geo_location"
+t.string "application_status"
+t.string "app_status_description"
+t.boolean "contract_signed"
+t.datetime "contract_signed_date"
+t.datetime "contract_received_date"
+t.boolean "current_state_form", default: false
+t.boolean "current_state_form_reviewed", default: false
+t.index ["program_id"], name: "index_startup_registrations_on_program_id"
+t.index ["program_status_id"], name: "index_startup_registrations_on_program_status_id"

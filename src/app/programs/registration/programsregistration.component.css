@@ -1,0 +1,11 @@
+.mar-top {
+    margin-top: 8%;
+}
+.errmsg{
+    border: 1px solid red;
+}
+
+input.ng-invalid.ng-touched  
+{  
+   border-color: red;  
+}

@@ -14,7 +14,9 @@ import { StartupdashboardComponent } from './startupdashboard/startupdashboard.c
 import { MentordashboardComponent } from './mentordashboard/mentordashboard.component';
 import { ProgramModuleComponent } from './sitedashboard/programmodule/programmodule.component'
 import { CreateProgramComponent } from './sitedashboard/programmodule/createprogram/createprogram.component';
-
+import { ProgramsComponent } from './programs/programs.component';
+import { ProgramsRegistrationComponent } from './programs/registration/programsregistration.component'
+ 
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +27,9 @@ import { CreateProgramComponent } from './sitedashboard/programmodule/createprog
     UsermoduleComponent,
     UsercontrollerComponent,
     ProgramModuleComponent,
-    CreateProgramComponent
+    CreateProgramComponent,
+    ProgramsComponent,
+    ProgramsRegistrationComponent
   ],
   imports: [
     BrowserModule,
