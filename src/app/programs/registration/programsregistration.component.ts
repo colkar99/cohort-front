@@ -32,19 +32,26 @@ export class ProgramsRegistrationComponent implements OnInit {
     this.getApplicationQuestion();
   }
   initAppQuesSubmit(form){
-    debugger
     let dum_data = form.value;
-    debugger
-    dum_data.application_question.forEach(element => {
-      let data = {application_ques_response: element, program_id: this.program_id,startup_application_id: this.startup_application.id };
-      this.apiService.postData('create-program-questions-response',JSON.stringify(data))
-      .subscribe(data =>{
-        console.log(data);
-      },error =>{
-        console.log(data)
-        })
-    });
-    this.router.navigate(['/']);
+    let data = {application_ques_response: dum_data, program_id: this.program_id,startup_application_id: this.startup_application.id };
+    this.apiService.postData('create-program-questions-response',JSON.stringify(data))
+        .subscribe(data =>{
+          debugger
+          console.log(data);
+          this.router.navigate(['/']);
+        },error =>{
+          debugger
+          console.log(data)
+          })
+    // dum_data.application_question.forEach(element => {
+    //   let data = {application_ques_response: element, program_id: this.program_id,startup_application_id: this.startup_application.id };
+    //     this.apiService.postData('create-program-questions-response',JSON.stringify(data))
+    //     .subscribe(data =>{
+    //       console.log(data);
+    //     },error =>{
+    //       console.log(data)
+    //       })
+    // });
   }
  
   handleFormSubmit(form){

@@ -138,6 +138,7 @@
 </div>
 
 <div class="panel panel-default" *ngIf="formSubmitted">
+<!-- <div class="panel panel-default"> -->
     <div class="panel body">
         <form [formGroup]="application_questions_form" (ngSubmit)=" initAppQuesSubmit(application_questions_form)">
         <div class="row" formArrayName="application_question"

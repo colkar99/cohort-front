@@ -24,7 +24,6 @@ export class ApiCommunicationService {
 
   postData(url: string,params: {}): Observable<any>{
     this.domainUrl = `${this.url}${url}`;
-    debugger
     return this.http.post<any>(this.domainUrl,params,this.httpOptions)
     .pipe(
       catchError(this.handleError)
