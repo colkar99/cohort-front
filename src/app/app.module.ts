@@ -16,7 +16,7 @@ import { ProgramModuleComponent } from './sitedashboard/programmodule/programmod
 import { CreateProgramComponent } from './sitedashboard/programmodule/createprogram/createprogram.component';
 import { ProgramsComponent } from './programs/programs.component';
 import { ProgramsRegistrationComponent } from './programs/registration/programsregistration.component'
- 
+import {ProgramControlComponent } from './sitedashboard/programcontrol/programcontrol.component'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +29,8 @@ import { ProgramsRegistrationComponent } from './programs/registration/programsr
     ProgramModuleComponent,
     CreateProgramComponent,
     ProgramsComponent,
-    ProgramsRegistrationComponent
+    ProgramsRegistrationComponent,
+    ProgramControlComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,169 @@
+<h2 class="mar-top">Hi am from program control</h2>
+<div class="row">
+    <div class="col-md-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                    <th>Title</th>
+                    <th>Status</th>
+                    <th>Seat capacity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let program of allPrograms" style="cursor: pointer;"
+                        (click)="showStartups(program.id)">
+                    <td>{{program.title}}</td>
+                    <td>{{program.status}}</td>
+                    <td>{{program.seat_size}}</td>
+                    </tr>
+                </tbody>
+            </table>
+    </div>
+</div>
+
+<div class="row" *ngIf="showStartup && allStartups.length == 0">
+    <div class="alert alert-danger">
+        <strong>Oops!</strong> No startup have registered for this program.
+    </div>
+</div>
+<div class="row" *ngIf="showStartup && allStartups.length > 0">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <label>List of registered startups</label>
+            <div class="col-md-12">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                        <th>Startup Name</th>
+                        <th>Status</th>
+                        <th>Status description</th>
+                        <th>Review</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let startup of allStartups" style="cursor: pointer; ">
+                        <td>{{startup.startup_name}}</td>
+                        <td>{{startup.application_status}}</td>
+                        <td>{{startup.app_status_description}}</td>
+                        <td><button (click)="getStartupRegQues(startup.id,program_id)">Action</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Startup details-->
+<div class="row">
+    <div class="panel panel-default">
+        <div class="col-md-12">
+            <div class="col-md-4">Startup Name:
+
+            </div>
+            <div class="col-md-4">Founded date:
+                
+            </div>
+            <div class="col-md-4">Entity type:
+                
+            </div>
+            <div class="col-md-4">Company website:
+                
+            </div>
+        </div>
+        <div class="col-md-12">
+            <p class="page-heading">Application Status</p>
+            <div class="col-md-4">Application status:
+                
+            </div>
+            <div class="col-md-4">Status Description:
+                
+            </div>
+        </div>
+        <div class="col-md-12">
+            <p class="page-heading">Founder info:</p>
+            <div class="col-md-4">Founder Name:
+                
+            </div>
+            <div class="col-md-4">Name:
+                
+            </div>
+            <div class="col-md-4">Email:
+                
+            </div>
+            <div class="col-md-4">Contact number:
+                
+            </div>
+            <div class="col-md-4">Skills
+                
+            </div>
+            <div class="col-md-4">Commitment
+                
+            </div>
+            <div class="col-md-4">Experience
+                
+            </div>
+            <div class="col-md-4">Credentials
+                
+            </div>
+        </div>
+        <div class="col-md-12">
+            <p class="page-heading">Startup Address:</p>
+            <div class="col-md-4">Startup address line 1
+
+            </div>
+            <div class="col-md-4">Startup address line 2
+
+            </div>
+            <div class="col-md-4">Startup city
+
+            </div>
+            <div class="col-md-4">Startup state province region
+
+            </div>
+            <div class="col-md-4">Startup country
+
+            </div>
+            <div class="col-md-4">Startup zip pincode postalcode
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- app_status_description: "Application registered"
+application_status: "PR"
+contract_received_date: null
+contract_signed: null
+contract_signed_date: null
+created_at: "2019-01-03T12:04:51.637Z"
+created_by: null
+current_state_form: false
+current_state_form_reviewed: false
+deleted_at: null
+deleted_by: null
+entity_type: "demo"
+founded_date: "2019-01-03"
+founder_commitment: "demo"
+founder_credentials: "demo"
+founder_email: "demo"
+founder_experience: "demo"
+founder_name: "demo"
+founder_phone_number: "121312"
+founder_skills: "demo"
+id: 6
+isActive: true
+isDelete: false
+program_id: 4
+program_status_id: 1
+startup_address_line_1: "demo"
+startup_address_line_2: "demo"
+startup_city: "demo"
+startup_country: "demo"
+startup_geo_location: null
+startup_name: "demo"
+startup_state_province_region: "demo"
+startup_zip_pincode_postalcode: "demo"
+updated_at: "2019-01-03T12:04:51.637Z"
+website_url: "demo" -->
