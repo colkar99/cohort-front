@@ -3,7 +3,6 @@ import { FormControl , FormGroup } from '@angular/forms';
 import { ApiCommunicationService } from '../../api-communication.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
-import { stringify } from '@angular/core/src/util';
 
 @Component({
   selector: 'app-programcontrol',
@@ -20,6 +19,8 @@ export class ProgramControlComponent implements OnInit {
   public user_details: any[];
   allPrograms: any[];
   allStartups: any[];
+  startup: any;
+  appRespQues: any;
   showStartup: boolean = false;
 
   constructor(private apiCom: ApiCommunicationService,
@@ -95,15 +96,22 @@ export class ProgramControlComponent implements OnInit {
     })
 
   }
-  getStartupRegQues(startup_id: number,program_id: number){
+  getStartupRegQues(startup_id: number,program_id: number,startup: any){
+    debugger
+    this.startup = startup;
       let url: string = "get-program-question-response";
       let data: {} = {startup_registration_id: startup_id,program_id: program_id};
         this.apiCom.postDataWithToken(url,JSON.stringify(data),this.authToken)
         .subscribe(data => {
             console.log(data);
+            this.appRespQues = data
+            debugger
         }, error => {
             console.log(data)
         })
+  }
+  submitAdminResponse(form: any){
+    debugger
   }
   
 }
