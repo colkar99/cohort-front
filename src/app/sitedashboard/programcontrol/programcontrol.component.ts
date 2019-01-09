@@ -22,6 +22,7 @@ export class ProgramControlComponent implements OnInit {
   startup: any;
   appRespQues: any;
   showStartup: boolean = false;
+  location_program_id: any;
 
   constructor(private apiCom: ApiCommunicationService,
               private cookieService: CookieService,
@@ -49,6 +50,10 @@ export class ProgramControlComponent implements OnInit {
       this.loggedIn = false;
       this.router.navigate(['/login']);
 
+    }
+    this.location_program_id = this.getCookie('program_id')
+    if (this.authToken.length != 0){
+      this.showStartups(this.location_program_id);
     }
     this.getUserDetails();
     this.getAllProgram();  
@@ -83,8 +88,9 @@ export class ProgramControlComponent implements OnInit {
         console.log(this.allPrograms);
 
   }
-  showStartups(id: number){
+  showStartups(id: any){
     let data ={"program_id": id};
+    this.cookieService.set( 'program_id', id, 30 ,'/admin/dashboard/program-controls' );
     let url = "program/show-startup-program-wise";
     this.apiCom.postDataWithToken(url,JSON.stringify(data),this.authToken)
     .subscribe(data => {

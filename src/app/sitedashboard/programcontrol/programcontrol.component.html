@@ -37,7 +37,8 @@
                         <th>Startup Name</th>
                         <th>Status</th>
                         <th>Status description</th>
-                        <th>Review</th>
+                        <th>Score</th>
+                        <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,7 +46,11 @@
                         <td>{{startup.startup_name}}</td>
                         <td>{{startup.application_status}}</td>
                         <td>{{startup.app_status_description}}</td>
-                        <td><button (click)="getStartupRegQues(startup.id,program_id,startup)">Action</button></td>
+                        <td>{{startup.score}}</td>
+                        <td>
+                            <button routerLink="startup/{{startup.id}}">Review</button>
+                        </td>
+                        
                         </tr>
                     </tbody>
                 </table>
@@ -54,126 +59,7 @@
     </div>
 </div>
 
-<!--Startup details-->
-<div class="row" *ngIf="startup">
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <div class="col-md-12">
-                <h4 class="page-heading">Startup Info</h4>
-                <div class="col-md-4"><label>Startup Name:</label>
-                    {{startup.startup_name}}
-                </div>
-                <div class="col-md-4"><label>Founded date:</label>
-                    {{startup.founded_date}}
-                </div>
-                <div class="col-md-4"><label>Entity type:</label>
-                    {{startup.entity_type}}
-                </div>
-                <div class="col-md-4"><label>Company website:</label>
-                    {{startup.website_url}}
-                </div>
-            </div>
-            <div class="col-md-12">
-                <h4 class="page-heading">Application Status</h4>
-                <div class="col-md-4"><label>Application status:</label>
-                    {{startup.application_status}}
-                </div>
-                <div class="col-md-4"><label>Status Description:</label>
-                    {{startup.app_status_description}}
-                </div>
-            </div>
-            <div class="col-md-12">
-                <h4 class="page-heading">Founder info:</h4>
-                <div class="col-md-4"><label>Founder Name:</label>
-                    {{startup.founder_name}}
-                </div>
-                <div class="col-md-4"><label>Email:</label>
-                    {{startup.founder_email}}
-                </div>
-                <div class="col-md-4"><label>Contact number:</label>
-                    {{startup.founder_phone_number}}
-                </div>
-                <div class="col-md-4"><label>Skills</label>
-                    {{startup.founder_skills}}
-                </div>
-                <div class="col-md-4"><label>Commitment</label>
-                    {{startup.founder_commitment}}
-                </div>
-                <div class="col-md-4"><label>Experience</label>
-                    {{startup.founder_experience}}
-                </div>
-                <div class="col-md-4"><label>Credentials</label>
-                    {{startup.founder_credentials}}
-                </div>
-            </div>
-            <div class="col-md-12">
-                <h4 class="page-heading">Startup Address:</h4>
-                <div class="col-md-4"><label>Startup address line 1</label>
-                    {{startup.startup_address_line_1}}
 
-                </div>
-                <div class="col-md-4"><label>Startup address line 2</label>
-                    {{startup.startup_address_line_2}}
-
-                </div>
-                <div class="col-md-4"><label>Startup city</label>
-                    {{startup.startup_city}}
-
-                </div>
-                <div class="col-md-4"><label>Startup state province region</label>
-                    {{startup.startup_state_province_region}}
-
-                </div>
-                <div class="col-md-4"><label>Startup country</label>
-                    {{startup.startup_country}}
-
-                </div>
-                <div class="col-md-4"><label>Startup zip pincode postalcode</label>
-                    {{startup.startup_zip_pincode_postalcode}}
-
-                </div>
-            </div>
-            <form #form="ngForm" (ngSubmit)="submitAdminResponse(form)">
-                <h4>Review startup responses</h4>
-                <div class="col-md-12" *ngFor="let app_res of appRespQues; let i = index">
-                    <fieldset ngModelGroup="{{i}}">
-                    <div class="col-md-12"><label>Title</label>
-                        {{app_res.application_question.title}}
-                    </div>
-                    <div class="col-md-12"><label>Description</label>
-                        {{app_res.application_question.description}}
-                    </div>
-                    <div class="col-md-12"><label>Question</label>
-                        {{app_res.application_question.question}}
-                    </div>
-                    <div class="col-md-12"><label>Startup Response</label>
-                        {{app_res.response}}
-                        <input type="hidden" name="id" [(ngModel)]="app_res.id" >
-                        <input type="hidden" name="application_question_id" [(ngModel)]="app_res.application_question.id">
-                    </div>
-                    <div class="col-md-12 form-group"><label>Admin Feedback</label>
-                        <textarea class="form-control" type="text" [(ngModel)]="i.reviewer_feedback" name="reviewer_feedback"></textarea>
-                    </div>
-                    <div class="col-md-12 form-group"><label>Admin rating</label>
-                        <div class="form-group">
-                            <select class="form-control" id="sel1" [(ngModel)]="i.reviewer_rating" name="reviewer_rating">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                        </div>
-                    </div>
-                </fieldset>
-                </div>
-                <div class="col-md-12 text-center">
-                    <button class="btn btn-default" type="submit">Submit</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 
 <!-- app_status_description: "Application registered"
 application_status: "PR"
