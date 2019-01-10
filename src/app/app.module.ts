@@ -17,7 +17,9 @@ import { CreateProgramComponent } from './sitedashboard/programmodule/createprog
 import { ProgramsComponent } from './programs/programs.component';
 import { ProgramsRegistrationComponent } from './programs/registration/programsregistration.component'
 import {ProgramControlComponent } from './sitedashboard/programcontrol/programcontrol.component';
-import { StartupControlComponent } from './sitedashboard/programcontrol/startupcontrol/startupcontrol.component'; 
+import { StartupControlComponent } from './sitedashboard/programcontrol/startupcontrol/startupcontrol.component';
+import { ContractManagerComponent } from './sitedashboard/contractmanagercontrol/contractmanager.component';
+import { ContractFormComponent } from './sitedashboard/contractmanagercontrol/contractform/contractform.component'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +34,9 @@ import { StartupControlComponent } from './sitedashboard/programcontrol/startupc
     ProgramsComponent,
     ProgramsRegistrationComponent,
     ProgramControlComponent,
-    StartupControlComponent
+    StartupControlComponent,
+    ContractManagerComponent,
+    ContractFormComponent
   ],
   imports: [
     BrowserModule,

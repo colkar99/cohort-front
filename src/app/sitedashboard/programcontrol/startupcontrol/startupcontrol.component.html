@@ -1,4 +1,7 @@
 <!--Startup details-->
+<div class="row score" *ngIf="startup"><label>Score</label>
+    <div class="text-center">{{startup.score}}</div>
+</div>
 <div class="row" *ngIf="startup">
     <div class="panel panel-default">
         <div class="panel-body">
@@ -77,8 +80,8 @@
 
                 </div>
                 <div class="col-md-12" *ngIf="startup.application_status == 'RC'">
-                    <button class="btn btn-success">Accept</button>
-                    <button class="btn btn-danger">Reject</button>
+                    <button class="btn btn-success" (click)="startupAccept(startup.id)">Accept</button>
+                    <button class="btn btn-danger" (click)="startupReject(startup.id)">Reject</button>
 
                 </div>
             </div>

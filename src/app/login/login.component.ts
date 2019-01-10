@@ -32,9 +32,14 @@ export class LoginComponent implements OnInit {
         this.cookieService.set( 'Authorization', data.auth_token, 30 ,'/' );
         this.cookieService.set( 'user_id', data.user_id, 30 ,'/' );
         this.cookieService.set( 'user_type', data.user_type, 30 ,'/' );
+        this.cookieService.set( 'role', data.roles[0].name, 30 ,'/' );
         this.newMessage();
         if (data.user_type == "site") {
-          this.router.navigate(['admin/dashboard']);
+          // this.router.navigate(['admin/dashboard']);
+          if(data.roles[0].name == "site_admin") this.router.navigate(['admin/dashboard'])
+          if(data.roles[0].name == "program_admin") this.router.navigate(['admin/dashboard/program-controls']);
+          if(data.roles[0].name == "program_director") this.router.navigate(['admin/dashboard/program-controls']);
+          if(data.roles[0].name == "contract_manager") this.router.navigate(['/dashboard/contract-manager']);    
         } else if(data.user_type == "startup"){
           this.router.navigate(['startup/dashboard']);
         } else if (data.user_type == "mentor"){
@@ -56,9 +61,11 @@ export class LoginComponent implements OnInit {
       this.message = message;
     })
     this.checkStatus = this.getCookie('Authorization');
+    let user_type = this.getCookie('user_type');
     if (this.checkStatus.length != 0){
       debugger
       this.loggedIn = true;
+
       this.router.navigate(['/']);
       // window.location.href = '/';
     } else {

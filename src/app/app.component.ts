@@ -3,7 +3,6 @@ import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { SharedDataService } from './shared-data.service';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,10 +13,12 @@ export class AppComponent {
   checkStatus: string;
    loggedIn: boolean;
    message: string;
+   user_role: string;
 
   constructor(private cookieService: CookieService,
               private router: Router,
-              private sharedData: SharedDataService) {
+              private sharedData: SharedDataService
+              ) {
                 // this.detect.detectChanges();
                }
   ngOnInit() {
@@ -27,8 +28,8 @@ export class AppComponent {
       this.loggedIn = true;
     })
     this.checkStatus = this.getCookie('Authorization');
+    this.user_role = this.getCookie('role')
     if (this.checkStatus.length != 0){
-      debugger
       this.loggedIn = true;
     } else {
       this.loggedIn = false;
@@ -46,9 +47,21 @@ export class AppComponent {
 
   logout(): void{
     this.deleteCookie('Authorization');
+    this.deleteCookie('role');
     this.loggedIn = false;
                     // this.detect.detectChanges();
     this.router.navigate(['/']);
   }
+  // getUserDetails(auth){
+  //   let url = "get-user-details"
+  //   this.apiCom.getDataWithAuth(url,auth)
+  //   .subscribe(
+  //     data => { 
+  //       console.log("success!", data);
+  //       this.user_details = data;
+  //   }, 
+  //     error => console.error("couldn't post because", error)
+  //   );
+  // }
 
 }

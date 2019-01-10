@@ -1,0 +1,48 @@
+<h2 class="mar-top">Am from contract controller</h2>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group" *ngIf="program_modules">
+            <label for="sel1">Select program:</label>
+            <select class="form-control" id="sel1" (change)="onChange($event.target.value)">
+                 <option></option>
+              <option *ngFor="let program of program_modules" value="{{program.id}}">{{program.title}}</option>
+            </select>
+          </div>
+    </div>
+</div>
+<div class="row" *ngIf="startups && startups.length == 0">
+    <div class="alert alert-danger">
+        <strong>Oops!</strong> No startup have accepted for this program.
+    </div>
+</div>
+<div class="row" *ngIf="startups && startups.length > 0">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="col-md-12">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                        <th>Startup Name</th>
+                        <th>Status</th>
+                        <th>Status description</th>
+                        <th>Score</th>
+                        <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let startup of startups" style="cursor: pointer; ">
+                        <td>{{startup.startup_name}}</td>
+                        <td>{{startup.application_status}}</td>
+                        <td>{{startup.app_status_description}}</td>
+                        <td>{{startup.score}}</td>
+                        <td>
+                            <button routerLink="{{startup.id}}">View contract form</button>
+                        </td>
+                        
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

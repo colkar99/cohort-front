@@ -13,7 +13,8 @@ import { ProgramsComponent } from './programs/programs.component';
 import { ProgramsRegistrationComponent } from './programs/registration/programsregistration.component';
 import { ProgramControlComponent } from './sitedashboard/programcontrol/programcontrol.component';
 import { StartupControlComponent } from './sitedashboard/programcontrol/startupcontrol/startupcontrol.component';
-
+import { ContractManagerComponent } from  './sitedashboard/contractmanagercontrol/contractmanager.component';
+import { ContractFormComponent } from './sitedashboard/contractmanagercontrol/contractform/contractform.component';
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'admin/dashboard', component: SitedashboardComponent,pathMatch: 'prefix',
@@ -27,7 +28,9 @@ const routes: Routes = [
   {path: 'startup/dashboard', component: StartupdashboardComponent},
   {path: 'mentor/dashboard', component: MentordashboardComponent},
   {path: 'live-programs', component: ProgramsComponent},
-  {path: 'live-programs/registration/:id', component: ProgramsRegistrationComponent}
+  {path: 'live-programs/registration/:id', component: ProgramsRegistrationComponent},
+  {path: 'dashboard/contract-manager' ,component: ContractManagerComponent},
+  {path: 'dashboard/contract-manager/:id', component: ContractFormComponent}
   
 ];
 
