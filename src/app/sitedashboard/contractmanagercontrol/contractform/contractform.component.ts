@@ -69,7 +69,7 @@ export class ContractFormComponent implements OnInit {
       },error =>{
         console.log(error);
       })
-      debugger
+      
   }
   getAddContractInfo(){
       let url = "get-contract-additional-information";
