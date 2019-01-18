@@ -81,32 +81,32 @@ export class StartupControlComponent implements OnInit {
       console.log(error);
     })
   }
-  startupAccept(id: number){
-    debugger
-    let url = "startup-accept-by-admin";
-    let data = {startup_registration_id: id};
-    this.apiCom.postDataWithToken(url,JSON.stringify(data),this.authToken)
-    .subscribe(data => 
-      {
-        console.log(data);
-      },
-      error=> {
-        console.log(error);
-      });
-  }
-  startupReject(id: number){
-    debugger
-    let url = "startup-reject-by-admin";
-    let data = {startup_registration_id: id};
-    this.apiCom.postDataWithToken(url,JSON.stringify(data),this.authToken)
-    .subscribe(data => 
-      {
-        console.log(data);
-      },
-      error=> {
-        console.log(error);
-      })
-  }
+  // startupAccept(id: number){
+  //   debugger
+  //   let url = "startup-accept-by-admin";
+  //   let data = {startup_registration_id: id};
+  //   this.apiCom.postDataWithToken(url,JSON.stringify(data),this.authToken)
+  //   .subscribe(data => 
+  //     {
+  //       console.log(data);
+  //     },
+  //     error=> {
+  //       console.log(error);
+  //     });
+  // }
+  // startupReject(id: number){
+  //   debugger
+  //   let url = "startup-reject-by-admin";
+  //   let data = {startup_registration_id: id};
+  //   this.apiCom.postDataWithToken(url,JSON.stringify(data),this.authToken)
+  //   .subscribe(data => 
+  //     {
+  //       console.log(data);
+  //     },
+  //     error=> {
+  //       console.log(error);
+  //     })
+  // }
 
   
 }

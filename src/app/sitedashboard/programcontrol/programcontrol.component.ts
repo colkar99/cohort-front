@@ -53,6 +53,7 @@ export class ProgramControlComponent implements OnInit {
     }
     this.location_program_id = this.getCookie('program_id')
     if (this.authToken.length != 0){
+      debugger
       this.showStartups(this.location_program_id);
     }
     this.getUserDetails();

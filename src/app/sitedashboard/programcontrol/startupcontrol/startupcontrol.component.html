@@ -80,8 +80,8 @@
 
                 </div>
                 <div class="col-md-12" *ngIf="startup.application_status == 'RC'">
-                    <button class="btn btn-success" (click)="startupAccept(startup.id)">Accept</button>
-                    <button class="btn btn-danger" (click)="startupReject(startup.id)">Reject</button>
+                    <button class="btn btn-success" (click)="startupAccept(startup.id)">Request current state form</button>
+                    <button class="btn btn-danger" (click)="startupReject(startup.id)">Send gentle reminder to send current state form</button>
 
                 </div>
             </div>

@@ -1,9 +1,9 @@
 <h2 class="mar-top">Am from contract form</h2>
 
-<div class="row">
+<div class="row" *ngIf="startup">
     <div class="panel panel-default">
         <div class="panel-body">
-            <form #form="ngForm" >
+            <form #form="ngForm" (ngSubmit)="onSubmitReview(form)">
                 <div class="row">
                     <div class="col-md-12 text-center">
                         <h4>Startup Ignite Contract form</h4>
@@ -40,30 +40,127 @@
                     </div>
                     <div class="col-md-6 form-group">
                         <label>Contract duration in month</label>
-                        <input class="form-control" name="duration" ngModel type="date">
+                        <input class="form-control" name="duration" ngModel type="number">
                     </div>                    
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="sel1">Select additional information:</label>
-                            <select class="form-control" id="sel1" (change)="onChange($event.target.value)">
+                            <select class="form-control" id="sel1" (change)="onChangeInfo($event.target.value)">
                                 <option></option>
-                                <option >0</option>
+                                <option *ngFor="let add_info of addContractInfo ">{{add_info.id}}</option>
                             </select>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6"></div>
-                <div class="col-md-6"></div>
-                <div class="col-md-6"></div>
-                <div class="col-md-6"></div>
-                <div class="col-md-6"></div>
+                <div class="row" *ngIf="selected_add_info">
+                        <input type="hidden" class="form-control" name="additional_contract_information_id" [(ngModel)]="selected_add_info.id" /> 
+                    <div class="col-md-12">
+                        <label>Purpose Of Contract</label>
+                        <p>{{selected_add_info.purpose_of_contract}}</p>
+                    </div>
+                    <div class="col-md-12">
+                        <label>Authorization</label>
+                        <p>{{selected_add_info.authorization}}</p>                        
+                    </div>
+                    <div class="col-md-12">
+                        <label>Contract terms condition</label>
+                        <p>{{selected_add_info.contract_terms_condition}}</p>
+                    </div>
+                    <div class="col-md-12">
+                        <label>Contract termination</label>
+                        <p>{{selected_add_info.contract_termination}}</p>                        
+                    </div>
+                </div>
+                <div class="row text-center">
+                        <input type="hidden" class="form-control" name="program_id" [(ngModel)]="program.id" />
+                        <input type="hidden" class="form-control" name="startup_registration_id" [(ngModel)]="startup.id" />
+                    <button class="btn btn-default" type="submit">Review form</button>
+                </div>
             </form>
         </div>
     </div>
 </div>
 
+<div class="row">
+    <!-- Modal -->
+    <div id="reviewFormModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+        
+            <!-- Modal content-->
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body" *ngIf="reviewFormData">
+                    <div class="row" >
+                            <div class="col-md-12 text-center">
+                                <h4>Startup Ignite Contract form</h4>
+                            </div>
+                            <div class="col-md-12 pull-left">
+                                <p>Place: chennai</p>
+                                <p>Date: today</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>From,</label>
+                                <p  class="form-control" >{{reviewFormData.p_1_name}}</p>
+                                <p  class="form-control" >{{reviewFormData.p_1_address}}</p>
+                                <p  class="form-control" >{{reviewFormData.p_1_phone_number}}</p>
+                                <p  class="form-control" >{{reviewFormData.p_1_email}}</p>                       
+                            </div>
+                            <div class="col-md-6">
+                                <label>To,</label>
+                                <p class="form-control" >{{reviewFormData.p_2_name}}</p>
+                                <p class="form-control" >{{reviewFormData.p_2_address}}</p>
+                                <p class="form-control" >{{reviewFormData.p_2_phone_number}}</p>
+                                <p class="form-control" >{{reviewFormData.p_2_email}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>Contract from date</label>
+                                <p class="form-control" name="from_date">{{reviewFormData.from_date}}</p>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Contract to date</label>
+                                <p class="form-control" name="to_date">{{reviewFormData.to_date}}</p>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Contract duration in month</label>
+                                <p class="form-control" name="duration">{{reviewFormData.duration}}</p>
+                            </div>                    
+                        </div>
+                        <div class="row" *ngIf="selected_add_info">
+                            <div class="col-md-12">
+                                <label>Purpose Of Contract</label>
+                                <p>{{selected_add_info.purpose_of_contract}}</p>
+                            </div>
+                            <div class="col-md-12">
+                                <label>Authorization</label>
+                                <p>{{selected_add_info.authorization}}</p>                        
+                            </div>
+                            <div class="col-md-12">
+                                <label>Contract terms condition</label>
+                                <p>{{selected_add_info.contract_terms_condition}}</p>
+                            </div>
+                            <div class="col-md-12">
+                                <label>Contract termination</label>
+                                <p>{{selected_add_info.contract_termination}}</p>                        
+                            </div>
+                        </div>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-default" >Create Contract</button>
+            </div>
+            </div>
+        
+        </div>
+    </div>
+</div>
 
 t.integer "contract_manager_id"
     t.integer "startup_registration_id"
