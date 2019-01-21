@@ -79,7 +79,7 @@ export class ApiCommunicationService {
     } else {
       console.error(`Backend returned error:${error.status}` + `body was:${error}`)
     }
-    return throwError('Something happened please try agin later')
+    return throwError(error.error.message)
   }
   constructor(private http: HttpClient) { }
 }

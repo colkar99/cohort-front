@@ -14,7 +14,7 @@ export class ErrorDisplayComponent implements OnInit {
   openpopup(err) {
     this.error = err
     $("#errmodal").modal({
-      backdrop: "static";
+      backdrop: "static",
       keyboard: false
     }, "show")
   }
