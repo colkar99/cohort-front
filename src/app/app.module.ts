@@ -19,7 +19,8 @@ import { ProgramsRegistrationComponent } from './programs/registration/programsr
 import {ProgramControlComponent } from './sitedashboard/programcontrol/programcontrol.component';
 import { StartupControlComponent } from './sitedashboard/programcontrol/startupcontrol/startupcontrol.component';
 import { ContractManagerComponent } from './sitedashboard/contractmanagercontrol/contractmanager.component';
-import { ContractFormComponent } from './sitedashboard/contractmanagercontrol/contractform/contractform.component'; 
+import { ContractFormComponent } from './sitedashboard/contractmanagercontrol/contractform/contractform.component';
+import { ErrorDisplayComponent } from './error-display/error-display.component'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,8 @@ import { ContractFormComponent } from './sitedashboard/contractmanagercontrol/co
     ProgramControlComponent,
     StartupControlComponent,
     ContractManagerComponent,
-    ContractFormComponent
+    ContractFormComponent,
+    ErrorDisplayComponent
   ],
   imports: [
     BrowserModule,
