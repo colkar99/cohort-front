@@ -3,6 +3,7 @@
     <div class="col-md-12 form-group">
         <label for="user_type">Select Program</label>
         <select class="form-control" id="role" (change)="showStartups($event.target.value)">
+            <option></option>
             <option *ngFor="let program of allPrograms" [value]="program.id">{{program.title}}</option>
             <!-- <option [value]="mentor">mentor</option> -->
             <!-- <option [ngValue]="startup">Startup User</option> -->

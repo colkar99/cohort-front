@@ -54,7 +54,9 @@ export class ProgramControlComponent implements OnInit {
     this.location_program_id = this.getCookie('program_id')
     if (this.authToken.length != 0){
       debugger
-      this.showStartups(this.location_program_id);
+      if(this.location_program_id.length != 0 ){
+        this.showStartups(this.location_program_id);
+      }
     }
     this.getUserDetails();
     this.getAllProgram();  
@@ -90,11 +92,13 @@ export class ProgramControlComponent implements OnInit {
 
   }
   showStartups(id: any){
+    debugger
     let data ={"program_id": id};
     this.cookieService.set( 'program_id', id, 30 ,'/admin/dashboard/program-controls' );
     let url = "program/show-startup-program-wise";
     this.apiCom.postDataWithToken(url,JSON.stringify(data),this.authToken)
     .subscribe(data => {
+      debugger
         console.log(data);
         this.allStartups = data;
         this.showStartup = true;
