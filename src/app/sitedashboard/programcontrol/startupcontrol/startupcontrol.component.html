@@ -79,9 +79,11 @@
                     {{startup.startup_zip_pincode_postalcode}}
 
                 </div>
-                <div class="col-md-12" >
-                    <button *ngIf="startup.application_status != 'CSFI'" class="btn btn-success" (click)="requestCurrentStateForm(startup.id)">Request current state form</button>
-                    <button class="btn btn-danger" (click)="sendReminderForCurrent(startup.id)">Send gentle reminder to fill current state form</button>
+                <div class="col-md-12">
+                    <button *ngIf="startup.application_status != 'CSFI'" class="btn btn-success" (click)="requestCurrentStateForm(startup.id)">Request
+                        current state form</button>
+                    <button class="btn btn-danger" (click)="sendReminderForCurrent(startup.id)">Send gentle reminder to
+                        fill current state form</button>
 
                 </div>
             </div>
@@ -93,7 +95,7 @@
     <form #form="ngForm" (ngSubmit)="submitAdminResponse(form)">
         <h4>Review startup responses</h4>
         <div class="col-md-12" *ngFor="let app_res of appRespQues; let i = index">
-            
+
             <div class="col-md-12"><label>Title</label>
                 {{app_res.application_question.title}}
             </div>
@@ -121,7 +123,7 @@
             </div>
             <div ngModelGroup="{{i}}" *ngIf="!app_res.admin_response">
                 <div class="col-md-12 form-group"><label>Admin Feedback</label>
-                    <input type="hidden" name="id" [(ngModel)]="app_res.id" >
+                    <input type="hidden" name="id" [(ngModel)]="app_res.id">
                     <input type="hidden" name="application_question_id" [(ngModel)]="app_res.application_question.id">
                     <textarea class="form-control" type="text" [(ngModel)]="i.reviewer_feedback" name="reviewer_feedback"></textarea>
                 </div>
@@ -139,7 +141,91 @@
             </div>
         </div>
         <div class="col-md-12 text-center">
-            <button class="btn btn-default" type="submit" >Submit</button>
+            <button class="btn btn-default" type="submit">Submit</button>
         </div>
     </form>
+</div>
+
+<div *ngIf="startup.application_status != 'CSFI'">
+    <div>
+        <h3>CurrentStateForm</h3>
+    </div>
+    <div class="col-md-6">
+            <div class="form-group">
+              <span class="label ">REVENUE</span>
+              <textarea class="form-control" name="currentstateform.revenue" [(ngModel)]="currentstateform.revenue"></textarea>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <span class="label ">TRACTION</span>
+              <textarea class="form-control" name="currentstateform.traction" [(ngModel)]="currentstateform.traction"></textarea>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <span class="label ">SOLUTION READINESS</span>
+              <textarea class="form-control" name="currentstateform.solution_readiness" [(ngModel)]="currentstateform.solution_readiness"></textarea>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <span class="label ">INVESTMENT</span>
+              <textarea class="form-control" name="currentstateform.investment" [(ngModel)]="currentstateform.investment"></textarea>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <span class="label ">TEAM VELOCITY</span>
+              <textarea class="form-control" name="currentstateform.team_velocity" [(ngModel)]="currentstateform.team_velocity"></textarea>
+            </div>
+          </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <span class="label ">PARTNERS</span>
+                <textarea class="form-control" name="currentstateform.partners" [(ngModel)]="currentstateform.partners"></textarea>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <span class="label ">VENDORS</span>
+                <textarea class="form-control" name="currentstateform.vendors" [(ngModel)]="currentstateform.vendors"></textarea>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <span class="label ">VENDORS COSTS</span>
+                <textarea class="form-control" name="currentstateform.vendors_costs" [(ngModel)]="currentstateform.vendors_costs"></textarea>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <span class="label ">EXPERIMENT TESTING</span>
+                <textarea class="form-control" name="currentstateform.experiment_testing" [(ngModel)]="currentstateform.experiment_testing"></textarea>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <span class="label ">CUSTOMER SEGMENT</span>
+                <textarea class="form-control" name="currentstateform.customer_segment" [(ngModel)]="currentstateform.customer_segment"></textarea>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <span class="label ">PROBLEM VALIDATION</span>
+                <textarea class="form-control" name="currentstateform.problem_validation" [(ngModel)]="currentstateform.problem_validation"></textarea>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <span class="label ">CHANNELS</span>
+                <textarea class="form-control" name="currentstateform.channels" [(ngModel)]="currentstateform.channels"></textarea>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <span class="label ">GOVERNENCE</span>
+                <textarea class="form-control" name="currentstateform.governance" [(ngModel)]="currentstateform.governance"></textarea>
+              </div>
+            </div>
 </div>

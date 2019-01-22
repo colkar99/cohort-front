@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl , FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ApiCommunicationService } from '../../../api-communication.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { CurrentstateFormVO } from '../../../CurrentStateFormVO'
 
 @Component({
   selector: 'app-startupcontrol',
@@ -17,95 +18,95 @@ export class StartupControlComponent implements OnInit {
   startup: any;
   appRespQues: any;
   startup_id: number;
+  currentstateform: CurrentstateFormVO
 
   constructor(private apiCom: ApiCommunicationService,
-              private cookieService: CookieService,
-              private router: Router,
-              private route: ActivatedRoute) {
-                this.startup_id = +this.route.snapshot.paramMap.get('id');
-               
-               }
+    private cookieService: CookieService,
+    private router: Router,
+    private route: ActivatedRoute) {
+    this.startup_id = +this.route.snapshot.paramMap.get('id');
+    this.currentstateform = new CurrentstateFormVO()
 
-  getCookie(key: string){
+  }
+
+  getCookie(key: string) {
     return this.cookieService.get(key);
   }
 
   ngOnInit() {
     this.authToken = this.getCookie('Authorization');
-    if (this.authToken.length != 0){
+    if (this.authToken.length != 0) {
       this.loggedIn = true;
     } else {
       this.loggedIn = false;
       this.router.navigate(['/login']);
 
-    }  
+    }
     this.getStartupRegQues();
     this.getStartUp();
   }
-  getStartUp(){
+  getStartUp() {
     let url = "program/startup-application-details";
-    let data: {} = {startup_application_id: this.startup_id};
-    this.apiCom.postDataWithToken(url,JSON.stringify(data),this.authToken)
-    .subscribe(data => {
+    let data: {} = { startup_application_id: this.startup_id };
+    this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
+      .subscribe(data => {
         console.log(data);
         this.startup = data.startup_application;
         debugger
-    }, error => {
-      debugger
+      }, error => {
+        debugger
         console.log(error)
-    })
+      })
 
   }
-  getStartupRegQues(){
+  getStartupRegQues() {
     debugger
-      let url: string = "get-program-question-response";
-      let data: {} = {startup_registration_id: this.startup_id};
-        this.apiCom.postDataWithToken(url,JSON.stringify(data),this.authToken)
-        .subscribe(data => {
-            console.log(data);
-            this.appRespQues = data;
-            debugger
-        }, error => {
-          debugger
-            console.log(data)
-        })
+    let url: string = "get-program-question-response";
+    let data: {} = { startup_registration_id: this.startup_id };
+    this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
+      .subscribe(data => {
+        console.log(data);
+        this.appRespQues = data;
+        debugger
+      }, error => {
+        debugger
+        console.log(data)
+      })
   }
-  submitAdminResponse(form:any){
+  submitAdminResponse(form: any) {
     debugger
     let url = "admin-feedback-for-startup-response";
-    let data = {application_questions_response: form.value};
-    this.apiCom.postDataWithToken(url,JSON.stringify(data),this.authToken)
-    .subscribe(data=>{
-      console.log(data);
-    },error=>{
-      console.log(error);
-    })
+    let data = { application_questions_response: form.value };
+    this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
+      .subscribe(data => {
+        console.log(data);
+      }, error => {
+        console.log(error);
+      })
   }
-  requestCurrentStateForm(id: number){
-        debugger
+  requestCurrentStateForm(id: number) {
+    debugger
     let url = "program/admin/request-current-form";
-    let data = {startup_registration_id: id};
-    this.apiCom.postDataWithToken(url,JSON.stringify(data),this.authToken)
-    .subscribe(data => 
-      {
+    let data = { startup_registration_id: id };
+    this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
+      .subscribe(data => {
         console.log(data);
       },
-      error=> {
-        console.log(error);
-      });
+        error => {
+          console.log(error);
+        });
   }
-  sendReminderForCurrent(id: number){
+  sendReminderForCurrent(id: number) {
     debugger
     let url = "gentle-reminder";
-    let data = {startup_registration_id: id};
-    this.apiCom.postDataWithToken(url,JSON.stringify(data),this.authToken)
-    .subscribe(data => 
-      {
+    let data = { startup_registration_id: id };
+    this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
+      .subscribe(data => {
         console.log(data);
       },
-      error=> {
-        console.log(error);
-      });
+        error => {
+          console.log(error);
+        });
   }
   // startupAccept(id: number){
   //   debugger
@@ -134,5 +135,5 @@ export class StartupControlComponent implements OnInit {
   //     })
   // }
 
-  
+
 }
