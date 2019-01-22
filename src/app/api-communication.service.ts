@@ -66,6 +66,24 @@ export class ApiCommunicationService {
       catchError(this.handleError)
     );
   };
+
+  postDataCFSI(url: string,id): Observable<any>{
+    this.domainUrl = `${this.url}${url}`;
+    let params = {"startup_application_id": id}
+    return this.http.post<any>(this.domainUrl,params,this.httpOptions)
+    .pipe(
+      catchError(this.handleError)
+    );
+  };
+
+  submitCurrentStateForm(url: string,values): Observable<any>{
+    this.domainUrl = `${this.url}${url}`;
+    let params = JSON.stringify(values)
+    return this.http.post<any>(this.domainUrl,params,this.httpOptions)
+    .pipe(
+      catchError(this.handleError)
+    );
+  };
   // getDate(url){
   //   this.domainUrl = `${this.url}${url}`;
   //   return this.http.get<any>(this.domainUrl)
@@ -79,7 +97,7 @@ export class ApiCommunicationService {
     } else {
       console.error(`Backend returned error:${error.status}` + `body was:${error}`)
     }
-    return throwError('Something happened please try agin later')
+    return throwError(error.error.message)
   }
   constructor(private http: HttpClient) { }
 }

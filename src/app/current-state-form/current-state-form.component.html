@@ -1,0 +1,143 @@
+
+<div class="container">
+  <div class="container-fluid">
+    <form #f="ngForm">
+      <fieldset disabled>
+        <div class="col-md-6">
+          <div class="form-group">
+            <span class="label ">STARTUP NAME</span>
+            <textarea class="form-control" name="startupdata.startup_name" [(ngModel)]="startupdata.startup_name"></textarea>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <span class="label ">FOUNDER NAME</span>
+            <textarea class="form-control" name="startupdata.founder_name" [(ngModel)]="startupdata.founder_name"></textarea>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <span class="label ">ADRRESS 1</span>
+            <textarea class="form-control" name="startupdata.startup_address_line_1" [(ngModel)]="startupdata.startup_address_line_1"></textarea>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <span class="label ">ADDRESS 2</span>
+            <textarea class="form-control" name="startupdata.startup_address_line_2" [(ngModel)]="startupdata.startup_address_line_2"></textarea>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <span class="label ">CITY</span>
+            <textarea class="form-control" name="startupdata.startup_city" [(ngModel)]="startupdata.startup_city"></textarea>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <span class="label ">STATE</span>
+            <textarea class="form-control" name="startupdata.startup_state_province_region" [(ngModel)]="startupdata.startup_state_province_region"></textarea>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <span class="label ">COUNTRY</span>
+            <textarea class="form-control" name="startupdata.startup_country" [(ngModel)]="startupdata.startup_country"></textarea>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <div class="form-group">
+            <span class="label ">ZIP CODE</span>
+            <textarea class="form-control" name="startupdata.startup_zip_pincode_postalcode" [(ngModel)]="startupdata.startup_zip_pincode_postalcode"></textarea>
+          </div>
+        </div>
+      </fieldset>
+        
+      <div class="col-md-6">
+        <div class="form-group">
+          <span class="label ">REVENUE</span>
+          <textarea class="form-control" name="currentstateform.revenue" [(ngModel)]="currentstateform.revenue"></textarea>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <span class="label ">TRACTION</span>
+          <textarea class="form-control" name="currentstateform.traction" [(ngModel)]="currentstateform.traction"></textarea>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <span class="label ">SOLUTION READINESS</span>
+          <textarea class="form-control" name="currentstateform.solution_readiness" [(ngModel)]="currentstateform.solution_readiness"></textarea>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <span class="label ">INVESTMENT</span>
+          <textarea class="form-control" name="currentstateform.investment" [(ngModel)]="currentstateform.investment"></textarea>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <span class="label ">TEAM VELOCITY</span>
+          <textarea class="form-control" name="currentstateform.team_velocity" [(ngModel)]="currentstateform.team_velocity"></textarea>
+        </div>
+      </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <span class="label ">PARTNERS</span>
+            <textarea class="form-control" name="currentstateform.partners" [(ngModel)]="currentstateform.partners"></textarea>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <span class="label ">VENDORS</span>
+            <textarea class="form-control" name="currentstateform.vendors" [(ngModel)]="currentstateform.vendors"></textarea>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <span class="label ">VENDORS COSTS</span>
+            <textarea class="form-control" name="currentstateform.vendors_costs" [(ngModel)]="currentstateform.vendors_costs"></textarea>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <span class="label ">EXPERIMENT TESTING</span>
+            <textarea class="form-control" name="currentstateform.experiment_testing" [(ngModel)]="currentstateform.experiment_testing"></textarea>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <span class="label ">CUSTOMER SEGMENT</span>
+            <textarea class="form-control" name="currentstateform.customer_segment" [(ngModel)]="currentstateform.customer_segment"></textarea>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <span class="label ">PROBLEM VALIDATION</span>
+            <textarea class="form-control" name="currentstateform.problem_validation" [(ngModel)]="currentstateform.problem_validation"></textarea>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <span class="label ">CHANNELS</span>
+            <textarea class="form-control" name="currentstateform.channels" [(ngModel)]="currentstateform.channels"></textarea>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <span class="label ">GOVERNENCE</span>
+            <textarea class="form-control" name="currentstateform.governance" [(ngModel)]="currentstateform.governance"></textarea>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <button class="btn btn-primary pull-right" type="submit" (click)="submitdata()">Submit</button>
+        </div>
+      
+
+    </form>
+    <app-error-display></app-error-display>
+  </div>
+</div>
