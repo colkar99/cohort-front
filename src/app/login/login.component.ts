@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
         ((error) => {
           debugger
           console.error("couldn't post because", error)
-          this.errdisplay.openpopup(error)
+          this.errdisplay.openpopup("Warning!!!",error)
         })
       );
   };

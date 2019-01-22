@@ -20,7 +20,8 @@ import {ProgramControlComponent } from './sitedashboard/programcontrol/programco
 import { StartupControlComponent } from './sitedashboard/programcontrol/startupcontrol/startupcontrol.component';
 import { ContractManagerComponent } from './sitedashboard/contractmanagercontrol/contractmanager.component';
 import { ContractFormComponent } from './sitedashboard/contractmanagercontrol/contractform/contractform.component';
-import { ErrorDisplayComponent } from './error-display/error-display.component'; 
+import { ErrorDisplayComponent } from './error-display/error-display.component';
+import { CurrentStateFormComponent } from './current-state-form/current-state-form.component'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,8 @@ import { ErrorDisplayComponent } from './error-display/error-display.component';
     StartupControlComponent,
     ContractManagerComponent,
     ContractFormComponent,
-    ErrorDisplayComponent
+    ErrorDisplayComponent,
+    CurrentStateFormComponent
   ],
   imports: [
     BrowserModule,

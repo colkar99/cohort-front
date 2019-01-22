@@ -7,12 +7,14 @@ declare var $: any
 })
 export class ErrorDisplayComponent implements OnInit {
   error: any
+  Header:any
   constructor() { }
 
   ngOnInit() {
   }
-  openpopup(err) {
+  openpopup(header,err) {
     this.error = err
+    this.Header = header
     $("#errmodal").modal({
       backdrop: "static",
       keyboard: false
