@@ -4,3 +4,8 @@ top: 22%;
 left: 90%;
 background: yellow;
 }
+.label{
+    font-size: 14px;
+    color: black;
+    background-color: none;
+}

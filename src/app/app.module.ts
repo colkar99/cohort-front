@@ -21,7 +21,9 @@ import { StartupControlComponent } from './sitedashboard/programcontrol/startupc
 import { ContractManagerComponent } from './sitedashboard/contractmanagercontrol/contractmanager.component';
 import { ContractFormComponent } from './sitedashboard/contractmanagercontrol/contractform/contractform.component';
 import { ErrorDisplayComponent } from './error-display/error-display.component';
-import { CurrentStateFormComponent } from './current-state-form/current-state-form.component'; 
+import { CurrentStateFormComponent } from './current-state-form/current-state-form.component';
+import { AboutProfileComponent } from './about-profile/about-profile.component';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,14 +42,16 @@ import { CurrentStateFormComponent } from './current-state-form/current-state-fo
     ContractManagerComponent,
     ContractFormComponent,
     ErrorDisplayComponent,
-    CurrentStateFormComponent
+    CurrentStateFormComponent,
+    AboutProfileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    Ng4LoadingSpinnerModule.forRoot() 
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
           // this.router.navigate(['/']);
         },
         ((error) => {
-          debugger
+          
           console.error("couldn't post because", error)
           this.errdisplay.openpopup("Warning!!!",error)
         })
