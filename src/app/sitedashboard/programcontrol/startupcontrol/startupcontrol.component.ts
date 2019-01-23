@@ -15,7 +15,7 @@ export class StartupControlComponent implements OnInit {
 
   authToken: string;
   loggedIn: boolean;
-  startup: any;
+  startup: any = {};
   appRespQues: any;
   startup_id: number;
   currentstateform: CurrentstateFormVO
@@ -52,6 +52,22 @@ export class StartupControlComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
         this.startup = data.startup_application;
+        if (this.startup.application_status == "CSFS") {
+          let url = "program/user/show-current-state-form";
+          let params = {
+            "current_state_form": {
+              "program_id": this.startup.program_id,
+              "startup_registration_id": this.startup_id
+            }
+          }
+          this.apiCom.bulkCFSIrequest(url, params, this.authToken).subscribe((res: any) => {
+            res;
+            this.currentstateform = res;
+            console.log(this.currentstateform)
+          }, (err) => {
+            alert(err)
+          })
+        }
         debugger
       }, error => {
         debugger
@@ -80,6 +96,7 @@ export class StartupControlComponent implements OnInit {
     this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
       .subscribe(data => {
         console.log(data);
+        this.appRespQues
       }, error => {
         console.log(error);
       })
@@ -108,6 +125,24 @@ export class StartupControlComponent implements OnInit {
           console.log(error);
         });
   }
+  submitCSFS() {
+    if (this.currentstateform.reviewer_rating != "" && this.currentstateform.reviewer_rating != (null && undefined)) {
+      this.currentstateform.total_rating = Number(this.startup.score) + Number(this.currentstateform.reviewer_rating)
+      let url = "program/admin/response-current-state-form"
+      let params = JSON.stringify({ "current_state_form": this.currentstateform })
+
+
+      this.apiCom.CSFSsubmit(url, params, this.authToken).subscribe((res) => {
+        res;
+        console.log("res" + res)
+        debugger
+
+
+      })
+    }
+
+  }
+
   // startupAccept(id: number){
   //   debugger
   //   let url = "startup-accept-by-admin";

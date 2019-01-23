@@ -4,6 +4,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import {Ng4LoadingSpinnerService} from 'ng4-loading-spinner'
+import {map} from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
@@ -23,11 +25,14 @@ export class ApiCommunicationService {
 
 
 
-  postData(url: string,params: {}): Observable<any>{
+  postData(url: string,params): Observable<any>{
     this.domainUrl = `${this.url}${url}`;
-    return this.http.post<any>(this.domainUrl,params,this.httpOptions)
+    this.spinnerservice.show()
+    return this.http.post(this.domainUrl,params,this.httpOptions)
     .pipe(
-      catchError(this.handleError)
+      map((res) =>{res;this.spinnerservice.hide();return res;})).pipe(
+      catchError((error:any)=>{this.spinnerservice.hide();return throwError(error.error.message)})
+      
     );
   };
 
@@ -84,6 +89,33 @@ export class ApiCommunicationService {
       catchError(this.handleError)
     );
   };
+
+  bulkCFSIrequest(url,params,auth){
+    this.domainUrl = `${this.url}${url}`;
+    this.spinnerservice.show()
+    console.log(params)
+    let headers = this._headers.append('Authorization', auth);
+    return this.http.post(this.domainUrl,params,{headers:headers})
+    .pipe(
+      map((res) =>{res;this.spinnerservice.hide();return res;})).pipe(
+      catchError((error:any)=>{this.spinnerservice.hide();return throwError(error.error.message)})
+      
+    );
+  }
+
+  CSFSsubmit(url,params,auth){
+    this.domainUrl = `${this.url}${url}`;
+    this.spinnerservice.show()
+    console.log(params)
+    let headers = this._headers.append('Authorization', auth);
+    return this.http.put(this.domainUrl,params,{headers:headers})
+    .pipe(
+      map((res) =>{res;this.spinnerservice.hide();return res;})).pipe(
+      catchError((error:any)=>{this.spinnerservice.hide();return throwError(error.error.message)})
+      
+    );
+  }
+
   // getDate(url){
   //   this.domainUrl = `${this.url}${url}`;
   //   return this.http.get<any>(this.domainUrl)
@@ -97,7 +129,8 @@ export class ApiCommunicationService {
     } else {
       console.error(`Backend returned error:${error.status}` + `body was:${error}`)
     }
+   
     return throwError(error.error.message)
   }
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private spinnerservice:Ng4LoadingSpinnerService) { }
 }
