@@ -79,11 +79,17 @@
                     {{startup.startup_zip_pincode_postalcode}}
 
                 </div>
+
                 <div class="col-md-12">
                     <button *ngIf="startup.application_status != 'CSFI'" class="btn btn-success" (click)="requestCurrentStateForm(startup.id)">Request
                         current state form</button>
                     <button class="btn btn-danger" (click)="sendReminderForCurrent(startup.id)">Send gentle reminder to
                         fill current state form</button>
+               <!--
+                <div class="col-md-12" >
+                    <button *ngIf="startup.application_status != 'CSFI'" class="btn btn-success" (click)="requestCurrentStateForm(startup.id)">Request current state form</button>
+                    <button *ngIf="startup.application_status == 'CSFI'" class="btn btn-danger" (click)="sendReminderForCurrent(startup.id)">Send gentle reminder to fill current state form</button>
+                 -->
 
                 </div>
             </div>
