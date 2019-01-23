@@ -4,6 +4,8 @@ import { FormControl , FormGroup } from '@angular/forms';
 import { ApiCommunicationService } from '../../../api-communication.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+declare var $: any;
+
 
 @Component({
   selector: 'app-contractmanager',
@@ -24,6 +26,8 @@ export class ContractFormComponent implements OnInit {
   party1_details: any;
   startup_address: any;
   addContractInfo: any;
+  selected_add_info: any;
+  reviewFormData: any;
 
   constructor(private apiCom: ApiCommunicationService,
               private cookieService: CookieService,
@@ -55,6 +59,7 @@ export class ContractFormComponent implements OnInit {
       this.router.navigate(['/login']);
     } 
     this.getStartupReg(this.startup_id);
+    this.getAddContractInfo();
   }
 
   getStartupReg(id: number){
@@ -69,12 +74,13 @@ export class ContractFormComponent implements OnInit {
       },error =>{
         console.log(error);
       })
-      debugger
+      
   }
   getAddContractInfo(){
       let url = "get-contract-additional-information";
       this.apiCom.getDataWithAuth(url,this.authToken)
       .subscribe(data =>{
+        debugger
           console.log(data);
           this.addContractInfo = data;
       },error => {
@@ -88,6 +94,21 @@ export class ContractFormComponent implements OnInit {
     ${startup.startup_state_province_region},
     ${startup.startup_zip_pincode_postalcode},
     ${startup.startup_country}`};
+  }
+  onChangeInfo(value: any){
+    debugger
+    let id  = parseInt(value);
+    this.addContractInfo.forEach(element => {
+      if (element.id === id){
+        this.selected_add_info = element;
+      }
+    });
+  }
+
+  onSubmitReview(form: any){
+    debugger
+    this.reviewFormData = form.value;
+    $('#reviewFormModal').modal('show');
   }
 
   

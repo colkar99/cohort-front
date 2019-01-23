@@ -1,23 +1,13 @@
 <h2 class="mar-top">Hi am from program control</h2>
 <div class="row" *ngIf="!startup">
-    <div class="col-md-12">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                    <th>Title</th>
-                    <th>Status</th>
-                    <th>Seat capacity</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let program of allPrograms" style="cursor: pointer;"
-                        (click)="showStartups(program.id)">
-                    <td>{{program.title}}</td>
-                    <td>{{program.status}}</td>
-                    <td>{{program.seat_size}}</td>
-                    </tr>
-                </tbody>
-            </table>
+    <div class="col-md-12 form-group">
+        <label for="user_type">Select Program</label>
+        <select class="form-control" id="role" (change)="showStartups($event.target.value)">
+            <option></option>
+            <option *ngFor="let program of allPrograms" [value]="program.id">{{program.title}}</option>
+            <!-- <option [value]="mentor">mentor</option> -->
+            <!-- <option [ngValue]="startup">Startup User</option> -->
+        </select>
     </div>
 </div>
 
@@ -96,3 +86,22 @@ startup_state_province_region: "demo"
 startup_zip_pincode_postalcode: "demo"
 updated_at: "2019-01-03T12:04:51.637Z"
 website_url: "demo" -->
+<!-- <div class="col-md-12">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+            <th>Title</th>
+            <th>Status</th>
+            <th>Seat capacity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let program of allPrograms" style="cursor: pointer;"
+                (click)="showStartups(program.id)">
+            <td>{{program.title}}</td>
+            <td>{{program.status}}</td>
+            <td>{{program.seat_size}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div> -->

@@ -81,9 +81,9 @@ export class StartupControlComponent implements OnInit {
       console.log(error);
     })
   }
-  startupAccept(id: number){
-    debugger
-    let url = "startup-accept-by-admin";
+  requestCurrentStateForm(id: number){
+        debugger
+    let url = "program/admin/request-current-form";
     let data = {startup_registration_id: id};
     this.apiCom.postDataWithToken(url,JSON.stringify(data),this.authToken)
     .subscribe(data => 
@@ -94,9 +94,9 @@ export class StartupControlComponent implements OnInit {
         console.log(error);
       });
   }
-  startupReject(id: number){
+  sendReminderForCurrent(id: number){
     debugger
-    let url = "startup-reject-by-admin";
+    let url = "gentle-reminder";
     let data = {startup_registration_id: id};
     this.apiCom.postDataWithToken(url,JSON.stringify(data),this.authToken)
     .subscribe(data => 
@@ -105,8 +105,34 @@ export class StartupControlComponent implements OnInit {
       },
       error=> {
         console.log(error);
-      })
+      });
   }
+  // startupAccept(id: number){
+  //   debugger
+  //   let url = "startup-accept-by-admin";
+  //   let data = {startup_registration_id: id};
+  //   this.apiCom.postDataWithToken(url,JSON.stringify(data),this.authToken)
+  //   .subscribe(data => 
+  //     {
+  //       console.log(data);
+  //     },
+  //     error=> {
+  //       console.log(error);
+  //     });
+  // }
+  // startupReject(id: number){
+  //   debugger
+  //   let url = "startup-reject-by-admin";
+  //   let data = {startup_registration_id: id};
+  //   this.apiCom.postDataWithToken(url,JSON.stringify(data),this.authToken)
+  //   .subscribe(data => 
+  //     {
+  //       console.log(data);
+  //     },
+  //     error=> {
+  //       console.log(error);
+  //     })
+  // }
 
   
 }
