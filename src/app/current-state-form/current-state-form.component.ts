@@ -47,6 +47,8 @@ export class CurrentStateFormComponent implements OnInit {
       }
 
     }, (err: HttpErrorResponse) => {
+      debugger
+
       this.errdisplay.openpopup("Error!!!", err)
     })
   }
