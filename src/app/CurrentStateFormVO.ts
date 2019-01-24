@@ -15,7 +15,7 @@ export class CurrentstateFormVO {
     governance: string
     program_id: number
     startup_registration_id: number
-    reviewer_rating: string
+    reviewer_rating: any
     reviewer_feedback: string
     total_rating: number
     reviewer_id: number

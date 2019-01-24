@@ -13,6 +13,7 @@ import { CurrentstateFormVO } from '../../../CurrentStateFormVO'
 })
 export class StartupControlComponent implements OnInit {
 
+  response: any;
   authToken: string;
   loggedIn: boolean;
   startup: any = {};
@@ -83,14 +84,11 @@ export class StartupControlComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
         this.appRespQues = data;
-        debugger
       }, error => {
-        debugger
         console.log(data)
       })
   }
   submitAdminResponse(form: any) {
-    debugger
     let url = "admin-feedback-for-startup-response";
     let data = { application_questions_response: form.value };
     this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
@@ -102,7 +100,6 @@ export class StartupControlComponent implements OnInit {
       })
   }
   requestCurrentStateForm(id: number) {
-    debugger
     let url = "program/admin/request-current-form";
     let data = { startup_registration_id: id };
     this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
@@ -114,7 +111,6 @@ export class StartupControlComponent implements OnInit {
         });
   }
   sendReminderForCurrent(id: number) {
-    debugger
     let url = "gentle-reminder";
     let data = { startup_registration_id: id };
     this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
@@ -127,17 +123,22 @@ export class StartupControlComponent implements OnInit {
   }
   submitCSFS() {
     if (this.currentstateform.reviewer_rating != "" && this.currentstateform.reviewer_rating != (null && undefined)) {
-      this.currentstateform.total_rating = Number(this.startup.score) + Number(this.currentstateform.reviewer_rating)
+      let total = 0;
+      this.currentstateform.total_rating = 0;
+      for (let i = 0; i < this.appRespQues.length; i++) {
+        total += this.appRespQues[i].reviewer_rating
+      }
+      this.currentstateform.total_rating = Number(this.currentstateform.reviewer_rating) + Number(total)
       let url = "program/admin/response-current-state-form"
       let params = JSON.stringify({ "current_state_form": this.currentstateform })
 
 
-      this.apiCom.CSFSsubmit(url, params, this.authToken).subscribe((res) => {
-        res;
-        console.log("res" + res)
-        debugger
-
-
+      this.apiCom.CSFSsubmit(url, params, this.authToken).subscribe(data => {
+        console.log(data);
+        this.response = data;
+        this.startup = this.response.startup_registration;
+      }, error => {
+        console.log(error);
       })
     }
 
