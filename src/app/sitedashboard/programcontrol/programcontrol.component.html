@@ -20,8 +20,13 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <label>List of registered startups</label>
-            <div class="col-md-12"><button class="btn btn-primary pull-right" type="button" (click)="initiatecsfi()">
+            <div class="col-md-12">
+                <button class="btn btn-primary pull-right" type="button" (click)="initiatecsfi()">
                     Initiate Current State Form</button>
+                <button class="btn btn-success pull-right" type="button" (click)="startupAccept()">
+                    Accept</button>
+                <button class="btn btn-danger pull-right" type="button" (click)="startupReject()">
+                    Reject</button>
             </div>
             <div class="col-md-12">
                 <table class="table table-bordered">

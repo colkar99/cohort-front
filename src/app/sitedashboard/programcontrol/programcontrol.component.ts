@@ -148,7 +148,7 @@ export class ProgramControlComponent implements OnInit {
     if (this.formrequestarray.length > 0) {
       let url = "program/admin/request-current-form";
       let params = JSON.stringify({ "startup_app_ids": this.formrequestarray });
-      this.apiCom.bulkCFSIrequest(url, params,this.authToken).subscribe((res) => {
+      this.apiCom.postDataWithToken(url, params, this.authToken).subscribe((res) => {
         res;
         let id = this.getCookie("program_id");
         this.showStartups(id);
@@ -160,6 +160,34 @@ export class ProgramControlComponent implements OnInit {
       alert("Select atleast One Startup Company")
     }
 
+  }
+  startupAccept() {
+    debugger
+    let url = "startup-accept-by-admin-bulk";
+    let data = { startup_app_ids: this.formrequestarray };
+    this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
+      .subscribe(data => {
+        console.log("acceptdata" + data);
+        let id = this.getCookie("program_id");
+        this.showStartups(id);
+      },
+        error => {
+          console.log(error);
+        });
+  }
+  startupReject() {
+    debugger
+    let url = "startup-reject-by-admin-bulk";
+    let data = { startup_app_ids: this.formrequestarray };
+    this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
+      .subscribe(data => {
+        let id = this.getCookie("program_id");
+        this.showStartups(id);
+        console.log("rejectdata" + data);
+      },
+        error => {
+          console.log(error);
+        })
   }
 
 }
