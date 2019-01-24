@@ -53,7 +53,7 @@ export class StartupControlComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
         this.startup = data.startup_application;
-        if (this.startup.application_status == "CSFS") {
+        if (this.startup.application_status != "PR" && this.startup.application_status != "RP" && this.startup.application_status != "RC" && this.startup.application_status != "CSFI") {
           let url = "program/user/show-current-state-form";
           let params = {
             "current_state_form": {
@@ -61,7 +61,7 @@ export class StartupControlComponent implements OnInit {
               "startup_registration_id": this.startup_id
             }
           }
-          this.apiCom.bulkCFSIrequest(url, params, this.authToken).subscribe((res: any) => {
+          this.apiCom.postDataWithToken(url, params, this.authToken).subscribe((res: any) => {
             res;
             this.currentstateform = res;
             console.log(this.currentstateform)
@@ -133,9 +133,10 @@ export class StartupControlComponent implements OnInit {
       let params = JSON.stringify({ "current_state_form": this.currentstateform })
 
 
-      this.apiCom.CSFSsubmit(url, params, this.authToken).subscribe(data => {
+      this.apiCom.putDataWithToken(url, params, this.authToken).subscribe(data => {
         console.log(data);
         this.response = data;
+        this.currentstateform = this.response.current_state_form
         this.startup = this.response.startup_registration;
       }, error => {
         console.log(error);
@@ -144,32 +145,32 @@ export class StartupControlComponent implements OnInit {
 
   }
 
-  // startupAccept(id: number){
-  //   debugger
-  //   let url = "startup-accept-by-admin";
-  //   let data = {startup_registration_id: id};
-  //   this.apiCom.postDataWithToken(url,JSON.stringify(data),this.authToken)
-  //   .subscribe(data => 
-  //     {
-  //       console.log(data);
-  //     },
-  //     error=> {
-  //       console.log(error);
-  //     });
-  // }
-  // startupReject(id: number){
-  //   debugger
-  //   let url = "startup-reject-by-admin";
-  //   let data = {startup_registration_id: id};
-  //   this.apiCom.postDataWithToken(url,JSON.stringify(data),this.authToken)
-  //   .subscribe(data => 
-  //     {
-  //       console.log(data);
-  //     },
-  //     error=> {
-  //       console.log(error);
-  //     })
-  // }
+  startupAccept(){
+    debugger
+    let url = "startup-accept-by-admin";
+    let data = {startup_registration_id: this.startup_id};
+    this.apiCom.postDataWithToken(url,JSON.stringify(data),this.authToken)
+    .subscribe(data => 
+      {
+        console.log("acceptdata"+data);
+      },
+      error=> {
+        console.log(error);
+      });
+  }
+  startupReject(){
+    debugger
+    let url = "startup-reject-by-admin";
+    let data = {startup_registration_id: this.startup_id};
+    this.apiCom.postDataWithToken(url,JSON.stringify(data),this.authToken)
+    .subscribe(data => 
+      {
+        console.log("rejectdata"+data);
+      },
+      error=> {
+        console.log(error);
+      })
+  }
 
 
 }
