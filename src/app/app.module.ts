@@ -24,6 +24,8 @@ import { ErrorDisplayComponent } from './error-display/error-display.component';
 import { CurrentStateFormComponent } from './current-state-form/current-state-form.component';
 import { AboutProfileComponent } from './about-profile/about-profile.component';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { FrameworkModuleComponent } from './sitedashboard/framework-module/framework-module.component';
+import { FrameworkModuleEditComponent} from './sitedashboard/framework-module/framework-edit/framework-edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +45,9 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
     ContractFormComponent,
     ErrorDisplayComponent,
     CurrentStateFormComponent,
-    AboutProfileComponent
+    AboutProfileComponent,
+    FrameworkModuleComponent,
+    FrameworkModuleEditComponent
   ],
   imports: [
     BrowserModule,

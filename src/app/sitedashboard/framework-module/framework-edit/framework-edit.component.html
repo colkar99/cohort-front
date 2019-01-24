@@ -1,0 +1,55 @@
+<h2>Am from framework module edit page</h2>
+<div class="panel panel-default">
+    <div class="panel-body" *ngIf="framework">
+        <form #frameworkUpdate="ngForm">
+            <div class="row"> <h2>Edit Framework</h2>
+                <div class="col-md-6 form-group">
+                    <label>Title</label>
+                    <textarea class="form-control" type="text" name="title" [(ngModel)]="framework.title"></textarea>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>Description</label>
+                    <textarea class="form-control" type="text" name="description" [(ngModel)]="framework.description"></textarea>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="sel1">Select list:</label>
+                    <select class="form-control" id="user_type"
+                            id="sel1" name="level" [(ngModel)]="framework.level">
+                        <option [value]="0">0</option>
+                        <option [value]="1">1</option>
+                        <option [value]="2">2</option>
+                        <option [value]="3">3</option>
+                        <option [value]="4">4</option>
+                        <option [value]="5">5</option>     
+                    </select>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>Main image</label>
+                    <input class="form-control" type="file" name="main_image" [(ngModel)]="framework.main_image"/>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>Thumb image</label>
+                    <input class="form-control" type="file" name="thumb_image" [(ngModel)]="framework.thumb_image"/>
+                </div>
+            </div>
+            <div class="row"> Choose activities
+                <button class="btn btn-default" (click)="updateForm(frameworkUpdate.value)">submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+t.string "title"
+t.text "description"
+t.string "activity_name"
+t.integer "level", default: 0
+t.string "main_image"
+t.string "thumb_image"
+t.string "url"
+t.integer "created_by"
+t.boolean "isActive", default: true
+t.boolean "isDelete", default: false
+t.integer "deleted_by"
+t.datetime "deleted_at"
+t.datetime "created_at", null: false
+t.datetime "updated_at", null: false

@@ -17,6 +17,8 @@ import { ContractManagerComponent } from './sitedashboard/contractmanagercontrol
 import { ContractFormComponent } from './sitedashboard/contractmanagercontrol/contractform/contractform.component';
 import { CurrentStateFormComponent } from './current-state-form/current-state-form.component'
 import { AboutProfileComponent } from './about-profile/about-profile.component'
+import { FrameworkModuleComponent } from './sitedashboard/framework-module/framework-module.component';
+import { FrameworkModuleEditComponent } from './sitedashboard/framework-module/framework-edit/framework-edit.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
@@ -26,7 +28,9 @@ const routes: Routes = [
     { path: 'program', component: ProgramModuleComponent },
     { path: 'program/create-program', component: CreateProgramComponent },
     { path: 'program-controls', component: ProgramControlComponent },
-    { path: 'program-controls/startup/:id', component: StartupControlComponent }
+    { path: 'program-controls/startup/:id', component: StartupControlComponent },
+    {path: 'framework', component: FrameworkModuleComponent},
+    {path: 'framework/edit/:id', component: FrameworkModuleEditComponent}
     ]
   },
   { path: 'startup/dashboard', component: StartupdashboardComponent },
