@@ -30,6 +30,7 @@ const routes: Routes = [
     { path: 'program-controls', component: ProgramControlComponent },
     { path: 'program-controls/startup/:id', component: StartupControlComponent },
     {path: 'framework', component: FrameworkModuleComponent},
+    {path: 'framework/edit', component: FrameworkModuleEditComponent},
     {path: 'framework/edit/:id', component: FrameworkModuleEditComponent}
     ]
   },
