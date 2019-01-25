@@ -3,6 +3,9 @@
     <div class="panel panel-default">
         <div class="panel-heading">List of Frameworks</div>
         <div class="panel-body">
+            <div class="col-md-12">
+               <button class="btn btn-default pull-right" type="button" routerLink="edit">Add Framework</button> 
+            </div>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -13,7 +16,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let framework of frameworks" routerLink="edit/{{framework.id}}">
+                        <tr *ngFor="let framework of frameworks;let i = index" routerLink="edit/{{framework.id}}">
                         <td>{{framework.title}}</td>
                         <td>{{framework.description}}</td>
                         <td>{{framework.level}}</td>
