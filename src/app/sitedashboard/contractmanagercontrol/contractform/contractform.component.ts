@@ -109,6 +109,12 @@ export class ContractFormComponent implements OnInit {
     debugger
     this.reviewFormData = form.value;
     $('#reviewFormModal').modal('show');
+    console.log(this.reviewFormData);
+  }
+  createContract(value: any){
+
+    console.log(value);
+
   }
 
   
