@@ -25,7 +25,7 @@ export class FrameworkModuleEditComponent implements OnInit {
   @ViewChild(ErrorDisplayComponent) errdisplay;
   activitiesarray: Array<any> = []
   checklistforms: FormGroup;
-  formitems: FormArray;
+  formitems: FormArray
   activity: any = {}
 
   public user_details: any[];
@@ -36,6 +36,7 @@ export class FrameworkModuleEditComponent implements OnInit {
     private route: ActivatedRoute,
     private formBuilder: FormBuilder) {
     this.checklistforms = this.formBuilder.group({
+      id: undefined,
       name: '',
       description: '',
       placeholder: '',
@@ -135,7 +136,7 @@ export class FrameworkModuleEditComponent implements OnInit {
   }
   deleteform() {
     let url = "program/delete-framework"
-    this.apiCom.putDataWithToken(url, JSON.stringify({ framework: { id: this.framework.id }), this.authToken).subscribe((res) => {
+    this.apiCom.putDataWithToken(url, JSON.stringify({ framework: { id: this.framework.id } }), this.authToken).subscribe((res) => {
       res;
 
       this.errdisplay.openpopup("Success!!!", "FrameWork Deleted Successfully")
@@ -147,8 +148,16 @@ export class FrameworkModuleEditComponent implements OnInit {
 
   createchecklistitems(): FormGroup {
     return this.formBuilder.group({
+      id: undefined,
       name: '',
       description: ''
+    })
+  }
+  updatechecklistsitems(item): FormGroup {
+    return this.formBuilder.group({
+      id: item.id,
+      name: item.name,
+      description: item.description
     })
   }
 
@@ -164,12 +173,41 @@ export class FrameworkModuleEditComponent implements OnInit {
   viewactivities(item) {
     console.log(item)
     $("#activitiesmodal").modal('show')
-    
+    this.checklistforms.get('name').setValue(item.name)
+    this.checklistforms.get('id').setValue(item.id)
+    this.checklistforms.get('description').setValue(item.description)
+    this.checklistforms.get('order').setValue(item.order)
+    this.checklistforms.get('placeholder').setValue(item.placeholder)
+    //this.checklistforms.get('formitems').setValue(item.checklists)
+    // this.checklistforms.setControl('formitems', this.formBuilder.array([]));
+    this.formitems = this.checklistforms.get('formitems') as FormArray;
+    const controlArray = <FormArray>this.checklistforms.get('formitems');
+
+
+    // this.formitems = this.checklistforms.get('formitems') as FormArray;
+    for (let i = 0; i < item.checklists.length; i++) {
+      controlArray.controls[i].get('name').setValue(item.checklists[i].name);
+      controlArray.controls[i].get('description').setValue(item.checklists[i].description);
+      controlArray.controls[i].get('id').setValue(item.checklists[i].id);
+    }
+
+
+
+    //item.checklists.forEach(task => { 
+    //   this.checklistforms.items.push(
+    //     this.formBuilder.group({
+    //       name: [task.name],
+    //       description:[task.description]
+    //     })
+    //   );
+    // });
+
   }
 
   addactivities() {
     $("#activitiesmodal").modal('show')
     this.checklistforms = this.formBuilder.group({
+      id: undefined,
       name: '',
       description: '',
       placeholder: '',
@@ -181,13 +219,28 @@ export class FrameworkModuleEditComponent implements OnInit {
   saveActivities(checklistforms) {
     console.log("values", checklistforms)
     let values = checklistforms.value
-    let url = "program/framework/create-activity-and-checklists"
-    this.apiCom.postDataWithToken(url, JSON.stringify({ activity: values, checklists: values.formitems,framework_id: this.framework.id }),this.authToken).subscribe((res)=>{
-      res;
-      console.log("response",res)
-      this.framework = res;
-      $("#activitiesmodal").modal('hide')
-      
-    })
+    if (values.id == (null || undefined)) {
+      let url = "program/framework/create-activity-and-checklists"
+      this.apiCom.postDataWithToken(url, JSON.stringify({ activity: values, checklists: values.formitems, framework_id: this.framework.id }), this.authToken).subscribe((res) => {
+        res;
+        console.log("response", res)
+        this.framework = res;
+        alert("Framework Activities and Checklists Saved Successfully")
+        $("#activitiesmodal").modal('hide')
 
+      })
+    } else {
+      let url = "program/framework/update-activity-and-checklists"
+      this.apiCom.putDataWithToken(url, JSON.stringify({ activity: values, checklists: values.formitems, framework_id: this.framework.id }), this.authToken).subscribe((res) => {
+        res;
+        console.log("response", res)
+        this.framework = res;
+        alert("Framework Activities and Checklists Updated Successfully")
+        $("#activitiesmodal").modal('hide')
+
+      })
+    }
+
+
+  }
 }
