@@ -42,14 +42,17 @@
                                 <th>Description</th>
                                 <th>Placeholder</th>
                                 <th>Order</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let item of framework.activities;let i = index" (click)="viewactivities(item)">
+                            <tr *ngFor="let item of framework.activities;let i = index">
                                 <td>{{item.name}}</td>
                                 <td>{{item.description}}</td>
                                 <td>{{item.placeholder}}</td>
                                 <td>{{item.order}}</td>
+                                <td><button type="button" class="btn btn-primary" (click)="viewactivities(item)">View</button><button type="button" class="btn btn-danger" (click)="deleteactivities(item.id,i)">Delete</button></td>
+                                
                             </tr>
                         </tbody>
                     </table>
@@ -112,7 +115,7 @@
                                             <div class="form-group">
                                                 <span class="label">Description</span>
                                                 <input class="form-control" formControlName="description" placeholder="Item description"
-                                                [(ngModel)]="item.controls.description.value">
+                                                    [(ngModel)]="item.controls.description.value">
 
                                             </div>
                                         </div>
@@ -136,9 +139,31 @@
                         <button type="button" class="btn btn-default" (click)="closeactivities()">Close</button>
                     </div>
                 </div>
+               
 
             </div>
+           
         </div>
+        <div class="modal fade" id="deletepopup" role="dialog" #deletepopup>
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" (click)="closedelete()">&times;</button>
+                            <h4 class="modal-title">Warning !!!</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>{{deletedisplay}}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" (click)="confirmdelete()">Confirm</button>
+                            <button type="button" class="btn btn-default" (click)="closedelete()">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
     </div>
 </div>
 

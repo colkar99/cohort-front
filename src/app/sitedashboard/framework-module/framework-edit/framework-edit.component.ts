@@ -27,6 +27,10 @@ export class FrameworkModuleEditComponent implements OnInit {
   checklistforms: FormGroup;
   formitems: FormArray
   activity: any = {}
+  btnname: any
+  deletedisplay: string
+  deleteindex: any
+  deleteactivityid:any
 
   public user_details: any[];
 
@@ -166,8 +170,18 @@ export class FrameworkModuleEditComponent implements OnInit {
     this.formitems.push(this.createchecklistitems());
   }
   deleteItem(i) {
+    this.btnname = "checklist"
+    console.log("id", this.formitems.controls[i].value)
     this.formitems = this.checklistforms.get('formitems') as FormArray;
-    this.formitems.removeAt(i);
+    this.deleteindex = i
+    this.deletedisplay = "Are you Sure, You want to delete the checklist?"
+    let id = this.formitems.controls[i].value.id
+    if (id != (null && undefined)) {
+      $("#deletepopup").modal('show')
+    } else {
+      this.formitems.removeAt(i);
+    }
+    // 
   }
 
   viewactivities(item) {
@@ -179,7 +193,7 @@ export class FrameworkModuleEditComponent implements OnInit {
     this.checklistforms.get('order').setValue(item.order)
     this.checklistforms.get('placeholder').setValue(item.placeholder)
     //this.checklistforms.get('formitems').setValue(item.checklists)
-     this.checklistforms.setControl('formitems', this.formBuilder.array([]));
+    this.checklistforms.setControl('formitems', this.formBuilder.array([]));
     this.formitems = this.checklistforms.get('formitems') as FormArray;
     const controlArray = <FormArray>this.checklistforms.get('formitems');
 
@@ -252,5 +266,44 @@ export class FrameworkModuleEditComponent implements OnInit {
   }
   closeactivities() {
     $("#activitiesmodal").modal('hide')
+  }
+
+  confirmdelete() {
+    if (this.btnname == "checklist") {
+      this.formitems = this.checklistforms.get('formitems') as FormArray;
+      let id = this.formitems.controls[this.deleteindex].value.id
+      let url = "program/framework/activity/delete-checklist";
+      let params = JSON.stringify({ checklist: { id: id } })
+      this.apiCom.putDataWithToken(url, params, this.authToken).subscribe((res) => {
+        res
+        this.formitems.removeAt(this.deleteindex)
+        $("#deletepopup").modal('hide')
+        alert("Checklist Deleted Successfully")
+      }, (error) => {
+        alert(error)
+      })
+    }else if(this.btnname == "activity"){
+      let url = "program/framework/delete-activity";
+      let params = JSON.stringify( { activity_id: this.deleteactivityid,framework_id:this.framework.id})
+      this.apiCom.putDataWithToken(url, params, this.authToken).subscribe((res) => {
+        res
+        this.framework.activities.splice(this.deleteindex,1)
+        $("#deletepopup").modal('hide')
+        alert("Checklist Deleted Successfully")
+      }, (error) => {
+        alert(error)
+      })
+    }
+  } 
+  closedelete(){
+    $("#deletepopup").modal('hide')
+  }
+
+  deleteactivities(id,i){
+    $("#deletepopup").modal('show')
+    this.btnname = "activity"
+    this.deletedisplay = "Are you sure, You want to delete this activity and its checklists?"
+    this.deleteindex = i;
+    this.deleteactivityid = id
   }
 }
