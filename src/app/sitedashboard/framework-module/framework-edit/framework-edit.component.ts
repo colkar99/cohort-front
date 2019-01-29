@@ -242,5 +242,9 @@ export class FrameworkModuleEditComponent implements OnInit {
     }
 
 
+
+  }
+  closeactivities() {
+    $("#activitiesmodal").modal('hide')
   }
 }
