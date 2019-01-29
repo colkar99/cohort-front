@@ -153,7 +153,7 @@
     </form>
 </div>
 
-<div *ngIf="startup.application_status == ('CSFS'||'CSFR') && startup.current_state_form_reviewed == false">
+<div *ngIf="this.startup.application_status != 'PR' && this.startup.application_status != 'RP' && this.startup.application_status != 'RC' && startup.application_status != 'CSFI' && startup.current_state_form_reviewed == false">
     <div>
         <h3>CurrentStateForm</h3>
     </div>
