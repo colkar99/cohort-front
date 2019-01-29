@@ -47,7 +47,7 @@ export class CurrentStateFormComponent implements OnInit {
       }
 
     }, (err: HttpErrorResponse) => {
-      this.errdisplay.openpopup("Error!!!", err)
+      alert(err)
     })
   }
 
@@ -58,11 +58,11 @@ export class CurrentStateFormComponent implements OnInit {
     this.service.submitCurrentStateForm("startup-current-state-form-submission", currentstateform).subscribe((res) => {
       res;
       if (res) {
-        this.errdisplay.openpopup("Success!!!", "Current State Form Submitted Successfully")
+        alert("Current State Form Submitted Successfully")
         this.router.navigate(['/'])
       }
     }, (err: HttpErrorResponse) => {
-      this.errdisplay.openpopup("Error!!!", err)
+      alert(err)
     })
 
   }

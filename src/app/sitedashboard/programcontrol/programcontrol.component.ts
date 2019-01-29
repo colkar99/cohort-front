@@ -152,6 +152,7 @@ export class ProgramControlComponent implements OnInit {
         res;
         let id = this.getCookie("program_id");
         this.showStartups(id);
+        this.formrequestarray = []
         alert("Current State Form Initiated");
       }, (err: HttpErrorResponse) => {
         alert(err)
@@ -170,6 +171,7 @@ export class ProgramControlComponent implements OnInit {
         console.log("acceptdata" + data);
         let id = this.getCookie("program_id");
         this.showStartups(id);
+        this.formrequestarray = []
       },
         error => {
           console.log(error);
@@ -183,6 +185,7 @@ export class ProgramControlComponent implements OnInit {
       .subscribe(data => {
         let id = this.getCookie("program_id");
         this.showStartups(id);
+        this.formrequestarray = []
         console.log("rejectdata" + data);
       },
         error => {

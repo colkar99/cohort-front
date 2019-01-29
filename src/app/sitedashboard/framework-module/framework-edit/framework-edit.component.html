@@ -105,14 +105,14 @@
                                             <div class="form-group">
                                                 <span class="label">Name</span>
                                                 <input class="form-control" formControlName="name" placeholder="Item name"
-                                                    ngModel>
+                                                    [(ngModel)]="item.controls.name.value">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <span class="label">Description</span>
                                                 <input class="form-control" formControlName="description" placeholder="Item description"
-                                                    ngModel>
+                                                [(ngModel)]="item.controls.description.value">
 
                                             </div>
                                         </div>
