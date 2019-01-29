@@ -36,7 +36,8 @@
                         <td>{{startup.app_status_description}}</td>
                         <td>{{startup.score}}</td>
                         <td>
-                            <button routerLink="{{startup.id}}">View contract form</button>
+                            <button *ngIf="startup.application_status == 'AA'" routerLink="{{startup.id}}">Create contract form</button>
+                            <button *ngIf="startup.application_status != 'AA'" routerLink="edit/{{startup.id}}">View contract form</button>
                         </td>
                         
                         </tr>
