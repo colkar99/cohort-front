@@ -32,6 +32,7 @@
                     <input class="form-control" type="file" name="thumb_image" [(ngModel)]="framework.thumb_image" />
                 </div>
             </div>
+            <div *ngIf="framework.id != (null && undefined && 0">
             <div class="row">Activities <button type="button" class="btn btn-primary" (click)="addactivities()">Add</button></div>
             <div class="row">
                 <table class="table table-bordered">
@@ -57,6 +58,7 @@
                 <button class="btn btn-primary pull-right" (click)="updateForm()">{{!framework.id? 'Save':'Update'}}</button>
                 <button class="btn btn-danger pull-right" (click)="deleteform()">Delete</button>
             </div>
+        </div>
         </form>
         <app-error-display></app-error-display>
         <div class="modal fade" id="activitiesmodal" role="dialog" #activitiesmodal>
