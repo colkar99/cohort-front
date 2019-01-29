@@ -19,6 +19,8 @@ import { CurrentStateFormComponent } from './current-state-form/current-state-fo
 import { AboutProfileComponent } from './about-profile/about-profile.component'
 import { FrameworkModuleComponent } from './sitedashboard/framework-module/framework-module.component';
 import { FrameworkModuleEditComponent } from './sitedashboard/framework-module/framework-edit/framework-edit.component';
+import {ContractformSignComponent} from './sitedashboard/contractmanagercontrol/contractform-sign/contractform-sign.component'
+import {ContractformEditComponent} from './sitedashboard/contractmanagercontrol/contractform-edit/contractform-edit.component'
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
@@ -40,8 +42,11 @@ const routes: Routes = [
   { path: 'live-programs/registration/:id', component: ProgramsRegistrationComponent },
   { path: 'dashboard/contract-manager', component: ContractManagerComponent },
   { path: 'dashboard/contract-manager/:id', component: ContractFormComponent },
+  { path: 'dashboard/contract-manager/edit/:id', component: ContractformEditComponent },
   { path: 'current-state-form', component: CurrentStateFormComponent },
   { path: 'current-state-form/:id', component: CurrentStateFormComponent },
+  { path: 'contract-form-sign', component: ContractformSignComponent },
+  { path: 'contract-form-sign/:id', component: ContractformSignComponent },
   { path: 'about-profile', component: AboutProfileComponent },
   { path: 'about-profile/:id', component: AboutProfileComponent }
 

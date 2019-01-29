@@ -26,6 +26,8 @@ import { AboutProfileComponent } from './about-profile/about-profile.component';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { FrameworkModuleComponent } from './sitedashboard/framework-module/framework-module.component';
 import { FrameworkModuleEditComponent} from './sitedashboard/framework-module/framework-edit/framework-edit.component';
+import { ContractformSignComponent } from './sitedashboard/contractmanagercontrol/contractform-sign/contractform-sign.component';
+import { ContractformEditComponent } from './sitedashboard/contractmanagercontrol/contractform-edit/contractform-edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +49,9 @@ import { FrameworkModuleEditComponent} from './sitedashboard/framework-module/fr
     CurrentStateFormComponent,
     AboutProfileComponent,
     FrameworkModuleComponent,
-    FrameworkModuleEditComponent
+    FrameworkModuleEditComponent,
+    ContractformSignComponent,
+    ContractformEditComponent
   ],
   imports: [
     BrowserModule,
