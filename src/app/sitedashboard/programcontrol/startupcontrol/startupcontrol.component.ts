@@ -20,6 +20,7 @@ export class StartupControlComponent implements OnInit {
   appRespQues: any;
   startup_id: number;
   currentstateform: CurrentstateFormVO
+  currentstateedit:boolean = true
 
   constructor(private apiCom: ApiCommunicationService,
     private cookieService: CookieService,
@@ -53,6 +54,11 @@ export class StartupControlComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
         this.startup = data.startup_application;
+        if(this.startup.current_state_form_reviewed == false){
+          this.currentstateedit = false
+        }else{
+         this.currentstateedit = true
+        }
         if (this.startup.application_status != "PR" && this.startup.application_status != "RP" && this.startup.application_status != "RC" && this.startup.application_status != "CSFI") {
           let url = "program/user/show-current-state-form";
           let params = {
@@ -129,13 +135,20 @@ export class StartupControlComponent implements OnInit {
         total += this.appRespQues[i].reviewer_rating
       }
       this.currentstateform.total_rating = Number(this.currentstateform.reviewer_rating) + Number(total)
-      let url = "program/admin/edit-current-state-form-admin"
+      var url:string
+      if(this.startup.current_state_form_reviewed == false){
+        url = "program/admin/response-current-state-form"
+      }else{
+        url = "program/admin/edit-current-state-form-admin"
+      }
+       
       let params = JSON.stringify({ "current_state_form": this.currentstateform })
 
 
       this.apiCom.putDataWithToken(url, params, this.authToken).subscribe(data => {
         console.log(data);
         this.response = data;
+        this.currentstateedit = true
         this.currentstateform = this.response.current_state_form
         this.startup = this.response.startup_registration;
       }, error => {

@@ -143,10 +143,10 @@ export class FrameworkModuleEditComponent implements OnInit {
     this.apiCom.putDataWithToken(url, JSON.stringify({ framework: { id: this.framework.id } }), this.authToken).subscribe((res) => {
       res;
 
-      this.errdisplay.openpopup("Success!!!", "FrameWork Deleted Successfully")
+      alert( "FrameWork Deleted Successfully")
       this.router.navigate(['admin/dashboard/framework'])
     }, (err: HttpErrorResponse) => {
-      this.errdisplay.openpopup("Error!!!", err)
+      alert( err)
     })
   }
 

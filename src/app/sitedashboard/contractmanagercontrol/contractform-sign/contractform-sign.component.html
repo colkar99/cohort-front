@@ -39,17 +39,14 @@
                     </div>
                     <div class="col-md-6 form-group">
                         <label>Contract duration in month</label>
-                        <input class="form-control" name="duration" ngModel type="number">
+                        <input class="form-control" name="duration" [(ngModel)]="contractdetails.duration"  type="text">
                     </div>                    
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="sel1">Select additional information:</label>
-                            <select class="form-control" id="sel1" name="additional_contract_information_id" [(ngModel)]="contractdetails.additional_contract_information_id" (change)="onChangeInfo($event)">
-                                <option></option>
-                                <option value="{{add_info.id}}" *ngFor="let add_info of addContractInfo ">{{add_info.id}}</option>
-                            </select>
+                           <input class="form-control" name="additional_contract_information_id" [(ngModel)]="contractdetails.additional_contract_information_id" >
                         </div>
                     </div>
                 </div>

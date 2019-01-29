@@ -36,28 +36,21 @@ export class ContractformSignComponent implements OnInit {
   ngOnInit() {
     this.authToken = this.getCookie('Authorization');
     this.user_role = this.getCookie('role')
-    if (this.authToken.length != 0) {
-      this.loggedIn = true;
-      if (this.user_role == this.site_admin || this.user_role == this.contract_manager) {
-
-      } else { this.router.navigate(['/']); }
-    } else {
-      this.loggedIn = false;
-      this.router.navigate(['/login']);
-    }
+    
     this.getcontractdetails();
-    this.getAddContractInfo()
+    //this.getAddContractInfo()
 
   }
   getcontractdetails() {
     let url = "program/startup/contract-data-for-startup";
     let params = { startup_registration_id: this.startup_id }
-    this.apiCom.postDataWithToken(url, JSON.stringify(params), this.authToken).subscribe((res) => {
+    this.apiCom.postData(url, JSON.stringify(params)).subscribe((res) => {
       res;
       this.contractdetails = res;
       console.log("res,res", res);
       this.startup = res.startup_application
       this.contractdetails = res.contract_form
+      this.selected_add_info = res.additional_contract_information
 
     })
   }
@@ -76,7 +69,7 @@ export class ContractformSignComponent implements OnInit {
   }
   getAddContractInfo() {
     let url = "get-contract-additional-information";
-    this.apiCom.getDataWithAuth(url, this.authToken)
+    this.apiCom.getDataWithoutAuth(url)
       .subscribe(data => {
         debugger
         console.log(data);
@@ -98,7 +91,7 @@ export class ContractformSignComponent implements OnInit {
           accept_terms_condition: true
         }
       }
-      this.apiCom.putDataWithToken(url, params, this.authToken).subscribe((res) => {
+      this.apiCom.putDataWithoutToken(url, params).subscribe((res) => {
         res;
         alert("Contract form Signed Successfully")
         this.router.navigate(['/'])
