@@ -59,6 +59,7 @@ declare var $: any;
     createUserForm(){
         this.user =  this.formBuilder.group({
             user: this.formBuilder.group({
+                id: this.userDatas[0].user.id,
                 first_name: this.userDatas[0].user.first_name,
                 last_name: this.userDatas[0].user.last_name,
                 email: this.userDatas[0].user.email,
@@ -115,6 +116,7 @@ declare var $: any;
             data => { 
                 console.log(data);
                 this.getUserData();
+                alert("User successfully edited by admin")
             },
             error => console.error("couldn't post because", error)
       );
