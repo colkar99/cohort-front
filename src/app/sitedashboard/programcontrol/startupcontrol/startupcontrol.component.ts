@@ -129,7 +129,7 @@ export class StartupControlComponent implements OnInit {
         total += this.appRespQues[i].reviewer_rating
       }
       this.currentstateform.total_rating = Number(this.currentstateform.reviewer_rating) + Number(total)
-      let url = "program/admin/response-current-state-form"
+      let url = "program/admin/edit-current-state-form-admin"
       let params = JSON.stringify({ "current_state_form": this.currentstateform })
 
 

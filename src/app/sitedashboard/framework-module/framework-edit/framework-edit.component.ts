@@ -41,7 +41,7 @@ export class FrameworkModuleEditComponent implements OnInit {
       description: '',
       placeholder: '',
       order: '',
-      formitems: this.formBuilder.array([this.createchecklistitems()])
+      formitems: this.formBuilder.array([])
 
     })
   }
@@ -179,17 +179,23 @@ export class FrameworkModuleEditComponent implements OnInit {
     this.checklistforms.get('order').setValue(item.order)
     this.checklistforms.get('placeholder').setValue(item.placeholder)
     //this.checklistforms.get('formitems').setValue(item.checklists)
-    // this.checklistforms.setControl('formitems', this.formBuilder.array([]));
+     this.checklistforms.setControl('formitems', this.formBuilder.array([]));
     this.formitems = this.checklistforms.get('formitems') as FormArray;
     const controlArray = <FormArray>this.checklistforms.get('formitems');
 
 
     // this.formitems = this.checklistforms.get('formitems') as FormArray;
+    // for (let i = 0; i < item.checklists.length; i++) {
+    //   controlArray.controls[i].get('name').setValue(item.checklists[i].name);
+    //   controlArray.controls[i].get('description').setValue(item.checklists[i].description);
+    //   controlArray.controls[i].get('id').setValue(item.checklists[i].id);
+    // }
     for (let i = 0; i < item.checklists.length; i++) {
-      controlArray.controls[i].get('name').setValue(item.checklists[i].name);
-      controlArray.controls[i].get('description').setValue(item.checklists[i].description);
-      controlArray.controls[i].get('id').setValue(item.checklists[i].id);
+
+      console.log("values", this.updatechecklistsitems(item.checklists[i]))
+      this.formitems.push(this.updatechecklistsitems(item.checklists[i]));
     }
+    this.formitems = this.checklistforms.get('formitems') as FormArray;
 
 
 
