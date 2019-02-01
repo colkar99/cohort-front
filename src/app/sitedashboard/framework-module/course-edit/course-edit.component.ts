@@ -267,7 +267,7 @@ export class CourseEditComponent implements OnInit {
     if (this.btnname == "checklist") {
       this.checklists = this.checklistforms.get('checklists') as FormArray;
       let id = this.checklists.controls[this.deleteindex].value.id
-      let url = "framework/activity/delete-checklist";
+      let url = "program/framework/activity/delete-checklist";
       let params = JSON.stringify({ checklist: { id: id } })
       this.apiCom.putDataWithToken(url, params, this.authToken).subscribe((res) => {
         res
@@ -280,7 +280,7 @@ export class CourseEditComponent implements OnInit {
     } else if (this.btnname == "activity") {
       let url = "framework/course/delete-activity-and-checklists";
       let params = JSON.stringify({ activity_id: this.deleteactivityid, course_id: this.course.id })
-      this.apiCom.putDataWithToken(url, params, this.authToken).subscribe((res) => {
+      this.apiCom.postDataWithToken(url, params, this.authToken).subscribe((res) => {
         res
         this.course.activities.splice(this.deleteindex, 1)
         $("#deletepopup").modal('hide')
