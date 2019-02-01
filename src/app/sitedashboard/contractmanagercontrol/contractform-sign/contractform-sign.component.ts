@@ -4,6 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ApiCommunicationService } from '../../../api-communication.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 declare var $: any;
 @Component({
   selector: 'app-contractform-sign',
@@ -36,7 +37,7 @@ export class ContractformSignComponent implements OnInit {
   ngOnInit() {
     this.authToken = this.getCookie('Authorization');
     this.user_role = this.getCookie('role')
-    
+
     this.getcontractdetails();
     //this.getAddContractInfo()
 
@@ -51,8 +52,9 @@ export class ContractformSignComponent implements OnInit {
       this.startup = res.startup_application
       this.contractdetails = res.contract_form
       this.selected_add_info = res.additional_contract_information
-
-    })
+    }, ((err: HttpErrorResponse) => {
+        alert("Contract Form Not Found, Please Contact Admin")
+    }))
   }
 
   setupdate() {
@@ -91,17 +93,17 @@ export class ContractformSignComponent implements OnInit {
           accept_terms_condition: true
         }
       }
-      this.apiCom.putDataWithoutToken(url, params).subscribe((res) => {
+      this.apiCom.postData(url, params).subscribe((res) => {
         res;
         alert("Contract form Signed Successfully")
         this.router.navigate(['/'])
       })
-    }else{
+    } else {
       alert("Please accept the terms and conditions")
     }
     console.log(form.value)
-    
-    
+
+
 
   }
   terms(value): any {
