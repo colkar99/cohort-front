@@ -105,6 +105,9 @@ export class FrameworkModuleEditComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
         this.courses = data;
+
+        this.removeduplicates();
+
       }, error => {
         console.log(error);
       })
@@ -330,7 +333,8 @@ export class FrameworkModuleEditComponent implements OnInit {
     this.apiCom.postDataWithToken(url, params, this.authToken).subscribe((res) => {
       res;
       console.log("response", res);
-      debugger
+      alert("Framework Course Deleted Successfully")
+      this.getcourses();
       this.framework.courses.splice(i, 1)
     })
   }
@@ -339,30 +343,39 @@ export class FrameworkModuleEditComponent implements OnInit {
     if (this.arrayids.length == 0) {
       alert("Select atleast one to update framework courses")
     } else {
-      if (this.framework.courses.length > 0) {
-        for (let i = 0; i < this.framework.courses.length; i++) {
-          this.arrayids.push(this.framework.courses[i].id)
+      params = JSON.stringify({ framework_id: this.framework.id, course_ids: this.arrayids })
+
+      let url = "program/merge-courses-with-framework"
+      this.apiCom.postDataWithToken(url, params, this.authToken).subscribe((res) => {
+        res;
+        this.framework = res;
+        alert("Framework Courses Updated Successfully")
+        if (this.framework.courses.length > 0) {
+          this.getcourses();
+          this.arrayids = []
+
         }
-      }
+        console.log(res);
+      })
     }
 
-    params = JSON.stringify({ framework_id: this.framework.id, course_ids: this.arrayids })
 
-    let url = "program/merge-courses-with-framework"
-    this.apiCom.postDataWithToken(url, params, this.authToken).subscribe((res) => {
-      res;
-      this.framework = res;
-      if (this.framework.courses.length > 0) {
-        this.getcourses();
-        this.arrayids = []
-        this.removeduplicates();
-      }
-      console.log(res);
-    })
 
   }
 
   removeduplicates() {
+    var i = this.courses.length;
+    while (i--) {
+      for (var j of this.framework.courses) {
+        if (this.courses[i] && this.courses[i].id == j.id) {
+         // this.courses1.push(this.courses[i])
+          this.courses.splice(i, 1);
+          
+        }
 
+      }
+     
+
+    }
   }
 }
