@@ -6,11 +6,11 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class SharedDataService {
 
-  private messageSource = new BehaviorSubject<string>('default mesaage');
+  private messageSource = new BehaviorSubject<any>('default mesaage');
   currentMessage = this.messageSource.asObservable();
   constructor() { }
 
-  changeMessage(message: string){
+  changeMessage(message: any){
     this.messageSource.next(message);
   }
 }

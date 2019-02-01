@@ -100,7 +100,8 @@ export class StartupControlComponent implements OnInit {
     this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
       .subscribe(data => {
         console.log(data);
-        this.appRespQues
+        this.getStartupRegQues();
+        this.appRespQues 
       }, error => {
         console.log(error);
       })

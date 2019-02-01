@@ -6,41 +6,37 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { ErrorDisplayComponent } from '../../../error-display/error-display.component'
 import { HttpErrorResponse } from '@angular/common/http';
+import {SharedDataService} from '../../../shared-data.service'
 declare var $: any
-
 @Component({
-  selector: 'app-sitedashboard-framework-module-edit',
-  templateUrl: './framework-edit.component.html',
-  styleUrls: ['./framework-edit.component.css']
+  selector: 'app-course-edit',
+  templateUrl: './course-edit.component.html',
+  styleUrls: ['./course-edit.component.css']
 })
-export class FrameworkModuleEditComponent implements OnInit {
-
+export class CourseEditComponent implements OnInit {
   getUserUrl: string = 'get-user-details'
   authToken: string;
   loggedIn: boolean;
-  framework_id: number;
-  framework: any = {};
+  course_id: number;
+  course: any = {};
   allActivity: any;
   framework_activity: any;
   @ViewChild(ErrorDisplayComponent) errdisplay;
   activitiesarray: Array<any> = []
   checklistforms: FormGroup;
-  formitems: FormArray
+  checklists: FormArray
   activity: any = {}
   btnname: any
   deletedisplay: string
   deleteindex: any
   deleteactivityid: any
-  courses1: Array<any> = []
-  arrayids: Array<any> = []
-  courses: any
 
   public user_details: any[];
-
   constructor(private apiCom: ApiCommunicationService,
     private cookieService: CookieService,
     private router: Router,
     private route: ActivatedRoute,
+    private sharedservice:SharedDataService,
     private formBuilder: FormBuilder) {
     this.checklistforms = this.formBuilder.group({
       id: undefined,
@@ -48,7 +44,7 @@ export class FrameworkModuleEditComponent implements OnInit {
       description: '',
       placeholder: '',
       order: '',
-      formitems: this.formBuilder.array([])
+      checklists: this.formBuilder.array([])
 
     })
   }
@@ -58,6 +54,59 @@ export class FrameworkModuleEditComponent implements OnInit {
     return this.cookieService.get(key);
   }
 
+  ngOnInit() {
+    this.authToken = this.getCookie('Authorization');
+    if (this.authToken.length != 0) {
+      this.loggedIn = true;
+    } else {
+      this.loggedIn = false;
+      this.router.navigate(['/login']);
+
+    }
+    this.course_id = +this.route.snapshot.paramMap.get('id')
+    console.log("course_id", this.course_id)
+    if (this.course_id != (0 && null && undefined)) {
+      this.sharedservice.currentMessage.subscribe(message => this.course = message)
+      // this.getcourses(this.course_id)
+      // this.getcoursesActivities(this.course_id);
+    }
+
+   
+    this.getUserDetails();
+  }
+  getcourses(id: number) {
+    let url = "framework/show-course";
+    let data = { course: { id: id } };
+    this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
+      .subscribe(data => {
+        console.log(data);
+        this.course = data;
+      }, error => {
+        console.log(error);
+        alert(`the following error has happend`);
+      })
+  }
+  getAllActivities() {
+    let url = "framework/course/show-all-activities";
+    this.apiCom.getDataWithAuth(url, this.authToken)
+      .subscribe(data => {
+        console.log(data);
+        this.allActivity = data;
+      }, error => {
+        console.log(error);
+      })
+  }
+  getcoursesActivities(id: number) {
+    let url = "framework/course/show-activity";
+    let data = { course: id };
+    this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
+      .subscribe(data => {
+        console.log(data);
+        this.framework_activity = data;
+      }, error => {
+        console.log(error);
+      })
+  }
   getUserDetails() {
     this.apiCom.getDataWithAuth(this.getUserUrl, this.authToken)
       .subscribe(
@@ -68,89 +117,27 @@ export class FrameworkModuleEditComponent implements OnInit {
         error => console.error("couldn't post because", error)
       );
   }
-  ngOnInit() {
-    this.authToken = this.getCookie('Authorization');
-    if (this.authToken.length != 0) {
-      this.loggedIn = true;
-    } else {
-      this.loggedIn = false;
-      this.router.navigate(['/login']);
-
-    }
-    this.framework_id = +this.route.snapshot.paramMap.get('id')
-    console.log("frameworkid", this.framework_id)
-    if (this.framework_id != (0 && null && undefined)) {
-      this.getframework(this.framework_id)
-
-    }
-
-    this.getcourses();
-    this.getUserDetails();
-  }
-  getframework(id: number) {
-    let url = "program/show-framework";
-    let data = { framework: { id: id } };
-    this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
-      .subscribe(data => {
-        console.log(data);
-        this.framework = data;
-      }, error => {
-        console.log(error);
-        alert(`the following error has happend`);
-      })
-  }
-  getcourses() {
-    let url = "framework/course/view-all";
-    this.apiCom.getDataWithAuth(url, this.authToken)
-      .subscribe(data => {
-        console.log(data);
-        this.courses = data;
-      }, error => {
-        console.log(error);
-      })
-  }
-  getFrameworkActivities(id: number) {
-    let url = "program/framework/show-activity";
-    let data = { framework_id: id };
-    this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
-      .subscribe(data => {
-        console.log(data);
-        this.framework_activity = data;
-      }, error => {
-        console.log(error);
-      })
-  }
-  updateForm() {
-    if (this.framework.id == (null || undefined)) {
-      let url = "program/create-framework"
-      this.apiCom.postDataWithToken(url, JSON.stringify({ framework: this.framework }), this.authToken).subscribe((res) => {
-        res;
-        this.framework = res;
-        this.errdisplay.openpopup("Success!!!", "FrameWork created Successfully")
-      }, (err: HttpErrorResponse) => {
-        this.errdisplay.openpopup("Error!!!", err)
-      })
-    } else {
-      let url = "program/edit-framework"
-      this.apiCom.putDataWithToken(url, JSON.stringify({ framework: this.framework }), this.authToken).subscribe((res) => {
-        res;
-        this.framework = res;
-        this.errdisplay.openpopup("Success!!!", "FrameWork Updated Successfully")
-      }, (err: HttpErrorResponse) => {
-        this.errdisplay.openpopup("Error!!!", err)
-      })
-    }
-  }
-  deleteform() {
-    let url = "program/delete-framework"
-    this.apiCom.putDataWithToken(url, JSON.stringify({ framework: { id: this.framework.id } }), this.authToken).subscribe((res) => {
+  deleteform(){
+    let url = "framework/course/delete-course-activity-and-checklists"
+    let params = {"course_id": this.course.id}
+    this.apiCom.postDataWithToken(url,params,this.authToken).subscribe((res)=>{
       res;
-
-      alert("FrameWork Deleted Successfully")
+      alert("Courses Deleted Successfully");
       this.router.navigate(['admin/dashboard/framework'])
-    }, (err: HttpErrorResponse) => {
-      alert(err)
     })
+  }
+
+  updateForm() {
+
+    let url = "framework/course/create-and-update-course"
+    this.apiCom.postDataWithToken(url, JSON.stringify({ course: this.course }), this.authToken).subscribe((res) => {
+      res;
+      this.course = res;
+      this.errdisplay.openpopup("Success!!!", "Course created Successfully")
+    }, (err: HttpErrorResponse) => {
+      this.errdisplay.openpopup("Error!!!", err)
+    })
+
   }
 
   createchecklistitems(): FormGroup {
@@ -169,20 +156,20 @@ export class FrameworkModuleEditComponent implements OnInit {
   }
 
   addItem(): void {
-    this.formitems = this.checklistforms.get('formitems') as FormArray;
-    this.formitems.push(this.createchecklistitems());
+    this.checklists = this.checklistforms.get('checklists') as FormArray;
+    this.checklists.push(this.createchecklistitems());
   }
   deleteItem(i) {
     this.btnname = "checklist"
-    console.log("id", this.formitems.controls[i].value)
-    this.formitems = this.checklistforms.get('formitems') as FormArray;
+    console.log("id", this.checklists.controls[i].value)
+    this.checklists = this.checklistforms.get('checklists') as FormArray;
     this.deleteindex = i
     this.deletedisplay = "Are you Sure, You want to delete the checklist?"
-    let id = this.formitems.controls[i].value.id
+    let id = this.checklists.controls[i].value.id
     if (id != (null && undefined)) {
       $("#deletepopup").modal('show')
     } else {
-      this.formitems.removeAt(i);
+      this.checklists.removeAt(i);
     }
     // 
   }
@@ -196,8 +183,8 @@ export class FrameworkModuleEditComponent implements OnInit {
     this.checklistforms.get('order').setValue(item.order)
     this.checklistforms.get('placeholder').setValue(item.placeholder)
     //this.checklistforms.get('formitems').setValue(item.checklists)
-    this.checklistforms.setControl('formitems', this.formBuilder.array([]));
-    this.formitems = this.checklistforms.get('formitems') as FormArray;
+    this.checklistforms.setControl('checklists', this.formBuilder.array([]));
+    this.checklists = this.checklistforms.get('checklists') as FormArray;
     const controlArray = <FormArray>this.checklistforms.get('formitems');
 
 
@@ -210,9 +197,9 @@ export class FrameworkModuleEditComponent implements OnInit {
     for (let i = 0; i < item.checklists.length; i++) {
 
       console.log("values", this.updatechecklistsitems(item.checklists[i]))
-      this.formitems.push(this.updatechecklistsitems(item.checklists[i]));
+      this.checklists.push(this.updatechecklistsitems(item.checklists[i]));
     }
-    this.formitems = this.checklistforms.get('formitems') as FormArray;
+    this.checklists = this.checklistforms.get('checklists') as FormArray;
 
 
 
@@ -235,30 +222,35 @@ export class FrameworkModuleEditComponent implements OnInit {
       description: '',
       placeholder: '',
       order: '',
-      formitems: this.formBuilder.array([this.createchecklistitems()])
+      checklists: this.formBuilder.array([this.createchecklistitems()])
 
     })
   }
   saveActivities(checklistforms) {
     console.log("values", checklistforms)
     let values = checklistforms.value
+    for(let i = 0; i < values.checklists.length;i++){
+      if(values.checklists[i].id == (null || undefined)){
+        delete values.checklists[i].id
+      }
+    }
     if (values.id == (null || undefined)) {
-      let url = "program/framework/create-activity-and-checklists"
-      this.apiCom.postDataWithToken(url, JSON.stringify({ activity: values, checklists: values.formitems, framework_id: this.framework.id }), this.authToken).subscribe((res) => {
+      let url = "framework/course/create-activity-and-checklists"
+      this.apiCom.postDataWithToken(url, JSON.stringify({ activity: values, course_id: this.course.id }), this.authToken).subscribe((res) => {
         res;
         console.log("response", res)
-        this.framework = res;
-        alert("Framework Activities and Checklists Saved Successfully")
+        this.course = res;
+        alert("Course Activities and Checklists Saved Successfully")
         $("#activitiesmodal").modal('hide')
 
       })
     } else {
-      let url = "program/framework/update-activity-and-checklists"
-      this.apiCom.putDataWithToken(url, JSON.stringify({ activity: values, checklists: values.formitems, framework_id: this.framework.id }), this.authToken).subscribe((res) => {
+      let url = "framework/course/create-activity-and-checklists"
+      this.apiCom.postDataWithToken(url, JSON.stringify({ activity: values, course_id: this.course.id }), this.authToken).subscribe((res) => {
         res;
         console.log("response", res)
-        this.framework = res;
-        alert("Framework Activities and Checklists Updated Successfully")
+        this.course = res;
+        alert("Course Activities and Checklists Updated Successfully")
         $("#activitiesmodal").modal('hide')
 
       })
@@ -273,24 +265,24 @@ export class FrameworkModuleEditComponent implements OnInit {
 
   confirmdelete() {
     if (this.btnname == "checklist") {
-      this.formitems = this.checklistforms.get('formitems') as FormArray;
-      let id = this.formitems.controls[this.deleteindex].value.id
-      let url = "program/framework/activity/delete-checklist";
+      this.checklists = this.checklistforms.get('checklists') as FormArray;
+      let id = this.checklists.controls[this.deleteindex].value.id
+      let url = "framework/activity/delete-checklist";
       let params = JSON.stringify({ checklist: { id: id } })
       this.apiCom.putDataWithToken(url, params, this.authToken).subscribe((res) => {
         res
-        this.formitems.removeAt(this.deleteindex)
+        this.checklists.removeAt(this.deleteindex)
         $("#deletepopup").modal('hide')
         alert("Checklist Deleted Successfully")
       }, (error) => {
         alert(error)
       })
     } else if (this.btnname == "activity") {
-      let url = "program/framework/delete-activity";
-      let params = JSON.stringify({ activity_id: this.deleteactivityid, framework_id: this.framework.id })
+      let url = "framework/course/delete-activity-and-checklists";
+      let params = JSON.stringify({ activity_id: this.deleteactivityid, course_id: this.course.id })
       this.apiCom.putDataWithToken(url, params, this.authToken).subscribe((res) => {
         res
-        this.framework.activities.splice(this.deleteindex, 1)
+        this.course.activities.splice(this.deleteindex, 1)
         $("#deletepopup").modal('hide')
         alert("Checklist Deleted Successfully")
       }, (error) => {
@@ -310,59 +302,4 @@ export class FrameworkModuleEditComponent implements OnInit {
     this.deleteactivityid = id
   }
 
-  setvalues(checked, value) {
-    if (checked == true) {
-      this.arrayids.push(value.id);
-    } else {
-      if (checked == false) {
-        let deleteindex = this.arrayids.indexOf(value.id)
-        console.log(deleteindex)
-        if (deleteindex != -1) {
-          this.arrayids.splice(deleteindex, 1)
-          console.log("this.formrequestarray", this.arrayids)
-        }
-      }
-    }
-  }
-  deletecoursesitems(item, i) {
-    let url = "program/delete-course-with-framework"
-    let params = JSON.stringify({ framework_id: this.framework.id, course_id: item.id })
-    this.apiCom.postDataWithToken(url, params, this.authToken).subscribe((res) => {
-      res;
-      console.log("response", res);
-      debugger
-      this.framework.courses.splice(i, 1)
-    })
-  }
-  updateframeworkcourses() {
-    let params: any
-    if (this.arrayids.length == 0) {
-      alert("Select atleast one to update framework courses")
-    } else {
-      if (this.framework.courses.length > 0) {
-        for (let i = 0; i < this.framework.courses.length; i++) {
-          this.arrayids.push(this.framework.courses[i].id)
-        }
-      }
-    }
-
-    params = JSON.stringify({ framework_id: this.framework.id, course_ids: this.arrayids })
-
-    let url = "program/merge-courses-with-framework"
-    this.apiCom.postDataWithToken(url, params, this.authToken).subscribe((res) => {
-      res;
-      this.framework = res;
-      if (this.framework.courses.length > 0) {
-        this.getcourses();
-        this.arrayids = []
-        this.removeduplicates();
-      }
-      console.log(res);
-    })
-
-  }
-
-  removeduplicates() {
-
-  }
 }

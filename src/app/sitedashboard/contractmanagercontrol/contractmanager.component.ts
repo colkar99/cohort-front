@@ -36,6 +36,7 @@ export class ContractManagerComponent implements OnInit {
         this.user_role = this.getCookie('role')
         this.current_user = this.getCookie('user_id');
         this.program_id = this.getCookie('redirect_id');
+        console.log("redirect_id",this.program_id)
         if (this.authToken.length != 0) {
             this.loggedIn = true;
             if (this.user_role == this.site_admin || this.user_role == this.contract_manager) {
@@ -45,7 +46,7 @@ export class ContractManagerComponent implements OnInit {
             this.router.navigate(['/login']);
         }
         this.getAllProgram();
-        if (this.program_id != (null && undefined && 0)) {
+        if (this.program_id != ("" && null && undefined && 0)) {
             this.onChange(this.program_id);
         }
     }
