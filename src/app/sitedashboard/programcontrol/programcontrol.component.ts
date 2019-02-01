@@ -25,6 +25,7 @@ export class ProgramControlComponent implements OnInit {
   showStartup: boolean = false;
   location_program_id: any;
   formrequestarray: Array<any> = []
+  programselected
 
   constructor(private apiCom: ApiCommunicationService,
     private cookieService: CookieService,
@@ -54,6 +55,7 @@ export class ProgramControlComponent implements OnInit {
 
     }
     this.location_program_id = this.getCookie('program_id')
+    console.log("location_program_id", this.location_program_id)
     if (this.authToken.length != 0) {
       debugger
       if (this.location_program_id.length != 0) {
@@ -91,6 +93,11 @@ export class ProgramControlComponent implements OnInit {
       this.allPrograms.push(data)
     }
     console.log(this.allPrograms);
+    let pr_id = this.getCookie('program_id')
+    this.programselected = pr_id
+    if (pr_id != (null && undefined && 0)) {
+      this.showStartups(pr_id);
+    }
 
   }
   showStartups(id: any) {
@@ -164,33 +171,41 @@ export class ProgramControlComponent implements OnInit {
   }
   startupAccept() {
     debugger
-    let url = "startup-accept-by-admin-bulk";
-    let data = { startup_app_ids: this.formrequestarray };
-    this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
-      .subscribe(data => {
-        console.log("acceptdata" + data);
-        let id = this.getCookie("program_id");
-        this.showStartups(id);
-        this.formrequestarray = []
-      },
-        error => {
-          console.log(error);
-        });
+    if (this.formrequestarray.length > 0) {
+      let url = "startup-accept-by-admin-bulk";
+      let data = { startup_app_ids: this.formrequestarray };
+      this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
+        .subscribe(data => {
+          console.log("acceptdata" + data);
+          let id = this.getCookie("program_id");
+          this.showStartups(id);
+          this.formrequestarray = []
+        },
+          error => {
+            console.log(error);
+          });
+    } else {
+      alert("Select atleast One Startup Company")
+    }
   }
   startupReject() {
     debugger
-    let url = "startup-reject-by-admin-bulk";
-    let data = { startup_app_ids: this.formrequestarray };
-    this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
-      .subscribe(data => {
-        let id = this.getCookie("program_id");
-        this.showStartups(id);
-        this.formrequestarray = []
-        console.log("rejectdata" + data);
-      },
-        error => {
-          console.log(error);
-        })
+    if (this.formrequestarray.length > 0) {
+      let url = "startup-reject-by-admin-bulk";
+      let data = { startup_app_ids: this.formrequestarray };
+      this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
+        .subscribe(data => {
+          let id = this.getCookie("program_id");
+          this.showStartups(id);
+          this.formrequestarray = []
+          console.log("rejectdata" + data);
+        },
+          error => {
+            console.log(error);
+          })
+    }else{
+      alert("Select atleast One Startup Company")
+    }
   }
 
 }

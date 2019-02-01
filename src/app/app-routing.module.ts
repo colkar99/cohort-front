@@ -21,6 +21,7 @@ import { FrameworkModuleComponent } from './sitedashboard/framework-module/frame
 import { FrameworkModuleEditComponent } from './sitedashboard/framework-module/framework-edit/framework-edit.component';
 import {ContractformSignComponent} from './sitedashboard/contractmanagercontrol/contractform-sign/contractform-sign.component'
 import {ContractformEditComponent} from './sitedashboard/contractmanagercontrol/contractform-edit/contractform-edit.component'
+import {CourseEditComponent} from './sitedashboard/framework-module/course-edit/course-edit.component'
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
@@ -33,7 +34,9 @@ const routes: Routes = [
     { path: 'program-controls/startup/:id', component: StartupControlComponent },
     {path: 'framework', component: FrameworkModuleComponent},
     {path: 'framework/edit', component: FrameworkModuleEditComponent},
-    {path: 'framework/edit/:id', component: FrameworkModuleEditComponent}
+    {path: 'framework/edit/:id', component: FrameworkModuleEditComponent},
+    {path: 'framework/editcourse', component: CourseEditComponent},
+    {path: 'framework/editcourse/:id', component: CourseEditComponent}
     ]
   },
   { path: 'startup/dashboard', component: StartupdashboardComponent },

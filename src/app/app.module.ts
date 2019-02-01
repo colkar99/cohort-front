@@ -28,6 +28,8 @@ import { FrameworkModuleComponent } from './sitedashboard/framework-module/frame
 import { FrameworkModuleEditComponent} from './sitedashboard/framework-module/framework-edit/framework-edit.component';
 import { ContractformSignComponent } from './sitedashboard/contractmanagercontrol/contractform-sign/contractform-sign.component';
 import { ContractformEditComponent } from './sitedashboard/contractmanagercontrol/contractform-edit/contractform-edit.component';
+import { CourseEditComponent } from './sitedashboard/framework-module/course-edit/course-edit.component';{}
+import {SharedDataService} from './shared-data.service'
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +53,8 @@ import { ContractformEditComponent } from './sitedashboard/contractmanagercontro
     FrameworkModuleComponent,
     FrameworkModuleEditComponent,
     ContractformSignComponent,
-    ContractformEditComponent
+    ContractformEditComponent,
+    CourseEditComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +64,7 @@ import { ContractformEditComponent } from './sitedashboard/contractmanagercontro
     HttpClientModule,
     Ng4LoadingSpinnerModule.forRoot() 
   ],
-  providers: [CookieService],
+  providers: [CookieService,SharedDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

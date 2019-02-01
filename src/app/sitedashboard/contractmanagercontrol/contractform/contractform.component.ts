@@ -124,7 +124,7 @@ export class ContractFormComponent implements OnInit {
         res;
         alert("Contract Created Successfully")
         $('#reviewFormModal').modal('hide');
-        this.router.navigate(['contract-manager']);
+        this.router.navigate(['dashboard/contract-manager']);
 
       })
     }else{

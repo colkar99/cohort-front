@@ -3,7 +3,7 @@
     <div class="col-md-12">
         <div class="form-group" *ngIf="program_modules">
             <label for="sel1">Select program:</label>
-            <select class="form-control" id="sel1" (change)="onChange($event.target.value)">
+            <select class="form-control" id="sel1" (change)="onChange($event.target.value)" name="program_id" [(ngModel)]="program_id">
                  <option></option>
               <option *ngFor="let program of program_modules" value="{{program.id}}">{{program.title}}</option>
             </select>

@@ -32,138 +32,114 @@
                     <input class="form-control" type="file" name="thumb_image" [(ngModel)]="framework.thumb_image" />
                 </div>
             </div>
-            <div *ngIf="framework.id != (null && undefined && 0)">
-                <div class="row">Activities <button type="button" class="btn btn-primary" (click)="addactivities()">Add</button></div>
-                <div class="row">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Placeholder</th>
-                                <th>Order</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let item of framework.activities;let i = index">
-                                <td>{{item.name}}</td>
-                                <td>{{item.description}}</td>
-                                <td>{{item.placeholder}}</td>
-                                <td>{{item.order}}</td>
-                                <td><button type="button" class="btn btn-primary" (click)="viewactivities(item)">View</button><button type="button" class="btn btn-danger" (click)="deleteactivities(item.id,i)">Delete</button></td>
-                                
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
             <div class="row">
                 <button class="btn btn-primary pull-right" (click)="updateForm()">{{!framework.id? 'Save':'Update'}}</button>
                 <button *ngIf="framework.id != (null && undefined && 0)" class="btn btn-danger pull-right" (click)="deleteform()">Delete</button>
             </div>
+            <fieldset [disabled]="!framework.id">
+            <div class="row" >
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <label>Courses in Framework</label>
+
+                        <div class="col-md-12">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        
+                                        <th>Title</th>
+                                        <th>Description</th>
+                                        <th>Additional description</th>
+                                        <th>Actions</th>
+                                        
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let startup of framework.courses;let i = index" style="cursor: pointer; ">
+                                        
+                                        <td>{{startup.title}}</td>
+                                        <td>{{startup.description}}</td>
+                                        <td>{{startup.additional_description}}</td>
+                                        <td><button class="btn btn-danger" (click)="deletecoursesitems(startup,i)">Delete</button></td>
+                                        
+
+
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <label>List of Courses</label>
+
+                        <div class="col-md-12">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Select</th>
+                                        <th>Title</th>
+                                        <th>Description</th>
+                                        <th>Additional description</th>
+                                        
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let startup of courses;let i = index" style="cursor: pointer; ">
+                                       <td><input class="checkbox" type="checkbox" (change)="setvalues($event.target.checked,startup)"></td>
+                                        <td>{{startup.title}}</td>
+                                        <td>{{startup.description}}</td>
+                                        <td>{{startup.additional_description}}</td>
+                                       
+
+
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-12">
+                            <button class="btn btn-primary" type="button" (click)="updateframeworkcourses()">Update Framework Courses</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+
 
         </form>
         <app-error-display></app-error-display>
-        <div class="modal fade" id="activitiesmodal" role="dialog" #activitiesmodal>
-            <div class="modal-dialog modal-lg">
+
+        <div class="modal fade" id="deletepopup" role="dialog" #deletepopup>
+            <div class="modal-dialog">
 
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" (click)="closeactivities()">&times;</button>
-                        <h4 class="modal-title">Activity Details</h4>
+                        <button type="button" class="close" (click)="closedelete()">&times;</button>
+                        <h4 class="modal-title">Warning !!!</h4>
                     </div>
                     <div class="modal-body">
-                        <form [formGroup]="checklistforms">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <span class="label">Name</span>
-                                    <input class="form-control" type="text" formControlName="name" ngModel>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <span class="label">Description</span>
-                                    <input class="form-control" type="text" formControlName="description" ngModel>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <span class="label">Placeholder</span>
-                                    <input class="form-control" type="text" formControlName="placeholder" ngModel>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <span class="label">Order</span>
-                                    <input class="form-control" type="text" formControlName="order" ngModel>
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">Checklist Items
-                                <div formArrayName="formitems" *ngFor="let item of checklistforms.get('formitems').controls; let i = index;">
-                                    <div [formGroupName]="i">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <span class="label">Name</span>
-                                                <input class="form-control" formControlName="name" placeholder="Item name"
-                                                    [(ngModel)]="item.controls.name.value">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <span class="label">Description</span>
-                                                <input class="form-control" formControlName="description" placeholder="Item description"
-                                                    [(ngModel)]="item.controls.description.value">
-
-                                            </div>
-                                        </div>
-
-
-
-                                    </div>
-
-                                    <div>
-                                        <button *ngIf="i == checklistforms.get('formitems').length -1" type="button"
-                                            class="btn btn-default" (click)="addItem()">Add</button>
-                                        <button type="button" class="btn btn-default" (click)="deleteItem(i)">Delete</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                        <p>{{deletedisplay}}</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-default" (click)="saveActivities(checklistforms)">{{!checklistforms.value.id?
-                            'Save':'Update' }}</button>
-                        <button type="button" class="btn btn-default" (click)="closeactivities()">Close</button>
+                        <button type="button" class="btn btn-default" (click)="confirmdelete()">Confirm</button>
+                        <button type="button" class="btn btn-default" (click)="closedelete()">Close</button>
                     </div>
                 </div>
-               
 
             </div>
-           
         </div>
-        <div class="modal fade" id="deletepopup" role="dialog" #deletepopup>
-                <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" (click)="closedelete()">&times;</button>
-                            <h4 class="modal-title">Warning !!!</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>{{deletedisplay}}</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" (click)="confirmdelete()">Confirm</button>
-                            <button type="button" class="btn btn-default" (click)="closedelete()">Close</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
     </div>
 </div>
 
