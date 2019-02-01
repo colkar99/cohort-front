@@ -178,6 +178,7 @@ export class ProgramControlComponent implements OnInit {
         .subscribe(data => {
           console.log("acceptdata" + data);
           let id = this.getCookie("program_id");
+          alert("Startups Accepted Successfully")
           this.showStartups(id);
           this.formrequestarray = []
         },
@@ -196,6 +197,7 @@ export class ProgramControlComponent implements OnInit {
       this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
         .subscribe(data => {
           let id = this.getCookie("program_id");
+          alert("Startups Rejected Successfully")
           this.showStartups(id);
           this.formrequestarray = []
           console.log("rejectdata" + data);
