@@ -53,7 +53,7 @@ const routes: Routes = [
   { path: 'contract-form-sign/:id', component: ContractformSignComponent },
   { path: 'about-profile', component: AboutProfileComponent },
   { path: 'about-profile/:id', component: AboutProfileComponent },
-  { path: 'reset-password/:id', component: ResetPasswordComponent }
+  { path: 'reset-password/:id', component: ResetPasswordComponent },
   { path: 'reset-password', component: ResetPasswordComponent }
 
 ];
