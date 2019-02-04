@@ -19,9 +19,10 @@ import { CurrentStateFormComponent } from './current-state-form/current-state-fo
 import { AboutProfileComponent } from './about-profile/about-profile.component'
 import { FrameworkModuleComponent } from './sitedashboard/framework-module/framework-module.component';
 import { FrameworkModuleEditComponent } from './sitedashboard/framework-module/framework-edit/framework-edit.component';
-import {ContractformSignComponent} from './sitedashboard/contractmanagercontrol/contractform-sign/contractform-sign.component'
-import {ContractformEditComponent} from './sitedashboard/contractmanagercontrol/contractform-edit/contractform-edit.component'
-import {CourseEditComponent} from './sitedashboard/framework-module/course-edit/course-edit.component'
+import { ContractformSignComponent } from './sitedashboard/contractmanagercontrol/contractform-sign/contractform-sign.component'
+import { ContractformEditComponent } from './sitedashboard/contractmanagercontrol/contractform-edit/contractform-edit.component'
+import { CourseEditComponent } from './sitedashboard/framework-module/course-edit/course-edit.component'
+import { ResetPasswordComponent } from './reset-password/reset-password.component'
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
@@ -32,11 +33,11 @@ const routes: Routes = [
     { path: 'program/create-program', component: CreateProgramComponent },
     { path: 'program-controls', component: ProgramControlComponent },
     { path: 'program-controls/startup/:id', component: StartupControlComponent },
-    {path: 'framework', component: FrameworkModuleComponent},
-    {path: 'framework/edit', component: FrameworkModuleEditComponent},
-    {path: 'framework/edit/:id', component: FrameworkModuleEditComponent},
-    {path: 'framework/editcourse', component: CourseEditComponent},
-    {path: 'framework/editcourse/:id', component: CourseEditComponent}
+    { path: 'framework', component: FrameworkModuleComponent },
+    { path: 'framework/edit', component: FrameworkModuleEditComponent },
+    { path: 'framework/edit/:id', component: FrameworkModuleEditComponent },
+    { path: 'framework/editcourse', component: CourseEditComponent },
+    { path: 'framework/editcourse/:id', component: CourseEditComponent }
     ]
   },
   { path: 'startup/dashboard', component: StartupdashboardComponent },
@@ -51,7 +52,9 @@ const routes: Routes = [
   { path: 'contract-form-sign', component: ContractformSignComponent },
   { path: 'contract-form-sign/:id', component: ContractformSignComponent },
   { path: 'about-profile', component: AboutProfileComponent },
-  { path: 'about-profile/:id', component: AboutProfileComponent }
+  { path: 'about-profile/:id', component: AboutProfileComponent },
+  { path: 'reset-password/:id', component: ResetPasswordComponent }
+  { path: 'reset-password', component: ResetPasswordComponent }
 
 ];
 

@@ -1,3 +1,119 @@
 .mar-top {
     margin-top: 8%;
 }
+
+.shape1{
+    border: 2px solid lightblue;
+    background-color: lightblue ;
+    color: blue;
+    padding: 10px;
+    border-top-right-radius: 90%;
+    border-bottom-right-radius: 90%;
+    border-top-left-radius:25px;
+    border-bottom-left-radius:25px; 
+}
+
+.slidecontainer {
+    width: 100%;
+  }
+  
+  .slider {
+    -webkit-appearance: none;
+    width: 50%;
+    height: 20px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;  
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+  
+  .slider:hover {
+    opacity: 1;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 0;
+      height: 0;
+      border-left: 25px solid transparent;
+      border-right: 25px solid transparent;
+      border-bottom: 25px solid #555;
+   
+    
+    cursor: pointer;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+  }
+
+
+
+
+ 
+  .container {
+    width: 85vw;
+    margin: 1rem auto;
+  }
+  .bg, .overlay {
+    text-align: center;
+  }
+  img, .overlay {
+    transition: 0.3s all;
+    border-radius: 3px;
+  }
+  .bg {
+    float: left;
+    max-width: 31%;
+    position: relative;
+    margin: 0.5%;
+  }
+  .bg img {
+    width: 100%;
+    margin-bottom: -4px;
+  }
+  .bg .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    opacity: 0;
+  }
+  .bg .overlay h2 {
+    padding-top: 20%;
+    font-family: 'Droid Serif', serif;
+  }
+  .bg .overlay p {
+    font-family: 'Julius Sans One', sans-serif;
+  }
+  .bg:hover .overlay {
+    opacity: 1;
+  }
+  .bg:hover img {
+    -webkit-filter: blur(2px);
+    filter: blur(2px);
+  }
+  @media screen and (max-width: 1148px) {
+    .bg {
+      max-width: 48%;
+      margin: 1%;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .bg {
+      float: none;
+      max-width: 80%;
+      margin: 1% auto;
+    }
+  }
+  

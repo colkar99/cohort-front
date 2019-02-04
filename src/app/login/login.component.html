@@ -1,4 +1,4 @@
-<div class="row mar-top">
+<!--<div class="row mar-top">
   <h2>Login Form</h2>
   <form class="form-group" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="col-md-12">
@@ -13,7 +13,56 @@
       <button type="submit" [disabled]= "!loginForm.valid" class="btn btn-primary">Submit</button>
     </div>
   </form>
-</div>
+</div> -->
+<head>
+  <link rel="stylesheet" href="assets/css/Google-Style-Login.css">
+  <link rel="stylesheet" href="assets/css/Pretty-Registration-Form.css">
+</head>
+  <div class="login-card"><img src="assets/avatar_2x.png" class="profile-img-card">
+      <p class="profile-name-card"> </p>
+      <form class="form-signin"  [formGroup]="loginForm" (ngSubmit)="onSubmit()"><span class="reauth-email"> </span>
+          <input class="form-control" type="email" autocomplete="off" placeholder="Email address" id="email" name="email" formControlName="email" >
+          <div class="alert alert-danger"  [hidden]="loginForm.get('email').valid || loginForm.get('email').pristine">enter a valid email
+              </div>
+          <input class="form-control" type="password"  autocomplete="off" required="" placeholder="Password" id="password" name="password"  formControlName="password">
+          <div class="alert alert-danger"  [hidden]="loginForm.get('password').valid || loginForm.get('password').pristine">enter a valid password
+              </div>
+          <div class="checkbox">
+              <div class="checkbox">
+                  <label>
+                      <input type="checkbox">Remember me</label>
+              </div>
+          </div>
+          <!--<a class="btn btn-primary btn-block btn-lg btn-signin" role="submit" [disabled]="signinform.invalid" style="margin-top:32px;">Sign in</a>-->
+          <button class="btn btn-primary" type="submit" [disabled]= "!loginForm.valid">Signin</button>
+      </form>
+      <a class="forgot-password" (click)="resetpwd()">Forgot your password?</a></div>
+ 
+      <div class="modal fade" id="pwdchange" role="dialog" #pwdchange>
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" (click)="closepwd()" >&times;</button>
+              <h4 class="modal-title">Reset Password</h4>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label>Email</label>
+                <input class="form-control" type="email" name="resetmail" [(ngModel)]="resetmail">
+              </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" (click)="submitpwd()">Send Mail</button>
+              <button type="button" class="btn btn-default" (click)="closepwd()">Close</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
+
 <app-error-display></app-error-display>
 <div class="row">
     <label>Site admin credentials</label>

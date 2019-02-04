@@ -29,7 +29,8 @@ import { FrameworkModuleEditComponent} from './sitedashboard/framework-module/fr
 import { ContractformSignComponent } from './sitedashboard/contractmanagercontrol/contractform-sign/contractform-sign.component';
 import { ContractformEditComponent } from './sitedashboard/contractmanagercontrol/contractform-edit/contractform-edit.component';
 import { CourseEditComponent } from './sitedashboard/framework-module/course-edit/course-edit.component';{}
-import {SharedDataService} from './shared-data.service'
+import {SharedDataService} from './shared-data.service';
+import { ResetPasswordComponent } from './reset-password/reset-password.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +55,8 @@ import {SharedDataService} from './shared-data.service'
     FrameworkModuleEditComponent,
     ContractformSignComponent,
     ContractformEditComponent,
-    CourseEditComponent
+    CourseEditComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
