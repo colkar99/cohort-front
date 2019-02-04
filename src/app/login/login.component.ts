@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiCommunicationService } from '../api-communication.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { SharedDataService } from '../shared-data.service';
 import { ErrorDisplayComponent } from '../error-display/error-display.component'
-
+declare var $:any
 
 @Component({
   selector: 'app-login',
@@ -18,9 +18,10 @@ export class LoginComponent implements OnInit {
   checkStatus: string;
   loginUrl: string = "authenticate";
   message: string;
+  resetmail:String
   loginForm = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl('')
+    email: new FormControl(null,[Validators.required,Validators.email]),
+    password: new FormControl(null,Validators.required)
   });
   @ViewChild(ErrorDisplayComponent) errdisplay
 
@@ -33,7 +34,10 @@ export class LoginComponent implements OnInit {
           this.cookieService.set('Authorization', data.auth_token, 30, '/');
           this.cookieService.set('user_id', data.user_id, 30, '/');
           this.cookieService.set('user_type', data.user_type, 30, '/');
-          this.cookieService.set('role', data.roles[0].name, 30, '/');
+          if (data.roles != undefined) {
+            this.cookieService.set('role', data.roles[0].name, 30, '/');
+          }
+
           this.newMessage();
           if (data.user_type == "site") {
             // this.router.navigate(['admin/dashboard']);
@@ -50,9 +54,9 @@ export class LoginComponent implements OnInit {
           // this.router.navigate(['/']);
         },
         ((error) => {
-          
+
           console.error("couldn't post because", error)
-          this.errdisplay.openpopup("Warning!!!",error)
+          this.errdisplay.openpopup("Warning!!!", error)
         })
       );
   };
@@ -83,6 +87,25 @@ export class LoginComponent implements OnInit {
   }
   newMessage() {
     this.sharedData.changeMessage('Hello World');
+  }
+
+  resetpwd(){
+    $("#pwdchange").modal('show')
+  }
+  submitpwd(){
+    let url = "password-reset-link"
+    let params = JSON.stringify({user:{email: this.resetmail}})
+    this.apiCom.putDataWithoutToken(url,params).subscribe((res)=>{
+      res;
+      if(res){
+        alert("Reset link has been sent to your email id");
+        $("#pwdchange").modal('hide')
+      }
+    })
+  }
+  closepwd(){
+    this.resetmail = undefined
+    $("#pwdchange").modal('hide')
   }
 
 }

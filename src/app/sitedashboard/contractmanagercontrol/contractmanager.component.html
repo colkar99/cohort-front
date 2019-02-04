@@ -38,12 +38,93 @@
                         <td>
                             <button *ngIf="startup.application_status == 'AA'" routerLink="{{startup.id}}">Create contract form</button>
                             <button *ngIf="startup.application_status != 'AA'" routerLink="edit/{{startup.id}}">View contract form</button>
+                            <button *ngIf="startup.application_status == 'CSWFP'" (click)="approvalreq(startup.id)">Approve contract form</button>
                         </td>
                         
                         </tr>
                     </tbody>
                 </table>
             </div>
+
+            <div class="row">
+                <!-- Modal -->
+                <div id="reviewFormModal" class="modal fade" role="dialog" #reviewFormModal>
+                    <div class="modal-dialog modal-lg">
+                    
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Modal Header</h4>
+                        </div>
+                        <div class="modal-body" *ngIf="reviewFormData">
+                                <div class="row" >
+                                        <div class="col-md-12 text-center">
+                                            <h4> Contract form</h4>
+                                        </div>
+                                        <div class="col-md-12 pull-left">
+                                            <p>Place: chennai</p>
+                                            <p>Date: today</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 form-group">
+                                            <label>From,</label>
+                                            <p  class="form-control" >{{reviewFormData.p_1_name}}</p>
+                                            <p  class="form-control" >{{reviewFormData.p_1_address}}</p>
+                                            <p  class="form-control" >{{reviewFormData.p_1_phone_number}}</p>
+                                            <p  class="form-control" >{{reviewFormData.p_1_email}}</p>                       
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>To,</label>
+                                            <p class="form-control" >{{reviewFormData.p_2_name}}</p>
+                                            <p class="form-control" >{{reviewFormData.p_2_address}}</p>
+                                            <p class="form-control" >{{reviewFormData.p_2_phone_number}}</p>
+                                            <p class="form-control" >{{reviewFormData.p_2_email}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 form-group">
+                                            <label>Contract from date</label>
+                                            <p class="form-control" name="from_date">{{reviewFormData.from_date}}</p>
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <label>Contract to date</label>
+                                            <p class="form-control" name="to_date">{{reviewFormData.to_date}}</p>
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <label>Contract duration in month</label>
+                                            <p class="form-control" name="duration">{{reviewFormData.duration}}</p>
+                                        </div>                    
+                                    </div>
+                                    <div class="row" *ngIf="selected_add_info">
+                                        <div class="col-md-12">
+                                            <label>Purpose Of Contract</label>
+                                            <p>{{selected_add_info.purpose_of_contract}}</p>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label>Authorization</label>
+                                            <p>{{selected_add_info.authorization}}</p>                        
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label>Contract terms condition</label>
+                                            <p>{{selected_add_info.contract_terms_condition}}</p>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label>Contract termination</label>
+                                            <p>{{selected_add_info.contract_termination}}</p>                        
+                                        </div>
+                                    </div>
+                        </div>
+                        <div class="modal-footer text-center">
+                            <button type="button" class="btn btn-default" (click)="Approve(reviewFormData)">Approve</button>
+                        </div>
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
