@@ -21,7 +21,16 @@ import { StartupControlComponent } from './sitedashboard/programcontrol/startupc
 import { ContractManagerComponent } from './sitedashboard/contractmanagercontrol/contractmanager.component';
 import { ContractFormComponent } from './sitedashboard/contractmanagercontrol/contractform/contractform.component';
 import { ErrorDisplayComponent } from './error-display/error-display.component';
-import { CurrentStateFormComponent } from './current-state-form/current-state-form.component'; 
+import { CurrentStateFormComponent } from './current-state-form/current-state-form.component';
+import { AboutProfileComponent } from './about-profile/about-profile.component';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { FrameworkModuleComponent } from './sitedashboard/framework-module/framework-module.component';
+import { FrameworkModuleEditComponent} from './sitedashboard/framework-module/framework-edit/framework-edit.component';
+import { ContractformSignComponent } from './sitedashboard/contractmanagercontrol/contractform-sign/contractform-sign.component';
+import { ContractformEditComponent } from './sitedashboard/contractmanagercontrol/contractform-edit/contractform-edit.component';
+import { CourseEditComponent } from './sitedashboard/framework-module/course-edit/course-edit.component';{}
+import {SharedDataService} from './shared-data.service';
+import { ResetPasswordComponent } from './reset-password/reset-password.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,16 +49,24 @@ import { CurrentStateFormComponent } from './current-state-form/current-state-fo
     ContractManagerComponent,
     ContractFormComponent,
     ErrorDisplayComponent,
-    CurrentStateFormComponent
+    CurrentStateFormComponent,
+    AboutProfileComponent,
+    FrameworkModuleComponent,
+    FrameworkModuleEditComponent,
+    ContractformSignComponent,
+    ContractformEditComponent,
+    CourseEditComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    Ng4LoadingSpinnerModule.forRoot() 
   ],
-  providers: [CookieService],
+  providers: [CookieService,SharedDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

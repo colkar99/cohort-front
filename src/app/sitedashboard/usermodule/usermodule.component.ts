@@ -34,6 +34,25 @@ export class UsermoduleComponent implements OnInit{
     ngOnInit(){
         this.getUsersList();
     }
+    private imageSrc: string = '';
+
+    handleInputChange(e) {
+      var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
+      var pattern = /image-*/;
+      var reader = new FileReader();
+      if (!file.type.match(pattern)) {
+        alert('invalid format');
+        return;
+      }
+      reader.onload = this._handleReaderLoaded.bind(this);
+      reader.readAsDataURL(file);
+    }
+    _handleReaderLoaded(e) {
+      let reader = e.target;
+      this.imageSrc = reader.result;
+      console.log(this.imageSrc)
+      this.user.value.user.user_main_image = this.imageSrc;
+    }
     createUserForm(){
         this.user =  this.formBuilder.group({
             user: this.formBuilder.group({
@@ -41,7 +60,8 @@ export class UsermoduleComponent implements OnInit{
                 last_name: '',
                 email: '',
                 phone_number: '',
-                user_type: ''
+                user_type: '',
+                user_main_image: '' 
             }),
             role: this.formBuilder.group({
                 role_id: ''
@@ -54,6 +74,8 @@ export class UsermoduleComponent implements OnInit{
     }
     onSubmit(user: {}){
         // console.log(this.user.value);
+        this.user.value.user.user_main_image = this.imageSrc;
+        debugger
         let data = JSON.stringify(this.user.value);
         this.apiService.postDataWithToken('create-user-by-admin',data,this.auth)
         .subscribe(

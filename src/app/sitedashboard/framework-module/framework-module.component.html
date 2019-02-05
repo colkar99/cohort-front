@@ -1,0 +1,74 @@
+<h2>Hi am from fromwork module</h2>
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">List of Frameworks</div>
+        <div class="panel-body">
+            <div class="col-md-12">
+                <button class="btn btn-default pull-right" type="button" routerLink="edit">Add Framework</button>
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Level</th>
+                        <th>Thumb image</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let framework of frameworks;let i = index" routerLink="edit/{{framework.id}}">
+                        <td>{{framework.title}}</td>
+                        <td>{{framework.description}}</td>
+                        <td>{{framework.level}}</td>
+                        <td>{{framework.thumb_image}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">List of Courses</div>
+        <div class="panel-body">
+            <div class="col-md-12">
+                <button class="btn btn-default pull-right" type="button" routerLink="editcourse">Add Courses</button>
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Additional Description</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let framework of courses;let i = index" (click)="setsourceedit(framework)" routerLink="editcourse/{{framework.id}}">
+                        <td>{{framework.title}}</td>
+                        <td>{{framework.description}}</td>
+                        <td>{{framework.additional_description}}</td>
+                       
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+t.string "title"
+t.text "description"
+t.string "activity_name"
+t.integer "level", default: 0
+t.string "main_image"
+t.string "thumb_image"
+t.string "url"
+t.integer "created_by"
+t.boolean "isActive", default: true
+t.boolean "isDelete", default: false
+t.integer "deleted_by"
+t.datetime "deleted_at"
+t.datetime "created_at", null: false
+t.datetime "updated_at", null: false

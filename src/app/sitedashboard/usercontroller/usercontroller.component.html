@@ -35,6 +35,12 @@
                                     required email />
                             </div>
                             <div class="col-md-6 form-group">
+                                <label for="email">Upload_image</label>
+                                <input class="form-control" type="file"
+                                id="profile_image" placeholder="profile_image" accept="image/*" name="profile_image" formControlName="profile_image"
+                                 (change)="changeImage($event)" />
+                            </div>
+                            <div class="col-md-6 form-group">
                                     <label for="phone_number">Phone number</label>
                                     <input class="form-control" type="text" id="phone_number" name="number"
                                     placeholder="Phone number" formControlName="phone_number" 

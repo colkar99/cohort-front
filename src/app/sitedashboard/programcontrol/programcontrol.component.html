@@ -2,9 +2,9 @@
 <div class="row" *ngIf="!startup">
     <div class="col-md-12 form-group">
         <label for="user_type">Select Program</label>
-        <select class="form-control" id="role" (change)="showStartups($event.target.value)">
-            <option></option>
-            <option *ngFor="let program of allPrograms" [value]="program.id">{{program.title}}</option>
+        <select class="form-control" id="role" (change)="showStartups($event.target.value)" name="programselected" [(ngModel)]="programselected">
+            <option value="" selected>---Select---</option>
+            <option *ngFor="let program of allPrograms" value="{{program.id}}">{{program.title}}</option>
             <!-- <option [value]="mentor">mentor</option> -->
             <!-- <option [ngValue]="startup">Startup User</option> -->
         </select>
@@ -21,26 +21,36 @@
         <div class="panel-body">
             <label>List of registered startups</label>
             <div class="col-md-12">
+                <button class="btn btn-primary pull-right" type="button" (click)="initiatecsfi()">
+                    Initiate Current State Form</button>
+                <button class="btn btn-success pull-right" type="button" (click)="startupAccept()">
+                    Accept</button>
+                <button class="btn btn-danger pull-right" type="button" (click)="startupReject()">
+                    Reject</button>
+            </div>
+            <div class="col-md-12">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                        <th>Startup Name</th>
-                        <th>Status</th>
-                        <th>Status description</th>
-                        <th>Score</th>
-                        <th>Action</th>
+                            <th>Select</th>
+                            <th>Startup Name</th>
+                            <th>Status</th>
+                            <th>Status description</th>
+                            <th>Score</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let startup of allStartups" style="cursor: pointer; ">
-                        <td>{{startup.startup_name}}</td>
-                        <td>{{startup.application_status}}</td>
-                        <td>{{startup.app_status_description}}</td>
-                        <td>{{startup.score}}</td>
-                        <td>
-                            <button routerLink="startup/{{startup.id}}">Review</button>
-                        </td>
-                        
+                        <tr *ngFor="let startup of allStartups;let i = index" style="cursor: pointer; ">
+                            <td><input class="checbox" type="checkbox" (change)="setarray($event.srcElement.checked,startup)"></td>
+                            <td>{{startup.startup_name}}</td>
+                            <td>{{startup.application_status}}</td>
+                            <td>{{startup.app_status_description}}</td>
+                            <td>{{startup.score}}</td>
+                            <td>
+                                <button routerLink="startup/{{startup.id}}">Review</button>
+                            </td>
+
                         </tr>
                     </tbody>
                 </table>

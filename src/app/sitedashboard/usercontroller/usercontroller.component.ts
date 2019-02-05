@@ -56,12 +56,23 @@ declare var $: any;
     ngOnInit(){
         this.getUserData();
     }
+    changeImage(event){
+
+        // console.log(this.user);
+        this.user.value.user.profile_image = event.target.files[0];
+        // const fb = new FormData();
+        // fb.append("image",this.user.value.user.profile_image,this.user.value.user.profile_image.name)
+        // this.user.value.user.profile_image = fb;
+        debugger
+    }
     createUserForm(){
         this.user =  this.formBuilder.group({
             user: this.formBuilder.group({
+                id: this.userDatas[0].user.id,
                 first_name: this.userDatas[0].user.first_name,
                 last_name: this.userDatas[0].user.last_name,
                 email: this.userDatas[0].user.email,
+                profile_image: this.userDatas[0].user.profile_image,
                 phone_number: this.userDatas[0].user.phone_number,
                 user_type: this.userDatas[0].user.user_type
             }),
@@ -115,6 +126,7 @@ declare var $: any;
             data => { 
                 console.log(data);
                 this.getUserData();
+                alert("User successfully edited by admin")
             },
             error => console.error("couldn't post because", error)
       );

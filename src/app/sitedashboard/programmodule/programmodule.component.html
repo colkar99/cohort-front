@@ -52,7 +52,7 @@
                         <td>{{program_type.program_type_title}}</td>
                         <td>{{program_type.program_type_description}}</td>
                         <td>{{program_type.program_type_logo}}</td>
-                        <td>{{program_type.duration}}</td>
+                        <td>{{program_type.program_type_duration}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -191,16 +191,3 @@
   </div>
 <!--Model for program type end-->
 
-t.string "address_line_1"
-t.string "address_line_2"
-t.string "city"
-t.string "state_province_region"
-t.string "zip_pincode_postalcode"
-t.string "country"
-t.string "geo_location"
-t.integer "created_by"
-t.boolean "isDelete", default: false
-t.string "deleted_by"
-t.string "delete_at"
-t.datetime "created_at", null: false
-t.datetime "updated_at", null: false
