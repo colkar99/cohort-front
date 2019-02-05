@@ -23,6 +23,7 @@ import { ContractformSignComponent } from './sitedashboard/contractmanagercontro
 import { ContractformEditComponent } from './sitedashboard/contractmanagercontrol/contractform-edit/contractform-edit.component'
 import { CourseEditComponent } from './sitedashboard/framework-module/course-edit/course-edit.component'
 import { ResetPasswordComponent } from './reset-password/reset-password.component'
+import { StartupProfileComponent } from './startupdashboard/startup-profile/startup-profile.component'
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
@@ -40,7 +41,10 @@ const routes: Routes = [
     { path: 'framework/editcourse/:id', component: CourseEditComponent }
     ]
   },
-  { path: 'startup/dashboard', component: StartupdashboardComponent },
+  {
+    path: 'startup/dashboard', component: StartupdashboardComponent, pathMatch:'prefix',
+    children:[{path:'profile',component:StartupProfileComponent}]
+  },
   { path: 'mentor/dashboard', component: MentordashboardComponent },
   { path: 'live-programs', component: ProgramsComponent },
   { path: 'live-programs/registration/:id', component: ProgramsRegistrationComponent },
@@ -53,7 +57,7 @@ const routes: Routes = [
   { path: 'contract-form-sign/:id', component: ContractformSignComponent },
   { path: 'about-profile', component: AboutProfileComponent },
   { path: 'about-profile/:id', component: AboutProfileComponent },
-  { path: 'reset-password/:id', component: ResetPasswordComponent }
+  { path: 'reset-password/:id', component: ResetPasswordComponent },
   { path: 'reset-password', component: ResetPasswordComponent }
 
 ];
