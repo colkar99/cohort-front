@@ -34,6 +34,9 @@ export class LoginComponent implements OnInit {
           this.cookieService.set('Authorization', data.auth_token, 30, '/');
           this.cookieService.set('user_id', data.user_id, 30, '/');
           this.cookieService.set('user_type', data.user_type, 30, '/');
+          if(data.user_type == 'startup'){
+            this.cookieService.set('startup_profile_id', data.startup_profile_id, 30, '/');
+          }
           if (data.roles != undefined) {
             this.cookieService.set('role', data.roles[0].name, 30, '/');
           }
