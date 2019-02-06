@@ -1,5 +1,5 @@
 <head>
-    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 </head>
 
 
@@ -32,7 +32,7 @@
         </div>
       </div>
       <!-- sidebar-header  -->
-    <!--  <div class="sidebar-menu">
+<!--  <div class="sidebar-menu">
         <div>
           <ul>
             <li class="header-menu">
@@ -46,7 +46,7 @@
         </div>
       </div>
       <!-- sidebar-search  -->
-      <!--<div class="sidebar-menu">
+<!--<div class="sidebar-menu">
         <ul>
           <li class="header-menu">
             <span>Menus</span>
@@ -56,7 +56,7 @@
               <i class="fa fa-tachometer-alt"></i>
               <span>Profile</span>
               <!-- <span class="badge badge-pill badge-warning">New</span> -->
-         <!--   </a>
+<!--   </a>
             
           </li>
           <li class="">
@@ -79,9 +79,9 @@
         </ul>
       </div>
       <!-- sidebar-menu  -->
-   <!-- </div>
+<!-- </div>
     <!-- sidebar-content  -->
-    <!-- <div class="sidebar-footer">
+<!-- <div class="sidebar-footer">
         <a >
           <i class="fa fa-bell"></i>
           <span class="badge badge-pill badge-warning notification">3</span>
@@ -100,12 +100,12 @@
       </div> -->
 <!--  </nav>
   <!-- sidebar-wrapper  -->
-  <!--<div class="col-md-12">
+<!--<div class="col-md-12">
       
     
 
   </div> -->
-  <!-- page-content" -->
+<!-- page-content" -->
 <!--</div> -->
 
 
@@ -169,9 +169,31 @@
 
 
 
-  <div class="col-md-3">
+<div class="col-md-2">
+  <nav class="sidenav">
+    <div style="height:90px;">
+      <img class="img-responsive img-rounded profile-image" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+        alt="User picture">
+      <!-- <strong>{{sharedata.startupprofile.startup_name}}</strong>-->
+      <strong style="color:white;position: absolute;left: 30%;">{{sharedata.startupprofile.startup_name}}</strong>
+      <span style="color:white;position: absolute;left: 30%;top: 11%;"><strong>Mentors</strong></span>
+      <span style="color:white;position: absolute;left: 30%;top: 17%;">{{Mentors}}</span>
+    </div>
+    <div class="col-md-12" style="height:100px;">
+      <strong style="color:white">Bio</strong>
+      <p>{{sharedata.startupprofile.description}}</p>
+    </div>
 
-  </div>
-  <div class="col-md-9">
-    <router-outlet></router-outlet>
-  </div>
+    <div class="col-md-12">
+      <strong>Menus</strong>
+      <a routerLink="profile">Profile</a>
+      <a routerLink="programs">Programs</a>
+      <a routerLink="road-map">RoadMap</a>
+      
+    </div>
+
+  </nav>
+</div>
+<div class="col-md-9">
+  <router-outlet></router-outlet>
+</div>

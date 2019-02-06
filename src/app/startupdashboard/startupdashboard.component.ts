@@ -16,7 +16,7 @@ export class StartupdashboardComponent implements OnInit {
   Mentors: any = "Stanly,Selwyn"
   bio: any = "Bootstrap 4 Grid Examples. Three Equal Columns. Use the .col class on a specified number of elements and Bootstrap will recognize how many elements there are (and create equal-width columns). Three Equal Columns Using Numbers. You can also use numbers to control the column width."
   currentstate: any = "Bootstrap 4 Grid Examples. Three Equal Columns. Use the .col class on a specified number of elements and Bootstrap will recognize how many elements there are (and create equal-width columns)"
-  constructor(private cookieService: CookieService, private apiCom: ApiCommunicationService,private sharedata:sharingData) {
+  constructor(private cookieService: CookieService, private apiCom: ApiCommunicationService,public sharedata:sharingData) {
     this.startupid = this.getCookie('startup_profile_id');
     this.authToken = this.getCookie('Authorization');
     this
