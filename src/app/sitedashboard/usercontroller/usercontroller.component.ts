@@ -15,16 +15,16 @@ declare var $: any;
 
   export class UsercontrollerComponent implements OnInit{
 
-    userDatas: any[] =[];
+    userDatas: Array<any> =[];
     auth: string;
     loggedIn: boolean;
     user: any ={};
     userOptions:any = [];
     showForm: boolean = false;
     roles: any=[]
-    privileges: any[] =[];
-    modules: any[] = [];
-    privilege: {} = {};
+    privileges: Array<any> =[];
+    modules: Array<any> = [];
+    privilege: any = {};
     privilegeForm: any = {};
 
 

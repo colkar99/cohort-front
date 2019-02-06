@@ -17,7 +17,7 @@ export class StartupProfileComponent implements OnInit {
   funding: any = {}
   editprofile: boolean = false
   user: any = {}
-  constructor(private apiCom: ApiCommunicationService, private sharedata: sharingData,
+  constructor(private apiCom: ApiCommunicationService, public sharedata: sharingData,
     private router: Router,
     private cookieService: CookieService) {
     this.startupid = this.getCookie('startup_profile_id');

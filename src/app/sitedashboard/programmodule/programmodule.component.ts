@@ -14,7 +14,7 @@ export class ProgramModuleComponent implements OnInit {
 
     auth: string;
     loggedIn:boolean;
-    program_modules: any[] =[];
+    program_modules: any = {}
     program_type: any;
     program_location: any;
     program_type_edit: boolean = false;

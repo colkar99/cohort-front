@@ -1,3 +1,3 @@
 export class sharingData {
-    startupprofile:any = {}
+    public startupprofile:any = {}
 }
