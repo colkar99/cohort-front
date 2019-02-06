@@ -24,6 +24,7 @@ import { ContractformEditComponent } from './sitedashboard/contractmanagercontro
 import { CourseEditComponent } from './sitedashboard/framework-module/course-edit/course-edit.component'
 import { ResetPasswordComponent } from './reset-password/reset-password.component'
 import { StartupProfileComponent } from './startupdashboard/startup-profile/startup-profile.component'
+import { StartupRoadmapComponent } from './startupdashboard/startup-roadmap/startup-roadmap.component'
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
@@ -42,8 +43,13 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'startup/dashboard', component: StartupdashboardComponent, pathMatch:'prefix',
-    children:[{path:'profile',component:StartupProfileComponent}]
+    path: 'startup/dashboard', component: StartupdashboardComponent, pathMatch: 'prefix',
+    children: [
+      { path: 'profile', component: StartupProfileComponent },
+      { path: 'road-map', component: StartupRoadmapComponent },
+
+
+    ]
   },
   { path: 'mentor/dashboard', component: MentordashboardComponent },
   { path: 'live-programs', component: ProgramsComponent },
