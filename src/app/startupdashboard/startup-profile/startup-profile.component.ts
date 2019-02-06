@@ -5,7 +5,6 @@ import { CookieService } from 'ngx-cookie-service';
 import { HttpErrorResponse } from '@angular/common/http';
 declare var $: any
 import { sharingData } from '../../sharingdata'
-import { userInfo } from 'os';
 @Component({
   selector: 'app-startup-profile',
   templateUrl: './startup-profile.component.html',
