@@ -4,6 +4,7 @@ import { ApiCommunicationService } from '../../api-communication.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { SharedDataService } from '../../shared-data.service'
 @Component({
   selector: 'app-startupby-programs',
   templateUrl: './startupby-programs.component.html',
@@ -25,7 +26,8 @@ export class StartupbyProgramsComponent implements OnInit {
   programselected
   constructor(private apiCom: ApiCommunicationService,
     private cookieService: CookieService,
-    private router: Router) { }
+    private router: Router,
+    private sharedDataService: SharedDataService) { }
 
   ngOnInit() {
     this.authToken = this.getCookie('Authorization');
@@ -44,7 +46,7 @@ export class StartupbyProgramsComponent implements OnInit {
         this.showStartups(this.location_program_id);
       }
     }
-    
+
     this.getAllProgram();
   }
   getAllProgram() {
@@ -103,6 +105,11 @@ export class StartupbyProgramsComponent implements OnInit {
         console.log(error);
       })
 
+  }
+  viewprofile(item) {
+    console.log(item)
+    this.sharedDataService.changeMessage(item);
+    this.router.navigate(['admin/dashboard/about-profile'])
   }
 
 }

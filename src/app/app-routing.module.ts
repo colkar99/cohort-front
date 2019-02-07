@@ -25,7 +25,7 @@ import { CourseEditComponent } from './sitedashboard/framework-module/course-edi
 import { ResetPasswordComponent } from './reset-password/reset-password.component'
 import { StartupProfileComponent } from './startupdashboard/startup-profile/startup-profile.component'
 import { StartupRoadmapComponent } from './startupdashboard/startup-roadmap/startup-roadmap.component'
-import {StartupbyProgramsComponent} from './sitedashboard/startupby-programs/startupby-programs.component'
+import { StartupbyProgramsComponent } from './sitedashboard/startupby-programs/startupby-programs.component'
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
@@ -41,7 +41,9 @@ const routes: Routes = [
     { path: 'framework/edit/:id', component: FrameworkModuleEditComponent },
     { path: 'framework/editcourse', component: CourseEditComponent },
     { path: 'framework/editcourse/:id', component: CourseEditComponent },
-    { path: 'startups-by-programs', component: StartupbyProgramsComponent }
+    { path: 'startups-by-programs', component: StartupbyProgramsComponent },
+    { path: 'about-profile', component: AboutProfileComponent },
+    { path: 'about-profile/:id', component: AboutProfileComponent },
     ]
   },
   {
@@ -63,8 +65,7 @@ const routes: Routes = [
   { path: 'current-state-form/:id', component: CurrentStateFormComponent },
   { path: 'contract-form-sign', component: ContractformSignComponent },
   { path: 'contract-form-sign/:id', component: ContractformSignComponent },
-  { path: 'about-profile', component: AboutProfileComponent },
-  { path: 'about-profile/:id', component: AboutProfileComponent },
+
   { path: 'reset-password/:id', component: ResetPasswordComponent },
   { path: 'reset-password', component: ResetPasswordComponent }
 
