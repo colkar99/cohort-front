@@ -33,7 +33,8 @@ import {SharedDataService} from './shared-data.service';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { StartupProfileComponent } from './startupdashboard/startup-profile/startup-profile.component'
 import { sharingData } from './sharingdata';
-import { StartupRoadmapComponent } from './startupdashboard/startup-roadmap/startup-roadmap.component'
+import { StartupRoadmapComponent } from './startupdashboard/startup-roadmap/startup-roadmap.component';
+import { StartupbyProgramsComponent } from './sitedashboard/startupby-programs/startupby-programs.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +62,8 @@ import { StartupRoadmapComponent } from './startupdashboard/startup-roadmap/star
     CourseEditComponent,
     ResetPasswordComponent,
     StartupProfileComponent,
-    StartupRoadmapComponent
+    StartupRoadmapComponent,
+    StartupbyProgramsComponent
   ],
   imports: [
     BrowserModule,

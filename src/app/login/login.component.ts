@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
             if (data.roles[0].name == "program_director") this.router.navigate(['admin/dashboard/program-controls']);
             if (data.roles[0].name == "contract_manager") this.router.navigate(['/dashboard/contract-manager']);
           } else if (data.user_type == "startup") {
-            this.router.navigate(['startup/dashboard']);
+            this.router.navigate(['startup/dashboard/profile']);
           } else if (data.user_type == "mentor") {
             this.router.navigate(['mentor/dashboard']);
 

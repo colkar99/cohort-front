@@ -25,6 +25,7 @@ import { CourseEditComponent } from './sitedashboard/framework-module/course-edi
 import { ResetPasswordComponent } from './reset-password/reset-password.component'
 import { StartupProfileComponent } from './startupdashboard/startup-profile/startup-profile.component'
 import { StartupRoadmapComponent } from './startupdashboard/startup-roadmap/startup-roadmap.component'
+import {StartupbyProgramsComponent} from './sitedashboard/startupby-programs/startupby-programs.component'
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
@@ -39,7 +40,8 @@ const routes: Routes = [
     { path: 'framework/edit', component: FrameworkModuleEditComponent },
     { path: 'framework/edit/:id', component: FrameworkModuleEditComponent },
     { path: 'framework/editcourse', component: CourseEditComponent },
-    { path: 'framework/editcourse/:id', component: CourseEditComponent }
+    { path: 'framework/editcourse/:id', component: CourseEditComponent },
+    { path: 'startups-by-programs', component: StartupbyProgramsComponent }
     ]
   },
   {
