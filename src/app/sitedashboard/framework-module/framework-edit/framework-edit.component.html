@@ -23,13 +23,17 @@
                         <option [value]="5">5</option>
                     </select>
                 </div>
+                <div class="col-md-6 form-group" *ngIf="framework.main_image != null">
+                    <label>Main image</label>
+                    <img src="http://localhost:3000{{framework.main_image.url}}" height="30" width="30">
+                </div>                
                 <div class="col-md-6 form-group">
                     <label>Main image</label>
-                    <input class="form-control" type="file" name="main_image" [(ngModel)]="framework.main_image" />
+                    <input class="form-control" type="file" name="main_image" (change)="handleInputChange($event,true,false)"  />
                 </div>
                 <div class="col-md-6 form-group">
                     <label>Thumb image</label>
-                    <input class="form-control" type="file" name="thumb_image" [(ngModel)]="framework.thumb_image" />
+                    <input class="form-control" type="file" name="thumb_image" (change)="handleInputChange($event,false,true)" />
                 </div>
             </div>
             <div class="row">
