@@ -1,4 +1,4 @@
-<h2>Am from framework module edit page</h2>
+<div class="container">
 <div class="panel panel-default">
     <div class="panel-body" *ngIf="framework">
         <form #frameworkUpdate="ngForm">
@@ -142,18 +142,4 @@
         </div>
     </div>
 </div>
-
-t.string "title"
-t.text "description"
-t.string "activity_name"
-t.integer "level", default: 0
-t.string "main_image"
-t.string "thumb_image"
-t.string "url"
-t.integer "created_by"
-t.boolean "isActive", default: true
-t.boolean "isDelete", default: false
-t.integer "deleted_by"
-t.datetime "deleted_at"
-t.datetime "created_at", null: false
-t.datetime "updated_at", null: false
+</div>

@@ -46,8 +46,8 @@ export class StartupRoadmapComponent implements OnInit {
       } else {
 
         let string: any
-        let startdatemonth = new Date(this.program.application_start_date).getMonth();
-        let enddatemonth = new Date(this.program.application_end_date).getMonth();
+        let startdatemonth = new Date(this.program.start_date).getMonth();
+        let enddatemonth = new Date(this.program.end_date).getMonth();
         for (let i = startdatemonth; i <= enddatemonth; i++) {
           string = this.monthStrings(i)
           if (this.roadmap == null) {
@@ -156,8 +156,8 @@ export class StartupRoadmapComponent implements OnInit {
         alert("Roadmap Deleted Successfully")
         this.roadmap = null
         let string: any
-        let startdatemonth = new Date(this.program.application_start_date).getMonth();
-        let enddatemonth = new Date(this.program.application_end_date).getMonth();
+        let startdatemonth = new Date(this.program.start_date).getMonth();
+        let enddatemonth = new Date(this.program.end_date).getMonth();
         for (let i = startdatemonth; i <= enddatemonth; i++) {
           string = this.monthStrings(i)
           if (this.roadmap == null) {

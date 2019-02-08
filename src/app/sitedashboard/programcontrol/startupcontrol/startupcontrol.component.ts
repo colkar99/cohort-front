@@ -102,6 +102,10 @@ export class StartupControlComponent implements OnInit {
         console.log(data);
         this.getStartupRegQues();
         this.appRespQues 
+        if(this.currentstateform.reviewer_rating != "" && this.currentstateform.reviewer_rating != (0 && null && undefined)){
+          this.submitCSFS();
+          console.log("submitscfs")
+        }
       }, error => {
         console.log(error);
       })
@@ -133,6 +137,7 @@ export class StartupControlComponent implements OnInit {
       let total = 0;
       this.currentstateform.total_rating = 0;
       for (let i = 0; i < this.appRespQues.length; i++) {
+        console.log("this.appRespQues[i].reviewer_rating",this.appRespQues[i].reviewer_rating)
         total += this.appRespQues[i].reviewer_rating
       }
       this.currentstateform.total_rating = Number(this.currentstateform.reviewer_rating) + Number(total)

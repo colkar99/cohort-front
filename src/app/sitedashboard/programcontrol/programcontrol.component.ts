@@ -102,20 +102,23 @@ export class ProgramControlComponent implements OnInit {
   }
   showStartups(id: any) {
     debugger
-    let data = { "program_id": id };
-    this.cookieService.set('program_id', id, 30, '/admin/dashboard/program-controls');
-    let url = "program/show-startup-program-wise";
-    this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
-      .subscribe(data => {
-        debugger
-        console.log(data);
-        this.allStartups = data;
-        this.allStartups.sort((a, b) => { if (a.score < b.score) { return 1; } if (a.score > b.score) { return -1; } })
-        console.log("this.allStartups" + this.allStartups)
-        this.showStartup = true;
-      }, error => {
-        console.log(error);
-      })
+    if (id != "" && id != (0 && null && undefined)) {
+      let data = { "program_id": id };
+      this.cookieService.set('program_id', id, 30, '/admin/dashboard/program-controls');
+      let url = "program/show-startup-program-wise";
+      this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
+        .subscribe(data => {
+          debugger
+          console.log(data);
+          this.allStartups = data;
+          this.allStartups.sort((a, b) => { if (a.score < b.score) { return 1; } if (a.score > b.score) { return -1; } })
+          console.log("this.allStartups" + this.allStartups)
+          this.showStartup = true;
+        }, error => {
+          console.log(error);
+        })
+    }
+
 
   }
   getStartupRegQues(startup_id: number, program_id: number, startup: any) {
@@ -205,7 +208,7 @@ export class ProgramControlComponent implements OnInit {
           error => {
             console.log(error);
           })
-    }else{
+    } else {
       alert("Select atleast One Startup Company")
     }
   }

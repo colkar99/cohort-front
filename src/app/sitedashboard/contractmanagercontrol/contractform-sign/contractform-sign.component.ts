@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Query } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApiCommunicationService } from '../../../api-communication.service';
@@ -24,6 +24,8 @@ export class ContractformSignComponent implements OnInit {
   addContractInfo: any
   selected_add_info: any
   tcondtions: boolean
+  qSubject:string
+  qDescription:string
   constructor(private apiCom: ApiCommunicationService,
     private cookieService: CookieService,
     private router: Router,
@@ -108,6 +110,31 @@ export class ContractformSignComponent implements OnInit {
   }
   terms(value): any {
     this.tcondtions = value
+  }
+
+  askQueries(){
+    $("#querypopup").modal('show')
+  }
+
+  submitQueries(){
+    let  url = "program/startup-registration/queries"
+    let params = JSON.stringify({startup_registration_id:this.startup.id,program_id:this.contractdetails.program_id,subject:this.qSubject,description:this.qDescription})
+    this.apiCom.postData(url,params).subscribe((res)=>{
+      res;
+      console.log(res);
+      alert("Queries Submitted Successfully")
+      $("#querypopup").modal('hide')
+      this.qDescription = undefined
+      this.qSubject = undefined
+    },(err:HttpErrorResponse)=>{
+      alert(err)
+      $("#querypopup").modal('hide')
+    })
+  
+  
+  }
+  closepopup(){
+    $("#querypopup").modal('hide')
   }
 
 }
