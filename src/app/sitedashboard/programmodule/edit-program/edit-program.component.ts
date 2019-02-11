@@ -23,8 +23,9 @@ export class EditProgramComponent implements OnInit {
   hideArrayControl: boolean;
   program_id: any
   sharedata: any = {}
+  main_image: any
+  logo_image: any
   imageSrc: any
-  imageSrc1: any
   programquestions: any = []
   arrayids: any = []
   allquestions:any = []
@@ -58,7 +59,7 @@ export class EditProgramComponent implements OnInit {
     })
   }
   //main image upload
-  handleInputChange(e) {
+  handleInputChange(e,main,logo) {
     var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
     var pattern = /image-*/;
     var reader = new FileReader();
@@ -66,35 +67,22 @@ export class EditProgramComponent implements OnInit {
       alert('invalid format');
       return;
     }
-    reader.onload = this._handleReaderLoaded.bind(this);
+    reader.onload = this._handleReaderLoaded.bind(this,main,logo);
     reader.readAsDataURL(file);
   }
-  _handleReaderLoaded(e) {
+  _handleReaderLoaded(main: boolean,logo: boolean,e) {
+      debugger
     let reader = e.target;
     this.imageSrc = reader.result;
     console.log(this.imageSrc)
-    this.program.value.main_image = this.imageSrc;
     debugger
-  }
-
-  // logo image upload
-  handleInputChange1(e) {
-    var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
-    var pattern = /image-*/;
-    var reader = new FileReader();
-    if (!file.type.match(pattern)) {
-      alert('invalid format');
-      return;
+    if (main){
+        this.main_image = this.imageSrc
     }
-    reader.onload = this._handleReaderLoaded1.bind(this);
-    reader.readAsDataURL(file);
-  }
-  _handleReaderLoaded1(e) {
-    let reader = e.target;
-    this.imageSrc1 = reader.result;
-    console.log(this.imageSrc1)
-    this.program.value.logo_image = this.imageSrc1;
-    debugger
+    else{
+        this.logo_image = this.imageSrc
+    }
+    // this.user.value.user.user_main_image = this.imageSrc;
   }
   //get cookie value
   getCookie(key: string) {
@@ -211,6 +199,8 @@ export class EditProgramComponent implements OnInit {
   onSubmitProgramForms() {
     this.program.removeControl('application_questions')
     this.hideArrayControl = false
+    this.program.value.main_image = this.main_image;
+    this.program.value.logo_image = this.logo_image;
     let data = { "program": this.program.value, "application_questions": this.reviewAndSubmit.application_questions };
     this.apiService.putDataWithToken("edit-program", JSON.stringify(data), this.auth)
       .subscribe(data => {
