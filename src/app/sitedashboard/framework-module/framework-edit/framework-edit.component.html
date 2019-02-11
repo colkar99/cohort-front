@@ -23,15 +23,32 @@
                         <option [value]="5">5</option>
                     </select>
                 </div>
+                <!-- <div class="col-md-6 form-group" *ngIf="framework.main_image != null">
+
+                </div>  -->
                 <div class="col-md-6 form-group" *ngIf="framework.main_image != null">
-                    <label>Main image</label>
-                    <img src="http://localhost:3000{{framework.main_image.url}}" height="30" width="30">
-                </div>                
-                <div class="col-md-6 form-group">
+                    <div class="col-md-6 form-group">
+                            <label>Main image</label>
+                            <input class="form-control" type="file" name="main_image" (change)="handleInputChange($event,true,false)"  />
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <img src="{{imageBaseUrl}}{{framework.main_image.url}}" height="30" width="30">
+                    </div>
+                </div>                                
+                <div class="col-md-6 form-group" *ngIf="framework.main_image == null">
                     <label>Main image</label>
                     <input class="form-control" type="file" name="main_image" (change)="handleInputChange($event,true,false)"  />
                 </div>
-                <div class="col-md-6 form-group">
+                <div class="col-md-6 form-group" *ngIf="framework.thumb_image != null">
+                    <div class="col-md-6 form-group">
+                        <label>Thumb image</label>
+                        <input class="form-control" type="file" name="thumb_image" (change)="handleInputChange($event,false,true)" /> 
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <img src="{{imageBaseUrl}}{{framework.thumb_image.url}}" height="30" width="30">
+                    </div>
+                </div> 
+                <div class="col-md-6 form-group" *ngIf="framework.thumb_image == null">
                     <label>Thumb image</label>
                     <input class="form-control" type="file" name="thumb_image" (change)="handleInputChange($event,false,true)" />
                 </div>

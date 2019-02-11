@@ -12,9 +12,12 @@ import {map} from 'rxjs/operators'
 })
 export class ApiCommunicationService {
 
-  // private  url = "http://localhost:3000/v1/";
-  public url = "http://ec2-54-172-0-213.compute-1.amazonaws.com/v1/";
-  public imgUrl = "http://ec2-54-172-0-213.compute-1.amazonaws.com"
+  private  url = "http://localhost:3000/v1/";
+  public imgUrl = "http://localhost:3000";
+  // public url = "http://ec2-54-172-0-213.compute-1.amazonaws.com/v1/";
+  // public imgUrl = "http://ec2-54-172-0-213.compute-1.amazonaws.com"
+
+
   domainUrl: string;
    httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json','Access-Control-Allow-Origin': '*'})

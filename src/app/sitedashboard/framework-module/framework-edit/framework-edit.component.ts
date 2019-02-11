@@ -142,6 +142,8 @@ export class FrameworkModuleEditComponent implements OnInit {
         this.errdisplay.openpopup("Error!!!", err)
       })
     } else {
+      this.framework.main_image = this.main_image;
+      this.framework.thumb_image = this.thumb_image;
       let url = "program/edit-framework"
       this.apiCom.putDataWithToken(url, JSON.stringify({ framework: this.framework }), this.authToken).subscribe((res) => {
         res;
@@ -372,19 +374,17 @@ export class FrameworkModuleEditComponent implements OnInit {
   }
 
   removeduplicates() {
-    var i = this.courses.length;
-    while (i--) {
-      for (var j of this.framework.courses) {
-        if (this.courses[i] && this.courses[i].id == j.id) {
-         // this.courses1.push(this.courses[i])
-          this.courses.splice(i, 1);
-          
+      var i = this.courses.length;
+      while (i--) {
+        for (var j of this.framework.courses) {
+          if (this.courses[i] && this.courses[i].id == j.id) {
+           // this.courses1.push(this.courses[i])
+            this.courses.splice(i, 1);
+            
+          }
         }
-
       }
-     
-
-    }
+    
   }
   handleInputChange(e,main,logo) {
     var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
