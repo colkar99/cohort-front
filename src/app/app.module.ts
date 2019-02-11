@@ -34,7 +34,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { StartupProfileComponent } from './startupdashboard/startup-profile/startup-profile.component'
 import { sharingData } from './sharingdata';
 import { StartupRoadmapComponent } from './startupdashboard/startup-roadmap/startup-roadmap.component';
-import { StartupbyProgramsComponent } from './sitedashboard/startupby-programs/startupby-programs.component'
+import { StartupbyProgramsComponent } from './sitedashboard/startupby-programs/startupby-programs.component';
+import { EditProgramComponent } from './sitedashboard/programmodule/edit-program/edit-program.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,7 +64,8 @@ import { StartupbyProgramsComponent } from './sitedashboard/startupby-programs/s
     ResetPasswordComponent,
     StartupProfileComponent,
     StartupRoadmapComponent,
-    StartupbyProgramsComponent
+    StartupbyProgramsComponent,
+    EditProgramComponent
   ],
   imports: [
     BrowserModule,

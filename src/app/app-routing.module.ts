@@ -26,6 +26,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { StartupProfileComponent } from './startupdashboard/startup-profile/startup-profile.component'
 import { StartupRoadmapComponent } from './startupdashboard/startup-roadmap/startup-roadmap.component'
 import { StartupbyProgramsComponent } from './sitedashboard/startupby-programs/startupby-programs.component'
+import {EditProgramComponent} from './sitedashboard/programmodule/edit-program/edit-program.component'
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
@@ -34,12 +35,13 @@ const routes: Routes = [
     { path: 'user/controller/:id', component: UsercontrollerComponent },
     { path: 'program', component: ProgramModuleComponent },
     { path: 'program/create-program', component: CreateProgramComponent },
+    { path: 'program/edit-program/:id', component: EditProgramComponent },
     { path: 'program-controls', component: ProgramControlComponent },
     { path: 'program-controls/startup/:id', component: StartupControlComponent },
     { path: 'framework', component: FrameworkModuleComponent },
-    { path: 'framework/edit', component: FrameworkModuleEditComponent },
+    { path: 'framework/create-framework', component: FrameworkModuleEditComponent },
     { path: 'framework/edit/:id', component: FrameworkModuleEditComponent },
-    { path: 'framework/editcourse', component: CourseEditComponent },
+    { path: 'framework/create-course', component: CourseEditComponent },
     { path: 'framework/editcourse/:id', component: CourseEditComponent },
     { path: 'startups-by-programs', component: StartupbyProgramsComponent },
     { path: 'about-profile', component: AboutProfileComponent },
