@@ -2,7 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { FormControl , FormGroup , FormBuilder,FormArray, Validators } from '@angular/forms';
 import { ApiCommunicationService } from '../../../api-communication.service';
 import { CookieService } from 'ngx-cookie-service';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute} from '@angular/router';
 declare var $: any;
 
 @Component({
@@ -23,11 +23,15 @@ export class CreateProgramComponent implements OnInit {
     submitted = false;
     showReviewAndSubmit = false;
     hideArrayControl: boolean;
+    program_id:any
+    sharedata:any ={}
     constructor(
         private cookieService: CookieService,
         private formBuilder: FormBuilder,
         private apiService: ApiCommunicationService,
-        private router: Router
+        private router: Router,
+        private route:ActivatedRoute,
+        
    
     ){
         this.auth = this.getCookie('Authorization');
@@ -40,7 +44,9 @@ export class CreateProgramComponent implements OnInit {
         }
         this.getProgramModuleDatas();
     }
-    ngOnInit(){}
+    ngOnInit(){
+        
+    }
 
     getCookie(key: string){
         return this.cookieService.get(key);

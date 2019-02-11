@@ -1,196 +1,275 @@
 <div class="container">
 
-<div class="col-md-12">
-    <button class="btn btn-success" routerLink="create-program">Create new program</button>
-</div>
-<div class="col-md-12">
-    <div class="panel panel-default">
-        <div class="panel-heading">List of Programs</div>
-        <div class="panel-body">
+    <div class="col-md-12">
+        <button class="btn btn-success" routerLink="create-program">Create new program</button>
+    </div>
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">List of Programs</div>
+            <div class="panel-body">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                        <th>Title</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th>Duration</th>
-                        <th>Seat Size</th>
+                            <th>Title</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Duration</th>
+                            <th>Seat Size</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let program of program_modules.programs">
-                        <td>{{program.title}}</td>
-                        <td>{{program.start_date}}</td>
-                        <td>{{program.end_date}}</td>
-                        <td>{{program.duration}}</td>
-                        <td>{{program.seat_size}}</td>
+                        <tr *ngFor="let program of program_modules.programs" routerLink="edit-program/{{program.id}}"
+                            (click)="viewprogram(program)">
+                            <td>{{program.title}}</td>
+                            <td>{{program.start_date}}</td>
+                            <td>{{program.end_date}}</td>
+                            <td>{{program.duration}}</td>
+                            <td>{{program.seat_size}}</td>
                         </tr>
                     </tbody>
                 </table>
+            </div>
         </div>
     </div>
-</div>
 
-<div class="col-md-12">
-    <button class="btn btn-success" data-toggle="modal" data-target="#programTypemodel" (click)="this.initForm();">Create new Program type</button>
-</div>
-<div class="col-md-12">
-    <div class="panel panel-default">
-        <div class="panel-heading">List of Program types</div>
-        <div class="panel-body">
+    <div class="col-md-12">
+        <button class="btn btn-success" data-toggle="modal" data-target="#programTypemodel" (click)="this.initForm();">Create
+            new Program type</button>
+    </div>
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">List of Program types</div>
+            <div class="panel-body">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Logo</th>
-                        <th>Duration</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Logo</th>
+                            <th>Duration</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let program_type of program_modules.program_types" (click)="initProgramTypeValue(program_type)"
-                        data-toggle="modal" data-target="#programTypemodel">
-                        <td>{{program_type.program_type_title}}</td>
-                        <td>{{program_type.program_type_description}}</td>
-                        <td>{{program_type.program_type_logo}}</td>
-                        <td>{{program_type.program_type_duration}}</td>
+                            data-toggle="modal" data-target="#programTypemodel">
+                            <td>{{program_type.program_type_title}}</td>
+                            <td>{{program_type.program_type_description}}</td>
+                            <td>{{program_type.program_type_logo}}</td>
+                            <td>{{program_type.program_type_duration}}</td>
                         </tr>
                     </tbody>
                 </table>
+            </div>
         </div>
     </div>
-</div>
 
-<div class="col-md-12">
-    <button class="btn btn-success" data-toggle="modal" data-target="#programLocationmodel">Create new Program location</button>
-</div>
-<div class="col-md-12">
+    <div class="col-md-12">
+        <button class="btn btn-success" data-toggle="modal" data-target="#programLocationmodel">Create new Program
+            location</button>
+    </div>
+    <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">List of Program Locations</div>
             <div class="panel-body">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
                             <th>Country</th>
                             <th>State</th>
                             <th>City</th>
                             <th>Address</th>
                             <th>Postalcode</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let program_location of program_modules.program_locations" (click)="initProgramlocationValue(program_location)">
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let program_location of program_modules.program_locations" (click)="initProgramlocationValue(program_location)">
                             <td>{{program_location.country}}</td>
                             <td>{{program_location.state_province_region}}</td>
                             <td>{{program_location.city}}</td>
                             <td>{{program_location.address_line_1}}</td>
                             <td>{{program_location.zip_pincode_postalcode}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 
-<!--Model for program type start-->
-  <!-- Modal -->
-  <div class="modal fade" id="programTypemodel" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Program Types</h4>
+
+    <div class="col-md-12">
+        <button class="btn btn-success" data-toggle="modal" data-target="#programquestionmodal" (click)="addques()">Create new Questions</button>
+    </div>
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">List of Questions</div>
+            <div class="panel-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <td>Question</td>
+                            <td>Description</td>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let ques of allquestions;let i = index" (click)="initQuestionsvalue(ques)">
+                            <td>{{ques.title}}</td>
+                            <td>{{ques.question}}</td>
+                            <td>{{ques.description}}</td>
+                            
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="modal-body">
-          <div class="row">
-            <form #form="ngForm">
-                <div class="col-md-6 form-group">
-                    <label>Title</label>
-                    <input type="text" class="form-control" name="program_type_title" [(ngModel)]="program_type.program_type_title" />
-                </div>
-                <div class="col-md-6 form-group">
-                    <label>Description</label>
-                    <textarea type="text" class="form-control" name="program_type_description" [(ngModel)]="program_type.program_type_description" ></textarea>
-                </div>
-                <div class="col-md-6 form-group">
-                    <label>Enter duration in months</label>
-                    <input type="number" class="form-control" name="program_type_duration" [(ngModel)]="program_type.program_type_duration" />
-                </div>
-                <div class="col-md-6 form-group">
-                    <label>Upload logo</label>
-                    <input type="file" class="form-control" name="program_type_logo" [(ngModel)]="program_type.program_type_logo" />
-                </div>
-                <div class="col-md-6 form-group">
-                    <label>Upload main image</label>
-                    <input type="file" class="form-control" name="program_type_main_image" [(ngModel)]="program_type.program_type_main_image" />
-                </div>
-                <div class="col-md-6 form-group" *ngIf="program_type_edit">
-                        <input type="hidden" class="form-control" name="id" [(ngModel)]="program_type.id" />
-                </div>
-                <div class="col-md-12 text-center">
-                    <button class="btn btn-primary"  *ngIf="!program_type_edit" type="submit" (click)="submitProgramType(form,'type')">Submit</button>
-                    <button class="btn btn-primary" *ngIf="program_type_edit" type="submit" (click)="updateProgramType(form,'type')">Update</button>
-                    <button class="btn btn-danger" *ngIf="program_type_edit" type="submit" (click)="deleteProgramType(form.value.id,'type')">Delete</button>
-                </div>
-            </form>
+    </div>
+
+<!--Model for Question start-->
+  <!-- Modal -->
+  <div class="modal fade" id="programquestionmodal" role="dialog" #programquestionmodal>
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Question Detail</h4>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <form #questionform="ngForm">
+                    <div class="col-md-6 form-group">
+                        <label>Title</label>
+                        <input type="text" class="form-control" name="title" [(ngModel)]="question.title" />
+                    </div>
+                    <div class="col-md-6 form-group">
+                            <label>Question</label>
+                            <textarea type="text" class="form-control" name="question" [(ngModel)]="question.question" ></textarea>
+                        </div>
+                    <div class="col-md-6 form-group">
+                        <label>Description</label>
+                        <textarea type="text" class="form-control" name="description" [(ngModel)]="question.description" ></textarea>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Placeholder</label>
+                        <input type="text" class="form-control" name="placeholder" [(ngModel)]="question.placeholder" />
+                    </div>
+                    
+                    <div class="col-md-6 form-group" *ngIf="question_edit">
+                            <input type="hidden" class="form-control" name="id" [(ngModel)]="question.id" />
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-primary"  *ngIf="!question_edit" type="submit" (click)="submitProgramType(questionform,'questions')">Submit</button>
+                        <button class="btn btn-primary" *ngIf="question_edit" type="submit" (click)="updateProgramType(questionform,'questions')">Update</button>
+                        <button class="btn btn-danger" *ngIf="question_edit" type="submit" (click)="deleteQuestion(questionform.value.id)">Delete</button>
+                    </div>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-<!--Model for program type end-->
+    <!--Model for question end-->
 
-<!--Model for program locations start-->
-  <!-- Modal -->
-  <div class="modal fade" id="programLocationmodel" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Program Location</h4>
-        </div>
-        <div class="modal-body">
-            <div class="row">
-                <form #locationForm="ngForm">
-                    <div class="col-md-6 form-group">
-                        <label>Address line 1</label>
-                        <input type="text" class="form-control" name="address_line_1" [(ngModel)]="program_location.address_line_1" />
+
+
+    <!--Model for program type start-->
+    <!-- Modal -->
+    <div class="modal fade" id="programTypemodel" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Program Types</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <form #form="ngForm">
+                            <div class="col-md-6 form-group">
+                                <label>Title</label>
+                                <input type="text" class="form-control" name="program_type_title" [(ngModel)]="program_type.program_type_title" />
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Description</label>
+                                <textarea type="text" class="form-control" name="program_type_description" [(ngModel)]="program_type.program_type_description"></textarea>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Enter duration in months</label>
+                                <input type="number" class="form-control" name="program_type_duration" [(ngModel)]="program_type.program_type_duration" />
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Upload logo</label>
+                                <input type="file" class="form-control" name="program_type_logo" [(ngModel)]="program_type.program_type_logo" />
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Upload main image</label>
+                                <input type="file" class="form-control" name="program_type_main_image" [(ngModel)]="program_type.program_type_main_image" />
+                            </div>
+                            <div class="col-md-6 form-group" *ngIf="program_type_edit">
+                                <input type="hidden" class="form-control" name="id" [(ngModel)]="program_type.id" />
+                            </div>
+                            <div class="col-md-12 text-center">
+                                <button class="btn btn-primary" *ngIf="!program_type_edit" type="submit" (click)="submitProgramType(form,'type')">Submit</button>
+                                <button class="btn btn-primary" *ngIf="program_type_edit" type="submit" (click)="updateProgramType(form,'type')">Update</button>
+                                <button class="btn btn-danger" *ngIf="program_type_edit" type="submit" (click)="deleteProgramType(form.value.id,'type')">Delete</button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="col-md-6 form-group">
-                        <label>Address line 2</label>
-                        <textarea type="text" class="form-control" name="address_line_2" [(ngModel)]="program_location.address_line_2" ></textarea>
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <label>City</label>
-                        <input type="text" class="form-control" name="city" [(ngModel)]="program_location.city" />
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <label>State</label>
-                        <input type="text" class="form-control" name="state_province_region" [(ngModel)]="program_location.state_province_region" />
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <label>Postal/Pincode</label>
-                        <input type="text" class="form-control" name="zip_pincode_postalcode" [(ngModel)]="program_location.zip_pincode_postalcode" />
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <label>Country</label>
-                        <input type="text" class="form-control" name="country" [(ngModel)]="program_location.country" />
-                    </div>
-                    <div class="col-md-6 form-group" *ngIf="program_location_edit">
-                            <input type="hidden" class="form-control" name="id" [(ngModel)]="program_location.id" />
-                    </div>
-                    <div class="col-md-12 text-center">
-                        <button class="btn btn-primary"  *ngIf="!program_location_edit" type="submit" (click)="submitProgramType(locationForm,'location')">Submit</button>
-                        <button class="btn btn-primary" *ngIf="program_location_edit" type="submit" (click)="updateProgramType(locationForm,'location')">Update</button>
-                        <button class="btn btn-danger" *ngIf="program_location_edit" type="submit" (click)="deleteProgramType(locationForm.value.id,'location')">Delete</button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
-      </div>
     </div>
-  </div>
-<!--Model for program type end-->
+    <!--Model for program type end-->
+
+    <!--Model for program locations start-->
+    <!-- Modal -->
+    <div class="modal fade" id="programLocationmodel" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Program Location</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <form #locationForm="ngForm">
+                            <div class="col-md-6 form-group">
+                                <label>Address line 1</label>
+                                <input type="text" class="form-control" name="address_line_1" [(ngModel)]="program_location.address_line_1" />
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Address line 2</label>
+                                <textarea type="text" class="form-control" name="address_line_2" [(ngModel)]="program_location.address_line_2"></textarea>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>City</label>
+                                <input type="text" class="form-control" name="city" [(ngModel)]="program_location.city" />
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>State</label>
+                                <input type="text" class="form-control" name="state_province_region" [(ngModel)]="program_location.state_province_region" />
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Postal/Pincode</label>
+                                <input type="text" class="form-control" name="zip_pincode_postalcode" [(ngModel)]="program_location.zip_pincode_postalcode" />
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Country</label>
+                                <input type="text" class="form-control" name="country" [(ngModel)]="program_location.country" />
+                            </div>
+                            <div class="col-md-6 form-group" *ngIf="program_location_edit">
+                                <input type="hidden" class="form-control" name="id" [(ngModel)]="program_location.id" />
+                            </div>
+                            <div class="col-md-12 text-center">
+                                <button class="btn btn-primary" *ngIf="!program_location_edit" type="submit" (click)="submitProgramType(locationForm,'location')">Submit</button>
+                                <button class="btn btn-primary" *ngIf="program_location_edit" type="submit" (click)="updateProgramType(locationForm,'location')">Update</button>
+                                <button class="btn btn-danger" *ngIf="program_location_edit" type="submit" (click)="deleteProgramType(locationForm.value.id,'location')">Delete</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Model for program type end-->
 
 </div>
-
