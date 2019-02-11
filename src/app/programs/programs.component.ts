@@ -10,7 +10,10 @@ export class ProgramsComponent implements OnInit {
   allPrograms: any[] = [];
   livePrograms: any[] = [];
   expPrograms: any[];
-  constructor(private apiService: ApiCommunicationService) { }
+  imageBaseUrl: string;
+  constructor(private apiService: ApiCommunicationService) {
+    this.imageBaseUrl = this.apiService.imgUrl;
+   }
 
   ngOnInit() {
     this.getAllProgram();

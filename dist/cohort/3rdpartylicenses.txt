@@ -229,9 +229,6 @@ Apache-2.0
  
 
 
-@angular/core
-MIT
-
 tslib
 Apache-2.0
 Apache License
@@ -307,6 +304,9 @@ MIT
 MIT
 
 @angular/forms
+MIT
+
+@angular/core
 MIT
 
 zone.js
