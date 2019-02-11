@@ -101,7 +101,8 @@ export class UsercontrollerComponent implements OnInit {
         }
         this.userOptions = [
             { name: "Site user", value: "site" },
-            { name: "Mentor user", value: "mentor" }
+            { name: "Mentor user", value: "mentor" },
+            { name: "Startup user", value: "startup" }
         ]
     }
     getUserData() {

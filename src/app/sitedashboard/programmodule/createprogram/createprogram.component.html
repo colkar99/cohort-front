@@ -91,13 +91,19 @@
                     </div>
                     <div class="col-md-4 form-group">
                         <label>Main image:</label>
-                        <input class="form-control" type="file" name="main_image" formControlName="main_image"
-                        [ngClass]="{errmsg: !program.controls['main_image'].valid && submitted}" />
+                        <input class="form-control" type="file" id="main_image" placeholder="main_image"
+                            name="main_image" type="file" accept="image/*" (change)="handleInputChange($event,true,false)" 
+                            [ngClass]="{errmsg: !program.controls['main_image'].valid && submitted}" />
                     </div>
+                    <!-- <div class="col-md-4 form-group">
+                        <label>Main image:</label>
+                        <input class="form-control" type="file" name="main_image" formControlName="main_image"
+                         />
+                    </div> -->
                     <div class="col-md-4 form-group">
                         <label>Logo image:</label>
-                        <input class="form-control" type="file" name="logo_image" formControlName="logo_image" 
-                        [ngClass]="{errmsg: !program.controls['logo_image'].valid && submitted}" />
+                        <input class="form-control" type="file" name="logo_image" 
+                        [ngClass]="{errmsg: !program.controls['logo_image'].valid && submitted}" accept="image/*" (change)="handleInputChange($event,false,true)"  />
                     </div>
                     <div class="col-md-4 form-group">
                         <label>Duration in months:</label>

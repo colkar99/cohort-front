@@ -34,6 +34,11 @@ export class FrameworkModuleEditComponent implements OnInit {
   courses1: Array<any> = []
   arrayids: Array<any> = []
   courses: any
+  main_image:string = "";
+  thumb_image:string = "";
+  imageSrc:string = "";
+  imageBaseUrl:string = "";
+
 
   public user_details: any[];
 
@@ -51,6 +56,7 @@ export class FrameworkModuleEditComponent implements OnInit {
       formitems: this.formBuilder.array([])
 
     })
+    this.imageBaseUrl = this.apiCom.imgUrl;
   }
 
 
@@ -125,6 +131,8 @@ export class FrameworkModuleEditComponent implements OnInit {
   }
   updateForm() {
     if (this.framework.id == (null || undefined)) {
+      this.framework.main_image = this.main_image;
+      this.framework.thumb_image = this.thumb_image;
       let url = "program/create-framework"
       this.apiCom.postDataWithToken(url, JSON.stringify({ framework: this.framework }), this.authToken).subscribe((res) => {
         res;
@@ -134,6 +142,8 @@ export class FrameworkModuleEditComponent implements OnInit {
         this.errdisplay.openpopup("Error!!!", err)
       })
     } else {
+      this.framework.main_image = this.main_image;
+      this.framework.thumb_image = this.thumb_image;
       let url = "program/edit-framework"
       this.apiCom.putDataWithToken(url, JSON.stringify({ framework: this.framework }), this.authToken).subscribe((res) => {
         res;
@@ -364,18 +374,41 @@ export class FrameworkModuleEditComponent implements OnInit {
   }
 
   removeduplicates() {
-    var i = this.courses.length;
-    while (i--) {
-      for (var j of this.framework.courses) {
-        if (this.courses[i] && this.courses[i].id == j.id) {
-         // this.courses1.push(this.courses[i])
-          this.courses.splice(i, 1);
-          
+      var i = this.courses.length;
+      while (i--) {
+        for (var j of this.framework.courses) {
+          if (this.courses[i] && this.courses[i].id == j.id) {
+           // this.courses1.push(this.courses[i])
+            this.courses.splice(i, 1);
+            
+          }
         }
-
       }
-     
-
+    
+  }
+  handleInputChange(e,main,logo) {
+    var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
+    var pattern = /image-*/;
+    var reader = new FileReader();
+    if (!file.type.match(pattern)) {
+      alert('invalid format');
+      return;
     }
+    reader.onload = this._handleReaderLoaded.bind(this,main,logo);
+    reader.readAsDataURL(file);
+  }
+  _handleReaderLoaded(main: boolean,logo: boolean,e) {
+      debugger
+    let reader = e.target;
+    this.imageSrc = reader.result;
+    console.log(this.imageSrc)
+    debugger
+    if (main){
+        this.main_image = this.imageSrc
+    }
+    else{
+        this.thumb_image = this.imageSrc
+    }
+    // this.user.value.user.user_main_image = this.imageSrc;
   }
 }
