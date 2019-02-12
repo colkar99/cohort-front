@@ -1,323 +1,330 @@
 <!--Startup details-->
 <div class="container">
-<div class="row score" *ngIf="startup"><label>Score</label>
-    <div class="text-center">{{startup.score}}</div>
-</div>
-<div class="row" *ngIf="startup">
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <div class="col-md-12">
-                <h4 class="page-heading">Startup Info</h4>
-                <div class="col-md-4"><label>Startup Name:</label>
-                    {{startup.startup_name}}
-                </div>
-                <div class="col-md-4"><label>Founded date:</label>
-                    {{startup.founded_date}}
-                </div>
-                <div class="col-md-4"><label>Entity type:</label>
-                    {{startup.entity_type}}
-                </div>
-                <div class="col-md-4"><label>Company website:</label>
-                    {{startup.website_url}}
-                </div>
-            </div>
-            <div class="col-md-12">
-                <h4 class="page-heading">Application Status</h4>
-                <div class="col-md-4"><label>Application status:</label>
-                    {{startup.application_status}}
-                </div>
-                <div class="col-md-4"><label>Status Description:</label>
-                    {{startup.app_status_description}}
-                </div>
-            </div>
-            <div class="col-md-12">
-                <h4 class="page-heading">Founder info:</h4>
-                <div class="col-md-4"><label>Founder Name:</label>
-                    {{startup.founder_name}}
-                </div>
-                <div class="col-md-4"><label>Email:</label>
-                    {{startup.founder_email}}
-                </div>
-                <div class="col-md-4"><label>Contact number:</label>
-                    {{startup.founder_phone_number}}
-                </div>
-                <div class="col-md-4"><label>Skills</label>
-                    {{startup.founder_skills}}
-                </div>
-                <div class="col-md-4"><label>Commitment</label>
-                    {{startup.founder_commitment}}
-                </div>
-                <div class="col-md-4"><label>Experience</label>
-                    {{startup.founder_experience}}
-                </div>
-                <div class="col-md-4"><label>Credentials</label>
-                    {{startup.founder_credentials}}
-                </div>
-            </div>
-            <div class="col-md-12">
-                <h4 class="page-heading">Startup Address:</h4>
-                <div class="col-md-4"><label>Startup address line 1</label>
-                    {{startup.startup_address_line_1}}
-
-                </div>
-                <div class="col-md-4"><label>Startup address line 2</label>
-                    {{startup.startup_address_line_2}}
-
-                </div>
-                <div class="col-md-4"><label>Startup city</label>
-                    {{startup.startup_city}}
-
-                </div>
-                <div class="col-md-4"><label>Startup state province region</label>
-                    {{startup.startup_state_province_region}}
-
-                </div>
-                <div class="col-md-4"><label>Startup country</label>
-                    {{startup.startup_country}}
-
-                </div>
-                <div class="col-md-4"><label>Startup zip pincode postalcode</label>
-                    {{startup.startup_zip_pincode_postalcode}}
-
-                </div>
-
+    <div class="col-md-12">
+        <button class="btn btn-primary pull-left" routerLink="/admin/dashboard/program-controls"><i class="glyphicon glyphicon-arrow-left">Back</i></button>
+    </div>
+    <div class="row score" *ngIf="startup"><label>Score</label>
+        <div class="text-center">{{startup.score}}</div>
+    </div>
+    <div class="row" *ngIf="startup">
+        <div class="panel panel-default">
+            <div class="panel-body">
                 <div class="col-md-12">
-                   <!-- <button *ngIf="startup.application_status != 'CSFI'" class="btn btn-success" (click)="requestCurrentStateForm(startup.id)">Request
+                    <h4 class="page-heading">Startup Info</h4>
+                    <div class="col-md-4"><label>Startup Name:</label>
+                        {{startup.startup_name}}
+                    </div>
+                    <div class="col-md-4"><label>Founded date:</label>
+                        {{startup.founded_date}}
+                    </div>
+                    <div class="col-md-4"><label>Entity type:</label>
+                        {{startup.entity_type}}
+                    </div>
+                    <div class="col-md-4"><label>Company website:</label>
+                        {{startup.website_url}}
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <h4 class="page-heading">Application Status</h4>
+                    <div class="col-md-4"><label>Application status:</label>
+                        {{startup.application_status}}
+                    </div>
+                    <div class="col-md-4"><label>Status Description:</label>
+                        {{startup.app_status_description}}
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <h4 class="page-heading">Founder info:</h4>
+                    <div class="col-md-4"><label>Founder Name:</label>
+                        {{startup.founder_name}}
+                    </div>
+                    <div class="col-md-4"><label>Email:</label>
+                        {{startup.founder_email}}
+                    </div>
+                    <div class="col-md-4"><label>Contact number:</label>
+                        {{startup.founder_phone_number}}
+                    </div>
+                    <div class="col-md-4"><label>Skills</label>
+                        {{startup.founder_skills}}
+                    </div>
+                    <div class="col-md-4"><label>Commitment</label>
+                        {{startup.founder_commitment}}
+                    </div>
+                    <div class="col-md-4"><label>Experience</label>
+                        {{startup.founder_experience}}
+                    </div>
+                    <div class="col-md-4"><label>Credentials</label>
+                        {{startup.founder_credentials}}
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <h4 class="page-heading">Startup Address:</h4>
+                    <div class="col-md-4"><label>Startup address line 1</label>
+                        {{startup.startup_address_line_1}}
+
+                    </div>
+                    <div class="col-md-4"><label>Startup address line 2</label>
+                        {{startup.startup_address_line_2}}
+
+                    </div>
+                    <div class="col-md-4"><label>Startup city</label>
+                        {{startup.startup_city}}
+
+                    </div>
+                    <div class="col-md-4"><label>Startup state province region</label>
+                        {{startup.startup_state_province_region}}
+
+                    </div>
+                    <div class="col-md-4"><label>Startup country</label>
+                        {{startup.startup_country}}
+
+                    </div>
+                    <div class="col-md-4"><label>Startup zip pincode postalcode</label>
+                        {{startup.startup_zip_pincode_postalcode}}
+
+                    </div>
+
+                    <div class="col-md-12">
+                        <!-- <button *ngIf="startup.application_status != 'CSFI'" class="btn btn-success" (click)="requestCurrentStateForm(startup.id)">Request
                         current state form</button> -->
-                    <button *ngIf="startup.application_status == 'CSFI'" class="btn btn-danger" (click)="sendReminderForCurrent(startup.id)">Send gentle reminder to
-                        fill current state form</button>
-                    <!--
+                        <button *ngIf="startup.application_status == 'CSFI'" class="btn btn-danger" (click)="sendReminderForCurrent(startup.id)">Send
+                            gentle reminder to
+                            fill current state form</button>
+                        <!--
                 <div class="col-md-12" >
                     <button *ngIf="startup.application_status != 'CSFI'" class="btn btn-success" (click)="requestCurrentStateForm(startup.id)">Request current state form</button>
                     <button *ngIf="startup.application_status == 'CSFI'" class="btn btn-danger" (click)="sendReminderForCurrent(startup.id)">Send gentle reminder to fill current state form</button>
                  -->
 
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--End-->
-<div class="row" *ngIf="appRespQues">
-    <form #form="ngForm" (ngSubmit)="submitAdminResponse(form)">
-        <h4>Review startup responses</h4>
-        <div class="col-md-12" *ngFor="let app_res of appRespQues; let i = index">
-
-            <div class="col-md-12"><label>Title</label>
-                {{app_res.application_question.title}}
-            </div>
-            <div class="col-md-12"><label>Description</label>
-                {{app_res.application_question.description}}
-            </div>
-            <div class="col-md-12"><label>Question</label>
-                {{app_res.application_question.question}}
-            </div>
-            <div class="col-md-12"><label>Startup Response</label>
-                {{app_res.response}}
-                {{app_res.admin_response}}
-            </div>
-            <div *ngIf="app_res.admin_response">
-                <div class="col-md-12"><label>Admin Response</label>
-                    {{app_res.reviewer_feedback}}
-                </div>
-                <div class="col-md-12"><label>Admin Response</label>
-                    {{app_res.reviewer_rating}}
-                </div>
-                <div class="col-md-12">
-                    <button class="btn btn-default" (click)="app_res.admin_response = false">Edit</button>
-                </div>
-                <br>
-            </div>
-            <div ngModelGroup="{{i}}" *ngIf="!app_res.admin_response">
-                <div class="col-md-12 form-group"><label>Admin Feedback</label>
-                    <input type="hidden" name="id" [(ngModel)]="app_res.id">
-                    <input type="hidden" name="application_question_id" [(ngModel)]="app_res.application_question.id">
-                    <textarea class="form-control" type="text" [(ngModel)]="i.reviewer_feedback" name="reviewer_feedback"></textarea>
-                </div>
-                <div class="col-md-12 form-group"><label>Admin rating</label>
-                    <div class="form-group">
-                        <select class="form-control" id="sel1" [(ngModel)]="i.reviewer_rating" name="reviewer_rating">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
                     </div>
                 </div>
-                <div class="col-md-12 text-center">
-                    <button class="btn btn-default" type="submit">Submit</button>
-                </div>
-            </div>
-        </div>
-
-    </form>
-</div>
-
-<div *ngIf="startup.application_status != 'PR' && startup.application_status != 'RP' && this.startup.application_status != 'RC' && startup.application_status != 'CSFI' && currentstateedit == false">
-    <div>
-        <h3>CurrentStateForm</h3>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <span class="label ">REVENUE</span>
-            <textarea class="form-control" name="currentstateform.revenue" [(ngModel)]="currentstateform.revenue"></textarea>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <span class="label ">TRACTION</span>
-            <textarea class="form-control" name="currentstateform.traction" [(ngModel)]="currentstateform.traction"></textarea>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <span class="label ">SOLUTION READINESS</span>
-            <textarea class="form-control" name="currentstateform.solution_readiness" [(ngModel)]="currentstateform.solution_readiness"></textarea>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <span class="label ">INVESTMENT</span>
-            <textarea class="form-control" name="currentstateform.investment" [(ngModel)]="currentstateform.investment"></textarea>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <span class="label ">TEAM VELOCITY</span>
-            <textarea class="form-control" name="currentstateform.team_velocity" [(ngModel)]="currentstateform.team_velocity"></textarea>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <span class="label ">PARTNERS</span>
-            <textarea class="form-control" name="currentstateform.partners" [(ngModel)]="currentstateform.partners"></textarea>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <span class="label ">VENDORS</span>
-            <textarea class="form-control" name="currentstateform.vendors" [(ngModel)]="currentstateform.vendors"></textarea>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <span class="label ">VENDORS COSTS</span>
-            <textarea class="form-control" name="currentstateform.vendors_costs" [(ngModel)]="currentstateform.vendors_costs"></textarea>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <span class="label ">EXPERIMENT TESTING</span>
-            <textarea class="form-control" name="currentstateform.experiment_testing" [(ngModel)]="currentstateform.experiment_testing"></textarea>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <span class="label ">CUSTOMER SEGMENT</span>
-            <textarea class="form-control" name="currentstateform.customer_segment" [(ngModel)]="currentstateform.customer_segment"></textarea>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <span class="label ">PROBLEM VALIDATION</span>
-            <textarea class="form-control" name="currentstateform.problem_validation" [(ngModel)]="currentstateform.problem_validation"></textarea>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <span class="label ">CHANNELS</span>
-            <textarea class="form-control" name="currentstateform.channels" [(ngModel)]="currentstateform.channels"></textarea>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <span class="label ">GOVERNENCE</span>
-            <textarea class="form-control" name="currentstateform.governance" [(ngModel)]="currentstateform.governance"></textarea>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <span class="label ">ADMIN FEEEDBACK</span>
-            <textarea class="form-control" name="currentstateform.reviewer_feedback" [(ngModel)]="currentstateform.reviewer_feedback"></textarea>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <span class="label ">ADMIN RATING</span>
-            <select class="form-control" name="currentstateform.reviewer_rating" [(ngModel)]="currentstateform.reviewer_rating">
-                <option value="" selected>---select---</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
-        </div>
-    </div>
-    <div class="col-md-12 text-center">
-        <button class="btn btn-default" type="button" (click)="submitCSFS()">Submit</button>
-    </div>
-
-</div>
-
-<div class="row" *ngIf="currentstateedit == true">
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <div class="col-md-12">
-                <h4 class="page-heading">CurrentStateForm Info</h4>
-                <div class="col-md-4"><label>Revenue:</label>
-                    {{currentstateform.revenue}}
-                </div>
-                <div class="col-md-4"><label>Traction:</label>
-                    {{currentstateform.traction}}
-                </div>
-                <div class="col-md-4"><label>Solution Readiness:</label>
-                    {{currentstateform.solution_readiness}}
-                </div>
-                <div class="col-md-4"><label>Investment:</label>
-                    {{currentstateform.investment}}
-                </div>
-                <div class="col-md-4"><label>Team velocity:</label>
-                    {{currentstateform.team_velocity}}
-                </div>
-                <div class="col-md-4"><label>Partners:</label>
-                    {{currentstateform.partners}}
-                </div>
-                <div class="col-md-4"><label>Vendors:</label>
-                    {{currentstateform.vendors}}
-                </div>
-                <div class="col-md-4"><label>Vendor Costs:</label>
-                    {{currentstateform.vendors_costs}}
-                </div>
-                <div class="col-md-4"><label>Experiment Testing:</label>
-                    {{currentstateform.experiment_testing}}
-                </div>
-                <div class="col-md-4"><label>Customer Segment:</label>
-                    {{currentstateform.customer_segment}}
-                </div>
-                <div class="col-md-4"><label>Problem Validation:</label>
-                    {{currentstateform.problem_validation}}
-                </div>
-                <div class="col-md-4"><label>Channels:</label>
-                    {{currentstateform.channels}}
-                </div>
-                <div class="col-md-4"><label>Governance:</label>
-                    {{currentstateform.governance}}
-                </div>
-                <div class="col-md-4"><label>Admin Feedback:</label>
-                    {{currentstateform.reviewer_feedback}}
-                </div>
-                <div class="col-md-4"><label>Admin Rating:</label>
-                    {{currentstateform.reviewer_rating}}
-                </div>
-            </div>
-            <div class="col-md-12">
-                <button class="btn btn-default" type="button" (click)="currentstateedit = false">Edit</button>
-                <button *ngIf="startup.application_status !='AA'" class="btn btn-success pull-right" type="button" (click)="startupAccept()">Accept</button>
-                <button *ngIf="startup.application_status !='AA'" class="btn btn-danger pull-right" type="button" (click)="startupReject()">Reject</button>
             </div>
         </div>
     </div>
-</div>
+    <!--End-->
+    <div class="row" *ngIf="appRespQues">
+        <form #form="ngForm" (ngSubmit)="submitAdminResponse(form)">
+            <h4>Review startup responses</h4>
+            <div class="col-md-12" *ngFor="let app_res of appRespQues; let i = index">
+
+                <div class="col-md-12"><label>Title</label>
+                    {{app_res.application_question.title}}
+                </div>
+                <div class="col-md-12"><label>Description</label>
+                    {{app_res.application_question.description}}
+                </div>
+                <div class="col-md-12"><label>Question</label>
+                    {{app_res.application_question.question}}
+                </div>
+                <div class="col-md-12"><label>Startup Response</label>
+                    {{app_res.response}}
+                    {{app_res.admin_response}}
+                </div>
+                <div *ngIf="app_res.admin_response">
+                    <div class="col-md-12"><label>Admin Response</label>
+                        {{app_res.reviewer_feedback}}
+                    </div>
+                    <div class="col-md-12"><label>Admin Response</label>
+                        {{app_res.reviewer_rating}}
+                    </div>
+                    <div class="col-md-12">
+                        <button class="btn btn-default" (click)="app_res.admin_response = false" (click)="edit_admin = true">Edit</button>
+                    </div>
+                    <br>
+                </div>
+                <div ngModelGroup="{{i}}" *ngIf="!app_res.admin_response">
+                    <div class="col-md-12 form-group"><label>Admin Feedback</label>
+                        <input type="hidden" name="id" [(ngModel)]="app_res.id">
+                        <input type="hidden" name="application_question_id" [(ngModel)]="app_res.application_question.id">
+                        <textarea class="form-control" type="text" [(ngModel)]="i.reviewer_feedback" name="reviewer_feedback"></textarea>
+                    </div>
+                    <div class="col-md-12 form-group"><label>Admin rating</label>
+                        <div class="form-group">
+                            <select class="form-control" id="sel1" [(ngModel)]="i.reviewer_rating" name="reviewer_rating">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-12 text-center" *ngIf="edit_admin == true">
+                <button class="btn btn-default" type="submit">Submit</button>
+            </div>
+
+        </form>
+    </div>
+
+    <div *ngIf="startup.application_status != 'PR' && startup.application_status != 'RP' && this.startup.application_status != 'RC' && startup.application_status != 'CSFI' && currentstateedit == false">
+        <div>
+            <h3>CurrentStateForm</h3>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <span class="label ">REVENUE</span>
+                <textarea class="form-control" name="currentstateform.revenue" [(ngModel)]="currentstateform.revenue"></textarea>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <span class="label ">TRACTION</span>
+                <textarea class="form-control" name="currentstateform.traction" [(ngModel)]="currentstateform.traction"></textarea>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <span class="label ">SOLUTION READINESS</span>
+                <textarea class="form-control" name="currentstateform.solution_readiness" [(ngModel)]="currentstateform.solution_readiness"></textarea>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <span class="label ">INVESTMENT</span>
+                <textarea class="form-control" name="currentstateform.investment" [(ngModel)]="currentstateform.investment"></textarea>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <span class="label ">TEAM VELOCITY</span>
+                <textarea class="form-control" name="currentstateform.team_velocity" [(ngModel)]="currentstateform.team_velocity"></textarea>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <span class="label ">PARTNERS</span>
+                <textarea class="form-control" name="currentstateform.partners" [(ngModel)]="currentstateform.partners"></textarea>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <span class="label ">VENDORS</span>
+                <textarea class="form-control" name="currentstateform.vendors" [(ngModel)]="currentstateform.vendors"></textarea>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <span class="label ">VENDORS COSTS</span>
+                <textarea class="form-control" name="currentstateform.vendors_costs" [(ngModel)]="currentstateform.vendors_costs"></textarea>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <span class="label ">EXPERIMENT TESTING</span>
+                <textarea class="form-control" name="currentstateform.experiment_testing" [(ngModel)]="currentstateform.experiment_testing"></textarea>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <span class="label ">CUSTOMER SEGMENT</span>
+                <textarea class="form-control" name="currentstateform.customer_segment" [(ngModel)]="currentstateform.customer_segment"></textarea>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <span class="label ">PROBLEM VALIDATION</span>
+                <textarea class="form-control" name="currentstateform.problem_validation" [(ngModel)]="currentstateform.problem_validation"></textarea>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <span class="label ">CHANNELS</span>
+                <textarea class="form-control" name="currentstateform.channels" [(ngModel)]="currentstateform.channels"></textarea>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <span class="label ">GOVERNENCE</span>
+                <textarea class="form-control" name="currentstateform.governance" [(ngModel)]="currentstateform.governance"></textarea>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <span class="label ">ADMIN FEEEDBACK</span>
+                <textarea class="form-control" name="currentstateform.reviewer_feedback" [(ngModel)]="currentstateform.reviewer_feedback"></textarea>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <span class="label ">ADMIN RATING</span>
+                <select class="form-control" name="currentstateform.reviewer_rating" [(ngModel)]="currentstateform.reviewer_rating">
+                    <option value="" selected>---select---</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-12 text-center">
+            <button class="btn btn-default" type="button" (click)="submitCSFS()">Submit</button>
+        </div>
+
+    </div>
+
+    <div class="row" *ngIf="currentstateedit == true">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <h4 class="page-heading">CurrentStateForm Info</h4>
+                    <div class="col-md-4"><label>Revenue:</label>
+                        {{currentstateform.revenue}}
+                    </div>
+                    <div class="col-md-4"><label>Traction:</label>
+                        {{currentstateform.traction}}
+                    </div>
+                    <div class="col-md-4"><label>Solution Readiness:</label>
+                        {{currentstateform.solution_readiness}}
+                    </div>
+                    <div class="col-md-4"><label>Investment:</label>
+                        {{currentstateform.investment}}
+                    </div>
+                    <div class="col-md-4"><label>Team velocity:</label>
+                        {{currentstateform.team_velocity}}
+                    </div>
+                    <div class="col-md-4"><label>Partners:</label>
+                        {{currentstateform.partners}}
+                    </div>
+                    <div class="col-md-4"><label>Vendors:</label>
+                        {{currentstateform.vendors}}
+                    </div>
+                    <div class="col-md-4"><label>Vendor Costs:</label>
+                        {{currentstateform.vendors_costs}}
+                    </div>
+                    <div class="col-md-4"><label>Experiment Testing:</label>
+                        {{currentstateform.experiment_testing}}
+                    </div>
+                    <div class="col-md-4"><label>Customer Segment:</label>
+                        {{currentstateform.customer_segment}}
+                    </div>
+                    <div class="col-md-4"><label>Problem Validation:</label>
+                        {{currentstateform.problem_validation}}
+                    </div>
+                    <div class="col-md-4"><label>Channels:</label>
+                        {{currentstateform.channels}}
+                    </div>
+                    <div class="col-md-4"><label>Governance:</label>
+                        {{currentstateform.governance}}
+                    </div>
+                    <div class="col-md-4"><label>Admin Feedback:</label>
+                        {{currentstateform.reviewer_feedback}}
+                    </div>
+                    <div class="col-md-4"><label>Admin Rating:</label>
+                        {{currentstateform.reviewer_rating}}
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <button class="btn btn-default" type="button" (click)="currentstateedit = false">Edit</button>
+                    <button *ngIf="startup.application_status !='AA'" class="btn btn-success pull-right" type="button"
+                        (click)="startupAccept()">Accept</button>
+                    <button *ngIf="startup.application_status !='AA'" class="btn btn-danger pull-right" type="button"
+                        (click)="startupReject()">Reject</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

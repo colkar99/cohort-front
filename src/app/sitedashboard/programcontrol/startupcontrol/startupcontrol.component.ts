@@ -21,6 +21,7 @@ export class StartupControlComponent implements OnInit {
   startup_id: number;
   currentstateform: CurrentstateFormVO
   currentstateedit:boolean = true
+  edit_admin:boolean = false
 
   constructor(private apiCom: ApiCommunicationService,
     private cookieService: CookieService,
@@ -104,6 +105,7 @@ export class StartupControlComponent implements OnInit {
         this.appRespQues 
         if(this.currentstateform.reviewer_rating != "" && this.currentstateform.reviewer_rating != (0 && null && undefined)){
           this.submitCSFS();
+          this.edit_admin = false
           console.log("submitscfs")
         }
       }, error => {
