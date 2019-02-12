@@ -20,6 +20,8 @@ export class StartupRoadmapComponent implements OnInit {
   milestoneindex: any
   metric: string
   description: string
+  milestoneid: any
+  resources: any = {}
   constructor(private apiCom: ApiCommunicationService,
     private cookieService: CookieService,
     public sharedata: sharingData) {
@@ -38,10 +40,10 @@ export class StartupRoadmapComponent implements OnInit {
       this.roadmap = res.road_map
       if (this.roadmap != null) {
         let url = "program/startup/get-road_map-for-startup"
-        let params = JSON.stringify({startup_profile_id:this.startupprofile.id,road_map_id:this.roadmap.id})
-        this.apiCom.postDataWithToken(url,params,this.authToken).subscribe((res)=>{
+        let params = JSON.stringify({ startup_profile_id: this.startupprofile.id, road_map_id: this.roadmap.id })
+        this.apiCom.postDataWithToken(url, params, this.authToken).subscribe((res) => {
           res;
-          this.roadmap = res 
+          this.roadmap = res
         })
       } else {
 
@@ -171,6 +173,53 @@ export class StartupRoadmapComponent implements OnInit {
         }
       }
     })
+  }
+  openresource(i) {
+    let item = this.roadmap.milestones[i]
+    this.milestoneid = item.id
+    let url = "program/startup/request-resource-get"
+    let params = JSON.stringify({ milestone_id: this.milestoneid })
+    this.apiCom.putDataWithToken(url, params, this.authToken).subscribe((res) => {
+      res;
+      if (res.length > 0) {
+        this.resources = res[0]
+      } else {
+        this.resources = {}
+      }
+      console.log(res)
+      $("#resourcesneeded").modal('show')
+    })
+  }
+
+  saveresource() {
+    let url: string
+    let params: any
+    this.resources.road_map_id = this.roadmap.id;
+    this.resources.startup_profile_id = this.startupprofile.id
+    if (this.resources.id == (null && undefined)) {
+      url = "program/startup/request-resource";
+      params = JSON.stringify({ resource: this.resources, milestone_id: this.milestoneid })
+      this.apiCom.postDataWithToken(url, params, this.authToken).subscribe((res) => {
+        res;
+        console.log(res);
+        alert("Resource Created Successfully")
+        $("#resourcesneeded").modal('hide')
+      })
+
+    } else {
+      url = "program/startup/request-resource-edit"
+      params = JSON.stringify({ resource: this.resources })
+      this.apiCom.putDataWithToken(url, params, this.authToken).subscribe((res) => {
+        res;
+        console.log(res);
+        alert("Resource Updated Successfully")
+        $("#resourcesneeded").modal('hide')
+      })
+    }
+
+  }
+  closeresource() {
+    $("#resourcesneeded").modal('hide')
   }
 
 

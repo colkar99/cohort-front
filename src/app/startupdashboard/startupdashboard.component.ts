@@ -11,6 +11,7 @@ export class StartupdashboardComponent implements OnInit {
   startupprofile: any = {}
   startupid: any
   authToken: any
+  menuname:any
   companylogo: any = "assets/photo.png"
   CompanyName: any = "PETRAS"
   Mentors: any = "Stanly,Selwyn"
@@ -19,7 +20,8 @@ export class StartupdashboardComponent implements OnInit {
   constructor(private cookieService: CookieService, private apiCom: ApiCommunicationService,public sharedata:sharingData) {
     this.startupid = this.getCookie('startup_profile_id');
     this.authToken = this.getCookie('Authorization');
-    this
+    this.menuname = "profile"
+    
   }
 
   ngOnInit() {
@@ -35,6 +37,9 @@ export class StartupdashboardComponent implements OnInit {
 
   getCookie(key: string) {
     return this.cookieService.get(key);
+  }
+  menunames(name){
+    this.menuname = name
   }
 
 }
