@@ -156,6 +156,7 @@ export class ProgramControlComponent implements OnInit {
 
   initiatecsfi() {
     if (this.formrequestarray.length > 0) {
+      
       let url = "program/admin/request-current-form";
       let params = JSON.stringify({ "startup_app_ids": this.formrequestarray });
       this.apiCom.postDataWithToken(url, params, this.authToken).subscribe((res) => {

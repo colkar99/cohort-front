@@ -1,8 +1,9 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { SharedDataService } from './shared-data.service';
-
+import { ApiCommunicationService } from './api-communication.service'
+declare var $: any
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,25 +12,28 @@ import { SharedDataService } from './shared-data.service';
 export class AppComponent {
   title = 'cohort';
   checkStatus: string;
-   loggedIn: boolean;
-   message: string;
-   user_role: string;
+  loggedIn: boolean;
+  message: string;
+  user_role: string;
+  mentor: any = {};
+  additonal: any = {}
 
   constructor(private cookieService: CookieService,
-              private router: Router,
-              private sharedData: SharedDataService
-              ) {
-                // this.detect.detectChanges();
-               }
+    private router: Router,
+    private sharedData: SharedDataService,
+    private apiCom:ApiCommunicationService
+  ) {
+    // this.detect.detectChanges();
+  }
   ngOnInit() {
     // this.cookieService.set( 'appCookie', 'This is hello apps.' );
-    this.sharedData.currentMessage.subscribe(message =>{
+    this.sharedData.currentMessage.subscribe(message => {
       this.message = message;
       this.loggedIn = true;
     })
     this.checkStatus = this.getCookie('Authorization');
     this.user_role = this.getCookie('role')
-    if (this.checkStatus.length != 0){
+    if (this.checkStatus.length != 0) {
       this.loggedIn = true;
     } else {
       this.loggedIn = false;
@@ -37,20 +41,42 @@ export class AppComponent {
     // console.log(this.testCock);
   }
 
-  getCookie(key: string){
+  getCookie(key: string) {
     return this.cookieService.get(key);
   }
-  deleteCookie(key: string){
+  deleteCookie(key: string) {
     debugger
     return this.cookieService.deleteAll('/');
   }
 
-  logout(): void{
+  logout(): void {
     this.deleteCookie('Authorization');
     this.deleteCookie('role');
     this.loggedIn = false;
-                    // this.detect.detectChanges();
+    // this.detect.detectChanges();
     this.router.navigate(['/']);
+  }
+  addmentor() {
+    $("#mentorreg").modal('show');
+    this.mentor = {}
+    this.mentor.user_type = "mentor";
+    this.additonal = {}
+    this.additonal.type_name = "mentor"
+  }
+  savementor() {
+    console.log("mentor", this.mentor, "additonal", this.additonal)
+    let url = "user/mentor/registration";
+    let params = JSON.stringify({ user: this.mentor, additional_details: this.additonal })
+    this.apiCom.postData(url,params).subscribe((res)=>{
+      res;
+      alert("Mentor Registered Successfully")
+    },(err:any)=>{
+      alert(err)
+    })
+      $("#mentorreg").modal('hide');
+  }
+  closementor() {
+    $("#mentorreg").modal('hide');
   }
   // getUserDetails(auth){
   //   let url = "get-user-details"

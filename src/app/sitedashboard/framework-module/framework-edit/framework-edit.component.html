@@ -1,166 +1,175 @@
 <div class="container">
-<div class="panel panel-default">
-    <div class="panel-body" *ngIf="framework">
-        <form #frameworkUpdate="ngForm">
-            <div class="row">
-                <h2>Framework Details</h2>
-                <div class="col-md-6 form-group">
-                    <label>Title</label>
-                    <textarea class="form-control" type="text" name="title" [(ngModel)]="framework.title"></textarea>
-                </div>
-                <div class="col-md-6 form-group">
-                    <label>Description</label>
-                    <textarea class="form-control" type="text" name="description" [(ngModel)]="framework.description"></textarea>
-                </div>
-                <div class="col-md-6 form-group">
-                    <label for="sel1">Select level:</label>
-                    <select class="form-control" id="user_type" id="sel1" name="level" [(ngModel)]="framework.level">
-                        <option [value]="0">0</option>
-                        <option [value]="1">1</option>
-                        <option [value]="2">2</option>
-                        <option [value]="3">3</option>
-                        <option [value]="4">4</option>
-                        <option [value]="5">5</option>
-                    </select>
-                </div>
-                <!-- <div class="col-md-6 form-group" *ngIf="framework.main_image != null">
-
-                </div>  -->
-                <div class="col-md-6 form-group" *ngIf="framework.main_image != null">
-                    <div class="col-md-6 form-group">
+    <div class="col-md-12">
+        <button class="btn btn-primary" routerLink="/admin/dashboard/framework"><i class="glyphicon glyphicon-arrow-left">Back</i></button>
+    </div>
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-body" *ngIf="framework">
+                <form #frameworkUpdate="ngForm">
+                    <div class="row">
+                        <h2>Framework Details</h2>
+                        <div class="col-md-6 form-group">
+                            <label>Title</label>
+                            <textarea class="form-control" type="text" name="title" [(ngModel)]="framework.title"></textarea>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Description</label>
+                            <textarea class="form-control" type="text" name="description" [(ngModel)]="framework.description"></textarea>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="sel1">Select level:</label>
+                            <select class="form-control" id="user_type" id="sel1" name="level" [(ngModel)]="framework.level">
+                                <option [value]="0">0</option>
+                                <option [value]="1">1</option>
+                                <option [value]="2">2</option>
+                                <option [value]="3">3</option>
+                                <option [value]="4">4</option>
+                                <option [value]="5">5</option>
+                            </select>
+                        </div>
+                        <!-- <div class="col-md-6 form-group" *ngIf="framework.main_image != null">
+            
+                            </div>  -->
+                        <div class="col-md-6 form-group" *ngIf="framework.main_image != null">
+                            <div class="col-md-6 form-group">
+                                <label>Main image</label>
+                                <input class="form-control" type="file" name="main_image" (change)="handleInputChange($event,true,false)" />
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <img src="{{imageBaseUrl}}{{framework.main_image.url}}" height="30" width="30">
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-group" *ngIf="framework.main_image == null">
                             <label>Main image</label>
-                            <input class="form-control" type="file" name="main_image" (change)="handleInputChange($event,true,false)"  />
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <img src="{{imageBaseUrl}}{{framework.main_image.url}}" height="30" width="30">
-                    </div>
-                </div>                                
-                <div class="col-md-6 form-group" *ngIf="framework.main_image == null">
-                    <label>Main image</label>
-                    <input class="form-control" type="file" name="main_image" (change)="handleInputChange($event,true,false)"  />
-                </div>
-                <div class="col-md-6 form-group" *ngIf="framework.thumb_image != null">
-                    <div class="col-md-6 form-group">
-                        <label>Thumb image</label>
-                        <input class="form-control" type="file" name="thumb_image" (change)="handleInputChange($event,false,true)" /> 
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <img src="{{imageBaseUrl}}{{framework.thumb_image.url}}" height="30" width="30">
-                    </div>
-                </div> 
-                <div class="col-md-6 form-group" *ngIf="framework.thumb_image == null">
-                    <label>Thumb image</label>
-                    <input class="form-control" type="file" name="thumb_image" (change)="handleInputChange($event,false,true)" />
-                </div>
-            </div>
-            <div class="row">
-                <button class="btn btn-primary pull-right" (click)="updateForm()">{{!framework.id? 'Save':'Update'}}</button>
-                <button *ngIf="framework.id != (null && undefined && 0)" class="btn btn-danger pull-right" (click)="deleteform()">Delete</button>
-            </div>
-            <fieldset [disabled]="!framework.id">
-            <div class="row" >
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <label>Courses in Framework</label>
-
-                        <div class="col-md-12">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        
-                                        <th>Title</th>
-                                        <th>Description</th>
-                                        <th>Additional description</th>
-                                        <th>Actions</th>
-                                        
-
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let startup of framework.courses;let i = index" style="cursor: pointer; ">
-                                        
-                                        <td>{{startup.title}}</td>
-                                        <td>{{startup.description}}</td>
-                                        <td>{{startup.additional_description}}</td>
-                                        <td><button class="btn btn-danger" (click)="deletecoursesitems(startup,i)">Delete</button></td>
-                                        
-
-
-
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <input class="form-control" type="file" name="main_image" (change)="handleInputChange($event,true,false)" />
                         </div>
-                        
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <label>List of Courses</label>
-
-                        <div class="col-md-12">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Select</th>
-                                        <th>Title</th>
-                                        <th>Description</th>
-                                        <th>Additional description</th>
-                                        
-
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let startup of courses;let i = index" style="cursor: pointer; ">
-                                       <td><input class="checkbox" type="checkbox" (change)="setvalues($event.target.checked,startup)"></td>
-                                        <td>{{startup.title}}</td>
-                                        <td>{{startup.description}}</td>
-                                        <td>{{startup.additional_description}}</td>
-                                       
-
-
-
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="col-md-6 form-group" *ngIf="framework.thumb_image != null">
+                            <div class="col-md-6 form-group">
+                                <label>Thumb image</label>
+                                <input class="form-control" type="file" name="thumb_image" (change)="handleInputChange($event,false,true)" />
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <img src="{{imageBaseUrl}}{{framework.thumb_image.url}}" height="30" width="30">
+                            </div>
                         </div>
-                        <div class="col-md-12">
-                            <button class="btn btn-primary" type="button" (click)="updateframeworkcourses()">Update Framework Courses</button>
+                        <div class="col-md-6 form-group" *ngIf="framework.thumb_image == null">
+                            <label>Thumb image</label>
+                            <input class="form-control" type="file" name="thumb_image" (change)="handleInputChange($event,false,true)" />
                         </div>
                     </div>
+                    <div class="row">
+                        <button class="btn btn-primary pull-right" (click)="updateForm()">{{!framework.id?
+                            'Save':'Update'}}</button>
+                        <button *ngIf="framework.id != (null && undefined && 0)" class="btn btn-danger pull-right"
+                            (click)="deleteform()">Delete</button>
+                    </div>
+                    <fieldset [disabled]="!framework.id">
+                        <div class="row">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <label>Courses in Framework</label>
+
+                                    <div class="col-md-12">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+
+                                                    <th>Title</th>
+                                                    <th>Description</th>
+                                                    <th>Additional description</th>
+                                                    <th>Actions</th>
+
+
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let startup of framework.courses;let i = index" style="cursor: pointer; ">
+
+                                                    <td>{{startup.title}}</td>
+                                                    <td>{{startup.description}}</td>
+                                                    <td>{{startup.additional_description}}</td>
+                                                    <td><button class="btn btn-danger" (click)="deletecoursesitems(startup,i)">Delete</button></td>
+
+
+
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <label>List of Courses</label>
+
+                                    <div class="col-md-12">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Select</th>
+                                                    <th>Title</th>
+                                                    <th>Description</th>
+                                                    <th>Additional description</th>
+
+
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let startup of courses;let i = index" style="cursor: pointer; ">
+                                                    <td><input class="checkbox" type="checkbox" (change)="setvalues($event.target.checked,startup)"></td>
+                                                    <td>{{startup.title}}</td>
+                                                    <td>{{startup.description}}</td>
+                                                    <td>{{startup.additional_description}}</td>
+
+
+
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button class="btn btn-primary" type="button" (click)="updateframeworkcourses()">Update
+                                            Framework Courses</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+
+                </form>
+                <app-error-display></app-error-display>
+
+                <div class="modal fade" id="deletepopup" role="dialog" #deletepopup>
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" (click)="closedelete()">&times;</button>
+                                <h4 class="modal-title">Warning !!!</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>{{deletedisplay}}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" (click)="confirmdelete()">Confirm</button>
+                                <button type="button" class="btn btn-default" (click)="closedelete()">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
-        </fieldset>
-
-
-        </form>
-        <app-error-display></app-error-display>
-
-        <div class="modal fade" id="deletepopup" role="dialog" #deletepopup>
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" (click)="closedelete()">&times;</button>
-                        <h4 class="modal-title">Warning !!!</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>{{deletedisplay}}</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" (click)="confirmdelete()">Confirm</button>
-                        <button type="button" class="btn btn-default" (click)="closedelete()">Close</button>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>
-</div>
+
 </div>

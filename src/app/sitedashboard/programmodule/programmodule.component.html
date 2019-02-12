@@ -1,11 +1,9 @@
 <div class="container">
 
-    <div class="col-md-12">
-        <button class="btn btn-success" routerLink="create-program">Create new program</button>
-    </div>
+    
     <div class="col-md-12">
         <div class="panel panel-default">
-            <div class="panel-heading">List of Programs</div>
+            <div class="panel-heading heading_height">List of Programs <button class="btn btn-success pull-right" routerLink="create-program">Create new program</button></div>
             <div class="panel-body">
                 <table class="table table-bordered">
                     <thead>
@@ -32,13 +30,11 @@
         </div>
     </div>
 
-    <div class="col-md-12">
-        <button class="btn btn-success" data-toggle="modal" data-target="#programTypemodel" (click)="this.initForm();">Create
-            new Program type</button>
-    </div>
+   
     <div class="col-md-12">
         <div class="panel panel-default">
-            <div class="panel-heading">List of Program types</div>
+            <div class="panel-heading heading_height">List of Program types <button class="btn btn-success pull-right" data-toggle="modal" data-target="#programTypemodel" (click)="this.initForm();">Create
+                    new Program type</button></div>
             <div class="panel-body">
                 <table class="table table-bordered">
                     <thead>
@@ -63,13 +59,11 @@
         </div>
     </div>
 
-    <div class="col-md-12">
-        <button class="btn btn-success" data-toggle="modal" data-target="#programLocationmodel">Create new Program
-            location</button>
-    </div>
+    
     <div class="col-md-12">
         <div class="panel panel-default">
-            <div class="panel-heading">List of Program Locations</div>
+            <div class="panel-heading heading_height">List of Program Locations <button class="btn btn-success pull-right" data-toggle="modal" data-target="#programLocationmodel">Create new Program
+                    location</button></div>
             <div class="panel-body">
                 <table class="table table-bordered">
                     <thead>
@@ -96,12 +90,10 @@
     </div>
 
 
-    <div class="col-md-12">
-        <button class="btn btn-success" data-toggle="modal" data-target="#programquestionmodal" (click)="addques()">Create new Questions</button>
-    </div>
+ 
     <div class="col-md-12">
         <div class="panel panel-default">
-            <div class="panel-heading">List of Questions</div>
+            <div class="panel-heading heading_height">List of Questions  <button class="btn btn-success pull-right" data-toggle="modal" data-target="#programquestionmodal" (click)="addques()">Create new Questions</button></div>
             <div class="panel-body">
                 <table class="table table-bordered">
                     <thead>
