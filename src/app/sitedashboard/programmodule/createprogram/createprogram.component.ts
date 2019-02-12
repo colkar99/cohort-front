@@ -23,8 +23,14 @@ export class CreateProgramComponent implements OnInit {
     submitted = false;
     showReviewAndSubmit = false;
     hideArrayControl: boolean;
+
     program_id:any
     sharedata:any ={}
+
+    main_image= "";
+    logo_image = "";
+    imageSrc;
+
     constructor(
         private cookieService: CookieService,
         private formBuilder: FormBuilder,
@@ -51,6 +57,7 @@ export class CreateProgramComponent implements OnInit {
     getCookie(key: string){
         return this.cookieService.get(key);
       }
+
     initProgramForm(controls: any){
         this.program = this.formBuilder.group({
                 title: ['',Validators.required],
@@ -146,6 +153,8 @@ export class CreateProgramComponent implements OnInit {
                     }
                 }
             }
+            program.value.main_image = this.main_image;
+            program.value.logo_image = this.logo_image;
             this.reviewAndSubmit['program_details'] =  program.value;
             $('#reviewAndSubmitModel').modal('show');
         }
@@ -154,6 +163,8 @@ export class CreateProgramComponent implements OnInit {
     };
     onSubmitProgramForms(){
         this.program.removeControl('application_questions')
+        this.program.value.main_image = this.main_image;
+        this.program.value.logo_image = this.logo_image;
         this.hideArrayControl = false
         let data = {"program": this.program.value, "application_questions": this.reviewAndSubmit.application_questions};
         this.apiService.postDataWithToken("create-program",JSON.stringify(data),this.auth)
@@ -166,5 +177,31 @@ export class CreateProgramComponent implements OnInit {
             console.log(`errors: ${error}`);
         });
     }  
+
+    handleInputChange(e,main,logo) {
+        var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
+        var pattern = /image-*/;
+        var reader = new FileReader();
+        if (!file.type.match(pattern)) {
+          alert('invalid format');
+          return;
+        }
+        reader.onload = this._handleReaderLoaded.bind(this,main,logo);
+        reader.readAsDataURL(file);
+      }
+      _handleReaderLoaded(main: boolean,logo: boolean,e) {
+          debugger
+        let reader = e.target;
+        this.imageSrc = reader.result;
+        console.log(this.imageSrc)
+        debugger
+        if (main){
+            this.main_image = this.imageSrc
+        }
+        else{
+            this.logo_image = this.imageSrc
+        }
+        // this.user.value.user.user_main_image = this.imageSrc;
+      }
 
 } 
