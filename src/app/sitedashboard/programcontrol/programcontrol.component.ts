@@ -156,18 +156,38 @@ export class ProgramControlComponent implements OnInit {
 
   initiatecsfi() {
     if (this.formrequestarray.length > 0) {
-      
-      let url = "program/admin/request-current-form";
-      let params = JSON.stringify({ "startup_app_ids": this.formrequestarray });
-      this.apiCom.postDataWithToken(url, params, this.authToken).subscribe((res) => {
-        res;
-        let id = this.getCookie("program_id");
-        this.showStartups(id);
-        this.formrequestarray = []
-        alert("Current State Form Initiated");
-      }, (err: HttpErrorResponse) => {
-        alert(err)
-      })
+      let proceed: boolean
+      for (let i = 0; i <= this.formrequestarray.length; i++) {
+        for (let j = 0; j < this.allStartups.length; j++) {
+          if (this.allStartups[j].id == this.formrequestarray[i]) {
+            if (this.allStartups[j].application_status != "RC") {
+              proceed = true
+            } else {
+              if (proceed == true) {
+
+              } else {
+                proceed = false
+              }
+            }
+          }
+        }
+      }
+      if (proceed == true) {
+        alert("Startup status with RC can be Initiate the Current State Form")
+      } else {
+        let url = "program/admin/request-current-form";
+        let params = JSON.stringify({ "startup_app_ids": this.formrequestarray });
+        this.apiCom.postDataWithToken(url, params, this.authToken).subscribe((res) => {
+          res;
+          let id = this.getCookie("program_id");
+          this.showStartups(id);
+          this.formrequestarray = []
+          alert("Current State Form Initiated");
+        }, (err: HttpErrorResponse) => {
+          alert(err)
+        })
+      }
+
     } else {
       alert("Select atleast One Startup Company")
     }
@@ -176,19 +196,41 @@ export class ProgramControlComponent implements OnInit {
   startupAccept() {
     debugger
     if (this.formrequestarray.length > 0) {
-      let url = "startup-accept-by-admin-bulk";
-      let data = { startup_app_ids: this.formrequestarray };
-      this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
-        .subscribe(data => {
-          console.log("acceptdata" + data);
-          let id = this.getCookie("program_id");
-          alert("Startups Accepted Successfully")
-          this.showStartups(id);
-          this.formrequestarray = []
-        },
-          error => {
-            console.log(error);
-          });
+      let proceed: boolean
+      for (let i = 0; i <= this.formrequestarray.length; i++) {
+        for (let j = 0; j < this.allStartups.length; j++) {
+          if (this.allStartups[j].id == this.formrequestarray[i]) {
+            if (this.allStartups[j].application_status != "CSFR") {
+              proceed = true
+            } else {
+              if (proceed == true) {
+
+              } else {
+                proceed = false
+              }
+            }
+          }
+        }
+      }
+      if (proceed == true) {
+        alert("Startup status with CSFR can be Accepted")
+      } else {
+        let url = "startup-accept-by-admin-bulk";
+        let data = { startup_app_ids: this.formrequestarray };
+        this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
+          .subscribe(data => {
+            console.log("acceptdata" + data);
+            let id = this.getCookie("program_id");
+            alert("Startups Accepted Successfully")
+            this.showStartups(id);
+            this.formrequestarray = []
+          },
+            error => {
+              console.log(error);
+            });
+      }
+
+
     } else {
       alert("Select atleast One Startup Company")
     }
@@ -196,19 +238,40 @@ export class ProgramControlComponent implements OnInit {
   startupReject() {
     debugger
     if (this.formrequestarray.length > 0) {
-      let url = "startup-reject-by-admin-bulk";
-      let data = { startup_app_ids: this.formrequestarray };
-      this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
-        .subscribe(data => {
-          let id = this.getCookie("program_id");
-          alert("Startups Rejected Successfully")
-          this.showStartups(id);
-          this.formrequestarray = []
-          console.log("rejectdata" + data);
-        },
-          error => {
-            console.log(error);
-          })
+      let proceed: boolean
+      for (let i = 0; i <= this.formrequestarray.length; i++) {
+        for (let j = 0; j < this.allStartups.length; j++) {
+          if (this.allStartups[j].id == this.formrequestarray[i]) {
+            if (this.allStartups[j].application_status != "CSFR") {
+              proceed = true
+            } else {
+              if (proceed == true) {
+
+              } else {
+                proceed = false
+              }
+            }
+          }
+        }
+      }
+      if (proceed == true) {
+        alert("Startup status with CSFR can be Rejected")
+      } else {
+        let url = "startup-reject-by-admin-bulk";
+        let data = { startup_app_ids: this.formrequestarray };
+        this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
+          .subscribe(data => {
+            let id = this.getCookie("program_id");
+            alert("Startups Rejected Successfully")
+            this.showStartups(id);
+            this.formrequestarray = []
+            console.log("rejectdata" + data);
+          },
+            error => {
+              console.log(error);
+            })
+      }
+
     } else {
       alert("Select atleast One Startup Company")
     }
