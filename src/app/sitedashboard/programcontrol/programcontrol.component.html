@@ -21,12 +21,12 @@
         <div class="panel-body">
             <label>List of registered startups</label>
             <div class="col-md-12">
-                <button class="btn btn-primary pull-right" type="button" (click)="initiatecsfi()">
-                    Initiate Current State Form</button>
+                <button class="btn btn-default pull-right" type="button" (click)="initiatecsfi()">
+                 <i class="glyphicon glyphicon-envelope"></i>   Initiate Current State Form</button>
                 <button class="btn btn-success pull-right" type="button" (click)="startupAccept()">
-                    Accept</button>
+                    <i class="glyphicon glyphicon-ok-circle"></i>   Accept</button>
                 <button class="btn btn-danger pull-right" type="button" (click)="startupReject()">
-                    Reject</button>
+                    <i class="glyphicon glyphicon-ban-circle"></i>  Reject</button>
             </div>
             <div class="col-md-12">
                 <table class="table table-bordered">
@@ -48,7 +48,7 @@
                             <td>{{startup.app_status_description}}</td>
                             <td>{{startup.score}}</td>
                             <td>
-                                <button routerLink="startup/{{startup.id}}">Review</button>
+                                <button class="btn btn-default" routerLink="startup/{{startup.id}}" ><i class="glyphicon glyphicon-eye-open"></i> View</button>
                             </td>
 
                         </tr>

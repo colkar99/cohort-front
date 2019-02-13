@@ -1,6 +1,6 @@
 <div class="container">
     <div class="col-md-12">
-        <button class="btn btn-primary" routerLink="/admin/dashboard/framework"><i class="glyphicon glyphicon-arrow-left">Back</i></button>
+        <button class="btn btn-default" routerLink="/admin/dashboard/framework"><i class="glyphicon glyphicon-arrow-left">Back</i></button>
     </div>
     <div class="col-md-12">
         <div class="panel panel-default">
@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <div *ngIf="course.id != (null && undefined && 0)">
-                        <div class="row">Activities <button type="button" class="btn btn-primary" (click)="addactivities()">Add</button></div>
+                        <div class="row">Activities <button type="button" class="btn btn-info" (click)="addactivities()"><i class="glyphicon glyphicon-plus-sign"></i> Add</button></div>
                         <div class="row">
                             <table class="table table-bordered">
                                 <thead>
@@ -40,8 +40,8 @@
                                         <td>{{item.description}}</td>
                                         <td>{{item.placeholder}}</td>
                                         <td>{{item.order}}</td>
-                                        <td><button type="button" class="btn btn-primary" (click)="viewactivities(item)">View</button><button
-                                                type="button" class="btn btn-danger" (click)="deleteactivities(item.id,i)">Delete</button></td>
+                                        <td><button type="button" class="btn btn-default" (click)="viewactivities(item)"><i class="glyphicon glyphicon-eye-open"></i> View</button><button
+                                                type="button" class="btn btn-danger" (click)="deleteactivities(item.id,i)"><i class="glyphicon glyphicon-trash"></i> Delete</button></td>
 
                                     </tr>
                                 </tbody>
@@ -49,9 +49,9 @@
                         </div>
                     </div>
                     <div class="row">
-                        <button class="btn btn-primary pull-right" (click)="updateForm()">{{!course.id?
-                            'Save':'Update'}}</button>
-                        <button *ngIf="course.id != (null && undefined && 0)" class="btn btn-danger pull-right" (click)="deleteform()">Delete</button>
+                        <button class="btn btn-success pull-right" (click)="updateForm()"><i class="glyphicon glyphicon-floppy-saved"></i> {{!course.id?
+                            'Next':'Update'}}</button>
+                        <button *ngIf="course.id != (null && undefined && 0)" class="btn btn-danger pull-right" (click)="deleteform()"><i class="glyphicon glyphicon-trash"></i> Delete</button>
                     </div>
 
                 </form>
@@ -119,15 +119,15 @@
 
                                             <div>
                                                 <button *ngIf="i == checklistforms.get('checklists').length -1" type="button"
-                                                    class="btn btn-default" (click)="addItem()">Add</button>
-                                                <button type="button" class="btn btn-default" (click)="deleteItem(i)">Delete</button>
+                                                    class="btn btn-info" (click)="addItem()"><i class="glyphicon glyphicon-plus-sign"></i> Add</button>
+                                                <button type="button" class="btn btn-default" (click)="deleteItem(i)"><i class="glyphicon glyphicon-trash"></i> Delete</button>
                                             </div>
                                         </div>
                                     </div>
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-default" (click)="saveActivities(checklistforms)">{{!checklistforms.value.id?
+                                <button type="submit" class="btn btn-success" (click)="saveActivities(checklistforms)"><i class="glyphicon glyphicon-floppy-saved"></i> {{!checklistforms.value.id?
                                     'Save':'Update' }}</button>
                                 <button type="button" class="btn btn-default" (click)="closeactivities()">Close</button>
                             </div>

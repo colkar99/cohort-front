@@ -1,7 +1,7 @@
 <!--Startup details-->
 <div class="container">
-    <div class="row">
-        <button class="btn btn-primary pull-left" routerLink="/admin/dashboard/program-controls"><i class="glyphicon glyphicon-arrow-left">Back</i></button>
+    <div class="col-md-12">
+        <button class="btn btn-default pull-left" routerLink="/admin/dashboard/program-controls"><i class="glyphicon glyphicon-arrow-left">Back</i></button>
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -210,11 +210,13 @@
                         <span class="label ">PARTNERS</span>
                         <textarea class="form-control" name="currentstateform.partners" [(ngModel)]="currentstateform.partners"></textarea>
                     </div>
+
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <span class="label ">VENDORS</span>
                         <textarea class="form-control" name="currentstateform.vendors" [(ngModel)]="currentstateform.vendors"></textarea>
+
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -223,6 +225,7 @@
                         <textarea class="form-control" name="currentstateform.vendors_costs" [(ngModel)]="currentstateform.vendors_costs"></textarea>
                     </div>
                 </div>
+
                 <div class="col-md-6">
                     <div class="form-group">
                         <span class="label ">EXPERIMENT TESTING</span>
@@ -277,6 +280,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
 
@@ -333,11 +337,11 @@
                     </div>
                 </div>
                 <div class="col-md-12">
-                    <button class="btn btn-default" type="button" (click)="currentstateedit = false">Edit</button>
+                    <button class="btn btn-default" type="button" (click)="currentstateedit = false"><i class="glyphicon glyphicon-pencil"></i> Edit</button>
                     <button *ngIf="startup.application_status !='AA'" class="btn btn-success pull-right" type="button"
-                        (click)="startupAccept()">Accept</button>
+                        (click)="startupAccept()"><i class="glyphicon glyphicon-ok-circle"></i> Accept</button>
                     <button *ngIf="startup.application_status !='AA'" class="btn btn-danger pull-right" type="button"
-                        (click)="startupReject()">Reject</button>
+                        (click)="startupReject()"><i class="glyphicon glyphicon-ban-circle"></i> Reject</button>
                 </div>
             </div>
         </div>

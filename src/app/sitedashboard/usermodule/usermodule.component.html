@@ -4,7 +4,7 @@
   <div class="row">
     
     <!-- Modal -->
-    <div class="modal fade" id="createUserModel" role="dialog">
+    <div class="modal fade" id="createUserModel" role="dialog" #createUserModel>
       <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -60,7 +60,7 @@
                   </select>
                 </div>
                 <div class="col-md-12 text-center">
-                  <button [disabled]="!user.valid" class="btn btn-primary">Submit</button>
+                  <button [disabled]="!user.valid" class="btn btn-success"><i class="glyphicon glyphicon-floppy-saved"></i> Submit</button>
                 </div>
               </form>
             </div>
@@ -74,7 +74,7 @@
   </div>
   <div class="row">
     <div class="panel panel-default">
-      <div class="panel-heading" style="height:57px;">List of Users <button button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#createUserModel">Create
+      <div class="panel-heading" style="height:57px;">List of Users <button button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#createUserModel"><i class="glyphicon glyphicon-plus-sign"></i>
           new user</button></div>
       <div class="panel-body">
         <div class="col-md-12">
@@ -100,7 +100,7 @@
                 </td>
                 <td *ngIf="user.roles.length <= 0">No roles</td>
                 <td>
-                  <button routerLink="controller/{{user.id}}">Show user</button>
+                  <button class="btn btn-default" routerLink="controller/{{user.id}}"><i class="glyphicon glyphicon-eye-open"></i> Show user</button>
                 </td>
               </tr>
             </tbody>
