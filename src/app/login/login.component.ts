@@ -18,7 +18,8 @@ export class LoginComponent implements OnInit {
   checkStatus: string;
   loginUrl: string = "authenticate";
   message: string;
-  resetmail:String
+  resetmail:String;
+  user_type: string;
   loginForm = new FormGroup({
     email: new FormControl(null,[Validators.required,Validators.email]),
     password: new FormControl(null,Validators.required)
@@ -73,7 +74,8 @@ export class LoginComponent implements OnInit {
       this.message = message;
     })
     this.checkStatus = this.getCookie('Authorization');
-    let user_type = this.getCookie('user_type');
+    this.user_type = this.getCookie('user_type');
+
     if (this.checkStatus.length != 0) {
       debugger
       this.loggedIn = true;
