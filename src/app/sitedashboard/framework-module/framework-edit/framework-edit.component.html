@@ -1,6 +1,6 @@
 <div class="container">
     <div class="col-md-12">
-        <button class="btn btn-primary" routerLink="/admin/dashboard/framework"><i class="glyphicon glyphicon-arrow-left">Back</i></button>
+        <button class="btn btn-default" routerLink="/admin/dashboard/framework"><i class="glyphicon glyphicon-arrow-left">Back</i></button>
     </div>
     <div class="col-md-12">
         <div class="panel panel-default">
@@ -58,10 +58,10 @@
                         </div>
                     </div>
                     <div class="row">
-                        <button class="btn btn-primary pull-right" (click)="updateForm()">{{!framework.id?
-                            'Save':'Update'}}</button>
+                        <button class="btn btn-success pull-right" (click)="updateForm()"><i class="glyphicon glyphicon-floppy-saved"></i> {{!framework.id?
+                            'Next':'Update'}}</button>
                         <button *ngIf="framework.id != (null && undefined && 0)" class="btn btn-danger pull-right"
-                            (click)="deleteform()">Delete</button>
+                            (click)="deleteform()"><i class="glyphicon glyphicon-trash"></i> Delete</button>
                     </div>
                     <fieldset [disabled]="!framework.id">
                         <div class="row">
@@ -89,7 +89,7 @@
                                                     <td>{{startup.title}}</td>
                                                     <td>{{startup.description}}</td>
                                                     <td>{{startup.additional_description}}</td>
-                                                    <td><button class="btn btn-danger" (click)="deletecoursesitems(startup,i)">Delete</button></td>
+                                                    <td><button class="btn btn-danger" (click)="deletecoursesitems(startup,i)"><i class="glyphicon glyphicon-trash"></i> Delete</button></td>
 
 
 
@@ -136,7 +136,7 @@
                                         </table>
                                     </div>
                                     <div class="col-md-12">
-                                        <button class="btn btn-primary" type="button" (click)="updateframeworkcourses()">Update
+                                        <button class="btn btn-success" type="button" (click)="updateframeworkcourses()"><i class="glyphicon glyphicon-floppy-saved"></i>Update
                                             Framework Courses</button>
                                     </div>
                                 </div>

@@ -73,6 +73,8 @@ export class ProgramModuleComponent implements OnInit {
             "zip_pincode_postalcode": "",
             "country": ""
         }
+        this.program_type_edit = false;
+        this.program_location_edit = false;
     }
     initProgramTypeValue(program_type: any) {
         console.log(program_type);

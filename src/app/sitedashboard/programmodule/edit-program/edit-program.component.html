@@ -1,6 +1,6 @@
 <div class="container">
     <div class="col-md-12">
-        <button class="btn btn-primary pull-left" routerLink="/admin/dashboard/program"><i class="glyphicon glyphicon-arrow-left"></i>Back</button>
+        <button class="btn btn-default pull-left" routerLink="/admin/dashboard/program"><i class="glyphicon glyphicon-arrow-left"></i>Back</button>
     </div>
     <div class="row">
         <form [formGroup]='program' *ngIf="showForm" (ngSubmit)=" onProgramSubmit(program,datas)" validate>
@@ -9,8 +9,7 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading" style="height:60px;">Select Program Type
-                            <button class="btn btn-success pull-right" data-toggle="modal" data-target="#programTypeModel">Create
-                                Program type</button>
+                            
                         </div>
                         <div class="panel-body">
                             <div class="col-md-12 form-group">
@@ -28,7 +27,7 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading" style="height:60px;">Select program location
-                            <button class="btn btn-success pull-right">Create Program location</button>
+                           
                         </div>
                         <div class="panel-body">
                             <div class="col-md-12 form-group">
@@ -202,7 +201,7 @@
 
                                         <td>{{item.question}}</td>
 
-                                        <td><button class="btn btn-danger" type="button" (click)="deleteappques(item,i)">Delete</button></td>
+                                        <td><button class="btn btn-danger" type="button" (click)="deleteappques(item,i)"><i class="glyphicon glyphicon-trash"></i> Delete</button></td>
 
 
 
@@ -247,7 +246,7 @@
                             </table>
                         </div>
                         <div class="col-md-12">
-                            <button class="btn btn-primary" type="button" (click)="updateApplicationQuestions()">Update
+                            <button class="btn btn-success" type="button" (click)="updateApplicationQuestions()"><i class="glyphicon glyphicon-floppy-saved"></i> Update
                                 Program Questions</button>
                         </div>
                     </div>
@@ -287,7 +286,7 @@
                 </div>
             </div> -->
             <div class="col-md-12 text-center">
-                <button class="btn btn-default" type="submit">{{!program.value.id? 'Save':'Update'}}</button>
+                <button class="btn btn-success" type="submit"><i class="glyphicon-floppy-saved"></i> {{!program.value.id? 'Save':'Update'}}</button>
                 <p style="color:red;" *ngIf="!program.controls.valid && submitted">Please fill up the following fields</p>
             </div>
         </form>
@@ -457,7 +456,7 @@
                             </div>
                         </div>
                         <div class="col-md-12 text-center">
-                            <button class="btn btn-success" (click)="onSubmitProgramForms()">Submit</button>
+                            <button class="btn btn-success" (click)="onSubmitProgramForms()"><i class="glyphicon-floppy-saved"></i> Submit</button>
                         </div>
                     </div>
                 </div>

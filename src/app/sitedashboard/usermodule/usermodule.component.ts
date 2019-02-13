@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl , FormGroup , FormBuilder } from '@angular/forms';
 import { ApiCommunicationService } from '../../api-communication.service';
 import { CookieService } from 'ngx-cookie-service';
-
+declare var $:any
 @Component({
     selector: 'app-usermodule',
     templateUrl: './usermodule.component.html',
@@ -80,6 +80,8 @@ export class UsermoduleComponent implements OnInit{
         this.apiService.postDataWithToken('create-user-by-admin',data,this.auth)
         .subscribe(
             data => { 
+                $("#createUserModel").modal('show')
+                this.getUsersList();
                 console.log(data);
             },
             error => console.error("couldn't post because", error)

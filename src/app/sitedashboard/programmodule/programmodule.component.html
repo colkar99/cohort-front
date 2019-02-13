@@ -1,9 +1,10 @@
 <div class="container">
 
-    
+
     <div class="col-md-12">
         <div class="panel panel-default">
-            <div class="panel-heading heading_height">List of Programs <button class="btn btn-success pull-right" routerLink="create-program">Create new program</button></div>
+            <div class="panel-heading heading_height">List of Programs <button class="btn btn-info pull-right"
+                    routerLink="create-program"><i class="glyphicon glyphicon-plus-sign"></i> New program</button></div>
             <div class="panel-body">
                 <table class="table table-bordered">
                     <thead>
@@ -13,16 +14,18 @@
                             <th>End Date</th>
                             <th>Duration</th>
                             <th>Seat Size</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let program of program_modules.programs" routerLink="edit-program/{{program.id}}"
-                            (click)="viewprogram(program)">
+                        <tr *ngFor="let program of program_modules.programs">
                             <td>{{program.title}}</td>
                             <td>{{program.start_date}}</td>
                             <td>{{program.end_date}}</td>
                             <td>{{program.duration}}</td>
                             <td>{{program.seat_size}}</td>
+                            <td><button routerLink="edit-program/{{program.id}}" (click)="viewprogram(program)" class="btn btn-default"><i
+                                        class="glyphicon glyphicon-eye-open"> </i> View</button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -30,11 +33,12 @@
         </div>
     </div>
 
-   
+
     <div class="col-md-12">
         <div class="panel panel-default">
-            <div class="panel-heading heading_height">List of Program types <button class="btn btn-success pull-right" data-toggle="modal" data-target="#programTypemodel" (click)="this.initForm();">Create
-                    new Program type</button></div>
+            <div class="panel-heading heading_height">List of Program types <button class="btn btn-info pull-right"
+                    data-toggle="modal" data-target="#programTypemodel" (click)="this.initForm();"><i class="glyphicon glyphicon-plus-sign"></i>
+                    New Program type</button></div>
             <div class="panel-body">
                 <table class="table table-bordered">
                     <thead>
@@ -43,15 +47,18 @@
                             <th>Description</th>
                             <th>Logo</th>
                             <th>Duration</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let program_type of program_modules.program_types" (click)="initProgramTypeValue(program_type)"
+                        <tr *ngFor="let program_type of program_modules.program_types" 
                             data-toggle="modal" data-target="#programTypemodel">
                             <td>{{program_type.program_type_title}}</td>
                             <td>{{program_type.program_type_description}}</td>
                             <td>{{program_type.program_type_logo}}</td>
                             <td>{{program_type.program_type_duration}}</td>
+                            <td><button (click)="initProgramTypeValue(program_type)" class="btn btn-default"><i
+                                        class="glyphicon glyphicon-eye-open"> </i> View</button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -59,10 +66,12 @@
         </div>
     </div>
 
-    
+
     <div class="col-md-12">
         <div class="panel panel-default">
-            <div class="panel-heading heading_height">List of Program Locations <button class="btn btn-success pull-right" data-toggle="modal" data-target="#programLocationmodel">Create new Program
+            <div class="panel-heading heading_height">List of Program Locations <button class="btn btn-info pull-right"
+                    data-toggle="modal" data-target="#programLocationmodel" (click)="initForm()"><i class="glyphicon glyphicon-plus-sign"></i>
+                    New Program
                     location</button></div>
             <div class="panel-body">
                 <table class="table table-bordered">
@@ -73,15 +82,18 @@
                             <th>City</th>
                             <th>Address</th>
                             <th>Postalcode</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let program_location of program_modules.program_locations" (click)="initProgramlocationValue(program_location)">
+                        <tr *ngFor="let program_location of program_modules.program_locations" >
                             <td>{{program_location.country}}</td>
                             <td>{{program_location.state_province_region}}</td>
                             <td>{{program_location.city}}</td>
                             <td>{{program_location.address_line_1}}</td>
                             <td>{{program_location.zip_pincode_postalcode}}</td>
+                            <td><button (click)="initProgramlocationValue(program_location)" class="btn btn-default"><i
+                                        class="glyphicon glyphicon-eye-open"> </i> View</button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -90,10 +102,12 @@
     </div>
 
 
- 
+
     <div class="col-md-12">
         <div class="panel panel-default">
-            <div class="panel-heading heading_height">List of Questions  <button class="btn btn-success pull-right" data-toggle="modal" data-target="#programquestionmodal" (click)="addques()">Create new Questions</button></div>
+            <div class="panel-heading heading_height">List of Questions <button class="btn btn-info pull-right"
+                    data-toggle="modal" data-target="#programquestionmodal" (click)="addques()"><i class="glyphicon glyphicon-plus-sign"></i>
+                    New Questions</button></div>
             <div class="panel-body">
                 <table class="table table-bordered">
                     <thead>
@@ -101,7 +115,8 @@
                             <th>Title</th>
                             <td>Question</td>
                             <td>Description</td>
-                            
+                            <th>Actions</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -109,7 +124,9 @@
                             <td>{{ques.title}}</td>
                             <td>{{ques.question}}</td>
                             <td>{{ques.description}}</td>
-                            
+                            <td><button  (click)="initQuestionsvalue(ques)" class="btn btn-default"><i
+                                        class="glyphicon glyphicon-eye-open"> </i> View</button></td>
+
                         </tr>
                     </tbody>
                 </table>
@@ -117,49 +134,52 @@
         </div>
     </div>
 
-<!--Model for Question start-->
-  <!-- Modal -->
-  <div class="modal fade" id="programquestionmodal" role="dialog" #programquestionmodal>
+    <!--Model for Question start-->
+    <!-- Modal -->
+    <div class="modal fade" id="programquestionmodal" role="dialog" #programquestionmodal>
         <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Question Detail</h4>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Question Detail</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <form #questionform="ngForm">
+                            <div class="col-md-6 form-group">
+                                <label>Title</label>
+                                <input type="text" class="form-control" name="title" [(ngModel)]="question.title" />
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Question</label>
+                                <textarea type="text" class="form-control" name="question" [(ngModel)]="question.question"></textarea>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Description</label>
+                                <textarea type="text" class="form-control" name="description" [(ngModel)]="question.description"></textarea>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Placeholder</label>
+                                <input type="text" class="form-control" name="placeholder" [(ngModel)]="question.placeholder" />
+                            </div>
+
+                            <div class="col-md-6 form-group" *ngIf="question_edit">
+                                <input type="hidden" class="form-control" name="id" [(ngModel)]="question.id" />
+                            </div>
+                            <div class="col-md-12 text-center">
+                                <button class="btn btn-success" *ngIf="!question_edit" type="submit" (click)="submitProgramType(questionform,'questions')"><i
+                                        class="glyphicon glyphicon-floppy-saved"></i> Submit</button>
+                                <button class="btn btn-success" *ngIf="question_edit" type="submit" (click)="updateProgramType(questionform,'questions')"><i
+                                        class="glyphicon glyphicon-floppy-saved"></i> Update</button>
+                                <button class="btn btn-danger" *ngIf="question_edit" type="submit" (click)="deleteQuestion(questionform.value.id)"><i
+                                        class="glyphicon glyphicon-trash"></i>Delete</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="modal-body">
-              <div class="row">
-                <form #questionform="ngForm">
-                    <div class="col-md-6 form-group">
-                        <label>Title</label>
-                        <input type="text" class="form-control" name="title" [(ngModel)]="question.title" />
-                    </div>
-                    <div class="col-md-6 form-group">
-                            <label>Question</label>
-                            <textarea type="text" class="form-control" name="question" [(ngModel)]="question.question" ></textarea>
-                        </div>
-                    <div class="col-md-6 form-group">
-                        <label>Description</label>
-                        <textarea type="text" class="form-control" name="description" [(ngModel)]="question.description" ></textarea>
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <label>Placeholder</label>
-                        <input type="text" class="form-control" name="placeholder" [(ngModel)]="question.placeholder" />
-                    </div>
-                    
-                    <div class="col-md-6 form-group" *ngIf="question_edit">
-                            <input type="hidden" class="form-control" name="id" [(ngModel)]="question.id" />
-                    </div>
-                    <div class="col-md-12 text-center">
-                        <button class="btn btn-primary"  *ngIf="!question_edit" type="submit" (click)="submitProgramType(questionform,'questions')">Submit</button>
-                        <button class="btn btn-primary" *ngIf="question_edit" type="submit" (click)="updateProgramType(questionform,'questions')">Update</button>
-                        <button class="btn btn-danger" *ngIf="question_edit" type="submit" (click)="deleteQuestion(questionform.value.id)">Delete</button>
-                    </div>
-                </form>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
     <!--Model for question end-->
 
 
@@ -200,9 +220,12 @@
                                 <input type="hidden" class="form-control" name="id" [(ngModel)]="program_type.id" />
                             </div>
                             <div class="col-md-12 text-center">
-                                <button class="btn btn-primary" *ngIf="!program_type_edit" type="submit" (click)="submitProgramType(form,'type')">Submit</button>
-                                <button class="btn btn-primary" *ngIf="program_type_edit" type="submit" (click)="updateProgramType(form,'type')">Update</button>
-                                <button class="btn btn-danger" *ngIf="program_type_edit" type="submit" (click)="deleteProgramType(form.value.id,'type')">Delete</button>
+                                <button class="btn btn-success" *ngIf="!program_type_edit" type="submit" (click)="submitProgramType(form,'type')"><i
+                                        class="glyphicon glyphicon-floppy-saved"></i> Submit</button>
+                                <button class="btn btn-success" *ngIf="program_type_edit" type="submit" (click)="updateProgramType(form,'type')"><i
+                                        class="glyphicon glyphicon-floppy-saved"></i> Update</button>
+                                <button class="btn btn-danger" *ngIf="program_type_edit" type="submit" (click)="deleteProgramType(form.value.id,'type')">
+                                    <i class="glyphicon glyphicon-trash"></i>Delete</button>
                             </div>
                         </form>
                     </div>
@@ -252,9 +275,12 @@
                                 <input type="hidden" class="form-control" name="id" [(ngModel)]="program_location.id" />
                             </div>
                             <div class="col-md-12 text-center">
-                                <button class="btn btn-primary" *ngIf="!program_location_edit" type="submit" (click)="submitProgramType(locationForm,'location')">Submit</button>
-                                <button class="btn btn-primary" *ngIf="program_location_edit" type="submit" (click)="updateProgramType(locationForm,'location')">Update</button>
-                                <button class="btn btn-danger" *ngIf="program_location_edit" type="submit" (click)="deleteProgramType(locationForm.value.id,'location')">Delete</button>
+                                <button class="btn btn-success" *ngIf="!program_location_edit" type="submit" (click)="submitProgramType(locationForm,'location')"><i
+                                        class="glyphicon glyphicon-floppy-saved"></i> Submit</button>
+                                <button class="btn btn-success" *ngIf="program_location_edit" type="submit" (click)="updateProgramType(locationForm,'location')"><i
+                                        class="glyphicon glyphicon-floppy-saved"></i> Update</button>
+                                <button class="btn btn-danger" *ngIf="program_location_edit" type="submit" (click)="deleteProgramType(locationForm.value.id,'location')"><i
+                                        class="glyphicon glyphicon-trash"></i>Delete</button>
                             </div>
                         </form>
                     </div>
