@@ -1,14 +1,17 @@
 <!--Startup details-->
 <div class="container">
-    <div class="col-md-12">
+    <div class="row">
         <button class="btn btn-primary pull-left" routerLink="/admin/dashboard/program-controls"><i class="glyphicon glyphicon-arrow-left">Back</i></button>
     </div>
-    <div class="row score" *ngIf="startup"><label>Score</label>
-        <div class="text-center">{{startup.score}}</div>
-    </div>
-    <div class="row" *ngIf="startup">
-        <div class="panel panel-default">
-            <div class="panel-body">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4>Startup Information</h4>
+        </div>
+        <div class="panel-body">
+            <div class="row score" *ngIf="startup"><label>Score</label>
+                <div class="text-center">{{startup.score}}</div>
+            </div>
+            <div class="row" *ngIf="startup">
                 <div class="col-md-12">
                     <h4 class="page-heading">Startup Info</h4>
                     <div class="col-md-4"><label>Startup Name:</label>
@@ -94,183 +97,195 @@
                 <div class="col-md-12" >
                     <button *ngIf="startup.application_status != 'CSFI'" class="btn btn-success" (click)="requestCurrentStateForm(startup.id)">Request current state form</button>
                     <button *ngIf="startup.application_status == 'CSFI'" class="btn btn-danger" (click)="sendReminderForCurrent(startup.id)">Send gentle reminder to fill current state form</button>
-                 -->
+                    -->
 
                     </div>
                 </div>
-            </div>
+            </div>    
         </div>
     </div>
-    <!--End-->
-    <div class="row" *ngIf="appRespQues">
-        <form #form="ngForm" (ngSubmit)="submitAdminResponse(form)">
-            <h4>Review startup responses</h4>
-            <div class="col-md-12" *ngFor="let app_res of appRespQues; let i = index">
 
-                <div class="col-md-12"><label>Title</label>
-                    {{app_res.application_question.title}}
-                </div>
-                <div class="col-md-12"><label>Description</label>
-                    {{app_res.application_question.description}}
-                </div>
-                <div class="col-md-12"><label>Question</label>
-                    {{app_res.application_question.question}}
-                </div>
-                <div class="col-md-12"><label>Startup Response</label>
-                    {{app_res.response}}
-                    {{app_res.admin_response}}
-                </div>
-                <div *ngIf="app_res.admin_response">
-                    <div class="col-md-12"><label>Admin Response</label>
-                        {{app_res.reviewer_feedback}}
-                    </div>
-                    <div class="col-md-12"><label>Admin Response</label>
-                        {{app_res.reviewer_rating}}
-                    </div>
-                    <div class="col-md-12">
-                        <button class="btn btn-default" (click)="app_res.admin_response = false" (click)="edit_admin = true">Edit</button>
-                    </div>
-                    <br>
-                </div>
-                <div ngModelGroup="{{i}}" *ngIf="!app_res.admin_response">
-                    <div class="col-md-12 form-group"><label>Admin Feedback</label>
-                        <input type="hidden" name="id" [(ngModel)]="app_res.id">
-                        <input type="hidden" name="application_question_id" [(ngModel)]="app_res.application_question.id">
-                        <textarea class="form-control" type="text" [(ngModel)]="i.reviewer_feedback" name="reviewer_feedback"></textarea>
-                    </div>
-                    <div class="col-md-12 form-group"><label>Admin rating</label>
-                        <div class="form-group">
-                            <select class="form-control" id="sel1" [(ngModel)]="i.reviewer_rating" name="reviewer_rating">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
+    <!--End-->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4>Review startup responses</h4>
+        </div>
+        <div class="panel-body">
+            <div class="container" *ngIf="appRespQues">
+                <form #form="ngForm" (ngSubmit)="submitAdminResponse(form)">
+                    <div class="col-md-12" *ngFor="let app_res of appRespQues; let i = index">
+        
+                        <div class="col-md-12"><label>Title</label>
+                            {{app_res.application_question.title}}
+                        </div>
+                        <div class="col-md-12"><label>Description</label>
+                            {{app_res.application_question.description}}
+                        </div>
+                        <div class="col-md-12"><label>Question</label>
+                            {{app_res.application_question.question}}
+                        </div>
+                        <div class="col-md-12"><label>Startup Response</label>
+                            {{app_res.response}}
+                            {{app_res.admin_response}}
+                        </div>
+                        <div *ngIf="app_res.admin_response">
+                            <div class="col-md-12"><label>Admin Response</label>
+                                {{app_res.reviewer_feedback}}
+                            </div>
+                            <div class="col-md-12"><label>Admin Response</label>
+                                {{app_res.reviewer_rating}}
+                            </div>
+                            <div class="col-md-12">
+                                <button class="btn btn-default" (click)="app_res.admin_response = false" (click)="edit_admin = true">Edit</button>
+                            </div>
+                            <br>
+                        </div>
+                        <div ngModelGroup="{{i}}" *ngIf="!app_res.admin_response">
+                            <div class="col-md-12 form-group"><label>Admin Feedback</label>
+                                <input type="hidden" name="id" [(ngModel)]="app_res.id">
+                                <input type="hidden" name="application_question_id" [(ngModel)]="app_res.application_question.id">
+                                <textarea class="form-control" type="text" [(ngModel)]="i.reviewer_feedback" name="reviewer_feedback"></textarea>
+                            </div>
+                            <div class="col-md-12 form-group"><label>Admin rating</label>
+                                <div class="form-group">
+                                    <select class="form-control" id="sel1" [(ngModel)]="i.reviewer_rating" name="reviewer_rating">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                            </div>
+        
                         </div>
                     </div>
-
-                </div>
+                    <div class="col-md-12 text-center" *ngIf="edit_admin == true">
+                        <button class="btn btn-default" type="submit">Submit</button>
+                    </div>
+        
+                </form>
             </div>
-            <div class="col-md-12 text-center" *ngIf="edit_admin == true">
-                <button class="btn btn-default" type="submit">Submit</button>
-            </div>
-
-        </form>
+        </div>
     </div>
 
-    <div *ngIf="startup.application_status != 'PR' && startup.application_status != 'RP' && this.startup.application_status != 'RC' && startup.application_status != 'CSFI' && currentstateedit == false">
-        <div>
+    <div class="panel panel-default" *ngIf="startup.application_status != 'PR' && startup.application_status != 'RP' && this.startup.application_status != 'RC' && startup.application_status != 'CSFI' && currentstateedit == false">
+        <div class="panel-heading">
             <h3>CurrentStateForm</h3>
         </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <span class="label ">REVENUE</span>
-                <textarea class="form-control" name="currentstateform.revenue" [(ngModel)]="currentstateform.revenue"></textarea>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <span class="label ">REVENUE</span>
+                        <textarea class="form-control" name="currentstateform.revenue" [(ngModel)]="currentstateform.revenue"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <span class="label ">TRACTION</span>
+                        <textarea class="form-control" name="currentstateform.traction" [(ngModel)]="currentstateform.traction"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <span class="label ">SOLUTION READINESS</span>
+                        <textarea class="form-control" name="currentstateform.solution_readiness" [(ngModel)]="currentstateform.solution_readiness"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <span class="label ">INVESTMENT</span>
+                        <textarea class="form-control" name="currentstateform.investment" [(ngModel)]="currentstateform.investment"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <span class="label ">TEAM VELOCITY</span>
+                        <textarea class="form-control" name="currentstateform.team_velocity" [(ngModel)]="currentstateform.team_velocity"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <span class="label ">PARTNERS</span>
+                        <textarea class="form-control" name="currentstateform.partners" [(ngModel)]="currentstateform.partners"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <span class="label ">VENDORS</span>
+                        <textarea class="form-control" name="currentstateform.vendors" [(ngModel)]="currentstateform.vendors"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <span class="label ">VENDORS COSTS</span>
+                        <textarea class="form-control" name="currentstateform.vendors_costs" [(ngModel)]="currentstateform.vendors_costs"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <span class="label ">EXPERIMENT TESTING</span>
+                        <textarea class="form-control" name="currentstateform.experiment_testing" [(ngModel)]="currentstateform.experiment_testing"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <span class="label ">CUSTOMER SEGMENT</span>
+                        <textarea class="form-control" name="currentstateform.customer_segment" [(ngModel)]="currentstateform.customer_segment"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <span class="label ">PROBLEM VALIDATION</span>
+                        <textarea class="form-control" name="currentstateform.problem_validation" [(ngModel)]="currentstateform.problem_validation"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <span class="label ">CHANNELS</span>
+                        <textarea class="form-control" name="currentstateform.channels" [(ngModel)]="currentstateform.channels"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <span class="label ">GOVERNENCE</span>
+                        <textarea class="form-control" name="currentstateform.governance" [(ngModel)]="currentstateform.governance"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <span class="label ">ADMIN FEEEDBACK</span>
+                        <textarea class="form-control" name="currentstateform.reviewer_feedback" [(ngModel)]="currentstateform.reviewer_feedback"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <span class="label ">ADMIN RATING</span>
+                        <select class="form-control" name="currentstateform.reviewer_rating" [(ngModel)]="currentstateform.reviewer_rating">
+                            <option value="" selected>---select---</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-12 text-center">
+                    <button class="btn btn-default" type="button" (click)="submitCSFS()">Submit</button>
+                </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <span class="label ">TRACTION</span>
-                <textarea class="form-control" name="currentstateform.traction" [(ngModel)]="currentstateform.traction"></textarea>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <span class="label ">SOLUTION READINESS</span>
-                <textarea class="form-control" name="currentstateform.solution_readiness" [(ngModel)]="currentstateform.solution_readiness"></textarea>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <span class="label ">INVESTMENT</span>
-                <textarea class="form-control" name="currentstateform.investment" [(ngModel)]="currentstateform.investment"></textarea>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <span class="label ">TEAM VELOCITY</span>
-                <textarea class="form-control" name="currentstateform.team_velocity" [(ngModel)]="currentstateform.team_velocity"></textarea>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <span class="label ">PARTNERS</span>
-                <textarea class="form-control" name="currentstateform.partners" [(ngModel)]="currentstateform.partners"></textarea>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <span class="label ">VENDORS</span>
-                <textarea class="form-control" name="currentstateform.vendors" [(ngModel)]="currentstateform.vendors"></textarea>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <span class="label ">VENDORS COSTS</span>
-                <textarea class="form-control" name="currentstateform.vendors_costs" [(ngModel)]="currentstateform.vendors_costs"></textarea>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <span class="label ">EXPERIMENT TESTING</span>
-                <textarea class="form-control" name="currentstateform.experiment_testing" [(ngModel)]="currentstateform.experiment_testing"></textarea>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <span class="label ">CUSTOMER SEGMENT</span>
-                <textarea class="form-control" name="currentstateform.customer_segment" [(ngModel)]="currentstateform.customer_segment"></textarea>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <span class="label ">PROBLEM VALIDATION</span>
-                <textarea class="form-control" name="currentstateform.problem_validation" [(ngModel)]="currentstateform.problem_validation"></textarea>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <span class="label ">CHANNELS</span>
-                <textarea class="form-control" name="currentstateform.channels" [(ngModel)]="currentstateform.channels"></textarea>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <span class="label ">GOVERNENCE</span>
-                <textarea class="form-control" name="currentstateform.governance" [(ngModel)]="currentstateform.governance"></textarea>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <span class="label ">ADMIN FEEEDBACK</span>
-                <textarea class="form-control" name="currentstateform.reviewer_feedback" [(ngModel)]="currentstateform.reviewer_feedback"></textarea>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <span class="label ">ADMIN RATING</span>
-                <select class="form-control" name="currentstateform.reviewer_rating" [(ngModel)]="currentstateform.reviewer_rating">
-                    <option value="" selected>---select---</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-md-12 text-center">
-            <button class="btn btn-default" type="button" (click)="submitCSFS()">Submit</button>
-        </div>
-
     </div>
 
-    <div class="row" *ngIf="currentstateedit == true">
-        <div class="panel panel-default">
+
+        <div class="panel panel-default" *ngIf="currentstateedit == true">
+            <div class="panel-heading">
+                <h4 class="page-heading">CurrentStateForm Info</h4>
+            </div>
             <div class="panel-body">
                 <div class="col-md-12">
-                    <h4 class="page-heading">CurrentStateForm Info</h4>
                     <div class="col-md-4"><label>Revenue:</label>
                         {{currentstateform.revenue}}
                     </div>
@@ -326,5 +341,4 @@
                 </div>
             </div>
         </div>
-    </div>
 </div>

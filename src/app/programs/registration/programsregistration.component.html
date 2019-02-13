@@ -138,65 +138,32 @@
 </div>
 
 <div class="panel panel-default" *ngIf="formSubmitted">
+    <div class="panel-heading">Please answer the below questions.</div>
 <!-- <div class="panel panel-default"> -->
-    <div class="panel body">
-        <form [formGroup]="application_questions_form" (ngSubmit)=" initAppQuesSubmit(application_questions_form)">
-        <div class="row" formArrayName="application_question"
-        *ngFor="let item of application_questions_form.get('application_question').controls; let i = index;">
-            <div [formGroupName]="i">
-                <div class="col-md-12">
-                    <p>{{application_questions[i].title}}</p>
+    <div class="panel-body">
+        <div class="row">
+            <form [formGroup]="application_questions_form" (ngSubmit)=" initAppQuesSubmit(application_questions_form)">
+                <div class="row" formArrayName="application_question"
+                *ngFor="let item of application_questions_form.get('application_question').controls; let i = index;">
+                    <div [formGroupName]="i">
+                        <div class="col-md-12">
+                            <p>{{application_questions[i].title}}</p>
+                        </div>
+                        <div class="col-md-12">
+                            <p>{{application_questions[i].question}}</p>
+                        </div>
+                        <div class="col-md-12">
+                                <p>{{application_questions[i].description}}</p>
+                        </div>
+                        <div class="col-md-12">
+                            <textarea formControlName="response" placeholder="{{application_questions[i].placeholder}}" class="form-control"></textarea>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-12">
-                    <p>{{application_questions[i].question}}</p>
+                <div class="col-md-12 text-center">
+                    <button class="btn btn-success" type="submit">Submit</button>
                 </div>
-                <div class="col-md-12">
-                        <p>{{application_questions[i].description}}</p>
-                </div>
-                <div class="col-md-12">
-                    <textarea formControlName="response" placeholder="{{application_questions[i].placeholder}}" class="form-control"></textarea>
-                </div>
-            </div>
+            </form>
         </div>
-        <div class="col-md-12 text-center">
-            <button class="btn btn-default" type="submit">Submit</button>
-        </div>
-    </form>
     </div>
 </div>
-t.string "startup_name"
-t.string "founded_date"
-t.string "website_url"
-t.string "entity_type"
-t.integer "program_id"
-t.integer "program_status_id"
-t.datetime "created_at", null: false
-t.datetime "updated_at", null: false
-t.string "created_by"
-t.boolean "isDelete", default: false
-t.boolean "isActive", default: true
-t.datetime "deleted_at"
-t.string "deleted_by"
-t.string "founder_name"
-t.string "founder_email"
-t.string "founder_phone_number"
-t.text "founder_skills"
-t.text "founder_credentials"
-t.text "founder_experience"
-t.text "founder_commitment"
-t.string "startup_address_line_1"
-t.string "startup_address_line_2"
-t.string "startup_city"
-t.string "startup_state_province_region"
-t.string "startup_zip_pincode_postalcode"
-t.string "startup_country"
-t.string "startup_geo_location"
-t.string "application_status"
-t.string "app_status_description"
-t.boolean "contract_signed"
-t.datetime "contract_signed_date"
-t.datetime "contract_received_date"
-t.boolean "current_state_form", default: false
-t.boolean "current_state_form_reviewed", default: false
-t.index ["program_id"], name: "index_startup_registrations_on_program_id"
-t.index ["program_status_id"], name: "index_startup_registrations_on_program_status_id"

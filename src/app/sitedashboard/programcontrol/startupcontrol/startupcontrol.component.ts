@@ -55,6 +55,9 @@ export class StartupControlComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
         this.startup = data.startup_application;
+        if(this.startup.application_status == "PR"){
+          this.edit_admin = true
+        }
         if(this.startup.current_state_form_reviewed == false){
           this.currentstateedit = false
         }else{
