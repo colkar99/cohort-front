@@ -2,7 +2,7 @@
 
 <div class="panel panel-default" *ngIf="!formSubmitted">
         <div class="panel-body">
-            <form #registerform="ngForm" (ngSubmit)=" handleFormSubmit(registerform)" novalidate>
+            <form #registerform="ngForm" (ngSubmit)="registerform.valid && handleFormSubmit(registerform)" novalidate>
             <div class="row">        
                 <div class="col-md-6 form-group">
                     <label>Startup Name</label>
@@ -138,16 +138,17 @@
 </div>
 
 <div class="panel panel-default" *ngIf="formSubmitted">
+<!-- <div class="panel panel-default"> -->
     <div class="panel-heading">Please give the best answers.</div>
 <!-- <div class="panel panel-default"> -->
     <div class="panel-body">
-        <div class="row">
-            <form [formGroup]="application_questions_form" (ngSubmit)=" initAppQuesSubmit(application_questions_form)">
-                <div class="row" formArrayName="application_question"
+        <div class="container">
+            <form [formGroup]="application_questions_form" (ngSubmit)="application_questions_form.valid && initAppQuesSubmit(application_questions_form)" novalidate>
+                <div class="row" style="padding:15px;" formArrayName="application_question"
                 *ngFor="let item of application_questions_form.get('application_question').controls; let i = index;">
                     <div [formGroupName]="i">
                         <div class="col-md-12">
-                            <p>{{application_questions[i].title}}</p>
+                            <p><span>{{i +1}}</span>) {{application_questions[i].title}}</p>
                         </div>
                         <div class="col-md-12">
                             <p>{{application_questions[i].question}}</p>
@@ -156,7 +157,8 @@
                                 <p>{{application_questions[i].description}}</p>
                         </div>
                         <div class="col-md-12">
-                            <textarea formControlName="response" placeholder="{{application_questions[i].placeholder}}" class="form-control"></textarea>
+                            <textarea formControlName="response" placeholder="{{application_questions[i].placeholder}}" class="form-control" 
+                            [ngClass]="{errmsg: application_questions_form.touched &&  application_questions_form.invalid}" required></textarea>
                         </div>
                     </div>
                 </div>

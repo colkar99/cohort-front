@@ -32,6 +32,7 @@ export class ProgramsRegistrationComponent implements OnInit {
     this.getApplicationQuestion();
   }
   initAppQuesSubmit(form){
+    debugger
     let dum_data = form.value;
     let data = {application_ques_response: dum_data, program_id: this.program_id,startup_application_id: this.startup_application.id };
     this.apiService.postData('create-program-questions-response',JSON.stringify(data))
