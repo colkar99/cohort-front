@@ -33,7 +33,7 @@
 </div>
 
 <div class="col-md-12">
-  <button class="btn btn-default pull-right" type="submit" (click)="submitRoadmap()">{{!roadmap.id ? 'Save':'Update'}}</button>
+  <button class="btn btn-lg btn-success text-center" style="margin-left:350px;" type="submit" (click)="submitRoadmap()"><i class="glyphicon glyphicon-floppy-saved"></i> {{!roadmap.id ? 'Save':'Update'}}</button>
   <button *ngIf="roadmap.id !=(null && undefined)" class="btn btn-danger pull-right" (click)="deleteroadmap()">Delete</button>
 </div>
 
@@ -63,7 +63,7 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" (click)="saveroadmap()">Save</button>
+        <button type="button" class="btn btn-default" (click)="saveroadmap()">Next</button>
         <button type="button" class="btn btn-default" (click)="closeroadmap()">Close</button>
       </div>
     </div>
@@ -99,7 +99,7 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" (click)="savemilestone()">Save</button>
+        <button type="button" class="btn btn-default" (click)="savemilestone()">Next</button>
         <button type="button" class="btn btn-default" (click)="closemilestone()">Close</button>
       </div>
     </div>
@@ -156,7 +156,7 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" (click)="saveresource()">{{!resources.id? 'Save':'Update'}}</button>
+        <button type="button" class="btn btn-success" (click)="saveresource()"><i class="glyphicon glyphicon-floppy-saved"></i>{{!resources.id? 'Save':'Update'}}</button>
         <button type="button" class="btn btn-default" (click)="closeresource()">Close</button>
       </div>
     </div>
