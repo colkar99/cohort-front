@@ -136,7 +136,7 @@
                                 {{app_res.reviewer_rating}}
                             </div>
                             <div class="col-md-12">
-                                <button class="btn btn-default" (click)="app_res.admin_response = false" (click)="edit_admin = true">Edit</button>
+                                <button class="btn btn-default" (click)="app_res.admin_response = false" (click)="edit_admin = true"><i class="glyphicon glyphicon-pencil"></i> Edit</button>
                             </div>
                             <br>
                         </div>
@@ -161,7 +161,7 @@
                         </div>
                     </div>
                     <div class="col-md-12 text-center" *ngIf="edit_admin == true">
-                        <button class="btn btn-default" type="submit">Submit</button>
+                        <button class="btn btn-success" type="submit"><i class="glyphicon glyphicon-floppy-saved"></i>Submit</button>
                     </div>
         
                 </form>
@@ -276,7 +276,7 @@
                     </div>
                 </div>
                 <div class="col-md-12 text-center">
-                    <button class="btn btn-default" type="button" (click)="submitCSFS()">Submit</button>
+                    <button class="btn btn-success" type="button" (click)="submitCSFS()"><i class="glyphicon glyphicon-floppy-saved"></i>Submit</button>
                 </div>
             </div>
         </div>
