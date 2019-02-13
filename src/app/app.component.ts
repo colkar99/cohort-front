@@ -17,6 +17,7 @@ export class AppComponent {
   user_role: string;
   mentor: any = {};
   additonal: any = {}
+  user_type:any;
 
   constructor(private cookieService: CookieService,
     private router: Router,
@@ -30,9 +31,17 @@ export class AppComponent {
     this.sharedData.currentMessage.subscribe(message => {
       this.message = message;
       this.loggedIn = true;
+      this.user_role = this.getCookie('role');
+      if (this.user_role == "contract_manager"){
+        this.user_type = "contract_manager"
+      }
+      else{
+        this.user_type = this.getCookie('user_type');
+      }
     })
     this.checkStatus = this.getCookie('Authorization');
-    this.user_role = this.getCookie('role')
+    this.user_role = this.getCookie('role');
+    this.user_type = this.getCookie('user_type');
     if (this.checkStatus.length != 0) {
       this.loggedIn = true;
     } else {
@@ -52,6 +61,8 @@ export class AppComponent {
   logout(): void {
     this.deleteCookie('Authorization');
     this.deleteCookie('role');
+    this.deleteCookie('user_type');
+    this.deleteCookie('user_id');
     this.loggedIn = false;
     // this.detect.detectChanges();
     this.router.navigate(['/']);
