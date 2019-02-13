@@ -91,7 +91,7 @@ export class StartupbyProgramsComponent implements OnInit {
   showStartups(id: any) {
     debugger
     let data = { "program_id": id };
-    this.cookieService.set('program_id', id, 30, '/admin/dashboard/program-controls');
+    this.cookieService.set('program_id', id, 30, '/');
     let url = "startup/show-profiles-for-admin";
     this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
       .subscribe(data => {

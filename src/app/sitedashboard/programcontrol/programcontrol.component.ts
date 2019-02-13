@@ -104,7 +104,7 @@ export class ProgramControlComponent implements OnInit {
     debugger
     if (id != "" && id != (0 && null && undefined)) {
       let data = { "program_id": id };
-      this.cookieService.set('program_id', id, 30, '/admin/dashboard/program-controls');
+      this.cookieService.set('program_id', id, 30, '/');
       let url = "program/show-startup-program-wise";
       this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
         .subscribe(data => {
