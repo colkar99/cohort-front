@@ -1,64 +1,71 @@
-
-<div class="row">
-    <div class="col-md-12">
-        <div class="form-group" *ngIf="program_modules">
-            <label for="sel1">Select program:</label>
-            <select class="form-control" id="sel1" (change)="onChange($event.target.value)" name="program_id" [(ngModel)]="program_id">
-                 <option></option>
-              <option *ngFor="let program of program_modules" value="{{program.id}}">{{program.title}}</option>
-            </select>
-          </div>
-    </div>
-</div>
-<div class="row" *ngIf="startups && startups.length == 0">
-    <div class="alert alert-danger">
-        <strong>Oops!</strong> No startup have accepted for this program.
-    </div>
-</div>
-<div class="row" *ngIf="startups && startups.length > 0">
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <div class="col-md-12">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                        <th>Startup Name</th>
-                        <th>Status</th>
-                        <th>Status description</th>
-                        <th>Score</th>
-                        <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let startup of startups" style="cursor: pointer; ">
-                        <td>{{startup.startup_name}}</td>
-                        <td>{{startup.application_status}}</td>
-                        <td>{{startup.app_status_description}}</td>
-                        <td>{{startup.score}}</td>
-                        <td>
-                            <button *ngIf="startup.application_status == 'AA'" routerLink="{{startup.id}}">Create contract form</button>
-                            <button *ngIf="startup.application_status != 'AA'" routerLink="edit/{{startup.id}}">View contract form</button>
-                            <button *ngIf="startup.application_status == 'CSWFP'" (click)="approvalreq(startup.id)">Approve contract form</button>
-                        </td>
-                        
-                        </tr>
-                    </tbody>
-                </table>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group" *ngIf="program_modules">
+                <label for="sel1">Select program:</label>
+                <select class="form-control" id="sel1" (change)="onChange($event.target.value)" name="program_id"
+                    [(ngModel)]="program_id">
+                    <option></option>
+                    <option *ngFor="let program of program_modules" value="{{program.id}}">{{program.title}}</option>
+                </select>
             </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="startups && startups.length == 0">
+        <div class="alert alert-danger">
+            <strong>Oops!</strong> No startup have accepted for this program.
+        </div>
+    </div>
+    <div class="row" *ngIf="startups && startups.length > 0">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Startup Name</th>
+                                <th>Status</th>
+                                <th>Status description</th>
+                                <th>Score</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let startup of startups" style="cursor: pointer; ">
+                                <td>{{startup.startup_name}}</td>
+                                <td>{{startup.application_status}}</td>
+                                <td>{{startup.app_status_description}}</td>
+                                <td>{{startup.score}}</td>
+                                <td>
+                                    <button class="btn btn-default" *ngIf="startup.application_status == 'AA'"
+                                        routerLink="{{startup.id}}"><i class="glyphicon glyphicon-plus-sign"></i>
+                                        Create contract form</button>
+                                    <button class="btn btn-default" *ngIf="startup.application_status != 'AA'"
+                                        routerLink="edit/{{startup.id}}"><i class="glyphicon glyphicon-eye-open"></i>
+                                        View contract form</button>
+                                    <button class="btn btn-default" *ngIf="startup.application_status == 'CSWFP'"
+                                        (click)="approvalreq(startup.id)"><i class="glyphicon glyphicon-floppy-saved"></i>
+                                        Approve contract form</button>
+                                </td>
 
-            <div class="row">
-                <!-- Modal -->
-                <div id="reviewFormModal" class="modal fade" role="dialog" #reviewFormModal>
-                    <div class="modal-dialog modal-lg">
-                    
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Modal Header</h4>
-                        </div>
-                        <div class="modal-body" *ngIf="reviewFormData">
-                                <div class="row" >
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="row">
+                    <!-- Modal -->
+                    <div id="reviewFormModal" class="modal fade" role="dialog" #reviewFormModal>
+                        <div class="modal-dialog modal-lg">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Contract Aprroval Form</h4>
+                                </div>
+                                <div class="modal-body" *ngIf="reviewFormData">
+                                    <div class="row">
                                         <div class="col-md-12 text-center">
                                             <h4> Contract form</h4>
                                         </div>
@@ -70,17 +77,17 @@
                                     <div class="row">
                                         <div class="col-md-6 form-group">
                                             <label>From,</label>
-                                            <p  class="form-control" >{{reviewFormData.p_1_name}}</p>
-                                            <p  class="form-control" >{{reviewFormData.p_1_address}}</p>
-                                            <p  class="form-control" >{{reviewFormData.p_1_phone_number}}</p>
-                                            <p  class="form-control" >{{reviewFormData.p_1_email}}</p>                       
+                                            <p class="form-control">{{reviewFormData.p_1_name}}</p>
+                                            <p class="form-control">{{reviewFormData.p_1_address}}</p>
+                                            <p class="form-control">{{reviewFormData.p_1_phone_number}}</p>
+                                            <p class="form-control">{{reviewFormData.p_1_email}}</p>
                                         </div>
                                         <div class="col-md-6">
                                             <label>To,</label>
-                                            <p class="form-control" >{{reviewFormData.p_2_name}}</p>
-                                            <p class="form-control" >{{reviewFormData.p_2_address}}</p>
-                                            <p class="form-control" >{{reviewFormData.p_2_phone_number}}</p>
-                                            <p class="form-control" >{{reviewFormData.p_2_email}}</p>
+                                            <p class="form-control">{{reviewFormData.p_2_name}}</p>
+                                            <p class="form-control">{{reviewFormData.p_2_address}}</p>
+                                            <p class="form-control">{{reviewFormData.p_2_phone_number}}</p>
+                                            <p class="form-control">{{reviewFormData.p_2_email}}</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -95,7 +102,7 @@
                                         <div class="col-md-6 form-group">
                                             <label>Contract duration in month</label>
                                             <p class="form-control" name="duration">{{reviewFormData.duration}}</p>
-                                        </div>                    
+                                        </div>
                                     </div>
                                     <div class="row" *ngIf="selected_add_info">
                                         <div class="col-md-12">
@@ -104,7 +111,7 @@
                                         </div>
                                         <div class="col-md-12">
                                             <label>Authorization</label>
-                                            <p>{{selected_add_info.authorization}}</p>                        
+                                            <p>{{selected_add_info.authorization}}</p>
                                         </div>
                                         <div class="col-md-12">
                                             <label>Contract terms condition</label>
@@ -112,19 +119,21 @@
                                         </div>
                                         <div class="col-md-12">
                                             <label>Contract termination</label>
-                                            <p>{{selected_add_info.contract_termination}}</p>                        
+                                            <p>{{selected_add_info.contract_termination}}</p>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="modal-footer text-center">
+                                    <button type="button" class="btn btn-success" (click)="Approve(reviewFormData)"><i
+                                            class="glyphicon glyphicon-floppy-saved"></i> Approve</button>
+                                </div>
+                            </div>
+
                         </div>
-                        <div class="modal-footer text-center">
-                            <button type="button" class="btn btn-default" (click)="Approve(reviewFormData)">Approve</button>
-                        </div>
-                        </div>
-                    
                     </div>
                 </div>
-            </div>
 
+            </div>
         </div>
     </div>
 </div>
