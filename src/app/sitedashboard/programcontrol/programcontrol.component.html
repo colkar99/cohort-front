@@ -21,13 +21,20 @@
         <div class="panel-body">
             <div class="row">
                 <label>List of registered startups</label>
-                <div class="col-md-12 col-xs-12">
+                <!-- <div class="col-md-12 col-xs-12">
                     <button class="btn btn-default pull-right" type="button" (click)="initiatecsfi()">
                         <i class="glyphicon glyphicon-envelope"></i>   Initiate Current State Form</button>
                     <button class="btn btn-success pull-right" type="button" (click)="startupAccept()">
                         <i class="glyphicon glyphicon-ok-circle"></i>   Accept</button>
                     <button class="btn btn-danger pull-right" type="button" (click)="startupReject()">
                         <i class="glyphicon glyphicon-ban-circle"></i>  Reject</button>
+                </div> -->
+                <div class="col-md-12 col-xs-12 text-right">
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default" (click)="initiatecsfi()"><i class="glyphicon glyphicon-envelope"></i>  Initiate Current State Form</button>
+                        <button type="button" class="btn btn-success" (click)="startupAccept()"><i class="glyphicon glyphicon-ok-circle"></i>   Accept</button>
+                        <button type="button" class="btn btn-danger" (click)="startupReject()"> <i class="glyphicon glyphicon-ban-circle"></i>  Reject</button>
+                    </div>
                 </div>
                 <div class="col-md-12 col-xs-12 table-responsive">
                     <table class="table table-bordered">
