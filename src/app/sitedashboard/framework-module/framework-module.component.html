@@ -3,29 +3,30 @@
     <div class="panel panel-default">
         <div class="panel-heading" style="height:57px;">List of Frameworks  <button class="btn btn-info pull-right" type="button" routerLink="create-framework"><i class="glyphicon glyphicon-plus-sign"></i>New Framework</button></div>
         <div class="panel-body">
-            <div class="col-md-12">
-               
+            <div class="row">
+                <div class="col-md-12 col-xs-12 table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Level</th>
+                                <th>Thumb image</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let framework of frameworks;let i = index" >
+                                <td>{{framework.title}}</td>
+                                <td>{{framework.description}}</td>
+                                <td>{{framework.level}}</td>
+                                <td>{{framework.thumb_image}}</td>
+                                <td><button class="btn btn-default" routerLink="edit/{{framework.id}}"><i class="glyphicon glyphicon-eye-open"></i> View</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Level</th>
-                        <th>Thumb image</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let framework of frameworks;let i = index" >
-                        <td>{{framework.title}}</td>
-                        <td>{{framework.description}}</td>
-                        <td>{{framework.level}}</td>
-                        <td>{{framework.thumb_image}}</td>
-                        <td><button class="btn btn-default" routerLink="edit/{{framework.id}}"><i class="glyphicon glyphicon-eye-open"></i> View</button></td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
     </div>
 </div>
@@ -34,30 +35,28 @@
     <div class="panel panel-default">
         <div class="panel-heading" style="height:57px;">List of Courses  <button class="btn btn-info pull-right" type="button" routerLink="create-course"><i class="glyphicon glyphicon-plus-sign"></i> New Courses</button></div>
         <div class="panel-body">
-            <div class="col-md-12">
-               
+            <div class="row">
+                <div class="col-md-12 col-xs-12 table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Additional Description</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let framework of courses;let i = index" >
+                                <td>{{framework.title}}</td>
+                                <td>{{framework.description}}</td>
+                                <td>{{framework.additional_description}}</td>
+                                <td><button class="btn btn-default" (click)="setsourceedit(framework)" routerLink="editcourse/{{framework.id}}"><i class="glyphicon glyphicon-eye-open"></i> View</button></td> 
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Additional Description</th>
-                        <th>Actions</th>
-                        
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let framework of courses;let i = index" >
-                        <td>{{framework.title}}</td>
-                        <td>{{framework.description}}</td>
-                        <td>{{framework.additional_description}}</td>
-                        <td><button class="btn btn-default" (click)="setsourceedit(framework)" routerLink="editcourse/{{framework.id}}"><i class="glyphicon glyphicon-eye-open"></i> View</button></td>
-
-                       
-                    </tr>
-                </tbody>
-            </table>
         </div>
     </div>
 </div>

@@ -24,28 +24,30 @@
                     <div *ngIf="course.id != (null && undefined && 0)">
                         <div class="row">Activities <button type="button" class="btn btn-info" (click)="addactivities()"><i class="glyphicon glyphicon-plus-sign"></i> Add</button></div>
                         <div class="row">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Description</th>
-                                        <th>Placeholder</th>
-                                        <th>Order</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let item of course.activities;let i = index">
-                                        <td>{{item.name}}</td>
-                                        <td>{{item.description}}</td>
-                                        <td>{{item.placeholder}}</td>
-                                        <td>{{item.order}}</td>
-                                        <td><button type="button" class="btn btn-default" (click)="viewactivities(item)"><i class="glyphicon glyphicon-eye-open"></i> View</button><button
-                                                type="button" class="btn btn-danger" (click)="deleteactivities(item.id,i)"><i class="glyphicon glyphicon-trash"></i> Delete</button></td>
-
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class="col-md-12 col-xs-12 table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Placeholder</th>
+                                            <th>Order</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of course.activities;let i = index">
+                                            <td>{{item.name}}</td>
+                                            <td>{{item.description}}</td>
+                                            <td>{{item.placeholder}}</td>
+                                            <td>{{item.order}}</td>
+                                            <td><button type="button" class="btn btn-default" (click)="viewactivities(item)"><i class="glyphicon glyphicon-eye-open"></i> View</button><button
+                                                    type="button" class="btn btn-danger" (click)="deleteactivities(item.id,i)"><i class="glyphicon glyphicon-trash"></i> Delete</button></td>
+    
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
