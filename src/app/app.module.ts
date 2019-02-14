@@ -35,7 +35,8 @@ import { StartupProfileComponent } from './startupdashboard/startup-profile/star
 import { sharingData } from './sharingdata';
 import { StartupRoadmapComponent } from './startupdashboard/startup-roadmap/startup-roadmap.component';
 import { StartupbyProgramsComponent } from './sitedashboard/startupby-programs/startupby-programs.component';
-import { EditProgramComponent } from './sitedashboard/programmodule/edit-program/edit-program.component'
+import { EditProgramComponent } from './sitedashboard/programmodule/edit-program/edit-program.component';
+import { HomePageComponent } from './home-page/home-page.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +66,8 @@ import { EditProgramComponent } from './sitedashboard/programmodule/edit-program
     StartupProfileComponent,
     StartupRoadmapComponent,
     StartupbyProgramsComponent,
-    EditProgramComponent
+    EditProgramComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
