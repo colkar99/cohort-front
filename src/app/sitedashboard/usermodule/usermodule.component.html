@@ -2,7 +2,7 @@
 
 
   <div class="row">
-    
+
     <!-- Modal -->
     <div class="modal fade" id="createUserModel" role="dialog" #createUserModel>
       <div class="modal-dialog">
@@ -60,7 +60,8 @@
                   </select>
                 </div>
                 <div class="col-md-12 text-center">
-                  <button [disabled]="!user.valid" class="btn btn-success"><i class="glyphicon glyphicon-floppy-saved"></i> Submit</button>
+                  <button [disabled]="!user.valid" class="btn btn-success"><i class="glyphicon glyphicon-floppy-saved"></i>
+                    Submit</button>
                 </div>
               </form>
             </div>
@@ -74,41 +75,78 @@
   </div>
   <div class="row">
     <div class="panel panel-default">
-      <div class="panel-heading" style="height:57px;">List of Users <button button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#createUserModel"><i class="glyphicon glyphicon-plus-sign"></i>
+      <div class="panel-heading" style="height:57px;">List of Users <button button type="button" class="btn btn-info pull-right"
+          data-toggle="modal" data-target="#createUserModel"><i class="glyphicon glyphicon-plus-sign"></i>
           new user</button></div>
       <div class="panel-body">
         <div class="row">
-        <div class="col-md-12 col-sm-12 col-lg-12 ">
-          <div class="table-responsive">
-          <table class="table table-bordered ">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Contact no</th>
-                <th>User type</th>
-                <th>Roles</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let user of all_users">
-                <td>{{user.full_name}}</td>
-                <td>{{user.email}}</td>
-                <td>{{user.phone_number}}</td>
-                <td>{{user.user_type}}</td>
-                <td *ngIf="user.roles.length != 0">
-                  <p *ngFor="let role of user.roles"><span *ngIf="role.name">{{role.name }}</span></p>
-                </td>
-                <td *ngIf="user.roles.length <= 0">No roles</td>
-                <td>
-                  <button class="btn btn-default" routerLink="controller/{{user.id}}"><i class="glyphicon glyphicon-eye-open"></i> Show user</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="col-md-12">
+            <form>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Filterby Type</label>
+                  <select class="form-control" name="filterfeild" [(ngModel)]="filterfeild">
+                    <option value="">---Select---</option>
+                    <option value="full_name">Name</option>
+                    <option value="score">Email</option>
+                    <option value="phone_number">Phone number</option>
+                    <option value="user_type">User Type</option>
+
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6" *ngIf="filterfeild != 'user_type'">
+                <div class="form-group">
+                  <label>Value</label>
+                  <input [disabled]="filterfeild == ('' || null || undefined)" class="form-control" name="filtervalue"
+                    #or [(ngModel)]="filtervalue" (ngModelChange)="filtervalues(or.value)">
+                </div>
+              </div>
+              <div class="col-md-6" *ngIf="filterfeild == 'user_type'">
+                  <div class="form-group">
+                    <label>Value</label>
+                    <select class="form-control" name="filtervalue" [(ngModel)]="filtervalue" (ngModelChange)="filtervalues($event)">
+                        <option value="">---Select---</option>
+                        
+                        <option *ngFor="let value of userOptions" value="{{value.value}}">{{value.name}}</option>
+    
+                      </select>
+                  </div>
+                </div>
+            </form>
           </div>
-        </div>
+          <div class="col-md-12 col-sm-12 col-lg-12 ">
+            <div class="table-responsive">
+              <table class="table table-bordered ">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Contact no</th>
+                    <th>User type</th>
+                    <th>Roles</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of all_users">
+                    <td>{{user.full_name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.phone_number}}</td>
+                    <td>{{user.user_type}}</td>
+                    <td *ngIf="user.roles.length != 0">
+                      <p *ngFor="let role of user.roles"><span *ngIf="role.name">{{role.name }}</span></p>
+                    </td>
+                    <td *ngIf="user.roles.length <= 0">No roles</td>
+                    <td>
+                      <button class="btn btn-default" routerLink="controller/{{user.id}}"><i class="glyphicon glyphicon-eye-open"></i>
+                        Show user</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>

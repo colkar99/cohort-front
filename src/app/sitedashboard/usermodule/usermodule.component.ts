@@ -18,6 +18,9 @@ export class UsermoduleComponent implements OnInit{
     roles: any=[]
     isRolesAvailable: boolean = false;
     all_users = []
+    unfilteredvalue = []
+    filterfeild
+    filtervalue
     constructor(private formBuilder: FormBuilder,
                 private apiService: ApiCommunicationService,
                 private cookieService: CookieService){
@@ -109,8 +112,19 @@ export class UsermoduleComponent implements OnInit{
             data => { 
                 console.log(data);
                 this.all_users = data;
+                this.unfilteredvalue = data
+
             },
             error => console.error("couldn't post because", error)
       );
-    }  
+    }
+    filtervalues(value: string) {
+        if(this.filterfeild != 'score'){
+            console.log(this.filterfeild)
+          this.all_users = this.unfilteredvalue.filter((list)=> list[this.filterfeild].toLowerCase().includes(value))
+        }else{
+          this.all_users = this.unfilteredvalue.filter((list)=> list.score == Number(value))
+        }
+        
+      }
 }
