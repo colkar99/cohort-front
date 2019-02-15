@@ -23,6 +23,19 @@ export class ProgramModuleComponent implements OnInit {
     question_edit: boolean = false
     question: any = {}
     allquestions: any = []
+    filterfeild1: any
+    filterfeild2: any
+    filterfeild3: any
+    filterfeild4: any
+    filtervalue1: any
+    filtervalue2: any
+    filtervalue3: any
+    filtervalue4: any
+    ques_unfiltered: any
+    program_modules_unfilter: any
+    listprograms:any
+    listprogramtypes:any
+    listlocations:any
     constructor(
         private cookieService: CookieService,
         private formBuilder: FormBuilder,
@@ -50,7 +63,11 @@ export class ProgramModuleComponent implements OnInit {
     getAllProgram() {
         this.apiService.getDataWithAuth("show-programs", this.auth)
             .subscribe(data => {
-                this.program_modules = data
+                this.program_modules = data;
+                this.listprograms = data.programs
+                this.listprogramtypes = data.program_types
+                this.listlocations = data.program_locations
+                this.program_modules_unfilter = data;
                 console.log(data);
             }, error => {
                 console.log(`Following error has occured: ${error}`);
@@ -229,11 +246,35 @@ export class ProgramModuleComponent implements OnInit {
         this.apiService.getDataWithAuth("show-application-questions", this.auth).subscribe((res) => {
             res;
             this.allquestions = res;
+            this.ques_unfiltered = res;
             console.log(res)
         })
     }
     addques() {
         this.question = {}
+    }
+
+    filtervalues(value: string) {
+        console.log(value,this.filterfeild1)
+        if(this.filterfeild1 == 'duration'){
+            this.listprograms = this.program_modules_unfilter.programs.filter((list) => list[this.filterfeild1] == Number(value))
+        }
+       else if(this.filterfeild1 == "seat_size"){
+            this.listprograms = this.program_modules_unfilter.programs.filter((list) => list[this.filterfeild1] == Number(value)) 
+        }
+        else{
+            this.listprograms = this.program_modules_unfilter.programs.filter((list) => list[this.filterfeild1].includes(value))
+        }
+        
+    }
+    filtervalues1(value: string) {
+        this.listprogramtypes = this.program_modules_unfilter.program_types.filter((list) => list[this.filterfeild2].includes(value))
+    }
+    filtervalues2(value: string) {
+        this.listlocations = this.program_modules_unfilter.program_locations.filter((list) => list[this.filterfeild3].includes(value))
+    }
+    filtervalues3(value: string) {
+        this.allquestions = this.ques_unfiltered.filter((list) => list[this.filterfeild4].includes(value))
     }
 
 } 
