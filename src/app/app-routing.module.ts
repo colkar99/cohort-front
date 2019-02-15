@@ -27,7 +27,9 @@ import { StartupProfileComponent } from './startupdashboard/startup-profile/star
 import { StartupRoadmapComponent } from './startupdashboard/startup-roadmap/startup-roadmap.component'
 import { StartupbyProgramsComponent } from './sitedashboard/startupby-programs/startupby-programs.component'
 import {EditProgramComponent} from './sitedashboard/programmodule/edit-program/edit-program.component'
+import { HomePageComponent } from './home-page/home-page.component';
 const routes: Routes = [
+  {path: '', component: HomePageComponent},
   { path: 'login', component: LoginComponent },
   {
     path: 'admin/dashboard', component: SitedashboardComponent, pathMatch: 'prefix',

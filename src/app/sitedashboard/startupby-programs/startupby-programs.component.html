@@ -13,7 +13,7 @@
 
 <div class="row" *ngIf="showStartup && allStartups.length == 0">
     <div class="alert alert-danger">
-        <strong>Oops!</strong> No startup have registered for this program.
+        <strong>Oops!</strong> No startup have selected for this program.
     </div>
 </div>
 <div class="col-md-12" *ngIf="showStartup && allStartups.length > 0">
@@ -65,7 +65,6 @@
                                 <td>
                                     <button class="btn btn-default" (click)="viewprofile(startup)"><i class="glyphicon glyphicon-eye-open"></i> View</button>
                                 </td>
-
                             </tr>
                         </tbody>
                     </table>
