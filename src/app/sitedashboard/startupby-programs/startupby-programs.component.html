@@ -1,0 +1,53 @@
+<div class="container">
+<div class="row" *ngIf="!startup">
+    <div class="col-md-12 form-group">
+        <label for="user_type">Select Program</label>
+        <select class="form-control" id="role" (change)="showStartups($event.target.value)" name="programselected" [(ngModel)]="programselected">
+            <option value="" selected>---Select---</option>
+            <option *ngFor="let program of allPrograms" value="{{program.id}}">{{program.title}}</option>
+            <!-- <option [value]="mentor">mentor</option> -->
+            <!-- <option [ngValue]="startup">Startup User</option> -->
+        </select>
+    </div>
+</div>
+
+<div class="row" *ngIf="showStartup && allStartups.length == 0">
+    <div class="alert alert-danger">
+        <strong>Oops!</strong> No startup have selected for this program.
+    </div>
+</div>
+<div class="row" *ngIf="showStartup && allStartups.length > 0">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <label>List of registered startups</label>
+                <div class="col-md-12 col-xs-12 table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Startup Name</th>
+                                <th>Status</th>
+                                <th>Status description</th>
+                                <th>Score</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let startup of allStartups;let i = index" style="cursor: pointer; ">
+                                
+                                <td>{{startup.startup_name}}</td>
+                                <td>{{startup.startup_registration.application_status}}</td>
+                                <td>{{startup.startup_registration.app_status_description}}</td>
+                                <td>{{startup.startup_registration.score}}</td>
+                                <td>
+                                    <button class="btn btn-default" (click)="viewprofile(startup)"><i class="glyphicon glyphicon-eye-open"></i> View</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

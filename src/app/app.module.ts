@@ -30,7 +30,13 @@ import { ContractformSignComponent } from './sitedashboard/contractmanagercontro
 import { ContractformEditComponent } from './sitedashboard/contractmanagercontrol/contractform-edit/contractform-edit.component';
 import { CourseEditComponent } from './sitedashboard/framework-module/course-edit/course-edit.component';{}
 import {SharedDataService} from './shared-data.service';
-import { ResetPasswordComponent } from './reset-password/reset-password.component'
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { StartupProfileComponent } from './startupdashboard/startup-profile/startup-profile.component'
+import { sharingData } from './sharingdata';
+import { StartupRoadmapComponent } from './startupdashboard/startup-roadmap/startup-roadmap.component';
+import { StartupbyProgramsComponent } from './sitedashboard/startupby-programs/startupby-programs.component';
+import { EditProgramComponent } from './sitedashboard/programmodule/edit-program/edit-program.component';
+import { HomePageComponent } from './home-page/home-page.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +62,12 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     ContractformSignComponent,
     ContractformEditComponent,
     CourseEditComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    StartupProfileComponent,
+    StartupRoadmapComponent,
+    StartupbyProgramsComponent,
+    EditProgramComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +77,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     HttpClientModule,
     Ng4LoadingSpinnerModule.forRoot() 
   ],
-  providers: [CookieService,SharedDataService],
+  providers: [CookieService,SharedDataService,sharingData],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

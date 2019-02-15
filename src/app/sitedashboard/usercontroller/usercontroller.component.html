@@ -1,264 +1,284 @@
-<h2 class="mar-top ">User Controller component</h2>
-<div class="panel panel-default">
-    <div class="panel-heading">Edit user details</div>
-    <div class="panel-body">
-            <div class="row">
-                <div class="col-md-12" *ngIf="showForm">
-                    <form [formGroup]='user' (ngSubmit)="user.valid && onSubmit(user)" >
-                        <div formGroupName='user'>  
-                            <div class="col-md-6 form-group">
-                                <label for="user_type">Slect user type</label>
-                                <select class="form-control" id="user_type"
-                                        formControlName="user_type"
-                                        (change)="getRoles($event.target.value)">
-                                <option *ngFor="let value of userOptions" [value]="value.value">{{value.name}}</option>
-                                <!-- <option [value]="mentor">mentor</option> -->
-                                <!-- <option [ngValue]="startup">Startup User</option> -->
-                                </select>
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label for="first_name">First name</label>
-                                <input class="form-control" type="text"
-                                    id="first_name" placeholder="First name" 
-                                    name="first" formControlName="first_name" 
-                                    required />
-                            </div>
-                            <div class="col-md-6 form-group">
-                                    <label for="last_name">Last name</label>
-                                    <input class="form-control" type="text" id="last_name" name="last"
-                                            placeholder="Last name" formControlName="last_name"  required  />
-                            </div>
-                            <div class="col-md-6 form-group">
-                                    <label for="email">Email id</label>
-                                    <input class="form-control" type="email"
-                                    id="email" placeholder="Email" name="mail" formControlName="email"
-                                    required email />
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label for="email">Upload_image</label>
-                                <input class="form-control" type="file"
-                                id="profile_image" placeholder="profile_image" accept="image/*" name="profile_image" formControlName="profile_image"
-                                 (change)="changeImage($event)" />
-                            </div>
-                            <div class="col-md-6 form-group">
-                                    <label for="phone_number">Phone number</label>
-                                    <input class="form-control" type="text" id="phone_number" name="number"
-                                    placeholder="Phone number" formControlName="phone_number" 
-                                    required minlength="10" maxlength="15"/>
-                            </div>
-                            <div class="col-md-6 form-group" *ngIf="userDatas[0].roles.length > 0">
-                                <div *ngFor="let role of userDatas[0].roles">
-                                        <p>Current Role: {{role.name}}</p>
-                                        <button class="btn btn-danger" (click)="deleteRole(userDatas[0].user.id,role.id)">Delete role</button>
+<div class="container">
+    <div class="col-md-12">
+        <button class="btn btn-default pull-left" routerLink="/admin/dashboard/user"><i class="glyphicon glyphicon-arrow-left"></i> Back</button>
+    </div>
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Edit user details</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12" *ngIf="showForm">
+                        <form [formGroup]='user' (ngSubmit)="user.valid && onSubmit(user)">
+                            <div formGroupName='user'>
+                                <div class="col-md-6 form-group">
+                                    <label for="user_type">Slect user type</label>
+                                    <select class="form-control" id="user_type" formControlName="user_type" (change)="getRoles($event.target.value)">
+                                        <option *ngFor="let value of userOptions" [value]="value.value">{{value.name}}</option>
+                                        <!-- <option [value]="mentor">mentor</option> -->
+                                        <!-- <option [ngValue]="startup">Startup User</option> -->
+                                    </select>
                                 </div>
-                        </div>
-                        </div>
-            
+                                <div class="col-md-6 form-group">
+                                    <label for="first_name">First name</label>
+                                    <input class="form-control" type="text" id="first_name" placeholder="First name"
+                                        name="first" formControlName="first_name" required />
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label for="last_name">Last name</label>
+                                    <input class="form-control" type="text" id="last_name" name="last" placeholder="Last name"
+                                        formControlName="last_name" required />
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label for="email">Email id</label>
+                                    <input class="form-control" type="email" id="email" placeholder="Email" name="mail"
+                                        formControlName="email" required email />
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label for="email">Upload_image</label>
+                                    <input class="form-control" type="file" id="user_main_image" placeholder="user_main_image"
+                                        name="user_main_image" type="file" accept="image/*" (change)="handleInputChange($event)" />
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label for="phone_number">Phone number</label>
+                                    <input class="form-control" type="text" id="phone_number" name="number" placeholder="Phone number"
+                                        formControlName="phone_number" required minlength="10" maxlength="15" />
+                                </div>
+                                <div class="col-md-6">
+                                    <img src="{{imgUrl}}" height="80" width="80">
+                                </div>
+                                <div class="col-md-6 form-group" *ngIf="userDatas[0].roles.length > 0">
+                                    <div *ngFor="let role of userDatas[0].roles">
+                                        <p>Current Role: {{role.name}}</p>
+                                        <button class="btn btn-danger" (click)="deleteRole(userDatas[0].user.id,role.id)"><i class="glyphicon glyphicon-trash"> </i> Delete
+                                            role</button>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="col-md-6 form-group" formGroupName='role'>
                                 <label for="user_type">Change role</label>
-                                <select class="form-control" id="role"
-                                            formControlName="role_id">
+                                <select class="form-control" id="role" formControlName="role_id">
                                     <option *ngFor="let role of roles" [value]="role.id">{{role.name}}</option>
                                     <!-- <option [value]="mentor">mentor</option> -->
                                     <!-- <option [ngValue]="startup">Startup User</option> -->
                                 </select>
                             </div>
                             <div class="col-md-12 text-center">
-                                    <button [disabled]= "!user.valid" class="btn btn-primary">update</button>
+                                <button [disabled]="!user.valid" class="btn btn-success"><i class="glyphicon glyphicon-floppy-saved"></i> Update</button>
                             </div>
-                    </form>
-                </div>
-            </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-12">
-        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" style="width:100%;">Show Privileges</button>
-        <div id="demo" class="collapse">
-            <div class="panel panel-default">
-                <div class="panel-heading" style="height: 60px;">List of User Privileges
-                    <button class="btn btn-success pull-right" data-toggle="modal" data-target="#createPrivilegemodel">Create new privileges</button>
-                </div>
-                <div class="panel-body">Panel Content
-                    <div class="row" *ngFor="let privilege of privileges">
-                        <h3>Previleges for {{privilege.module_type_name}} module</h3>
-                        <div class="col-md-4">
-                            <label>Module Type: <span>{{privilege.module_type_name}}</span></label>
-                        </div>
-                        <div class="col-md-4">
-                            <label>Role : <span>{{privilege.role_name}}</span></label>
-                        </div>
-                        <div class="col-md-4">
-                            <label>Create Rule : <span>{{privilege.create_rule}}</span></label>
-                        </div>
-                        <div class="col-md-4">
-                            <label>Update Rule : <span>{{privilege.update_rule}}</span></label>
-                        </div>
-                        <div class="col-md-4">
-                            <label>Show Rule : <span>{{privilege.show_rule}}</span></label>
-                        </div>
-                        <div class="col-md-4">
-                            <label>Delete Rule : <span>{{privilege.delete_rule}}</span></label>
-                        </div>
-                        <div class="col-md-12 text-center">
-                            <button class='btn btn-danger' (click)="changePrivilegeValue(privilege)"
-                            data-toggle="modal" data-target="#privilegeModel">Edit</button>
-                            <button class="btn btn-default" (click)="deletePrivilegesValue(privilege.id)">Delete</button>
-                        </div>
-                        <hr>
+                        </form>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-</div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" style="width:100%;">Show
+                Privileges</button>
+            <div id="demo" class="collapse">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="height: 60px;">List of User Privileges
+                        <button class="btn btn-info pull-right" data-toggle="modal" data-target="#createPrivilegemodel"><i class="glyphicon glyphicon-plus-sign"></i>
+                            new privileges</button>
+                    </div>
+                    <div class="panel-body">Panel Content
+                        <div class="row" *ngFor="let privilege of privileges">
+                            <h3>Previleges for {{privilege.module_type_name}} module</h3>
+                            <div class="col-md-4">
+                                <label>Module Type: <span>{{privilege.module_type_name}}</span></label>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Role : <span>{{privilege.role_name}}</span></label>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Create Rule : <span>{{privilege.create_rule}}</span></label>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Update Rule : <span>{{privilege.update_rule}}</span></label>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Show Rule : <span>{{privilege.show_rule}}</span></label>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Delete Rule : <span>{{privilege.delete_rule}}</span></label>
+                            </div>
+                            <div class="col-md-12 text-center">
+                                <button class='btn btn-default' (click)="changePrivilegeValue(privilege)" data-toggle="modal"
+                                    data-target="#privilegeModel"><i class="glyphicon glyphicon-pencil"></i> Edit</button>
+                                <button class="btn btn-danger" (click)="deletePrivilegesValue(privilege.id)"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 
-<!--
+    <!--
     Model for privileges
 -->
-  <!-- Modal -->
-<div class="modal fade" id="privilegeModel" role="dialog">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Update Privilege</h4>
-        </div>
-        <div class="modal-body">
-            <div class="row">
-                <form [formGroup]='privilegeForm' (ngSubmit)="privilegeForm.valid && onPrivilegeUpdate(privilegeForm)" >
-                    <div class="col-md-6 form-group">
-                        <label>Module name: <span>{{privilege.module_type_name}}</span></label>
+    <!-- Modal -->
+    <div class="modal fade" id="privilegeModel" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Update Privilege</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <form [formGroup]='privilegeForm' (ngSubmit)="privilegeForm.valid && onPrivilegeUpdate(privilegeForm)">
+                            <div class="col-md-6 form-group">
+                                <label>Module name: <span>{{privilege.module_type_name}}</span></label>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Module name: <span>{{privilege.role_name}}</span></label>
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label>Create Rule: {{privilegeForm.value.create_rule}}</label>
+                                <div class="radio">
+                                    <label><input type="radio" name="create_rule" [checked]="privilege.create_rule == true"
+                                            [value]="true" formControlName="create_rule">True</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="create_rule" [checked]="privilege.create_rule == false"
+                                            [value]="false" formControlName="create_rule">False</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label>Update Rule: {{privilegeForm.value.update_rule}}</label>
+                                <div class="radio">
+                                    <label><input type="radio" name="update_rule" [checked]="privilege.update_rule == true"
+                                            [value]="true" formControlName="update_rule">True</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="update_rule" [checked]="privilege.update_rule == false"
+                                            [value]="false" formControlName="update_rule">False</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label>Show Rule: {{privilegeForm.value.show_rule}}</label>
+                                <div class="radio">
+                                    <label><input type="radio" name="show_rule" [checked]="privilege.show_rule == true"
+                                            [value]="true" formControlName="show_rule">True</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="show_rule" [checked]="privilege.show_rule == false"
+                                            [value]="false" formControlName="show_rule">False</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label>Delete Rule: {{privilegeForm.value.delete_rule}}</label>
+                                <div class="radio">
+                                    <label><input type="radio" name="delete_rule" [checked]="privilege.delete_rule == true"
+                                            [value]=true formControlName="delete_rule">True</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="delete_rule" [checked]="privilege.delete_rule == false"
+                                            [value]="false" formControlName="delete_rule">False</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 text-center">
+                                <button class="btn btn-success" type=submit><i class="glyphicon glyphicon-floppy-saved"></i> Update</button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="col-md-6 form-group">
-                        <label>Module name: <span>{{privilege.role_name}}</span></label>
-                    </div>
-                    <div class="col-md-3 form-group">
-                        <label>Create Rule: {{privilegeForm.value.create_rule}}</label>
-                        <div class="radio">
-                            <label><input type="radio" name="create_rule" [checked]="privilege.create_rule == true"   [value]="true" formControlName="create_rule">True</label>
-                        </div>
-                        <div class="radio">
-                            <label><input type="radio" name="create_rule" [checked]="privilege.create_rule == false"  [value]="false" formControlName="create_rule">False</label>
-                        </div>
-                    </div>
-                    <div class="col-md-3 form-group">
-                        <label>Update Rule: {{privilegeForm.value.update_rule}}</label>
-                        <div class="radio">
-                            <label><input type="radio" name="update_rule" [checked]="privilege.update_rule == true"  [value]="true" formControlName="update_rule">True</label>
-                        </div>
-                        <div class="radio">
-                            <label><input type="radio" name="update_rule" [checked]="privilege.update_rule == false" [value]="false" formControlName="update_rule">False</label>
-                        </div>
-                    </div>
-                    <div class="col-md-3 form-group">
-                        <label>Show Rule: {{privilegeForm.value.show_rule}}</label>
-                        <div class="radio">
-                            <label><input type="radio"  name="show_rule" [checked]="privilege.show_rule == true" [value]="true" formControlName="show_rule">True</label>
-                        </div>
-                        <div class="radio">
-                            <label><input type="radio" name="show_rule" [checked]="privilege.show_rule == false" [value]="false" formControlName="show_rule">False</label>
-                        </div>
-                    </div>
-                    <div class="col-md-3 form-group">
-                        <label>Delete Rule: {{privilegeForm.value.delete_rule}}</label>
-                        <div class="radio">
-                            <label><input type="radio" name="delete_rule" [checked]="privilege.delete_rule == true" [value]= true formControlName="delete_rule">True</label>
-                        </div>
-                        <div class="radio">
-                            <label><input type="radio" name="delete_rule" [checked]="privilege.delete_rule == false" [value]="false" formControlName="delete_rule">False</label>
-                        </div>
-                    </div>
-                    <div class="col-md-12 text-center">
-                        <button class="btn btn-default" type=submit>Update</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-        </div>
-    </div>
-</div>
-
-<!--model for create new privileges-->
-  <!-- Modal -->
-<div class="modal fade" id="createPrivilegemodel" role="dialog">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Create New Privilege</h4>
-            </div>
-            <div class="modal-body">
-                <div class="row" *ngIf="showForm">
-                    <form [formGroup]='privilegeForm' (ngSubmit)="onPrivilegeCreate(privilegeForm)">
-                        <div class="col-md-4 form-group">
-                            <label>Role Name</label>
-                            <div  *ngFor="let role of userDatas[0].roles">
-                                <h4>{{role.name}}</h4>
-                                <input type="hidden"  [ngModel]="role.id" formControlName="role_id" name="role_id"/>
-                            </div>
-                            <div>
-                                <input type="hidden"  [ngModel]="userDatas[0].user.id" formControlName="user_id" name="user_id"/>
-                            </div>
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <label>Select Module</label>
-                            <select class="form-control" id="module_type_id"
-                                        formControlName="module_type_id">
-                                <option *ngFor="let module of modules" [value]="module.id">{{module.name}}</option>
-                                <!-- <option [value]="mentor">mentor</option> -->
-                                <!-- <option [ngValue]="startup">Startup User</option> -->
-                            </select>
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <label>Create Rule: {{privilegeForm.value.create_rule}}</label>
-                            <div class="radio">
-                                <label><input type="radio" name="create_rule" [checked]="privilege.create_rule == true"   [value]="true" formControlName="create_rule">True</label>
-                            </div>
-                            <div class="radio">
-                                <label><input type="radio" name="create_rule" [checked]="privilege.create_rule == false"  [value]="false" formControlName="create_rule">False</label>
-                            </div>
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <label>Update Rule: {{privilegeForm.value.update_rule}}</label>
-                            <div class="radio">
-                                <label><input type="radio" name="update_rule" [checked]="privilege.update_rule == true"  [value]="true" formControlName="update_rule">True</label>
-                            </div>
-                            <div class="radio">
-                                <label><input type="radio" name="update_rule" [checked]="privilege.update_rule == false" [value]="false" formControlName="update_rule">False</label>
-                            </div>
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <label>Show Rule: {{privilegeForm.value.show_rule}}</label>
-                            <div class="radio">
-                                <label><input type="radio"  name="show_rule" [checked]="privilege.show_rule == true" [value]="true" formControlName="show_rule">True</label>
-                            </div>
-                            <div class="radio">
-                                <label><input type="radio" name="show_rule" [checked]="privilege.show_rule == false" [value]="false" formControlName="show_rule">False</label>
-                            </div>
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <label>Delete Rule: {{privilegeForm.value.delete_rule}}</label>
-                            <div class="radio">
-                                <label><input type="radio" name="delete_rule" [checked]="privilege.delete_rule == true" [value]= true formControlName="delete_rule">True</label>
-                            </div>
-                            <div class="radio">
-                                <label><input type="radio" name="delete_rule" [checked]="privilege.delete_rule == false" [value]="false" formControlName="delete_rule">False</label>
-                            </div>
-                        </div>
-                        <div class="col-md-12 text-center">
-                            <button class="btn btn-default" type=submit>Create</button>
-                        </div>
-                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <!--model for create new privileges-->
+    <!-- Modal -->
+    <div class="modal fade" id="createPrivilegemodel" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Create New Privilege</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row" *ngIf="showForm">
+                        <form [formGroup]='privilegeForm' (ngSubmit)="onPrivilegeCreate(privilegeForm)">
+                            <div class="col-md-4 form-group">
+                                <label>Role Name</label>
+                                <div *ngFor="let role of userDatas[0].roles">
+                                    <h4>{{role.name}}</h4>
+                                    <input type="hidden" [ngModel]="role.id" formControlName="role_id" name="role_id" />
+                                </div>
+                                <div>
+                                    <input type="hidden" [ngModel]="userDatas[0].user.id" formControlName="user_id"
+                                        name="user_id" />
+                                </div>
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>Select Module</label>
+                                <select class="form-control" id="module_type_id" formControlName="module_type_id">
+                                    <option *ngFor="let module of modules" [value]="module.id">{{module.name}}</option>
+                                    <!-- <option [value]="mentor">mentor</option> -->
+                                    <!-- <option [ngValue]="startup">Startup User</option> -->
+                                </select>
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>Create Rule: {{privilegeForm.value.create_rule}}</label>
+                                <div class="radio">
+                                    <label><input type="radio" name="create_rule" [checked]="privilege.create_rule == true"
+                                            [value]="true" formControlName="create_rule">True</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="create_rule" [checked]="privilege.create_rule == false"
+                                            [value]="false" formControlName="create_rule">False</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>Update Rule: {{privilegeForm.value.update_rule}}</label>
+                                <div class="radio">
+                                    <label><input type="radio" name="update_rule" [checked]="privilege.update_rule == true"
+                                            [value]="true" formControlName="update_rule">True</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="update_rule" [checked]="privilege.update_rule == false"
+                                            [value]="false" formControlName="update_rule">False</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>Show Rule: {{privilegeForm.value.show_rule}}</label>
+                                <div class="radio">
+                                    <label><input type="radio" name="show_rule" [checked]="privilege.show_rule == true"
+                                            [value]="true" formControlName="show_rule">True</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="show_rule" [checked]="privilege.show_rule == false"
+                                            [value]="false" formControlName="show_rule">False</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>Delete Rule: {{privilegeForm.value.delete_rule}}</label>
+                                <div class="radio">
+                                    <label><input type="radio" name="delete_rule" [checked]="privilege.delete_rule == true"
+                                            [value]=true formControlName="delete_rule">True</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="delete_rule" [checked]="privilege.delete_rule == false"
+                                            [value]="false" formControlName="delete_rule">False</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 text-center">
+                                <button class="btn btn-success" type=submit><i class="glyphicon glyphicon-floppy-saved"></i> Create</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
-     

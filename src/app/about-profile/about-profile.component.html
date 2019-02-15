@@ -1,81 +1,162 @@
-<div class="container">
+
   <div class="container-fluid">
-    <div class="row">
+      
+      <div class="col-md-12">
+          <button class="btn btn-default pull-left" routerLink="/admin/dashboard/startups-by-programs"><i class="glyphicon glyphicon-arrow-left">Back</i></button>
+      </div>
       <div class="col-md-4">
         <div class="col-md-6">
           <img src="{{companylogo}}" style="height:125px;width: 150px;">
         </div>
         <div class="col-md-6">
-          <span>{{CompanyName}}</span><br>
+          <span>{{startupdata.startup_name}}</span><br>
           <label>Mentor(s):</label><br>
           {{Mentors}}
 
         </div>
         <div class="col-md-12">
-          <button class="btn btn-primary pull-left">View RoadMap</button>
+          <div class="btn-group-vertical">
+            <button type="button" class="btn btn-primary" (click)="hideshow = false">Profile</button>
+            <button *ngIf="roadmap != (null && undefined)" type="button" class="btn btn-primary" style="margin-top:4%" (click)="hideshow = true">View Roadmap</button>
+            
+          </div>
         </div>
         <div class="col-md-12">
           <h4 style="text-decoration:underline">Bio</h4>
-          <p>{{bio}}</p>
+          <p>{{startupdata.description}}</p>
         </div>
         <div class="col-md-12">
           <h4 style="text-decoration:underline">Financials</h4>
           <div class="col-md-12">
-            <table class="table table-responsive">
+            <table class="table table-bordered table-responsive">
               <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Age</th>
-                  <th>Nickname</th>
-                  <th>Employee</th>
+                  <th>Source</th>
+                  <th>Amount</th>
+                  <th>Date</th>
+                  
+        
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>Arun</td>
-                  <td>28</td>
-                  <td>Arun</td>
-                  <td>true</td>
+              <tbody *ngIf="startupdata">
+                <tr *ngFor="let item of startupdata.founding_sources;let i = index">
+                  <td>{{item.source}}</td>
+                  <td>{{item.amount}}</td>
+                  <td>{{item.date |date:'dd-MM-yyyy'}}</td>
+                  
                 </tr>
-
               </tbody>
             </table>
           </div>
 
         </div>
       </div>
-      <div class="col-md-8">
-        <h3 style="text-decoration:underline;text-align: center">About Company {{CompanyName}}</h3>
+      <div class="col-md-8" *ngIf="hideshow == false">
+        <h3 style="text-decoration:underline;text-align: center">About Company {{startupdata.startup_name}}</h3>
         <div class="col-md-12">
-          <div class="container">
-            <div class="bg">
-              <img src="assets/photo.png" alt=""  style="height:125px;width: 150px;">
-              <div class="overlay">
-                <h2>Team Member1</h2>
-                <p>(picture)</p>
-              </div>
-            </div>
-            <div class="bg">
-              <img src="assets/photo.png" alt=""  style="height:125px;width: 150px;">
-              <div class="overlay">
-                <h2>Team Member2</h2>
-                <p>(picture)</p>
-              </div>
-            </div>
-            <div class="bg">
-              <img src="assets/photo.png" alt="" style="height:125px;width: 150px;">
-              <div class="overlay">
-                <h2>Team Member3</h2>
-                <p>(picture)</p>
-              </div>
+          
+          <div class="bg" *ngFor="let item of startupdata.users;let i= index">
+            <img src="assets/photo.png" alt="" style="height:125px;width: 150px;">
+            <div class="overlay">
+              <h4>{{item.full_name}}</h4>
+              <p></p>
             </div>
           </div>
         </div>
         <div class="col-md-12">
           <h3 style="text-decoration:underline;text-align: center">Current State</h3><br>
-          <p>{{currentstate}}</p>
+          <div class="panel panel-default">
+              <div class="panel-body">
+                  <div class="col-md-12">
+                      <h4 class="page-heading">CurrentStateForm Info</h4>
+                      <div class="col-md-4"><label>Revenue:</label>
+                          {{currentstateform.revenue}}
+                      </div>
+                      <div class="col-md-4"><label>Traction:</label>
+                          {{currentstateform.traction}}
+                      </div>
+                      <div class="col-md-4"><label>Solution Readiness:</label>
+                          {{currentstateform.solution_readiness}}
+                      </div>
+                      <div class="col-md-4"><label>Investment:</label>
+                          {{currentstateform.investment}}
+                      </div>
+                      <div class="col-md-4"><label>Team velocity:</label>
+                          {{currentstateform.team_velocity}}
+                      </div>
+                      <div class="col-md-4"><label>Partners:</label>
+                          {{currentstateform.partners}}
+                      </div>
+                      <div class="col-md-4"><label>Vendors:</label>
+                          {{currentstateform.vendors}}
+                      </div>
+                      <div class="col-md-4"><label>Vendor Costs:</label>
+                          {{currentstateform.vendors_costs}}
+                      </div>
+                      <div class="col-md-4"><label>Experiment Testing:</label>
+                          {{currentstateform.experiment_testing}}
+                      </div>
+                      <div class="col-md-4"><label>Customer Segment:</label>
+                          {{currentstateform.customer_segment}}
+                      </div>
+                      <div class="col-md-4"><label>Problem Validation:</label>
+                          {{currentstateform.problem_validation}}
+                      </div>
+                      <div class="col-md-4"><label>Channels:</label>
+                          {{currentstateform.channels}}
+                      </div>
+                      <div class="col-md-4"><label>Governance:</label>
+                          {{currentstateform.governance}}
+                      </div>
+                      <div class="col-md-4"><label>Admin Feedback:</label>
+                          {{currentstateform.reviewer_feedback}}
+                      </div>
+                      <div class="col-md-4"><label>Admin Rating:</label>
+                          {{currentstateform.reviewer_rating}}
+                      </div>
+                  </div>
+                  
+              </div>
+          </div>
         </div>
         <div class="col-md-12">
+          <h3 style="text-decoration:underline;text-align: center">Program Progress</h3><br>
+          <!-- <div style="text-align:center"> -->
+          <div class="col-md-12">
+          <div class="col-md-4">
+          <a href="#" class="tag">
+          <span class="arrow"></span>
+          Complete
+          </a>
+          </div>
+          <div class="col-md-4">
+          <a href="#" class="tag">
+          <span class="arrow"></span>
+          Cimplete
+          </a> </div>
+          <div class="col-md-4">
+          <a href="#" class="tag">
+          <span class="arrow"></span>
+          InComplete
+          </a> </div>
+          
+          <!-- </div> -->
+          <!-- <div class="col-md-1"></div>
+          <div class="shape1 col-md-2">Cimplete</div>
+          <div class="col-md-1"></div>
+          <div class="shape1 col-md-2">InComplete</div> -->
+          <div class="col-md-12">
+          <br>
+          <div class="slidecontainer">
+          <input type="range" min="1" max="100" value="0" class="slider" id="myRange">
+          
+          </div>
+          </div>
+          </div>
+          
+          <!-- </div> -->
+          </div>
+       <!-- <div class="col-md-12">
           <h3 style="text-decoration:underline;text-align: center">Program Progress</h3><br>
           <div style="text-align:center">
             <div class="shape1 col-md-2">Complete</div>
@@ -86,55 +167,125 @@
             <div class="col-md-12">
               <br>
               <div class="slidecontainer">
-                <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                <input type="range" min="1" max="100" value="0" class="slider" id="myRange">
 
               </div>
             </div>
           </div>
 
-        </div>
-        <div class="col-md-12">
-          <h3>Funding</h3><br>
-          <table class="table table-responsive">
-            <thead>
-              <tr>
-                <th>Source</th>
-                <th>Amount</th>
-                <th>Date</th>
-
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>From Client</td>
-                <td>450000</td>
-                <td>22-01-2019</td>
-
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="col-md-12">
-          <h3>Acheivements & Milestones</h3><br>
-          <table class="table table-responsive">
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th>Overview</th>
-                <th>Description</th>
-
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>22-01-2019</td>
-                <td>Overview</td>
-                <td>Desc</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        </div> -->
+       
+        
       </div>
-    </div>
+
+      <div class="col-md-8" *ngIf="hideshow == true">
+          <h1 class="text-center">  Roadmap</h1>
+
+
+
+          <div class="col-md-12" style="height:270px;">
+            <div class="oval text-center">
+              <span style="font-size: 15px;">Graduation</span>
+              <textarea class="form-control" type="text" style="margin-top:35px;width: 70%;margin-left: 40px;resize: none"
+                placeholder="Enter the goal" name="roadmap.goal" [(ngModel)]="roadmap.goal"></textarea>
+            </div>
+            <div style="position:relative">
+              <button class="circle" style="left: 24%;bottom: 0;top: -27px;position: absolute;" (click)="openmapdetails()">Target Metrics</button>
+            <button class="circle" style="left: 39%;bottom: 0;top: -2%;position: absolute;">Resources Needed</button>
+            <button class="circle" style="left: 54%;bottom: -83px;position: absolute;">Target Metrics</button>
+            </div>
+            
+          </div>
+          
+          <div class="col-md-6" style="height:270px;" *ngFor="let item of roadmap.milestones;let i = index">
+            <div class="oval-md-6 text-center">
+              <span style="font-size: 15px;">{{item.month}}</span>
+              <textarea class="form-control" type="text" style="margin-top:35px;width: 70%;margin-left: 40px;resize: none"
+                placeholder="Enter the goal" name="item.name" [(ngModel)]="item.name"></textarea>
+            </div>
+            <div style="position:relative">
+              <button type="button" class="circle" style="left: 0%;bottom: 0;top: -23px;position: absolute;" (click)="openmilestone(i)">Target Metrics</button>
+            <button type="button" class="circle" style="left: 30%;bottom: 0;top: 0;position: absolute;">Resources Needed</button>
+            <button type="button" class="circle" style="left: 63%;bottom: -78px;position: absolute;">Target Metrics</button>
+            </div>
+            
+          </div>
+          
+          <div class="col-md-12">
+            <button class="btn btn-default pull-right" type="submit" (click)="submitRoadmap()">{{!roadmap.id ? 'Save':'Update'}}</button>
+            <button *ngIf="roadmap.id !=(null && undefined)" class="btn btn-danger pull-right" (click)="deleteroadmap()">Delete</button>
+          </div>
+          
+          <div class="modal fade" id="roadmpdetails" role="dialog" #roadmpdetails>
+              <div class="modal-dialog modal-lg">
+              
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" (click)="closeroadmap()" >&times;</button>
+                    <h4 class="modal-title">Roadmap Details</h4>
+                  </div>  
+                  <div class="modal-body">
+                    <form>
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <span class="label">Strategy</span>
+                          <textarea class="form-control" name="roadmap.strategy" [(ngModel)]="roadmap.strategy"></textarea>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                          <div class="form-group">
+                            <span class="label">Description</span>
+                            <textarea class="form-control" name="roadmap.description" [(ngModel)]="roadmap.description"></textarea>
+                          </div>
+                        </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-default" (click)="saveroadmap()">Save</button>
+                    <button type="button" class="btn btn-default" (click)="closeroadmap()">Close</button>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          
+          
+          
+          <div class="modal fade" id="milestone" role="dialog" #milestone>
+              <div class="modal-dialog modal-lg">
+              
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" (click)="closemilestone()" >&times;</button>
+                    <h4 class="modal-title">Milestone Details</h4>
+                  </div>  
+                  <div class="modal-body">
+                    <form>
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <span class="label">Metric</span>
+                          <textarea class="form-control" name="metric" [(ngModel)]="metric"></textarea>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                          <div class="form-group">
+                            <span class="label">Description</span>
+                            <textarea class="form-control" name="description" [(ngModel)]="description"></textarea>
+                          </div>
+                        </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-default" (click)="savemilestone()">Save</button>
+                    <button type="button" class="btn btn-default" (click)="closemilestone()">Close</button>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+           
+
+      </div>
   </div>
-</div>

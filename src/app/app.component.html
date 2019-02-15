@@ -1,54 +1,228 @@
-    <!-- Fixed navbar -->
-    <ng4-loading-spinner> </ng4-loading-spinner>
-    <div>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
+<!-- Fixed navbar -->
+<ng4-loading-spinner> </ng4-loading-spinner>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+          aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" routerLink="/">
+          <img src="assets/images/Vive-Blue.png"  width="40">
+        </a>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a routerLink="/live-programs">Programs</a></li>
+          <li *ngIf="!this.loggedIn"><a routerLink="/login">Login</a></li>
+          <!-- <li ><a href="#">Register</a></li> -->
+          <li *ngIf="this.loggedIn && this.user_type == 'site'" routerLink="admin/dashboard"><a>Dashboard</a></li>
+          <li *ngIf="this.loggedIn && this.user_type == 'startup'" routerLink="startup/dashboard"><a>Profile</a></li>
+          <li *ngIf="this.loggedIn && this.user_type == 'mentor'" routerLink="mentor/dashboard"><a>Profile</a></li>
+          <li *ngIf="this.loggedIn && this.user_type == 'contract_manager'" routerLink="dashboard/contract-manager"><a>Dashboard
+          </a></li>
+
+          <li *ngIf="this.loggedIn" (click)="logout()"><a>Logout</a></li>
+
+          <li *ngIf="!this.loggedIn" class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Register
+              <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a routerLink="/live-programs">Startup Registration</a></li>
+              <li (click)="addmentor()"><a>Mentor Registration</a></li>
+
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+  </nav>
+
+<section>
+  <!-- Begin page content -->
+  <br>
+  <br>
+  <br>
+  <div class="container-fluid" style="padding:0px;">
+    <router-outlet></router-outlet>
+    <div class="modal fade" id="mentorreg" role="dialog" #mentorreg>
+      <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" (click)="closementor()">&times;</button>
+            <h4 class="modal-title">Mentor Details</h4>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <span class="label">First Name</span>
+                  <input class="form-control" type="text" name="first_name" [(ngModel)]="mentor.first_name">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <span class="label">Last Name</span>
+                  <input class="form-control" type="text" name="last_name" [(ngModel)]="mentor.last_name">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <span class="label">Email</span>
+                  <input class="form-control" type="email" name="email" [(ngModel)]="mentor.email">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <span class="label">Phone Number</span>
+                  <input class="form-control" type="number" name="phone_number" [(ngModel)]="mentor.phone_number">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <span class="label">Password</span>
+                  <input class="form-control" type="password" name="password" [(ngModel)]="mentor.password">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <span class="label">Confirm Password </span>
+                  <input class="form-control" type="password" name="password_confirmation" [(ngModel)]="mentor.password_confirmation">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <span class="label">Credentials</span>
+                  <input class="form-control" type="text" name="credentials" [(ngModel)]="mentor.credentials">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <span class="label">Commitment</span>
+                  <input class="form-control" type="text" name="commitment" [(ngModel)]="mentor.commitment">
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                <div class="form-group">
+                  <span class="label">Title</span>
+                  <textarea class="form-control" name="title" [(ngModel)]="additonal.title"></textarea>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <span class="label">Company</span>
+                  <textarea class="form-control" name="company" [(ngModel)]="additonal.company"></textarea>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <span class="label">LinkedIn Url</span>
+                  <textarea class="form-control" name="linked_in_url" [(ngModel)]="additonal.linked_in_url"></textarea>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <span class="label">Facebook Url</span>
+                  <textarea class="form-control" name="facebook_url" [(ngModel)]="additonal.facebook_url"></textarea>
+                </div>
+              </div>
+              <div class="col-md-12" hidden>
+                <div class="form-group">
+                  <span class="label">Primary Expertise</span>
+                  <textarea class="form-control" name="primary_expertise" [(ngModel)]="additonal.primary_expertise"></textarea>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <span class="label">Why Mentor?</span>
+                  <textarea class="form-control" name="why_mentor" placeholder="Describe yourself" [(ngModel)]="additonal.why_mentor"></textarea>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <span class="label">Startup Experience </span>
+                  <select class="form-control" name="startup_experience_level" [(ngModel)]="additonal.startup_experience_level">
+                    <option value="">---Select</option>
+                    <option value="Founded">FOUNDED</option>
+                    <option value="Fundraised">FUNDRAISED</option>
+                    <option value="Exited">EXITED</option>
+                    <option value="Invested">INVESTED</option>
+                    <option value="Advised">ADVISED</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <span class="label"> </span>
+                  <textarea class="form-control" name="startup_experience" placeholder="Describe your Startup Experience"
+                    [(ngModel)]="additonal.startup_experience"></textarea>
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                <div class="form-group">
+                  <span class="label">Area of Expertise </span>
+                  <select class="form-control" name="area_of_expertise" [(ngModel)]="additonal.area_of_expertise">
+                    <option value="">---Select</option>
+                    <option value="Growth">GROWTH</option>
+                    <option value="Product">PRODUCT</option>
+                    <option value="Operations">OPERATIONS</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <span class="label"> </span>
+                  <textarea class="form-control" name="expertise_expanded" placeholder="Describe your Startup Experience"
+                    [(ngModel)]="additonal.expertise_expanded"></textarea>
+                </div>
+              </div>
+              <div class="col-md-12" hidden>
+                <div class="form-group">
+                  <span class="label">Start Date</span>
+                  <input type="date" class="form-control" name="start_date" [(ngModel)]="additonal.start_date">
+                </div>
+              </div>
+              <div class="col-md-12" hidden>
+                <div class="form-group">
+                  <span class="label">End Date</span>
+                  <input type="date" class="form-control" name="end_date" [(ngModel)]="additonal.end_date">
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <span class="label">Mentorship type</span>
+                  <input class="radio" type="radio" name="looking_for" value="I'd like to dedicate to one startup as a lead mentor"
+                    [(ngModel)]="additonal.looking_for">I'd like to dedicate to one startup as a lead mentor
+                  <input class="radio" type="radio" name="looking_for" value="I'd like to provide my specialized insight / expertise to many startups"
+                    [(ngModel)]="additonal.looking_for">I'd like to provide my specialized insight / expertise to many
+                  startups
+
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" (click)="savementor()">Save</button>
+            <button type="button" class="btn btn-default" (click)="closementor()">Close</button>
+          </div>
         </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a routerLink="/live-programs">Programs</a></li>
-            <li *ngIf="!this.loggedIn"><a routerLink="/login">Login</a></li>
-            <li *ngIf="!this.loggedIn"><a href="#">Register</a></li>
-            <li *ngIf="this.loggedIn" (click)="logout()"><a>Logout</a></li>
-            <!-- <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li> -->
-          </ul>
-        </div><!--/.nav-collapse -->
+
       </div>
-    </nav>
+    </div>
+
   </div>
-    <section>
-          <!-- Begin page content -->
-          <br>
-          <br>
-          <br>
-      <div class="container">
-        <router-outlet></router-outlet>
-       
-      </div>
-    </section>
+</section>
 
-    <footer class="footer">
-      <div class="container">
-        <p class="text-muted">Place sticky footer content here.</p>
-      </div>
-    </footer>
-
+<footer class="footer">
+  <div class="container">
+    <p class="text-muted">&copy; Vive 2019</p>
+  </div>
+</footer>

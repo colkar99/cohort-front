@@ -1,113 +1,119 @@
-<div class="row mar-top">
-    From usermodule component
-</div>
-<div class="row">
-    <button button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#createUserModel">Create new user</button>
-      <!-- Modal -->
-  <div class="modal fade" id="createUserModel" role="dialog">
-    <div class="modal-dialog">
+<div class="container">
+
+
+  <div class="row">
     
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Create new user</h4>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-              <form [formGroup]='user' (ngSubmit)="user.valid && onSubmit(user)" >
-              <div formGroupName='user'>  
-                <div class="col-md-6 form-group">
+    <!-- Modal -->
+    <div class="modal fade" id="createUserModel" role="dialog" #createUserModel>
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Create new user</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <form [formGroup]='user' (ngSubmit)="user.valid && onSubmit(user)">
+                <div formGroupName='user'>
+                  <div class="col-md-6 form-group">
                     <label for="user_type">Slect user type</label>
-                    <select class="form-control" id="user_type"
-                             formControlName="user_type"
-                             (change)="getRoles($event.target.value)">
+                    <select class="form-control" id="user_type" formControlName="user_type" (change)="getRoles($event.target.value)">
                       <option *ngFor="let value of userOptions" [value]="value.value">{{value.name}}</option>
                       <!-- <option [value]="mentor">mentor</option> -->
                       <!-- <option [ngValue]="startup">Startup User</option> -->
                     </select>
-                </div>
-                <div class="col-md-6 form-group">
+                  </div>
+                  <div class="col-md-6 form-group">
                     <label for="first_name">First name</label>
-                    <input class="form-control" type="text"
-                         id="first_name" placeholder="First name" 
-                          name="first" formControlName="first_name"
-                         required />
+                    <input class="form-control" type="text" id="first_name" placeholder="First name" name="first"
+                      formControlName="first_name" required />
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <label for="last_name">Last name</label>
+                    <input class="form-control" type="text" id="last_name" name="last" placeholder="Last name"
+                      formControlName="last_name" required />
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <label for="email">Email id</label>
+                    <input class="form-control" type="email" id="email" placeholder="Email" name="mail" formControlName="email"
+                      required email />
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <label for="email">Upload_image</label>
+                    <input class="form-control" type="file" id="user_main_image" placeholder="user_main_image" name="user_main_image"
+                      type="file" accept="image/*" (change)="handleInputChange($event)" />
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <label for="phone_number">Phone number</label>
+                    <input class="form-control" type="text" id="phone_number" name="number" placeholder="Phone number"
+                      formControlName="phone_number" required minlength="10" maxlength="15" />
+                  </div>
                 </div>
-                <div class="col-md-6 form-group">
-                        <label for="last_name">Last name</label>
-                        <input class="form-control" type="text" id="last_name" name="last"
-                                placeholder="Last name" formControlName="last_name" required  />
-                </div>
-                <div class="col-md-6 form-group">
-                        <label for="email">Email id</label>
-                        <input class="form-control" type="email"
-                         id="email" placeholder="Email" name="mail" formControlName="email" required email />
-                </div>
-                <div class="col-md-6 form-group">
-                  <label for="email">Upload_image</label>
-                  <input class="form-control" type="file"
-                  id="user_main_image" placeholder="user_main_image" 
-                  name="user_main_image" type="file" accept="image/*" (change)="handleInputChange($event)" />
-              </div>
-                <div class="col-md-6 form-group">
-                        <label for="phone_number">Phone number</label>
-                        <input class="form-control" type="text" id="phone_number" name="number"
-                         placeholder="Phone number" formControlName="phone_number"
-                         required minlength="10" maxlength="15"/>
-                </div>
-              </div>  
                 <div class="col-md-6 form-group" formGroupName='role' *ngIf="isRolesAvailable">
-                    <label for="user_type">Select role</label>
-                    <select class="form-control" id="role"
-                                formControlName="role_id">
-                        <option *ngFor="let role of roles" [value]="role.id">{{role.name}}</option>
-                        <!-- <option [value]="mentor">mentor</option> -->
-                        <!-- <option [ngValue]="startup">Startup User</option> -->
-                    </select>
+                  <label for="user_type">Select role</label>
+                  <select class="form-control" id="role" formControlName="role_id">
+                    <option *ngFor="let role of roles" [value]="role.id">{{role.name}}</option>
+                    <!-- <option [value]="mentor">mentor</option> -->
+                    <!-- <option [ngValue]="startup">Startup User</option> -->
+                  </select>
                 </div>
                 <div class="col-md-12 text-center">
-                        <button [disabled]= "!user.valid" class="btn btn-primary">Submit</button>
+                  <button [disabled]="!user.valid" class="btn btn-success"><i class="glyphicon glyphicon-floppy-saved"></i> Submit</button>
                 </div>
               </form>
+            </div>
+          </div>
+          <div class="modal-footer">
           </div>
         </div>
-        <div class="modal-footer">
-        </div>
+
       </div>
-      
     </div>
   </div>
-</div>
-<div class="row">
-  <h2>List of users</h2>
-  <div class="col-md-12">
-  <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Contact no</th>
-          <th>User type</th>
-          <th>Roles</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let user of all_users">
-          <td>{{user.full_name}}</td>
-          <td>{{user.email}}</td>
-          <td>{{user.phone_number}}</td>
-          <td>{{user.user_type}}</td>
-          <td *ngIf="user.roles.length != 0">
-            <p  *ngFor="let role of user.roles"><span *ngIf="role.name">{{role.name }}</span></p>
-          </td>
-          <td *ngIf="user.roles.length <= 0">No roles</td>
-          <td>
-            <button routerLink="controller/{{user.id}}">Show user</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="row">
+    <div class="panel panel-default">
+      <div class="panel-heading" style="height:57px;">List of Users <button button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#createUserModel"><i class="glyphicon glyphicon-plus-sign"></i>
+          new user</button></div>
+      <div class="panel-body">
+        <div class="row">
+        <div class="col-md-12 col-sm-12 col-lg-12 ">
+          <div class="table-responsive">
+          <table class="table table-bordered ">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Contact no</th>
+                <th>User type</th>
+                <th>Roles</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of all_users">
+                <td>{{user.full_name}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.phone_number}}</td>
+                <td>{{user.user_type}}</td>
+                <td *ngIf="user.roles.length != 0">
+                  <p *ngFor="let role of user.roles"><span *ngIf="role.name">{{role.name }}</span></p>
+                </td>
+                <td *ngIf="user.roles.length <= 0">No roles</td>
+                <td>
+                  <button class="btn btn-default" routerLink="controller/{{user.id}}"><i class="glyphicon glyphicon-eye-open"></i> Show user</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+
   </div>
+
 </div>

@@ -3,87 +3,122 @@
         <div class="panel-body">
             <form #form="ngForm" (ngSubmit)="onSubmitReview(form)">
                 <fieldset disabled>
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <h4>Startup Ignite Contract form</h4>
-                    </div>
-                    <div class="col-md-12 pull-left">
-                        <p>Place: chennai</p>
-                        <p>Date: today</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 form-group">
-                        <label>From,</label>
-                        <input type="text" class="form-control" name="p_1_name" [(ngModel)]="contractdetails.p_1_name" />
-                        <textarea type="text" class="form-control" name="p_1_address" [(ngModel)]="contractdetails.p_1_address" ></textarea>
-                        <input type="text" class="form-control" name="p_1_phone_number" [(ngModel)]="contractdetails.p_1_phone_number" />
-                        <input type="text" class="form-control" name="p_1_email" [(ngModel)]="contractdetails.p_1_email" />                        
-                    </div>
-                    <div class="col-md-6">
-                        <label>To,</label>
-                        <input type="text" class="form-control" name="p_2_name" [(ngModel)]="contractdetails.p_2_name" />
-                        <textarea type="text" class="form-control" name="p_2_address" [(ngModel)]="contractdetails.p_2_address" ></textarea>
-                        <input type="text" class="form-control" name="p_2_phone_number" [(ngModel)]="contractdetails.p_2_phone_number" />
-                        <input type="text" class="form-control" name="p_2_email" [(ngModel)]="contractdetails.p_2_email" /> 
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 form-group">
-                        <label>Contract from date</label>
-                        <input class="form-control" name="from_date" ngModel type="date">
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <label>Contract to date</label>
-                        <input class="form-control" name="to_date" ngModel type="date">
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <label>Contract duration in month</label>
-                        <input class="form-control" name="duration" [(ngModel)]="contractdetails.duration"  type="text">
-                    </div>                    
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label for="sel1">Select additional information:</label>
-                           <input class="form-control" name="additional_contract_information_id" [(ngModel)]="contractdetails.additional_contract_information_id" >
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h4>Startup Ignite Contract form</h4>
+                        </div>
+                        <div class="col-md-12 pull-left">
+                            <p>Place: chennai</p>
+                            <p>Date: today</p>
                         </div>
                     </div>
-                </div>
-                <div class="row" *ngIf="selected_add_info">
-                        <input type="hidden" class="form-control" name="additional_contract_information_id" [(ngModel)]="contractdetails.additional_contract_information_id" /> 
-                    <div class="col-md-12">
-                        <label>Purpose Of Contract</label>
-                        <p>{{selected_add_info.purpose_of_contract}}</p>
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label>From,</label>
+                            <input type="text" class="form-control" name="p_1_name" [(ngModel)]="contractdetails.p_1_name" />
+                            <textarea type="text" class="form-control" name="p_1_address" [(ngModel)]="contractdetails.p_1_address"></textarea>
+                            <input type="text" class="form-control" name="p_1_phone_number" [(ngModel)]="contractdetails.p_1_phone_number" />
+                            <input type="text" class="form-control" name="p_1_email" [(ngModel)]="contractdetails.p_1_email" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>To,</label>
+                            <input type="text" class="form-control" name="p_2_name" [(ngModel)]="contractdetails.p_2_name" />
+                            <textarea type="text" class="form-control" name="p_2_address" [(ngModel)]="contractdetails.p_2_address"></textarea>
+                            <input type="text" class="form-control" name="p_2_phone_number" [(ngModel)]="contractdetails.p_2_phone_number" />
+                            <input type="text" class="form-control" name="p_2_email" [(ngModel)]="contractdetails.p_2_email" />
+                        </div>
                     </div>
-                    <div class="col-md-12">
-                        <label>Authorization</label>
-                        <p>{{selected_add_info.authorization}}</p>                        
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label>Contract from date</label>
+                            <input class="form-control" name="from_date" ngModel type="date">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Contract to date</label>
+                            <input class="form-control" name="to_date" ngModel type="date">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Contract duration in month</label>
+                            <input class="form-control" name="duration" [(ngModel)]="contractdetails.duration" type="text">
+                        </div>
                     </div>
-                    <div class="col-md-12">
-                        <label>Contract terms condition</label>
-                        <p>{{selected_add_info.contract_terms_condition}}</p>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="sel1">Select additional information:</label>
+                                <input class="form-control" name="additional_contract_information_id" [(ngModel)]="contractdetails.additional_contract_information_id">
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-12">
-                        <label>Contract termination</label>
-                        <p>{{selected_add_info.contract_termination}}</p>                        
+                    <div class="row" *ngIf="selected_add_info">
+                        <input type="hidden" class="form-control" name="additional_contract_information_id" [(ngModel)]="contractdetails.additional_contract_information_id" />
+                        <div class="col-md-12">
+                            <label>Purpose Of Contract</label>
+                            <p>{{selected_add_info.purpose_of_contract}}</p>
+                        </div>
+                        <div class="col-md-12">
+                            <label>Authorization</label>
+                            <p>{{selected_add_info.authorization}}</p>
+                        </div>
+                        <div class="col-md-12">
+                            <label>Contract terms condition</label>
+                            <p>{{selected_add_info.contract_terms_condition}}</p>
+                        </div>
+                        <div class="col-md-12">
+                            <label>Contract termination</label>
+                            <p>{{selected_add_info.contract_termination}}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="row text-center">
-                    <input type="hidden" class="form-control" name="id" [(ngModel)]="contractdetails.id" />
+                    <div class="row text-center">
+                        <input type="hidden" class="form-control" name="id" [(ngModel)]="contractdetails.id" />
                         <input type="hidden" class="form-control" name="program_id" [(ngModel)]="contractdetails.program_id" />
                         <input type="hidden" class="form-control" name="startup_registration_id" [(ngModel)]="startup.id" />
-                    
-                </div>
-            </fieldset>
-            <div class="col-md-12">
-                <div class="col-md-1"><input type="checkbox" class="checkbox" name="accept_terms_condition" (change)="terms($event.srcElement.checked)"></div>
+
+                    </div>
+                </fieldset>
+                <div class="col-md-12">
+                    <div class="col-md-1"><input type="checkbox" class="checkbox" name="accept_terms_condition"
+                            (change)="terms($event.srcElement.checked)"></div>
                     <label>I accept the Terms and Conditions</label>
-            </div>
-            <div class="col-md-12 text-center">
+                </div>
+                <a (click)="askQueries()" style="cursor:pointer">Any Queries?</a>
+                <div class="col-md-12 text-center">
                     <button class="btn btn-default" type="submit">Sign Contract </button>
-            </div>
+                </div>
+                
             </form>
+            <div class="modal fade" id="querypopup" role="dialog" #querypopup>
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" (click)="closepopup()">&times;</button>
+                                <h4 class="modal-title">Ask Queries?</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <span class="label">Subject</span>
+                                        <textarea class="form-control" name="qSubject" [(ngModel)]="qSubject"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                        <div class="form-group">
+                                            <span class="label">Description</span>
+                                            <textarea class="form-control" name="qDescription" [(ngModel)]="qDescription"></textarea>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" (click)="submitQueries()">Submit</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
         </div>
     </div>
 </div>

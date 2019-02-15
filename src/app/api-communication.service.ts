@@ -13,7 +13,11 @@ import {map} from 'rxjs/operators'
 export class ApiCommunicationService {
 
   // private  url = "http://localhost:3000/v1/";
-  private url = "http://ec2-54-172-0-213.compute-1.amazonaws.com/v1/";
+  // public imgUrl = "http://localhost:3000";
+  public url = "http://ec2-54-172-0-213.compute-1.amazonaws.com/v1/";
+  public imgUrl = "http://ec2-54-172-0-213.compute-1.amazonaws.com"
+
+
   domainUrl: string;
    httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json','Access-Control-Allow-Origin': '*'})
@@ -34,68 +38,89 @@ export class ApiCommunicationService {
       catchError((error:any)=>{this.spinnerservice.hide();return throwError(error.error.message)})
       
     );
-  };
+  }
 
   postDataWithToken(url: string,params: {},auth: string): Observable<any>{
     this.domainUrl = `${this.url}${url}`;
     let headers = this._headers.append('Authorization', auth);
     debugger
+    this.spinnerservice.show()
     return this.http.post<any>(this.domainUrl,params,{headers: headers})
     .pipe(
-      catchError(this.handleError)
+      map((res) =>{res;this.spinnerservice.hide();return res;})).pipe(
+      catchError((error:any)=>{this.spinnerservice.hide();return throwError(error.error.message)})
+      
     );
-  };
+  }
   putDataWithToken(url: string,params: {},auth: string): Observable<any>{
     this.domainUrl = `${this.url}${url}`;
     let headers = this._headers.append('Authorization', auth);
     debugger
+    this.spinnerservice.show()
     return this.http.put<any>(this.domainUrl,params,{headers: headers})
     .pipe(
-      catchError(this.handleError)
+      map((res) =>{res;this.spinnerservice.hide();return res;})).pipe(
+      catchError((error:any)=>{this.spinnerservice.hide();return throwError(error.error.message)})
+      
     );
-  };
+  }
   putDataWithoutToken(url: string,params: {}): Observable<any>{
     this.domainUrl = `${this.url}${url}`;
    
     debugger
+    this.spinnerservice.show()
     return this.http.put<any>(this.domainUrl,params,this.httpOptions)
     .pipe(
-      catchError(this.handleError)
+      map((res) =>{res;this.spinnerservice.hide();return res;})).pipe(
+      catchError((error:any)=>{this.spinnerservice.hide();return throwError(error.error.message)})
+      
     );
-  }; 
+  }
 
   getDataWithAuth(url: string,auth: string): Observable<any>{
     this.domainUrl = `${this.url}${url}`;
     // this.httpOptions.headers.append('Authorization', 'asdasdasd');
     let headers = this._headers.append('Authorization', auth);
+    this.spinnerservice.show()
     return this.http.get<any>(this.domainUrl,{headers: headers})
     .pipe(
-      catchError(this.handleError)
+      map((res) =>{res;this.spinnerservice.hide();return res;})).pipe(
+      catchError((error:any)=>{this.spinnerservice.hide();return throwError(error.error.message)})
+      
     );
   };
   getDataWithoutAuth(url: string): Observable<any>{
     this.domainUrl = `${this.url}${url}`;
+    this.spinnerservice.show()
     return this.http.get<any>(this.domainUrl)
     .pipe(
-      catchError(this.handleError)
+      map((res) =>{res;this.spinnerservice.hide();return res;})).pipe(
+      catchError((error:any)=>{this.spinnerservice.hide();return throwError(error.error.message)})
+      
     );
   };
 
   postDataCFSI(url: string,id): Observable<any>{
     this.domainUrl = `${this.url}${url}`;
     let params = {"startup_application_id": id}
+    this.spinnerservice.show()
     return this.http.post<any>(this.domainUrl,params,this.httpOptions)
     .pipe(
-      catchError(this.handleError)
+      map((res) =>{res;this.spinnerservice.hide();return res;})).pipe(
+      catchError((error:any)=>{this.spinnerservice.hide();return throwError(error.error.message)})
+      
     );
   };
 
   submitCurrentStateForm(url: string,values): Observable<any>{
     this.domainUrl = `${this.url}${url}`;
+    this.spinnerservice.show()
     let params = JSON.stringify(values)
     return this.http.post<any>(this.domainUrl,params,this.httpOptions)
     .pipe(
-      catchError(this.handleError)
+      map((res) =>{res;this.spinnerservice.hide();return res;})).pipe(
+      catchError((error:any)=>{this.spinnerservice.hide();return throwError(error.error.message)})
+      
     );
   };
 

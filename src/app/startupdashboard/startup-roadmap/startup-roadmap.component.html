@@ -1,0 +1,191 @@
+<h1 class="text-center"> Roadmap</h1>
+
+
+
+<div class="col-md-12" style="height:270px;">
+  <div class="oval text-center">
+    <span style="font-size: 15px;">Graduation</span>
+    <textarea class="form-control" type="text" style="margin-top:35px;width: 70%;margin-left: 40px;resize: none"
+      placeholder="Enter the goal" name="roadmap.goal" [(ngModel)]="roadmap.goal"></textarea>
+  </div>
+  <div style="position:relative">
+    <button class="circle" style="left: 24%;bottom: 0;top: -27px;position: absolute;" (click)="openmapdetails()">Target
+      Metrics</button>
+    <button class="circle" style="left: 39%;bottom: 0;top: -2%;position: absolute;">Resources Needed</button>
+    <button class="circle" style="left: 54%;bottom: -66px;position: absolute;">Target Metrics</button>
+  </div>
+
+</div>
+
+<div class="col-md-6" style="height:270px;" *ngFor="let item of roadmap.milestones;let i = index">
+  <div class="oval-md-6 text-center">
+    <span style="font-size: 15px;">{{item.month}}</span>
+    <textarea class="form-control" type="text" style="margin-top:35px;width: 70%;margin-left: 40px;resize: none"
+      placeholder="Enter the goal" name="item.name" [(ngModel)]="item.name"></textarea>
+  </div>
+  <div style="position:relative">
+    <button type="button" class="circle" style="left: 0%;bottom: 0;top: -23px;position: absolute;" (click)="openmilestone(i)">Target
+      Metrics</button>
+    <button [disabled]="!roadmap.id" type="button" class="circle" style="left: 30%;bottom: 0;top: 0;position: absolute;" (click)="openresource(i)">Resources Needed</button>
+    <button type="button" class="circle" style="left: 59%;bottom: -70px;position: absolute;">Target Metrics</button>
+  </div>
+
+</div>
+
+<div class="col-md-12">
+  <button class="btn btn-lg btn-success text-center" style="margin-left:350px;" type="submit" (click)="submitRoadmap()"><i class="glyphicon glyphicon-floppy-saved"></i> {{!roadmap.id ? 'Save':'Update'}}</button>
+  <button *ngIf="roadmap.id !=(null && undefined)" class="btn btn-danger pull-right" (click)="deleteroadmap()">Delete</button>
+</div>
+
+<div class="modal fade" id="roadmpdetails" role="dialog" #roadmpdetails>
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" (click)="closeroadmap()">&times;</button>
+        <h4 class="modal-title">Roadmap Details</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="col-md-12">
+            <div class="form-group">
+              <span class="label">Strategy</span>
+              <textarea class="form-control" name="roadmap.strategy" [(ngModel)]="roadmap.strategy"></textarea>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <span class="label">Description</span>
+              <textarea class="form-control" name="roadmap.description" [(ngModel)]="roadmap.description"></textarea>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="saveroadmap()">Next</button>
+        <button type="button" class="btn btn-default" (click)="closeroadmap()">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="milestone" role="dialog" #milestone>
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" (click)="closemilestone()">&times;</button>
+        <h4 class="modal-title">Milestone Details</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="col-md-12">
+            <div class="form-group">
+              <span class="label">Metric</span>
+              <textarea class="form-control" name="metric" [(ngModel)]="metric"></textarea>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <span class="label">Description</span>
+              <textarea class="form-control" name="description" [(ngModel)]="description"></textarea>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="savemilestone()">Next</button>
+        <button type="button" class="btn btn-default" (click)="closemilestone()">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="modal fade" id="resourcesneeded" role="dialog" #resourcesneeded>
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" (click)="closeresource()">&times;</button>
+        <h4 class="modal-title">Resource Details</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="col-md-6">
+            <div class="form-group">
+              <span class="label">Resource Type</span>
+              <select class="form-control" name="resource_type" [(ngModel)]="resources.resource_type">
+                <option value="">---Select---</option>
+                <option value="software">Software</option>
+                <option value="hardware">Hardware</option>
+                <option value="marketing">Marketing</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <span class="label">No of Resource</span>
+              <input type="text" class="form-control" name="no_of_resource" [(ngModel)]="resources.no_of_resource">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <span class="label">Date Needed</span>
+              <input type="date" class="form-control" name="date_needed" [(ngModel)]="resources.date_needed">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <span class="label">Payment Mode</span>
+              <select class="form-control" name="payment_mode" [(ngModel)]="resources.payment_mode">
+                <option value="">---Select---</option>
+                <option value="Cash">Cash</option>
+                <option value="Equity">Equity</option>
+                
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)="saveresource()"><i class="glyphicon glyphicon-floppy-saved"></i>{{!resources.id? 'Save':'Update'}}</button>
+        <button type="button" class="btn btn-default" (click)="closeresource()">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="col-md-6">
+
+    <div class="oval text-center">
+      <span>Graduation</span>
+      <textarea class="form-control" type="text" style="margin-top:35px;width: 70%;margin-left: 40px;resize: none"
+        placeholder="Enter the goal"></textarea>
+    </div>
+    <button class="circle" style="margin-left: 20%;bottom: 0; top: 267px;">Target Metrics</button>
+    <button class="circle" style="margin-left: 30%;bottom: 0; top: 297px;">Resources Needed</button>
+    <button class="circle" style="margin-left: 40%;bottom: 0; top: 267px;">Target Metrics</button>
+
+  </div> -->

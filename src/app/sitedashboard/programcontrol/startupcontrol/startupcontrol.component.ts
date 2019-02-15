@@ -21,6 +21,7 @@ export class StartupControlComponent implements OnInit {
   startup_id: number;
   currentstateform: CurrentstateFormVO
   currentstateedit:boolean = true
+  edit_admin:boolean = false
 
   constructor(private apiCom: ApiCommunicationService,
     private cookieService: CookieService,
@@ -54,6 +55,9 @@ export class StartupControlComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
         this.startup = data.startup_application;
+        if(this.startup.application_status == "PR"){
+          this.edit_admin = true
+        }
         if(this.startup.current_state_form_reviewed == false){
           this.currentstateedit = false
         }else{
@@ -102,6 +106,11 @@ export class StartupControlComponent implements OnInit {
         console.log(data);
         this.getStartupRegQues();
         this.appRespQues 
+        if(this.currentstateform.reviewer_rating != "" && this.currentstateform.reviewer_rating != (0 && null && undefined)){
+          this.submitCSFS();
+          this.edit_admin = false
+          console.log("submitscfs")
+        }
       }, error => {
         console.log(error);
       })
@@ -133,6 +142,7 @@ export class StartupControlComponent implements OnInit {
       let total = 0;
       this.currentstateform.total_rating = 0;
       for (let i = 0; i < this.appRespQues.length; i++) {
+        console.log("this.appRespQues[i].reviewer_rating",this.appRespQues[i].reviewer_rating)
         total += this.appRespQues[i].reviewer_rating
       }
       this.currentstateform.total_rating = Number(this.currentstateform.reviewer_rating) + Number(total)
