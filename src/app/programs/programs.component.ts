@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiCommunicationService } from '../api-communication.service';
+declare var $: any
 
 @Component({
   selector: 'app-programs',
@@ -35,5 +36,6 @@ export class ProgramsComponent implements OnInit {
 
     })
   }
+
 
 }
