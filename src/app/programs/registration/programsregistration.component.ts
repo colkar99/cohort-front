@@ -14,7 +14,7 @@ export class ProgramsRegistrationComponent implements OnInit {
   formSubmitted: boolean = false
   application_questions: any;
   application_questions_form: any;
-  startup_application: any;
+  startup_registration: any;
   app_ques:any;
   constructor(private apiService: ApiCommunicationService,
               private route: ActivatedRoute,
@@ -34,16 +34,27 @@ export class ProgramsRegistrationComponent implements OnInit {
   initAppQuesSubmit(form){
     debugger
     let dum_data = form.value;
-    let data = {application_ques_response: dum_data, program_id: this.program_id,startup_application_id: this.startup_application.id };
-    this.apiService.postData('create-program-questions-response',JSON.stringify(data))
-        .subscribe(data =>{
-          debugger
-          console.log(data);
-          this.router.navigate(['/']);
-        },error =>{
-          debugger
-          console.log(data)
-          })
+    let data = {program_registration: this.startup_registration.program_registration,application_ques_response: dum_data.application_question, program_id: this.program_id };
+    this.apiService.postData('program/startup-registration',JSON.stringify(data))
+    .subscribe(data =>{
+      console.log(data);
+      this.router.navigate(['/']);
+    },error =>{
+      alert(`The following error has occured: ${error}`);
+      console.log(error)
+      })
+
+    // this.apiService.postData('create-program-questions-response',JSON.stringify(data))
+        // .subscribe(data =>{
+        //   debugger
+        //   console.log(data);
+        //   this.router.navigate(['/']);
+        // },error =>{
+        //   debugger
+        //   console.log(data)
+        //   })
+
+
     // dum_data.application_question.forEach(element => {
     //   let data = {application_ques_response: element, program_id: this.program_id,startup_application_id: this.startup_application.id };
     //     this.apiService.postData('create-program-questions-response',JSON.stringify(data))
@@ -56,16 +67,17 @@ export class ProgramsRegistrationComponent implements OnInit {
   }
  
   handleFormSubmit(form){
-    let data = {program_registration: form.value}
-    data.program_registration.program_id = this.program_id;
-    this.apiService.postData('program/startup-registration',JSON.stringify(data))
-    .subscribe(data =>{
-      console.log(data);
-      this.startup_application = data
-      this.formSubmitted = true;
-    },error =>{
-      console.log(error)
-      })
+     this.startup_registration = {program_registration: form.value}
+     this.startup_registration.program_registration.program_id = this.program_id;
+     this.formSubmitted = true;
+    // this.apiService.postData('program/startup-registration',JSON.stringify(data))
+    // .subscribe(data =>{
+    //   console.log(data);
+    //   this.startup_application = data
+    //   this.formSubmitted = true;
+    // },error =>{
+    //   console.log(error)
+    //   })
   }
   createQuesResponse(element): FormGroup{
     return this.fb.group({
