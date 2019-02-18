@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ApiCommunicationService } from '../../api-communication.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
-import {SharedDataService} from '../../shared-data.service'
+import { SharedDataService } from '../../shared-data.service'
 
 @Component({
   selector: 'app-sitedashboard-framework-module',
@@ -16,13 +16,13 @@ export class FrameworkModuleComponent implements OnInit {
   authToken: string;
   loggedIn: boolean;
   frameworks: any = [];
-  courses:any
-  framwork_unfiltered:any = [];
-  course_unfiltered:any = []
-  filterfeild:any
-  filterfeild1:any;
-  filtervalue1:any
-  filtervalue:any
+  courses: any
+  framwork_unfiltered: any = [];
+  course_unfiltered: any = []
+  filterfeild: any
+  filterfeild1: any;
+  filtervalue1: any
+  filtervalue: any
 
 
   public user_details: any[];
@@ -30,7 +30,7 @@ export class FrameworkModuleComponent implements OnInit {
   constructor(private apiCom: ApiCommunicationService,
     private cookieService: CookieService,
     private router: Router,
-    private shareddata:SharedDataService) { }
+    private shareddata: SharedDataService) { }
 
   getCookie(key: string) {
     return this.cookieService.get(key);
@@ -82,29 +82,35 @@ export class FrameworkModuleComponent implements OnInit {
         console.log(error);
       })
   }
-  setsourceedit(course){
+  setsourceedit(course) {
     this.shareddata.changeMessage(course)
   }
 
   filtervalues(value: string) {
     let item = value.toLowerCase()
-    if(this.filterfeild != 'level'){
-      this.frameworks = this.framwork_unfiltered.filter((list)=> list[this.filterfeild].toLowerCase().includes(item))
-    }else if(value != ""){
-      this.frameworks = this.framwork_unfiltered.filter((list)=> list.level == Number(value))
-    }else{
+    if (this.filterfeild != 'level') {
+      this.frameworks = this.framwork_unfiltered.filter((list) => list[this.filterfeild].toLowerCase().includes(item))
+    } else if (value != "") {
+      this.frameworks = this.framwork_unfiltered.filter((list) => list.level == Number(value))
+    } else {
       this.frameworks = this.framwork_unfiltered
     }
-    
+
   }
   filtervalues1(value: string) {
-      if(value != ""){
-        this.courses = this.course_unfiltered.filter((list)=>  list[this.filterfeild1].toLowerCase().includes(value.toLowerCase()))
-      }else{
-        this.courses = this.course_unfiltered
-      }
-      
-   
-    
+    if (value != "") {
+      this.courses = this.course_unfiltered.filter((list) => list[this.filterfeild1].toLowerCase().includes(value.toLowerCase()))
+    } else {
+      this.courses = this.course_unfiltered
+    }
+
+
+
+  }
+  resetframe() {
+    this.frameworks = this.framwork_unfiltered
+  }
+  resetcourse() {
+    this.courses = this.course_unfiltered
   }
 }

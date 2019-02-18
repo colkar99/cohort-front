@@ -88,21 +88,21 @@
                   <select class="form-control" name="filterfeild" [(ngModel)]="filterfeild">
                     <option value="">---Select---</option>
                     <option value="full_name">Name</option>
-                    <option value="score">Email</option>
+                    <option value="email">Email</option>
                     <option value="phone_number">Phone number</option>
                     <option value="user_type">User Type</option>
 
                   </select>
                 </div>
               </div>
-              <div class="col-md-6" *ngIf="filterfeild != 'user_type'">
+              <div class="col-md-4" *ngIf="filterfeild != 'user_type'">
                 <div class="form-group">
                   <label>Value</label>
                   <input [disabled]="filterfeild == ('' || null || undefined)" class="form-control" name="filtervalue"
                     #or [(ngModel)]="filtervalue" (ngModelChange)="filtervalues(or.value)">
                 </div>
               </div>
-              <div class="col-md-6" *ngIf="filterfeild == 'user_type'">
+              <div class="col-md-4" *ngIf="filterfeild == 'user_type'">
                   <div class="form-group">
                     <label>Value</label>
                     <select class="form-control" name="filtervalue" [(ngModel)]="filtervalue" (ngModelChange)="filtervalues($event)">
@@ -112,6 +112,9 @@
     
                       </select>
                   </div>
+                </div>
+                <div class="col-md-2 form-group">
+                  <button class="btn btn-default" type="reset" (click)="resetfilter()">Reset</button>
                 </div>
             </form>
           </div>
