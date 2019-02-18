@@ -6,7 +6,8 @@
       <div class="panel-heading"><h2>Live Programs</h2></div>
       <div class="panel-body">
         <div class="col-md-12" *ngFor="let live of livePrograms; let i = index">
-            <a  href="#live{{i}}" class="btn btn-info" data-toggle="collapse" style="width:100%;">{{live.title}}</a>
+            <a  href="#live{{i}}" class="btn btn-info" data-toggle="collapse" style="width:100%;border-radius: 0;">{{live.title}}
+                <span class="glyphicon glyphicon-triangle-bottom pull-right" aria-hidden="true"></span></a>
             <div id="live{{i}}" class="collapse row">
                 <div class="row">
                     <div class="col-md-12 text-center" *ngIf="live.logo_image.url != null">
@@ -47,14 +48,14 @@
       </div>
     </div>
   </div>
-  <div class="row" *ngIf="expPrograms.length != 0">
+  <div class="row" >
     <div class="panel panel-default">
       <div class="panel-heading">
         Experied Programs
       </div>
       <div class="panel-body">
         <div class="col-md-12" *ngFor="let exp of expPrograms; let i = index">
-            <a  href="#exp{{i}}" class="btn btn-info" data-toggle="collapse" style="width:100%;">{{exp.title}}</a>
+            <a  href="#exp{{i}}" class="btn btn-info" data-toggle="collapse" style="width:100%;border-radius: 0;">{{exp.title}}</a>
             <div id="exp{{i}}" class="collapse row">
                 <div class="row">
                   <div clas="col-md-12">
@@ -90,4 +91,4 @@
     </div>
   </div>
 </div>
-
+ 
