@@ -24,6 +24,9 @@ export class StartupbyProgramsComponent implements OnInit {
   location_program_id: any;
   formrequestarray: Array<any> = []
   programselected
+  filterfeild
+  filtervalue
+  unfilteredvalue:any = []
   constructor(private apiCom: ApiCommunicationService,
     private cookieService: CookieService,
     private router: Router,
@@ -98,6 +101,7 @@ export class StartupbyProgramsComponent implements OnInit {
         debugger
         console.log(data);
         this.allStartups = data;
+        this.unfilteredvalue = data
         this.allStartups.sort((a, b) => { if (a.score < b.score) { return 1; } if (a.score > b.score) { return -1; } })
         console.log("this.allStartups" + this.allStartups)
         this.showStartup = true;
@@ -110,6 +114,15 @@ export class StartupbyProgramsComponent implements OnInit {
     console.log(item)
     this.sharedDataService.changeMessage(item);
     this.router.navigate(['admin/dashboard/about-profile'])
+  }
+
+  filtervalues(value: string) {
+    if(this.filterfeild != 'score'){
+      this.allStartups = this.unfilteredvalue.filter((list)=> list[this.filterfeild].includes(value))
+    }else{
+      this.allStartups = this.unfilteredvalue.filter((list)=> list.score == Number(value))
+    }
+    
   }
 
 }

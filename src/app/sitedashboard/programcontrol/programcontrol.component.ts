@@ -26,6 +26,9 @@ export class ProgramControlComponent implements OnInit {
   location_program_id: any;
   formrequestarray: Array<any> = []
   programselected
+  unfilteredvalue: any = []
+  filterfeild
+  filtervalue
 
   constructor(private apiCom: ApiCommunicationService,
     private cookieService: CookieService,
@@ -111,6 +114,7 @@ export class ProgramControlComponent implements OnInit {
           debugger
           console.log(data);
           this.allStartups = data;
+          this.unfilteredvalue = data
           this.allStartups.sort((a, b) => { if (a.score < b.score) { return 1; } if (a.score > b.score) { return -1; } })
           console.log("this.allStartups" + this.allStartups)
           this.showStartup = true;
@@ -275,6 +279,14 @@ export class ProgramControlComponent implements OnInit {
     } else {
       alert("Select atleast One Startup Company")
     }
+  }
+  filtervalues(value: string) {
+    if(this.filterfeild != 'score'){
+      this.allStartups = this.unfilteredvalue.filter((list)=> list[this.filterfeild].includes(value))
+    }else{
+      this.allStartups = this.unfilteredvalue.filter((list)=> list.score == Number(value))
+    }
+    
   }
 
 }
