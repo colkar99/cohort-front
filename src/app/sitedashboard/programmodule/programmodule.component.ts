@@ -33,9 +33,9 @@ export class ProgramModuleComponent implements OnInit {
     filtervalue4: any
     ques_unfiltered: any
     program_modules_unfilter: any
-    listprograms:any
-    listprogramtypes:any
-    listlocations:any
+    listprograms: any
+    listprogramtypes: any
+    listlocations: any
     constructor(
         private cookieService: CookieService,
         private formBuilder: FormBuilder,
@@ -255,26 +255,44 @@ export class ProgramModuleComponent implements OnInit {
     }
 
     filtervalues(value: string) {
-        console.log(value,this.filterfeild1)
-        if(this.filterfeild1 == 'duration'){
+        console.log(value, this.filterfeild1)
+        if (this.filterfeild1 == 'duration') {
             this.listprograms = this.program_modules_unfilter.programs.filter((list) => list[this.filterfeild1] == Number(value))
         }
-       else if(this.filterfeild1 == "seat_size"){
-            this.listprograms = this.program_modules_unfilter.programs.filter((list) => list[this.filterfeild1] == Number(value)) 
+        else if (this.filterfeild1 == "seat_size") {
+            this.listprograms = this.program_modules_unfilter.programs.filter((list) => list[this.filterfeild1] == Number(value))
         }
-        else{
-            this.listprograms = this.program_modules_unfilter.programs.filter((list) => list[this.filterfeild1].includes(value))
+        else if (value != "") {
+            this.listprograms = this.program_modules_unfilter.programs.filter((list) => list[this.filterfeild1].toLowerCase().includes(value.toLowerCase()))
         }
-        
+        else {
+            this.listprograms = this.program_modules_unfilter.programs
+        }
+
     }
     filtervalues1(value: string) {
-        this.listprogramtypes = this.program_modules_unfilter.program_types.filter((list) => list[this.filterfeild2].includes(value))
+        if (value != "") {
+            this.listprogramtypes = this.program_modules_unfilter.program_types.filter((list) => list[this.filterfeild2].toLowerCase().includes(value.toLowerCase()))
+        } else {
+            this.listprogramtypes = this.program_modules_unfilter.program_types
+        }
+
     }
     filtervalues2(value: string) {
-        this.listlocations = this.program_modules_unfilter.program_locations.filter((list) => list[this.filterfeild3].includes(value))
+        if (value != "") {
+            this.listlocations = this.program_modules_unfilter.program_locations.filter((list) => list[this.filterfeild3].toLowerCase().includes(value.toLowerCase()))
+        } else {
+            this.listlocations = this.program_modules_unfilter.program_locations
+        }
+
     }
     filtervalues3(value: string) {
-        this.allquestions = this.ques_unfiltered.filter((list) => list[this.filterfeild4].includes(value))
+        if(value != ""){
+            this.allquestions = this.ques_unfiltered.filter((list) => list[this.filterfeild4].toLowerCase().includes(value.toLowerCase()))
+        }else{
+            this.allquestions = this.ques_unfiltered
+        }
+        
     }
 
 } 

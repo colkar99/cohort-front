@@ -281,12 +281,15 @@ export class ProgramControlComponent implements OnInit {
     }
   }
   filtervalues(value: string) {
-    if(this.filterfeild != 'score'){
-      this.allStartups = this.unfilteredvalue.filter((list)=> list[this.filterfeild].includes(value))
-    }else{
-      this.allStartups = this.unfilteredvalue.filter((list)=> list.score == Number(value))
+    let item = value.toLowerCase()
+    if (this.filterfeild != 'score') {
+      this.allStartups = this.unfilteredvalue.filter((list) => list[this.filterfeild].toLowerCase().includes(item))
+    } else if (value != "") {
+      this.allStartups = this.unfilteredvalue.filter((list) => list.score == Number(value))
+    } else {
+      this.allStartups = this.unfilteredvalue
     }
-    
+
   }
 
 }

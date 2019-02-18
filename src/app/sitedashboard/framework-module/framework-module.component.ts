@@ -87,16 +87,23 @@ export class FrameworkModuleComponent implements OnInit {
   }
 
   filtervalues(value: string) {
+    let item = value.toLowerCase()
     if(this.filterfeild != 'level'){
-      this.frameworks = this.framwork_unfiltered.filter((list)=> list[this.filterfeild].includes(value))
+      this.frameworks = this.framwork_unfiltered.filter((list)=> list[this.filterfeild].toLowerCase().includes(item))
+    }else if(value != ""){
+      this.frameworks = this.framwork_unfiltered.filter((list)=> list.level == Number(value))
     }else{
-      this.frameworks = this.framwork_unfiltered.filter((list)=> list.score == Number(value))
+      this.frameworks = this.framwork_unfiltered
     }
     
   }
   filtervalues1(value: string) {
-    
-      this.courses = this.course_unfiltered.filter((list)=>  list[this.filterfeild1].includes(value))
+      if(value != ""){
+        this.courses = this.course_unfiltered.filter((list)=>  list[this.filterfeild1].toLowerCase().includes(value.toLowerCase()))
+      }else{
+        this.courses = this.course_unfiltered
+      }
+      
    
     
   }
