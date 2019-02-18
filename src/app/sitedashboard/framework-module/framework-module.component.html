@@ -3,6 +3,29 @@
     <div class="panel panel-default">
         <div class="panel-heading" style="height:57px;">List of Frameworks  <button class="btn btn-info pull-right" type="button" routerLink="create-framework"><i class="glyphicon glyphicon-plus-sign"></i>New Framework</button></div>
         <div class="panel-body">
+                <div class="col-md-12" *ngIf="frameworks">
+                        <form>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Filterby Type</label>
+                                    <select class="form-control" name="filterfeild" [(ngModel)]="filterfeild">
+                                        <option value="">---Select---</option>
+                                        <option value="title">Title</option>
+                                        
+                                        <option value="level">Level</option>
+                                        
+                
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6" >
+                                    <div class="form-group">
+                                        <label>Value</label>
+                                        <input [disabled]="filterfeild == ('' || null || undefined)" class="form-control" name="filtervalue" #or [(ngModel)]="filtervalue" (ngModelChange)="filtervalues(or.value)">
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
             <div class="row">
                 <div class="col-md-12 col-xs-12 table-responsive">
                     <table class="table table-bordered">
@@ -35,6 +58,29 @@
     <div class="panel panel-default">
         <div class="panel-heading" style="height:57px;">List of Courses  <button class="btn btn-info pull-right" type="button" routerLink="create-course"><i class="glyphicon glyphicon-plus-sign"></i> New Courses</button></div>
         <div class="panel-body">
+                <div class="col-md-12" *ngIf="courses">
+                        <form>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Filterby Type</label>
+                                    <select class="form-control" name="filterfeild1" [(ngModel)]="filterfeild1">
+                                        <option value="">---Select---</option>
+                                        <option value="title">Title</option>
+                                        
+                                        
+                                        
+                
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6" >
+                                    <div class="form-group">
+                                        <label>Value</label>
+                                        <input [disabled]="filterfeild1 == ('' || null || undefined)" class="form-control" name="filtervalue1" #or1 [(ngModel)]="filtervalue1" (ngModelChange)="filtervalues1(or1.value)">
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
             <div class="row">
                 <div class="col-md-12 col-xs-12 table-responsive">
                     <table class="table table-bordered">

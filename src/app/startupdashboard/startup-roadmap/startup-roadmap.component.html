@@ -2,38 +2,38 @@
 
 
 
-<div class="col-md-12" style="height:270px;">
+<div class="col-md-12 col-sm-12 col-xs-12" style="height:270px;">
   <div class="oval text-center">
     <span style="font-size: 15px;">Graduation</span>
     <textarea class="form-control" type="text" style="margin-top:35px;width: 70%;margin-left: 40px;resize: none"
       placeholder="Enter the goal" name="roadmap.goal" [(ngModel)]="roadmap.goal"></textarea>
   </div>
   <div style="position:relative">
-    <button class="circle" style="left: 24%;bottom: 0;top: -27px;position: absolute;" (click)="openmapdetails()">Target
+    <button class="circle child_circle1"  (click)="openmapdetails()">Target
       Metrics</button>
-    <button class="circle" style="left: 39%;bottom: 0;top: -2%;position: absolute;">Resources Needed</button>
-    <button class="circle" style="left: 54%;bottom: -66px;position: absolute;">Target Metrics</button>
+    <button class="circle child_circle2">Resources Needed</button>
+    <button class="circle child_circle3">Target Metrics</button>
   </div>
 
 </div>
 
-<div class="col-md-6" style="height:270px;" *ngFor="let item of roadmap.milestones;let i = index">
+<div class="col-md-6 col-sm-12 col-xs-12" style="height:270px;" *ngFor="let item of roadmap.milestones;let i = index">
   <div class="oval-md-6 text-center">
     <span style="font-size: 15px;">{{item.month}}</span>
     <textarea class="form-control" type="text" style="margin-top:35px;width: 70%;margin-left: 40px;resize: none"
       placeholder="Enter the goal" name="item.name" [(ngModel)]="item.name"></textarea>
   </div>
   <div style="position:relative">
-    <button type="button" class="circle" style="left: 0%;bottom: 0;top: -23px;position: absolute;" (click)="openmilestone(i)">Target
+    <button type="button" class="circle child1_circle1" (click)="openmilestone(i)">Target
       Metrics</button>
-    <button [disabled]="!roadmap.id" type="button" class="circle" style="left: 30%;bottom: 0;top: 0;position: absolute;" (click)="openresource(i)">Resources Needed</button>
-    <button type="button" class="circle" style="left: 59%;bottom: -70px;position: absolute;">Target Metrics</button>
+    <button [disabled]="!roadmap.id" type="button" class="circle child1_circle2"  (click)="openresource(i)">Resources Needed</button>
+    <button type="button" class="circle child1_circle3">Target Metrics</button>
   </div>
 
 </div>
 
-<div class="col-md-12">
-  <button class="btn btn-lg btn-success text-center" style="margin-left:350px;" type="submit" (click)="submitRoadmap()"><i class="glyphicon glyphicon-floppy-saved"></i> {{!roadmap.id ? 'Save':'Update'}}</button>
+<div class="col-md-12 col-sm-12 col-xs-12 text-center">
+  <button class="btn btn-lg btn-success"  type="submit" (click)="submitRoadmap()"><i class="glyphicon glyphicon-floppy-saved"></i> {{!roadmap.id ? 'Save':'Update'}}</button>
   <button *ngIf="roadmap.id !=(null && undefined)" class="btn btn-danger pull-right" (click)="deleteroadmap()">Delete</button>
 </div>
 

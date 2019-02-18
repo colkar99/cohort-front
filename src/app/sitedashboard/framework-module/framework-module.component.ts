@@ -15,8 +15,16 @@ export class FrameworkModuleComponent implements OnInit {
   getUserUrl: string = 'get-user-details'
   authToken: string;
   loggedIn: boolean;
-  frameworks: any;
+  frameworks: any = [];
   courses:any
+  framwork_unfiltered:any = [];
+  course_unfiltered:any = []
+  filterfeild:any
+  filterfeild1:any;
+  filtervalue1:any
+  filtervalue:any
+
+
   public user_details: any[];
 
   constructor(private apiCom: ApiCommunicationService,
@@ -57,6 +65,7 @@ export class FrameworkModuleComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
         this.frameworks = data;
+        this.framwork_unfiltered = data;
       }, error => {
         console.log(error);
       })
@@ -68,11 +77,27 @@ export class FrameworkModuleComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
         this.courses = data;
+        this.course_unfiltered = data;
       }, error => {
         console.log(error);
       })
   }
   setsourceedit(course){
     this.shareddata.changeMessage(course)
+  }
+
+  filtervalues(value: string) {
+    if(this.filterfeild != 'level'){
+      this.frameworks = this.framwork_unfiltered.filter((list)=> list[this.filterfeild].includes(value))
+    }else{
+      this.frameworks = this.framwork_unfiltered.filter((list)=> list.score == Number(value))
+    }
+    
+  }
+  filtervalues1(value: string) {
+    
+      this.courses = this.course_unfiltered.filter((list)=>  list[this.filterfeild1].includes(value))
+   
+    
   }
 }

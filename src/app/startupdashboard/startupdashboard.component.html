@@ -169,7 +169,7 @@
 
 
 
-<div class="col-md-2">
+<div class="col-md-2 hidden-sm hidden-xs">
   <nav class="sidenav">
     <div style="height:90px;">
       <img class="img-responsive img-rounded profile-image" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
@@ -187,14 +187,41 @@
     <div class="col-md-12">
       <strong>Menus</strong>
       <a [ngClass]="menuname == 'profile' ? 'bganchor' : ''" role="button" routerLink="profile" (click)="menunames('profile')">Profile</a>
-      <a [ngClass]="menuname == 'programs' ? 'bganchor' : ''" role="button" routerLink="programs"  (click)="menunames('programs')">Programs</a>
-      <a [ngClass]="menuname == 'roadmap' ? 'bganchor' : ''" role="button" routerLink="road-map"  (click)="menunames('roadmap')">RoadMap</a>
-      
+      <a [ngClass]="menuname == 'programs' ? 'bganchor' : ''" role="button" routerLink="programs" (click)="menunames('programs')">Programs</a>
+      <a [ngClass]="menuname == 'roadmap' ? 'bganchor' : ''" role="button" routerLink="road-map" (click)="menunames('roadmap')">RoadMap</a>
+
     </div>
 
   </nav>
+
+
+
 </div>
+
+<ul class="nav-mobile hidden-lg hidden-md">
+  <li style="background-color:white"></li>
+  <li class="menu-container" style="background-color:blue;">
+    <input id="menu-toggle" type="checkbox">
+    <label for="menu-toggle" class="menu-button">
+      <svg class="icon-open" viewBox="0 0 24 24">
+        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
+      </svg>
+      <svg class="icon-close" viewBox="0 0 100 100">
+        <path d="M83.288 88.13c-2.114 2.112-5.575 2.112-7.69 0L53.66 66.188c-2.113-2.112-5.572-2.112-7.686 0l-21.72 21.72c-2.114 2.113-5.572 2.113-7.687 0l-4.693-4.692c-2.114-2.114-2.114-5.573 0-7.688l21.72-21.72c2.112-2.115 2.112-5.574 0-7.687L11.87 24.4c-2.114-2.113-2.114-5.57 0-7.686l4.842-4.842c2.113-2.114 5.57-2.114 7.686 0l21.72 21.72c2.114 2.113 5.572 2.113 7.688 0l21.72-21.72c2.115-2.114 5.574-2.114 7.688 0l4.695 4.695c2.112 2.113 2.112 5.57-.002 7.686l-21.72 21.72c-2.112 2.114-2.112 5.573 0 7.686L88.13 75.6c2.112 2.11 2.112 5.572 0 7.687l-4.842 4.84z" />
+      </svg>
+    </label>
+    <ul class="menu-sidebar">
+      <li><a [ngClass]="menuname == 'profile' ? 'bganchor' : ''" role="button" routerLink="profile" (click)="menunames('profile')">Profile</a></li>
+      <li> <a [ngClass]="menuname == 'programs' ? 'bganchor' : ''" role="button" routerLink="programs" (click)="menunames('programs')">Programs</a></li>
+      <li> <a [ngClass]="menuname == 'roadmap' ? 'bganchor' : ''" role="button" routerLink="road-map" (click)="menunames('roadmap')">RoadMap</a></li>
+
+
+
+      
+    </ul>
+  </li>
+</ul>
 <div class="col-md-1"></div>
-<div class="col-md-9">
+<div class="col-md-9 col-xs-12 co-sm-12">
   <router-outlet></router-outlet>
 </div>
