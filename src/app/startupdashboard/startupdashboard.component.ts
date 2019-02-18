@@ -43,5 +43,6 @@ export class StartupdashboardComponent implements OnInit {
     this.menuname = name
     $('#menu-toggle').prop('checked', false);
   }
+  
 
 }
