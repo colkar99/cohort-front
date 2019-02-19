@@ -109,7 +109,7 @@ export class SitedashboardComponent implements OnInit {
     }, 0)
   }
 
-  changeLocation(value){
+  changeLocation(){
     this.window_location = window.location.pathname;
     this.sharedData.currentMessage.subscribe(message => {
       this.message = message;

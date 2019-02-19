@@ -288,7 +288,13 @@ If the Work includes a "NOTICE" text file as part of its distribution, then any 
 END OF TERMS AND CONDITIONS
 
 
+fusioncharts
+http://www.fusioncharts.com/buy/
+
 ng4-loading-spinner
+MIT
+
+angular-fusioncharts
 MIT
 
 @angular/common
