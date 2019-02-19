@@ -177,7 +177,10 @@
                     </div>
                 </div>
             </div>
-
+            <div class="col-md-12 text-center">
+                    <button class="btn btn-success" type="submit"><i class="glyphicon glyphicon-floppy-saved"></i> {{!program.value.id? 'Save':'Update'}}</button>
+                    <p style="color:red;" *ngIf="!program.controls.valid && submitted">Please fill up the following fields</p>
+                </div>
 
             <div class="row">
                 <div class="panel panel-default">
@@ -285,10 +288,7 @@
                     </div>
                 </div>
             </div> -->
-            <div class="col-md-12 text-center">
-                <button class="btn btn-success" type="submit"><i class="glyphicon-floppy-saved"></i> {{!program.value.id? 'Save':'Update'}}</button>
-                <p style="color:red;" *ngIf="!program.controls.valid && submitted">Please fill up the following fields</p>
-            </div>
+            
         </form>
     </div>
 
