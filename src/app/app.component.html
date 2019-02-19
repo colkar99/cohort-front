@@ -19,7 +19,7 @@
           <li><a routerLink="/live-programs">Programs</a></li>
           <li *ngIf="!this.loggedIn"><a routerLink="/login">Login</a></li>
           <!-- <li ><a href="#">Register</a></li> -->
-          <li *ngIf="this.loggedIn && this.user_type == 'site'" routerLink="admin/dashboard"><a>Dashboard</a></li>
+          <li *ngIf="this.loggedIn && this.user_type == 'site'" routerLink="admin/dashboard" (click)="showChart()"><a>Dashboard</a></li>
           <li *ngIf="this.loggedIn && this.user_type == 'startup'" routerLink="startup/dashboard"><a>Profile</a></li>
           <li *ngIf="this.loggedIn && this.user_type == 'mentor'" routerLink="mentor/dashboard"><a>Profile</a></li>
           <li *ngIf="this.loggedIn && this.user_type == 'contract_manager'" routerLink="dashboard/contract-manager"><a>Dashboard

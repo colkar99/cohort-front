@@ -4,6 +4,7 @@ import { ApiCommunicationService } from '../../api-communication.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { SharedDataService } from '../../shared-data.service'
 
 @Component({
   selector: 'app-programcontrol',
@@ -12,6 +13,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class ProgramControlComponent implements OnInit {
 
+  message: any
   getUserUrl: string = 'get-user-details'
   authToken: string;
   loggedIn: boolean;
@@ -32,8 +34,12 @@ export class ProgramControlComponent implements OnInit {
 
   constructor(private apiCom: ApiCommunicationService,
     private cookieService: CookieService,
-    private router: Router) { }
+    private router: Router,
+    private sharedDataService: SharedDataService) { }
 
+    newMessage() {
+      this.sharedDataService.changeMessage('Hello World');
+    }  
   getCookie(key: string) {
     return this.cookieService.get(key);
   }
@@ -67,6 +73,10 @@ export class ProgramControlComponent implements OnInit {
     }
     this.getUserDetails();
     this.getAllProgram();
+    this.sharedDataService.currentMessage.subscribe(message => {
+      this.message = message;
+    })
+    this.newMessage();
   }
   getAllProgram() {
     this.apiCom.getDataWithoutAuth('get-list-of-programs')

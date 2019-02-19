@@ -1,6 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+// Import angular-fusioncharts
+import { FusionChartsModule } from 'angular-fusioncharts';
+
+// Import FusionCharts library
+import * as FusionCharts from 'fusioncharts';
+
+// Load FusionCharts Individual Charts
+import * as Charts from 'fusioncharts/fusioncharts.charts';
+
+// Use fcRoot function to inject FusionCharts library, and the modules you want to use
+FusionChartsModule.fcRoot(FusionCharts, Charts)
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
@@ -75,6 +87,7 @@ import { HomePageComponent } from './home-page/home-page.component'
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FusionChartsModule,
     Ng4LoadingSpinnerModule.forRoot() 
   ],
   providers: [CookieService,SharedDataService,sharingData],

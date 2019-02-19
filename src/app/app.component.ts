@@ -10,6 +10,7 @@ declare var $: any
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  count = 2;
   title = 'cohort';
   checkStatus: string;
   loggedIn: boolean;
@@ -88,6 +89,17 @@ export class AppComponent {
   closementor() {
     $("#mentorreg").modal('hide');
   }
+
+  showChart(){
+    this.sharedData.currentMessage.subscribe(message => {
+      this.message = message;
+    })
+   
+    this.newMessage();
+  }
+  newMessage() {
+    this.sharedData.changeMessage('Hello World');
+  }  
   // getUserDetails(auth){
   //   let url = "get-user-details"
   //   this.apiCom.getDataWithAuth(url,auth)
