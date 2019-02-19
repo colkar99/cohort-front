@@ -36,6 +36,7 @@ export class ProgramModuleComponent implements OnInit {
     listprograms: any
     listprogramtypes: any
     listlocations: any
+    message: any
     constructor(
         private cookieService: CookieService,
         private formBuilder: FormBuilder,
@@ -55,7 +56,15 @@ export class ProgramModuleComponent implements OnInit {
         this.getAllProgram();
         this.initForm();
         this.getallques();
+        this.sharedService.currentMessage.subscribe(message => {
+            this.message = message;
+          })
+          this.newMessage();
     }
+    newMessage() {
+        this.sharedService.changeMessage('Hello World');
+      }
+    
     getCookie(key: string) {
         return this.cookieService.get(key);
     }

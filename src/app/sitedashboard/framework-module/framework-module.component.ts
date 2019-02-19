@@ -23,6 +23,7 @@ export class FrameworkModuleComponent implements OnInit {
   filterfeild1: any;
   filtervalue1: any
   filtervalue: any
+  message: any
 
 
   public user_details: any[];
@@ -34,6 +35,9 @@ export class FrameworkModuleComponent implements OnInit {
 
   getCookie(key: string) {
     return this.cookieService.get(key);
+  }
+  newMessage() {
+    this.shareddata.changeMessage('Hello World');
   }
 
   getUserDetails() {
@@ -58,6 +62,10 @@ export class FrameworkModuleComponent implements OnInit {
     this.getUserDetails();
     this.getAllFrameWorks();
     this.getAllCourses();
+    this.shareddata.currentMessage.subscribe(message => {
+      this.message = message;
+    })
+    this.newMessage();
   }
   getAllFrameWorks() {
     let url = "program/show-all-framworks";

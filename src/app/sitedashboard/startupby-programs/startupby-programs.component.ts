@@ -5,12 +5,14 @@ import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { SharedDataService } from '../../shared-data.service'
+
 @Component({
   selector: 'app-startupby-programs',
   templateUrl: './startupby-programs.component.html',
   styleUrls: ['./startupby-programs.component.css']
 })
 export class StartupbyProgramsComponent implements OnInit {
+  message: any
   authToken: string;
   loggedIn: boolean;
   livePrograms: any;
@@ -51,6 +53,13 @@ export class StartupbyProgramsComponent implements OnInit {
     }
 
     this.getAllProgram();
+    this.sharedDataService.currentMessage.subscribe(message => {
+      this.message = message;
+    })
+    this.newMessage();
+  }
+  newMessage() {
+    this.sharedDataService.changeMessage('Hello World');
   }
   getAllProgram() {
     this.apiCom.getDataWithoutAuth('get-list-of-programs')

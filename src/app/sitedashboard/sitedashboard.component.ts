@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { FormControl , FormGroup } from '@angular/forms';
 import { ApiCommunicationService } from '../api-communication.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { SharedDataService } from '../shared-data.service';
+
+
 
 @Component({
   selector: 'app-sitedashboard',
@@ -11,14 +14,24 @@ import { Router } from '@angular/router';
 })
 export class SitedashboardComponent implements OnInit {
 
+  message: any;
   getUserUrl: string = 'get-user-details'
   authToken: string;
   loggedIn: boolean;
+  dataSource: Object;
+  programChart: any;
+  chartInstance: any = {};
+  window_location: any;
   public user_details: any[];
 
   constructor(private apiCom: ApiCommunicationService,
               private cookieService: CookieService,
-              private router: Router) { }
+              private router: Router,
+              private sharedData: SharedDataService) { 
+                this.window_location = window.location.pathname;
+                console.log(this.window_location);
+                this.getProgramChart();
+              }
 
   getCookie(key: string){
     return this.cookieService.get(key);
@@ -48,6 +61,11 @@ export class SitedashboardComponent implements OnInit {
 
     }
     this.getUserDetails();  
+    this.sharedData.currentMessage.subscribe(message => {
+      debugger
+      this.message = message;
+      this.window_location = window.location.pathname;
+    })
   }
 
   logout(): void {
@@ -64,4 +82,47 @@ export class SitedashboardComponent implements OnInit {
     debugger
     return this.cookieService.deleteAll('/');
   }
+
+  getProgramChart(): void{
+    this.apiCom.getDataWithoutAuth("chart/get-program-chart")
+    .subscribe(data => {
+      this.dataSource = data
+      console.log(this.dataSource);
+    }, error => {
+      console.log(this.dataSource);
+    })
+  }
+
+  initialized(e) {
+    this.chartInstance = e.chart; // Save it for further use
+
+    // Configure Drilldown attributes
+    // See this : https://www.fusioncharts.com/dev/api/fusioncharts/fusioncharts-methods#configureLink
+    this.chartInstance.configureLink({
+        type: "pie2d",
+        overlayButton: {
+            message: 'close',
+            fontColor: '880000',
+            bgColor: 'FFEEEE',
+            borderColor: '660000'
+        }
+    }, 0)
+  }
+
+  changeLocation(value){
+    this.window_location = window.location.pathname;
+    this.sharedData.currentMessage.subscribe(message => {
+      this.message = message;
+    })
+   
+    this.newMessage();
+    this.router.navigate(['/admin/dashboard']);
+
+
+  }
+  newMessage() {
+    this.sharedData.changeMessage('Hello World');
+  }  
+  
+
 }
