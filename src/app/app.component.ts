@@ -54,7 +54,6 @@ export class AppComponent {
     return this.cookieService.get(key);
   }
   deleteCookie(key: string) {
-    debugger
     return this.cookieService.deleteAll('/');
   }
 
