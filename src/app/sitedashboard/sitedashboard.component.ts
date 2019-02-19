@@ -28,8 +28,12 @@ export class SitedashboardComponent implements OnInit {
     this.apiCom.getDataWithAuth(this.getUserUrl,this.authToken)
     .subscribe(
       data => { 
+         if(data.roles[0].user_role_type != 'site'){
+          this.logout();
+         }
         console.log("success!", data);
         this.user_details = data;
+        // if(this.user_details.role[0].user_role_type){}
     }, 
       error => console.error("couldn't post because", error)
     );
@@ -44,5 +48,20 @@ export class SitedashboardComponent implements OnInit {
 
     }
     this.getUserDetails();  
+  }
+
+  logout(): void {
+    this.deleteCookie('Authorization');
+    this.deleteCookie('role');
+    this.deleteCookie('user_type');
+    this.deleteCookie('user_id');
+    this.loggedIn = false;
+    // this.detect.detectChanges();
+    this.router.navigate(['/']);
+  }
+
+  deleteCookie(key: string) {
+    debugger
+    return this.cookieService.deleteAll('/');
   }
 }
