@@ -6,30 +6,37 @@
             <div class="panel-heading heading_height">List of Programs <button class="btn btn-info pull-right"
                     routerLink="create-program"><i class="glyphicon glyphicon-plus-sign"></i> New program</button></div>
             <div class="panel-body">
-                    <div class="col-md-12">
-                            <form>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Filterby Type</label>
-                                        <select class="form-control" name="filterfeild1" [(ngModel)]="filterfeild1">
-                                            <option value="">---Select---</option>
-                                            <option value="title">Title</option>
-                                            
-                                            <option value="duration">Duration</option>
-                                            <option value="seat_size">Seat Size</option>
-                                            
-                    
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6" >
-                                        <div class="form-group">
-                                            <label>Value</label>
-                                            <input [disabled]="filterfeild1 == ('' || null || undefined)" class="form-control" name="filtervalue1" #or [(ngModel)]="filtervalue1" (ngModelChange)="filtervalues(or.value)">
-                                        </div>
-                                    </div>
-                            </form>
+                <div class="col-md-12">
+                    <form>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Filterby Type</label>
+                                <select class="form-control" name="filterfeild1" [(ngModel)]="filterfeild1">
+                                    <option value="">---Select---</option>
+                                    <option value="title">Title</option>
+
+                                    <option value="duration">Duration</option>
+                                    <option value="seat_size">Seat Size</option>
+
+
+                                </select>
+                            </div>
                         </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Value</label>
+                                <input [disabled]="filterfeild1 == ('' || null || undefined)" class="form-control" name="filtervalue1"
+                                    #or [(ngModel)]="filtervalue1" (ngModelChange)="filtervalues(or.value)">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label> </label>
+                                <button class="btn btn-default" type="reset" (click)="reset1()">Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 <div class="row">
                     <div class="col-md-12 col-x-12 table-responsive">
                         <table class="table table-bordered">
@@ -50,8 +57,8 @@
                                     <td>{{program.end_date}}</td>
                                     <td>{{program.duration}}</td>
                                     <td>{{program.seat_size}}</td>
-                                    <td><button routerLink="edit-program/{{program.id}}" (click)="viewprogram(program)" class="btn btn-default"><i
-                                                class="glyphicon glyphicon-eye-open"> </i> View</button></td>
+                                    <td><button routerLink="edit-program/{{program.id}}" (click)="viewprogram(program)"
+                                            class="btn btn-default"><i class="glyphicon glyphicon-eye-open"> </i> View</button></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -68,29 +75,36 @@
                     data-toggle="modal" data-target="#programTypemodel" (click)="this.initForm();"><i class="glyphicon glyphicon-plus-sign"></i>
                     New Program type</button></div>
             <div class="panel-body">
-                    <div class="col-md-12" >
-                            <form>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Filterby Type</label>
-                                        <select class="form-control" name="filterfeild2" [(ngModel)]="filterfeild2">
-                                            <option value="">---Select---</option>
-                                            <option value="program_type_title">Title</option>
-                                            
-                                           
-                                            
-                    
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6" >
-                                        <div class="form-group">
-                                            <label>Value</label>
-                                            <input [disabled]="filterfeild2 == ('' || null || undefined)" class="form-control" name="filtervalue2" #or1 [(ngModel)]="filtervalue2" (ngModelChange)="filtervalues1(or1.value)">
-                                        </div>
-                                    </div>
-                            </form>
+                <div class="col-md-12">
+                    <form>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Filterby Type</label>
+                                <select class="form-control" name="filterfeild2" [(ngModel)]="filterfeild2">
+                                    <option value="">---Select---</option>
+                                    <option value="program_type_title">Title</option>
+
+
+
+
+                                </select>
+                            </div>
                         </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Value</label>
+                                <input [disabled]="filterfeild2 == ('' || null || undefined)" class="form-control" name="filtervalue2"
+                                    #or1 [(ngModel)]="filtervalue2" (ngModelChange)="filtervalues1(or1.value)">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label> </label>
+                                <button class="btn btn-default" type="reset" (click)="reset2()">Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 <div class="row">
                     <div class="col-md-12 col-xs-12 table-responsive">
                         <table class="table table-bordered">
@@ -104,8 +118,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let program_type of listprogramtypes" 
-                                    data-toggle="modal" data-target="#programTypemodel">
+                                <tr *ngFor="let program_type of listprogramtypes" data-toggle="modal" data-target="#programTypemodel">
                                     <td>{{program_type.program_type_title}}</td>
                                     <td>{{program_type.program_type_description}}</td>
                                     <td>{{program_type.program_type_logo}}</td>
@@ -129,31 +142,38 @@
                     New Program
                     location</button></div>
             <div class="panel-body">
-                    <div class="col-md-12" >
-                            <form>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Filterby Type</label>
-                                        <select class="form-control" name="filterfeild3" [(ngModel)]="filterfeild3">
-                                            <option value="">---Select---</option>
-                                            <option value="country">Country</option>
-                                            <option value="state_province_region">State</option>
-                                            <option value="city">City</option>
-                                            
-                                            
-                                            
-                    
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6" >
-                                        <div class="form-group">
-                                            <label>Value</label>
-                                            <input [disabled]="filterfeild3 == ('' || null || undefined)" class="form-control" name="filtervalue3" #or2 [(ngModel)]="filtervalue3" (ngModelChange)="filtervalues2(or2.value)">
-                                        </div>
-                                    </div>
-                            </form>
+                <div class="col-md-12">
+                    <form>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Filterby Type</label>
+                                <select class="form-control" name="filterfeild3" [(ngModel)]="filterfeild3">
+                                    <option value="">---Select---</option>
+                                    <option value="country">Country</option>
+                                    <option value="state_province_region">State</option>
+                                    <option value="city">City</option>
+
+
+
+
+                                </select>
+                            </div>
                         </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Value</label>
+                                <input [disabled]="filterfeild3 == ('' || null || undefined)" class="form-control" name="filtervalue3"
+                                    #or2 [(ngModel)]="filtervalue3" (ngModelChange)="filtervalues2(or2.value)">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label> </label>
+                                <button class="btn btn-default" type="reset" (click)="reset3()">Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 <div class="row">
                     <div class="col-md-12 col-xs-12 table-responsive">
                         <table class="table table-bordered">
@@ -168,7 +188,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let program_location of listlocations" >
+                                <tr *ngFor="let program_location of listlocations">
                                     <td>{{program_location.country}}</td>
                                     <td>{{program_location.state_province_region}}</td>
                                     <td>{{program_location.city}}</td>
@@ -193,29 +213,36 @@
                     data-toggle="modal" data-target="#programquestionmodal" (click)="addques()"><i class="glyphicon glyphicon-plus-sign"></i>
                     New Questions</button></div>
             <div class="panel-body">
-                    <div class="col-md-12" >
-                            <form>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Filterby Type</label>
-                                        <select class="form-control" name="filterfeild4" [(ngModel)]="filterfeild4">
-                                            <option value="">---Select---</option>
-                                            <option value="title">Title</option>
-                                            
-                                            
-                                            
-                    
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6" >
-                                        <div class="form-group">
-                                            <label>Value</label>
-                                            <input [disabled]="filterfeild4 == ('' || null || undefined)" class="form-control" name="filtervalue4" #or3 [(ngModel)]="filtervalue4" (ngModelChange)="filtervalues3(or3.value)">
-                                        </div>
-                                    </div>
-                            </form>
+                <div class="col-md-12">
+                    <form>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Filterby Type</label>
+                                <select class="form-control" name="filterfeild4" [(ngModel)]="filterfeild4">
+                                    <option value="">---Select---</option>
+                                    <option value="title">Title</option>
+
+
+
+
+                                </select>
+                            </div>
                         </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Value</label>
+                                <input [disabled]="filterfeild4 == ('' || null || undefined)" class="form-control" name="filtervalue4"
+                                    #or3 [(ngModel)]="filtervalue4" (ngModelChange)="filtervalues3(or3.value)">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label> </label>
+                                <button class="btn btn-default" type="reset" (click)="reset4()">Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 <div class="row">
                     <div class="col-md-12 col-xs-12 table-responsive">
                         <table class="table table-bordered">
@@ -232,8 +259,8 @@
                                     <td>{{ques.title}}</td>
                                     <td>{{ques.question}}</td>
                                     <td>{{ques.description}}</td>
-                                    <td><button  (click)="initQuestionsvalue(ques)" class="btn btn-default"><i
-                                                class="glyphicon glyphicon-eye-open"> </i> View</button></td>
+                                    <td><button (click)="initQuestionsvalue(ques)" class="btn btn-default"><i class="glyphicon glyphicon-eye-open">
+                                            </i> View</button></td>
                                 </tr>
                             </tbody>
                         </table>

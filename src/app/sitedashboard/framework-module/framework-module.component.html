@@ -1,109 +1,128 @@
 <div class="container">
-<div class="col-md-12">
-    <div class="panel panel-default">
-        <div class="panel-heading" style="height:57px;">List of Frameworks  <button class="btn btn-info pull-right" type="button" routerLink="create-framework"><i class="glyphicon glyphicon-plus-sign"></i>New Framework</button></div>
-        <div class="panel-body">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="height:57px;">List of Frameworks <button class="btn btn-info pull-right"
+                    type="button" routerLink="create-framework"><i class="glyphicon glyphicon-plus-sign"></i>New
+                    Framework</button></div>
+            <div class="panel-body">
                 <div class="col-md-12" *ngIf="frameworks">
-                        <form>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Filterby Type</label>
-                                    <select class="form-control" name="filterfeild" [(ngModel)]="filterfeild">
-                                        <option value="">---Select---</option>
-                                        <option value="title">Title</option>
-                                        
-                                        <option value="level">Level</option>
-                                        
-                
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6" >
-                                    <div class="form-group">
-                                        <label>Value</label>
-                                        <input [disabled]="filterfeild == ('' || null || undefined)" class="form-control" name="filtervalue" #or [(ngModel)]="filtervalue" (ngModelChange)="filtervalues(or.value)">
-                                    </div>
-                                </div>
-                        </form>
-                    </div>
-            <div class="row">
-                <div class="col-md-12 col-xs-12 table-responsive">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Title</th>
-                                <th>Description</th>
-                                <th>Level</th>
-                                <th>Thumb image</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let framework of frameworks;let i = index" >
-                                <td>{{framework.title}}</td>
-                                <td>{{framework.description}}</td>
-                                <td>{{framework.level}}</td>
-                                <td>{{framework.thumb_image}}</td>
-                                <td><button class="btn btn-default" routerLink="edit/{{framework.id}}"><i class="glyphicon glyphicon-eye-open"></i> View</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                    <form>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Filterby Type</label>
+                                <select class="form-control" name="filterfeild" [(ngModel)]="filterfeild">
+                                    <option value="">---Select---</option>
+                                    <option value="title">Title</option>
 
-<div class="col-md-12">
-    <div class="panel panel-default">
-        <div class="panel-heading" style="height:57px;">List of Courses  <button class="btn btn-info pull-right" type="button" routerLink="create-course"><i class="glyphicon glyphicon-plus-sign"></i> New Courses</button></div>
-        <div class="panel-body">
-                <div class="col-md-12" *ngIf="courses">
-                        <form>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Filterby Type</label>
-                                    <select class="form-control" name="filterfeild1" [(ngModel)]="filterfeild1">
-                                        <option value="">---Select---</option>
-                                        <option value="title">Title</option>
-                                        
-                                        
-                                        
-                
-                                    </select>
-                                </div>
+                                    <option value="level">Level</option>
+
+
+                                </select>
                             </div>
-                            <div class="col-md-6" >
-                                    <div class="form-group">
-                                        <label>Value</label>
-                                        <input [disabled]="filterfeild1 == ('' || null || undefined)" class="form-control" name="filtervalue1" #or1 [(ngModel)]="filtervalue1" (ngModelChange)="filtervalues1(or1.value)">
-                                    </div>
-                                </div>
-                        </form>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Value</label>
+                                <input [disabled]="filterfeild == ('' || null || undefined)" class="form-control" name="filtervalue"
+                                    #or [(ngModel)]="filtervalue" (ngModelChange)="filtervalues(or.value)">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label> </label>
+                                <button class="btn btn-default" type="reset" (click)="resetframe()">Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-xs-12 table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Level</th>
+                                    <th>Thumb image</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let framework of frameworks;let i = index">
+                                    <td>{{framework.title}}</td>
+                                    <td>{{framework.description}}</td>
+                                    <td>{{framework.level}}</td>
+                                    <td>{{framework.thumb_image}}</td>
+                                    <td><button class="btn btn-default" routerLink="edit/{{framework.id}}"><i class="glyphicon glyphicon-eye-open"></i>
+                                            View</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-            <div class="row">
-                <div class="col-md-12 col-xs-12 table-responsive">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Title</th>
-                                <th>Description</th>
-                                <th>Additional Description</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let framework of courses;let i = index" >
-                                <td>{{framework.title}}</td>
-                                <td>{{framework.description}}</td>
-                                <td>{{framework.additional_description}}</td>
-                                <td><button class="btn btn-default" (click)="setsourceedit(framework)" routerLink="editcourse/{{framework.id}}"><i class="glyphicon glyphicon-eye-open"></i> View</button></td> 
-                            </tr>
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="height:57px;">List of Courses <button class="btn btn-info pull-right"
+                    type="button" routerLink="create-course"><i class="glyphicon glyphicon-plus-sign"></i> New Courses</button></div>
+            <div class="panel-body">
+                <div class="col-md-12" *ngIf="courses">
+                    <form>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Filterby Type</label>
+                                <select class="form-control" name="filterfeild1" [(ngModel)]="filterfeild1">
+                                    <option value="">---Select---</option>
+                                    <option value="title">Title</option>
+
+
+
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Value</label>
+                                <input [disabled]="filterfeild1 == ('' || null || undefined)" class="form-control" name="filtervalue1"
+                                    #or1 [(ngModel)]="filtervalue1" (ngModelChange)="filtervalues1(or1.value)">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label> </label>
+                                <button class="btn btn-default" type="reset" (click)="resetcourse()">Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-xs-12 table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Additional Description</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let framework of courses;let i = index">
+                                    <td>{{framework.title}}</td>
+                                    <td>{{framework.description}}</td>
+                                    <td>{{framework.additional_description}}</td>
+                                    <td><button class="btn btn-default" (click)="setsourceedit(framework)" routerLink="editcourse/{{framework.id}}"><i
+                                                class="glyphicon glyphicon-eye-open"></i> View</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

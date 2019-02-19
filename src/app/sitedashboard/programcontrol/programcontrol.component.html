@@ -1,22 +1,23 @@
 <div class="container">
-<div class="row" *ngIf="!startup">
-    <div class="col-md-12 form-group">
-        <label for="user_type">Select Program</label>
-        <select class="form-control" id="role" (change)="showStartups($event.target.value)" name="programselected" [(ngModel)]="programselected">
-            <option value="" selected>---Select---</option>
-            <option *ngFor="let program of allPrograms" value="{{program.id}}">{{program.title}}</option>
-            <!-- <option [value]="mentor">mentor</option> -->
-            <!-- <option [ngValue]="startup">Startup User</option> -->
-        </select>
+    <div class="row" *ngIf="!startup">
+        <div class="col-md-12 form-group">
+            <label for="user_type">Select Program</label>
+            <select class="form-control" id="role" (change)="showStartups($event.target.value)" name="programselected"
+                [(ngModel)]="programselected">
+                <option value="" selected>---Select---</option>
+                <option *ngFor="let program of allPrograms" value="{{program.id}}">{{program.title}}</option>
+                <!-- <option [value]="mentor">mentor</option> -->
+                <!-- <option [ngValue]="startup">Startup User</option> -->
+            </select>
+        </div>
     </div>
-</div>
 
-<div class="row" *ngIf="showStartup && allStartups.length == 0">
-    <div class="alert alert-danger">
-        <strong>Oops!</strong> No startup have registered for this program.
+    <div class="row" *ngIf="showStartup && allStartups.length == 0">
+        <div class="alert alert-danger">
+            <strong>Oops!</strong> No startup have registered for this program.
+        </div>
     </div>
-</div>
-<div class="col-md-12" >
+    <div class="col-md-12">
         <form>
             <div class="col-md-6">
                 <div class="form-group">
@@ -31,20 +32,27 @@
                     </select>
                 </div>
             </div>
-            <div class="col-md-6" >
-                    <div class="form-group">
-                        <label>Value</label>
-                        <input [disabled]="filterfeild == ('' || null || undefined)" class="form-control" name="filtervalue" #or [(ngModel)]="filtervalue" (ngModelChange)="filtervalues(or.value)">
-                    </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Value</label>
+                    <input [disabled]="filterfeild == ('' || null || undefined)" class="form-control" name="filtervalue"
+                        #or [(ngModel)]="filtervalue" (ngModelChange)="filtervalues(or.value)">
                 </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label> </label>
+                    <button class="btn btn-default" type="reset" (click)="resetprogram()">Reset</button>
+                </div>
+            </div>
         </form>
     </div>
-<div class="row" *ngIf="showStartup && allStartups.length > 0">
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <div class="row">
-                <label>List of registered startups</label>
-                <!-- <div class="col-md-12 col-xs-12">
+    <div class="row" *ngIf="showStartup && allStartups.length > 0">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <label>List of registered startups</label>
+                    <!-- <div class="col-md-12 col-xs-12">
                     <button class="btn btn-default pull-right" type="button" (click)="initiatecsfi()">
                         <i class="glyphicon glyphicon-envelope"></i>   Initiate Current State Form</button>
                     <button class="btn btn-success pull-right" type="button" (click)="startupAccept()">
@@ -52,42 +60,46 @@
                     <button class="btn btn-danger pull-right" type="button" (click)="startupReject()">
                         <i class="glyphicon glyphicon-ban-circle"></i>  Reject</button>
                 </div> -->
-                <div class="col-md-12 col-xs-12 text-right">
-                    <div class="btn-group" role="group" aria-label="...">
-                        <button type="button" class="btn btn-default" (click)="initiatecsfi()"><i class="glyphicon glyphicon-envelope"></i>  Initiate Current State Form</button>
-                        <button type="button" class="btn btn-success" (click)="startupAccept()"><i class="glyphicon glyphicon-ok-circle"></i>   Accept</button>
-                        <button type="button" class="btn btn-danger" (click)="startupReject()"> <i class="glyphicon glyphicon-ban-circle"></i>  Reject</button>
+                    <div class="col-md-12 col-xs-12 text-right">
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="button" class="btn btn-default" (click)="initiatecsfi()"><i class="glyphicon glyphicon-envelope"></i>
+                                Initiate Current State Form</button>
+                            <button type="button" class="btn btn-success" (click)="startupAccept()"><i class="glyphicon glyphicon-ok-circle"></i>
+                                Accept</button>
+                            <button type="button" class="btn btn-danger" (click)="startupReject()"> <i class="glyphicon glyphicon-ban-circle"></i>
+                                Reject</button>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-12 col-xs-12 table-responsive">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Select</th>
-                                <th>Startup Name</th>
-                                <th>Status</th>
-                                <th>Status description</th>
-                                <th>Score</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let startup of allStartups;let i = index" style="cursor: pointer; ">
-                                <td><input class="checbox" type="checkbox" (change)="setarray($event.srcElement.checked,startup)"></td>
-                                <td>{{startup.startup_name}}</td>
-                                <td>{{startup.application_status}}</td>
-                                <td>{{startup.app_status_description}}</td>
-                                <td>{{startup.score}}</td>
-                                <td>
-                                    <button class="btn btn-default" routerLink="startup/{{startup.id}}" ><i class="glyphicon glyphicon-eye-open"></i> View</button>
-                                </td>
-    
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="col-md-12 col-xs-12 table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Select</th>
+                                    <th>Startup Name</th>
+                                    <th>Status</th>
+                                    <th>Status description</th>
+                                    <th>Score</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let startup of allStartups;let i = index" style="cursor: pointer; ">
+                                    <td><input class="checbox" type="checkbox" (change)="setarray($event.srcElement.checked,startup)"></td>
+                                    <td>{{startup.startup_name}}</td>
+                                    <td>{{startup.application_status}}</td>
+                                    <td>{{startup.app_status_description}}</td>
+                                    <td>{{startup.score}}</td>
+                                    <td>
+                                        <button class="btn btn-default" routerLink="startup/{{startup.id}}"><i class="glyphicon glyphicon-eye-open"></i>
+                                            View</button>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>

@@ -257,10 +257,20 @@ export class ProgramModuleComponent implements OnInit {
     filtervalues(value: string) {
         console.log(value, this.filterfeild1)
         if (this.filterfeild1 == 'duration') {
-            this.listprograms = this.program_modules_unfilter.programs.filter((list) => list[this.filterfeild1] == Number(value))
+            if (value == "") {
+                this.listprograms = this.program_modules_unfilter.programs
+            } else {
+                this.listprograms = this.program_modules_unfilter.programs.filter((list) => list[this.filterfeild1] == Number(value))
+            }
+
         }
         else if (this.filterfeild1 == "seat_size") {
-            this.listprograms = this.program_modules_unfilter.programs.filter((list) => list[this.filterfeild1] == Number(value))
+            if (value == "") {
+                this.listprograms = this.program_modules_unfilter.programs
+            } else {
+                this.listprograms = this.program_modules_unfilter.programs.filter((list) => list[this.filterfeild1] == Number(value))
+            }
+
         }
         else if (value != "") {
             this.listprograms = this.program_modules_unfilter.programs.filter((list) => list[this.filterfeild1].toLowerCase().includes(value.toLowerCase()))
@@ -287,12 +297,25 @@ export class ProgramModuleComponent implements OnInit {
 
     }
     filtervalues3(value: string) {
-        if(value != ""){
+        if (value != "") {
             this.allquestions = this.ques_unfiltered.filter((list) => list[this.filterfeild4].toLowerCase().includes(value.toLowerCase()))
-        }else{
+        } else {
             this.allquestions = this.ques_unfiltered
         }
-        
+
+    }
+
+    reset1() {
+        this.listprograms = this.program_modules_unfilter.programs
+    }
+    reset2() {
+        this.listprogramtypes = this.program_modules_unfilter.program_types
+    }
+    reset3() {
+        this.listlocations = this.program_modules_unfilter.program_locations
+    }
+    reset4() {
+        this.allquestions = this.ques_unfiltered
     }
 
 } 

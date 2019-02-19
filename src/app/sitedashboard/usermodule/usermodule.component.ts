@@ -123,10 +123,13 @@ export class UsermoduleComponent implements OnInit {
             console.log(this.filterfeild)
             this.all_users = this.unfilteredvalue.filter((list) => list[this.filterfeild].toLowerCase().includes(value.toLowerCase()))
         } else if (value != "") {
-            this.all_users = this.unfilteredvalue.filter((list) => list.phone_number == Number(value))
+            this.all_users = this.unfilteredvalue.filter((list) => list[this.filterfeild].includes(value))
         } else {
             this.all_users = this.unfilteredvalue
         }
 
+    }
+    resetfilter(){
+        this.all_users = this.unfilteredvalue
     }
 }
