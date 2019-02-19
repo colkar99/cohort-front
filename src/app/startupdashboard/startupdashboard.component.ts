@@ -16,6 +16,7 @@ export class StartupdashboardComponent implements OnInit {
   companylogo: any = "assets/photo.png"
   CompanyName: any = "PETRAS"
   Mentors: any = "Stanly,Selwyn"
+  mobilenav:boolean = false
   bio: any = "Bootstrap 4 Grid Examples. Three Equal Columns. Use the .col class on a specified number of elements and Bootstrap will recognize how many elements there are (and create equal-width columns). Three Equal Columns Using Numbers. You can also use numbers to control the column width."
   currentstate: any = "Bootstrap 4 Grid Examples. Three Equal Columns. Use the .col class on a specified number of elements and Bootstrap will recognize how many elements there are (and create equal-width columns)"
   constructor(private cookieService: CookieService, private apiCom: ApiCommunicationService, public sharedata: sharingData) {
@@ -27,6 +28,7 @@ export class StartupdashboardComponent implements OnInit {
 
   ngOnInit() {
     let url = "startup/show-profile";
+    localStorage.setItem("hello",this.authToken)
     let params = JSON.stringify({ startup_profile: { id: this.startupid } })
     this.apiCom.postDataWithToken(url, params, this.authToken).subscribe((res) => {
       res;
@@ -41,7 +43,22 @@ export class StartupdashboardComponent implements OnInit {
   }
   menunames(name) {
     this.menuname = name
-    $('#menu-toggle').prop('checked', false);
+    this.closeNav();
+  }
+
+  openNav() {
+    this.mobilenav = true
+    document.getElementById("mySidebar").style.width = "250px";
+    $('#mySidebar').addClass('sidebar1');
+    document.getElementById("main").style.marginLeft = "250px";
+    
+  }
+
+  closeNav() {
+    document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+    $('#mySidebar').removeClass('sidebar1');
+    this.mobilenav = false
   }
   
 

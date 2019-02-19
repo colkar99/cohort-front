@@ -198,7 +198,7 @@
 
 </div>
 
-<ul class="nav-mobile hidden-lg hidden-md">
+<!-- <ul class="nav-mobile hidden-lg hidden-md">
   <li style="background-color:white"></li>
   <li class="menu-container" style="background-color:blue;">
     <input id="menu-toggle" type="checkbox">
@@ -220,7 +220,36 @@
       
     </ul>
   </li>
-</ul>
+</ul> -->
+
+<div id="mySidebar" class="col-md-2 sidebar hidden-lg hidden-md" [hidden]="mobilenav == false">
+  <a class="closebtn" (click)="closeNav()">×</a>
+  <div class="col-md-12">
+    <div style="height:100px;">
+      <img class="img-responsive img-rounded profile-image1" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+        alt="User picture">
+      <!-- <strong>{{sharedata.startupprofile.startup_name}}</strong>-->
+     
+    </div>
+    <div>
+        <strong style="color:white;">{{sharedata.startupprofile.startup_name}}</strong><br>
+        <span style="color:white;"><strong>Mentors</strong></span><br>
+        <span style="color:white;">{{Mentors}}</span>
+    </div>
+    
+    <strong>Menus</strong>
+    <a [ngClass]="menuname == 'profile' ? 'bganchor' : ''" role="button" routerLink="profile" (click)="menunames('profile')">Profile</a>
+    <a [ngClass]="menuname == 'programs' ? 'bganchor' : ''" role="button" routerLink="programs" (click)="menunames('programs')">Programs</a>
+    <a [ngClass]="menuname == 'roadmap' ? 'bganchor' : ''" role="button" routerLink="road-map" (click)="menunames('roadmap')">RoadMap</a>
+
+  </div>
+</div>
+
+<div id="main" class="hidden-lg hidden-md" [hidden]="mobilenav == true">
+  <button class="openbtn" (click)="openNav()"> <i class="glyphicon glyphicon-arrow-right"></i></button> <!-- ☰ -->
+
+
+</div>
 <div class="col-md-1"></div>
 <div class="col-md-9 col-xs-12 co-sm-12">
   <router-outlet></router-outlet>
