@@ -179,13 +179,16 @@
       <span style="color:white;position: absolute;left: 30%;top: 6%;"><strong>Mentors</strong></span>
       <span style="color:white;position: absolute;left: 30%;top: 10%;">{{Mentors}}</span>
     </div>
-    <div class="col-md-12" style="height:100px;">
-      <strong style="color:white">Bio</strong>
+    <hr>
+    <div style="height:90px;margin-left:4%">
+        <strong style="color:lightgray">Bio</strong>
       <p style="color:darkgray">{{sharedata.startupprofile.description}}</p>
     </div>
-
+    <hr>
+    
     <div class="col-md-12">
-      <strong>Menus</strong>
+        
+     
       <a [ngClass]="menuname == 'profile' ? 'bganchor' : ''" role="button" routerLink="profile" (click)="menunames('profile')">Profile</a>
       <a [ngClass]="menuname == 'programs' ? 'bganchor' : ''" role="button" routerLink="programs" (click)="menunames('programs')">Programs</a>
       <a [ngClass]="menuname == 'roadmap' ? 'bganchor' : ''" role="button" routerLink="road-map" (click)="menunames('roadmap')">RoadMap</a>
