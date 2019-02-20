@@ -1,0 +1,16 @@
+export class applicationURL {
+    public login: string = "authenticate"
+    public get_list_of_programs: string = "get-list-of-programs"
+    public mentor_reg: string = "user/mentor/registration"
+    public get_all_users: string = "get-all-users"
+    public show_programs: string = "show-programs"
+    public show_application_questions: string = "show-application-questions"
+    public get_roles_user_type:string = "get-roles-user-type"
+    public create_user_by_admin:string = "create-user-by-admin"
+    public get_user_related_data:string = "get-user-related-data"
+    public update_user_by_admin:string = "update-user-by-admin"
+    public update_user_role:string = "put-user-role"
+    public create_user_role_by_admin:string = "create-user-role-by-admin"
+    public delete_user_role:string = "delete-user-role"
+    public delete_user_role_by_admin:string = "delete-role-user-by-admin"
+}

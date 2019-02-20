@@ -1,0 +1,10 @@
+<div class="col-md-12" >
+  <fusioncharts *ngIf="this.dataSource"
+  type="column2d"
+  width="100%"
+  height="500"
+  dataFormat="json"
+  [dataSource]="dataSource"
+  (initialized)="initialized($event)"
+></fusioncharts>
+</div>

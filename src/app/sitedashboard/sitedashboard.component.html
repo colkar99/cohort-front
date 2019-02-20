@@ -64,15 +64,5 @@
     </div>
 </div>
 
-<div class="col-md-12" *ngIf="this.window_location == '/admin/dashboard'">{{this.window_location}}
-  <fusioncharts *ngIf="this.dataSource"
-  type="column2d"
-  width="100%"
-  
-  dataFormat="json"
-  [dataSource]="dataSource"
-  (initialized)="initialized($event)"
-></fusioncharts>
-</div>
 
 <router-outlet></router-outlet>
