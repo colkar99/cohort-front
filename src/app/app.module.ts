@@ -48,7 +48,8 @@ import { sharingData } from './sharingdata';
 import { StartupRoadmapComponent } from './startupdashboard/startup-roadmap/startup-roadmap.component';
 import { StartupbyProgramsComponent } from './sitedashboard/startupby-programs/startupby-programs.component';
 import { EditProgramComponent } from './sitedashboard/programmodule/edit-program/edit-program.component';
-import { HomePageComponent } from './home-page/home-page.component'
+import { HomePageComponent } from './home-page/home-page.component';
+import { ChartsBoardComponent } from './sitedashboard/charts-board/charts-board.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,7 +80,8 @@ import { HomePageComponent } from './home-page/home-page.component'
     StartupRoadmapComponent,
     StartupbyProgramsComponent,
     EditProgramComponent,
-    HomePageComponent
+    HomePageComponent,
+    ChartsBoardComponent
   ],
   imports: [
     BrowserModule,
