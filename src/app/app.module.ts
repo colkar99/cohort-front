@@ -12,6 +12,9 @@ import * as Charts from 'fusioncharts/fusioncharts.charts';
 
 // Use fcRoot function to inject FusionCharts library, and the modules you want to use
 FusionChartsModule.fcRoot(FusionCharts, Charts)
+// social login google
+import { SocialLoginModule, AuthServiceConfig } from "angular4-social-login";
+import { GoogleLoginProvider } from "angular4-social-login";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -50,6 +53,18 @@ import { StartupbyProgramsComponent } from './sitedashboard/startupby-programs/s
 import { EditProgramComponent } from './sitedashboard/programmodule/edit-program/edit-program.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ChartsBoardComponent } from './sitedashboard/charts-board/charts-board.component'
+
+let config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider("132143603340-0tg4t5r2bu67tg4fhs5loqjojkc0ejmd.apps.googleusercontent.com")
+  }
+  // ,
+  // {
+  //   id: FacebookLoginProvider.PROVIDER_ID,
+  //   provider: new FacebookLoginProvider("Facebook-App-Id")
+  // }
+]);
 @NgModule({
   declarations: [
     AppComponent,
@@ -90,6 +105,7 @@ import { ChartsBoardComponent } from './sitedashboard/charts-board/charts-board.
     ReactiveFormsModule,
     HttpClientModule,
     FusionChartsModule,
+    SocialLoginModule.initialize(config),
     Ng4LoadingSpinnerModule.forRoot() 
   ],
   providers: [CookieService,SharedDataService,sharingData],

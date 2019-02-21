@@ -5,6 +5,9 @@ import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { SharedDataService } from '../shared-data.service';
 import { ErrorDisplayComponent } from '../error-display/error-display.component'
+import { AuthService } from "angular4-social-login";
+import { GoogleLoginProvider } from  "angular4-social-login";
+import { SocialUser } from "angular4-social-login";
 declare var $:any
 
 @Component({
@@ -14,6 +17,7 @@ declare var $:any
 })
 export class LoginComponent implements OnInit {
   // cookieValue = 'default';
+  private user: SocialUser;
   public loggedIn: boolean;
   checkStatus: string;
   loginUrl: string = "authenticate";
@@ -32,7 +36,16 @@ export class LoginComponent implements OnInit {
       .subscribe(
         data => {
           console.log("success!", data);
-          this.cookieService.set('Authorization', data.auth_token, 30, '/');
+          this.commonSuccessLogin(data);
+        },
+        ((error) => {
+          console.error("couldn't post because", error)
+          this.errdisplay.openpopup("Warning!!!", error)
+        })
+      );
+  };
+  commonSuccessLogin(data){
+    this.cookieService.set('Authorization', data.auth_token, 30, '/');
           this.cookieService.set('user_id', data.user_id, 30, '/');
           this.cookieService.set('user_type', data.user_type, 30, '/');
           if(data.user_type == 'startup'){
@@ -56,19 +69,38 @@ export class LoginComponent implements OnInit {
 
           }
           // this.router.navigate(['/']);
-        },
-        ((error) => {
-
-          console.error("couldn't post because", error)
-          this.errdisplay.openpopup("Warning!!!", error)
-        })
-      );
-  };
+  }
   constructor(private apiCom: ApiCommunicationService,
     private cookieService: CookieService,
     private router: Router,
-    private sharedData: SharedDataService) { }
-
+    private sharedData: SharedDataService,
+    private authService: AuthService) { }
+    
+    signInWithGoogle(): void {
+      this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    }
+   
+    signOut(): void {
+      this.authService.signOut();
+    }
+  googleLoginApi(user){
+    debugger
+    let user_data = user
+    let url = "google-login"
+    if (user == null) return;
+    let data = {email: user_data.email,full_name: user_data.name,type: 'google'}
+    this.apiCom.putDataWithoutToken(url,JSON.stringify(data))
+    .subscribe(data =>{
+      console.log(data);
+      this.signOut();
+      this.commonSuccessLogin(data);
+    }, error=>{
+      console.log(error);
+      alert(error);
+      this.signOut();
+    })
+  } 
+  
   ngOnInit() {
     this.sharedData.currentMessage.subscribe(message => {
       this.message = message;
@@ -85,6 +117,11 @@ export class LoginComponent implements OnInit {
     } else {
       this.loggedIn = false;
     }
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = (user != null);
+      this.googleLoginApi(this.user)
+    });
   }
 
   getCookie(key: string) {

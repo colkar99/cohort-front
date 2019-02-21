@@ -33,7 +33,9 @@
           <!--<a class="btn btn-primary btn-block btn-lg btn-signin" role="submit" [disabled]="signinform.invalid" style="margin-top:32px;">Sign in</a>-->
           <button class="btn btn-primary" type="submit" [disabled]= "!loginForm.valid">Signin</button>
       </form>
-      <a class="forgot-password" (click)="resetpwd()">Forgot your password?</a></div>
+      <a class="forgot-password" (click)="resetpwd()">Forgot your password?</a>
+      <p class="log-para">Or Login using <a class="google-login" (click)="signInWithGoogle()">Google?</a></p>
+    </div>
  
       <div class="modal fade" id="pwdchange" role="dialog" #pwdchange>
         <div class="modal-dialog">
@@ -71,3 +73,15 @@
   </div>
 
 </div>
+
+<!-- <div *ngIf="user">
+  <img src="{{ user.photoUrl }}">
+<div>
+  <h4>{{ user.name }}</h4>
+  <p>{{ user.email }}</p>
+</div>
+</div>
+
+<button (click)="signInWithGoogle()">Sign goole</button>
+<button (click)="signOut()">Sign out</button> -->
+

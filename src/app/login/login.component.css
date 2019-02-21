@@ -4,3 +4,10 @@
 .mar-top {
     margin-top: 8%;
 }
+.google-login{
+    cursor: pointer;
+}
+.log-para{
+    padding: 5px;
+    margin-left: 25%;
+}

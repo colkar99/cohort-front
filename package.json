@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
     "angular-fusioncharts": "^3.0.1",
+    "angular4-social-login": "^1.1.1",
     "bootstrap": "^3.3.7",
     "core-js": "^2.5.4",
     "fusioncharts": "^3.13.3-sr.1",
