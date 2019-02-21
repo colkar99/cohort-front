@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import {  FormBuilder } from '@angular/forms';
 import { ApiCommunicationService } from '../../api-communication.service';
 import { CookieService } from 'ngx-cookie-service';
 declare var $: any;
@@ -56,14 +56,14 @@ export class ProgramModuleComponent implements OnInit {
         this.getAllProgram();
         this.initForm();
         this.getallques();
-        this.sharedService.currentMessage.subscribe(message => {
-            this.message = message;
-          })
-          this.newMessage();
+        // this.sharedService.currentMessage.subscribe(message => {
+        //     this.message = message;
+        //   })
+        //   this.newMessage();
     }
-    newMessage() {
-        this.sharedService.changeMessage('Hello World');
-      }
+    // newMessage() {
+    //     this.sharedService.changeMessage('Hello World');
+    //   }
     
     getCookie(key: string) {
         return this.cookieService.get(key);

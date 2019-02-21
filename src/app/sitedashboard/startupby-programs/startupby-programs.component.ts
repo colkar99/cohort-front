@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+// import { FormControl, FormGroup } from '@angular/forms';
 import { ApiCommunicationService } from '../../api-communication.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
+// import { HttpErrorResponse } from '@angular/common/http';
 import { SharedDataService } from '../../shared-data.service'
 
 @Component({
@@ -32,7 +32,8 @@ export class StartupbyProgramsComponent implements OnInit {
   constructor(private apiCom: ApiCommunicationService,
     private cookieService: CookieService,
     private router: Router,
-    private sharedDataService: SharedDataService) { }
+    private sharedDataService: SharedDataService
+    ) { }
 
   ngOnInit() {
     this.authToken = this.getCookie('Authorization');
@@ -53,14 +54,14 @@ export class StartupbyProgramsComponent implements OnInit {
     }
 
     this.getAllProgram();
-    this.sharedDataService.currentMessage.subscribe(message => {
-      this.message = message;
-    })
-    this.newMessage();
+    // this.sharedDataService.currentMessage.subscribe(message => {
+    //   this.message = message;
+    // })
+    // this.newMessage();
   }
-  newMessage() {
-    this.sharedDataService.changeMessage('Hello World');
-  }
+  // newMessage() {
+  //   this.sharedDataService.changeMessage('Hello World');
+  // }
   getAllProgram() {
     this.apiCom.getDataWithoutAuth('get-list-of-programs')
       .subscribe(data => {

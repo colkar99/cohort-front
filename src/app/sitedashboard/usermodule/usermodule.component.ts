@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { ApiCommunicationService } from '../../api-communication.service';
 import { CookieService } from 'ngx-cookie-service';
-import { SharedDataService } from '../../shared-data.service';
+// import { SharedDataService } from '../../shared-data.service';
 
 declare var $: any
 @Component({
@@ -26,8 +26,7 @@ export class UsermoduleComponent implements OnInit {
     filtervalue
     constructor(private formBuilder: FormBuilder,
         private apiService: ApiCommunicationService,
-        private cookieService: CookieService,
-        private sharedData: SharedDataService) {
+        private cookieService: CookieService) {
         this.createUserForm();
         this.auth = this.getCookie('Authorization');
         if (this.auth.length != 0) {
@@ -40,15 +39,10 @@ export class UsermoduleComponent implements OnInit {
     }
     ngOnInit() {
         this.getUsersList();
-        this.sharedData.currentMessage.subscribe(message => {
-            this.message = message;
-          })
-          this.newMessage();
+
     }
     private imageSrc: string = '';
-    newMessage() {
-        this.sharedData.changeMessage('Hello World');
-      }
+  
     handleInputChange(e) {
         var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
         var pattern = /image-*/;

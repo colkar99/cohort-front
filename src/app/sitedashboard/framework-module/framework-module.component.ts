@@ -31,14 +31,15 @@ export class FrameworkModuleComponent implements OnInit {
   constructor(private apiCom: ApiCommunicationService,
     private cookieService: CookieService,
     private router: Router,
-    private shareddata: SharedDataService) { }
+    private shareddata: SharedDataService
+    ) { }
 
   getCookie(key: string) {
     return this.cookieService.get(key);
   }
-  newMessage() {
-    this.shareddata.changeMessage('Hello World');
-  }
+  // newMessage() {
+  //   this.shareddata.changeMessage('Hello World');
+  // }
 
   getUserDetails() {
     this.apiCom.getDataWithAuth(this.getUserUrl, this.authToken)
@@ -62,10 +63,10 @@ export class FrameworkModuleComponent implements OnInit {
     this.getUserDetails();
     this.getAllFrameWorks();
     this.getAllCourses();
-    this.shareddata.currentMessage.subscribe(message => {
-      this.message = message;
-    })
-    this.newMessage();
+    // this.shareddata.currentMessage.subscribe(message => {
+    //   this.message = message;
+    // })
+    // this.newMessage();
   }
   getAllFrameWorks() {
     let url = "program/show-all-framworks";
