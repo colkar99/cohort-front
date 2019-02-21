@@ -65,6 +65,9 @@ let config = new AuthServiceConfig([
   //   provider: new FacebookLoginProvider("Facebook-App-Id")
   // }
 ]);
+export function provideConfig() {
+  return config;
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -105,10 +108,10 @@ let config = new AuthServiceConfig([
     ReactiveFormsModule,
     HttpClientModule,
     FusionChartsModule,
-    SocialLoginModule.initialize(config),
     Ng4LoadingSpinnerModule.forRoot() 
   ],
-  providers: [CookieService,SharedDataService,sharingData],
+  providers: [CookieService,SharedDataService,sharingData,
+              {provide: AuthServiceConfig,useFactory: provideConfig}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
