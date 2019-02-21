@@ -54,18 +54,19 @@ import { EditProgramComponent } from './sitedashboard/programmodule/edit-program
 import { HomePageComponent } from './home-page/home-page.component';
 import { ChartsBoardComponent } from './sitedashboard/charts-board/charts-board.component'
 
-let config = new AuthServiceConfig([
-  {
-    id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider("132143603340-0tg4t5r2bu67tg4fhs5loqjojkc0ejmd.apps.googleusercontent.com")
-  }
-  // ,
-  // {
-  //   id: FacebookLoginProvider.PROVIDER_ID,
-  //   provider: new FacebookLoginProvider("Facebook-App-Id")
-  // }
-]);
+
 export function provideConfig() {
+  let config = new AuthServiceConfig([
+    {
+      id: GoogleLoginProvider.PROVIDER_ID,
+      provider: new GoogleLoginProvider("132143603340-0tg4t5r2bu67tg4fhs5loqjojkc0ejmd.apps.googleusercontent.com")
+    }
+    // ,
+    // {
+    //   id: FacebookLoginProvider.PROVIDER_ID,
+    //   provider: new FacebookLoginProvider("Facebook-App-Id")
+    // }
+  ]);
   return config;
 }
 @NgModule({
@@ -108,6 +109,7 @@ export function provideConfig() {
     ReactiveFormsModule,
     HttpClientModule,
     FusionChartsModule,
+    SocialLoginModule,
     Ng4LoadingSpinnerModule.forRoot() 
   ],
   providers: [CookieService,SharedDataService,sharingData,
