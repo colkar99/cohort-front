@@ -92,9 +92,7 @@ export class ProgramSessionComponent implements OnInit  {
 }
 
    updateSigninStatus(isSignedIn: boolean) {
-    debugger
     if (isSignedIn) {
-        debugger
     // this.calLoggedin = isSignedIn 
       this.listUpcomingEvents();
     } else {
@@ -102,10 +100,10 @@ export class ProgramSessionComponent implements OnInit  {
     }
   }
   
-   handleAuthClick(event) {
+   handleAuthClick() {
     gapi.auth2.getAuthInstance().signIn()
     .then((auth) => {
-        debugger
+        
         this.updateSigninStatus(true);
     }, (error) =>{
 
