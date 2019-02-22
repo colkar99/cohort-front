@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable,of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
@@ -98,7 +98,7 @@ export class ApiCommunicationService {
       catchError((error:any)=>{this.spinnerservice.hide();return throwError(error.error.message)})
       
     );
-  };
+  }; 
 
   postDataCFSI(url: string,id): Observable<any>{
     this.domainUrl = `${this.url}${url}`;

@@ -15,6 +15,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts)
 // social login google
 import { SocialLoginModule, AuthServiceConfig } from "angular4-social-login";
 import { GoogleLoginProvider } from "angular4-social-login";
+import { FullCalendarModule } from 'ng-fullcalendar';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -53,7 +55,7 @@ import { StartupbyProgramsComponent } from './sitedashboard/startupby-programs/s
 import { EditProgramComponent } from './sitedashboard/programmodule/edit-program/edit-program.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ChartsBoardComponent } from './sitedashboard/charts-board/charts-board.component'
-
+import {ProgramSessionComponent } from './startupdashboard/program-sessions/program-sessions.component'
 
 export function provideConfig() {
   let config = new AuthServiceConfig([
@@ -100,7 +102,8 @@ export function provideConfig() {
     StartupbyProgramsComponent,
     EditProgramComponent,
     HomePageComponent,
-    ChartsBoardComponent
+    ChartsBoardComponent,
+    ProgramSessionComponent
   ],
   imports: [
     BrowserModule,
@@ -110,6 +113,7 @@ export function provideConfig() {
     HttpClientModule,
     FusionChartsModule,
     SocialLoginModule,
+    FullCalendarModule,
     Ng4LoadingSpinnerModule.forRoot() 
   ],
   providers: [CookieService,SharedDataService,sharingData,

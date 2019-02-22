@@ -3,12 +3,16 @@ import { CookieService } from 'ngx-cookie-service'
 import { ApiCommunicationService } from '../api-communication.service'
 import { sharingData } from '../sharingdata'
 declare var $:any
+
 @Component({
   selector: 'app-startupdashboard',
   templateUrl: './startupdashboard.component.html',
   styleUrls: ['./startupdashboard.component.css']
 })
 export class StartupdashboardComponent implements OnInit {
+
+  CLIENT_ID:string;API_KEY: string;DISCOVERY_DOCS:any;SCOPES: string;
+  // authorizeButton: HTMLElement;signoutButton: HTMLElement;
   startupprofile: any = {}
   startupid: any
   authToken: any
@@ -23,6 +27,7 @@ export class StartupdashboardComponent implements OnInit {
     this.startupid = this.getCookie('startup_profile_id');
     this.authToken = this.getCookie('Authorization');
     this.menuname = "profile"
+   
 
   }
 
@@ -36,8 +41,9 @@ export class StartupdashboardComponent implements OnInit {
       this.startupprofile = res;
       this.sharedata.startupprofile = res;
     })
-  }
+      
 
+  }
   getCookie(key: string) {
     return this.cookieService.get(key);
   }
@@ -60,6 +66,6 @@ export class StartupdashboardComponent implements OnInit {
     $('#mySidebar').removeClass('sidebar1');
     this.mobilenav = false
   }
-  
 
+    
 }

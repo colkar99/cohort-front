@@ -1,0 +1,52 @@
+<div class="col-md-12">
+    <h2>From Program session module</h2>
+</div>
+<div class="col-md-12">
+    <div *ngIf="calendarOptions">
+        <ng-fullcalendar #ucCalendar [options]="calendarOptions" [(eventsModel)]="events"></ng-fullcalendar>
+    </div>
+</div>
+<div class="col-md-12">
+        <div class="pull-right">
+                <button class="btn btn-default" (click)="loadEventFromBackEnd()">Load program sessions</button>
+
+                <button  (click)="handleAuthClick()" class="btn btn-success" >Fetch event from google calender</button>
+                <!-- <button (click)="handleSignoutClick($event)" class="btn btn-danger"  >Sign Out</button> -->
+                
+                <pre id="content" style="white-space: pre-wrap;"></pre>
+                
+            </div>
+</div>
+
+  <!-- <div *ngIf="googleCalEvent">
+        <div *ngFor="let val of googleCalEvent">
+                {{val.title}}
+                    <button (click)="clickLoadEvent(val)">Add to calender</button>
+            </div>
+  </div> -->
+<div class="col-md-12">
+    <div class="table-responsive" *ngIf="googleCalEvent">
+            <table class="table table-bordered ">
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Start date</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let val of googleCalEvent">
+                    <td>{{val.title}}</td>
+                    <td>{{val.start}}</td>
+                    <td>
+                    <button class="btn btn-default" (click)="clickLoadEvent(val)"><i class="glyphicon glyphicon-eye-open"></i>
+                        Add to calender</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+</div>  
+
+
+

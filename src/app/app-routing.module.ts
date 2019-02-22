@@ -29,6 +29,7 @@ import { StartupbyProgramsComponent } from './sitedashboard/startupby-programs/s
 import { EditProgramComponent } from './sitedashboard/programmodule/edit-program/edit-program.component'
 import { HomePageComponent } from './home-page/home-page.component';
 import {ChartsBoardComponent} from './sitedashboard/charts-board/charts-board.component'
+import { ProgramSessionComponent } from './startupdashboard/program-sessions/program-sessions.component';
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'login', component: LoginComponent },
@@ -58,6 +59,7 @@ const routes: Routes = [
     children: [
       { path: 'profile', component: StartupProfileComponent },
       { path: 'road-map', component: StartupRoadmapComponent },
+      {path: 'program-sessions', component: ProgramSessionComponent}
 
 
     ]
