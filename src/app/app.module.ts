@@ -55,7 +55,9 @@ import { StartupbyProgramsComponent } from './sitedashboard/startupby-programs/s
 import { EditProgramComponent } from './sitedashboard/programmodule/edit-program/edit-program.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ChartsBoardComponent } from './sitedashboard/charts-board/charts-board.component'
-import {ProgramSessionComponent } from './startupdashboard/program-sessions/program-sessions.component'
+import {ProgramSessionComponent } from './startupdashboard/program-sessions/program-sessions.component';
+import { ProgramSessionsComponent } from './sitedashboard/program-sessions/program-sessions.component';
+import { CreateProgramSessionsComponent } from './sitedashboard/create-program-sessions/create-program-sessions.component'
 
 export function provideConfig() {
   let config = new AuthServiceConfig([
@@ -103,7 +105,9 @@ export function provideConfig() {
     EditProgramComponent,
     HomePageComponent,
     ChartsBoardComponent,
-    ProgramSessionComponent
+    ProgramSessionComponent,
+    ProgramSessionsComponent,
+    CreateProgramSessionsComponent
   ],
   imports: [
     BrowserModule,

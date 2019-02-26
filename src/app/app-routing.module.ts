@@ -30,6 +30,8 @@ import { EditProgramComponent } from './sitedashboard/programmodule/edit-program
 import { HomePageComponent } from './home-page/home-page.component';
 import {ChartsBoardComponent} from './sitedashboard/charts-board/charts-board.component'
 import { ProgramSessionComponent } from './startupdashboard/program-sessions/program-sessions.component';
+import { ProgramSessionsComponent} from './sitedashboard/program-sessions/program-sessions.component'
+import {CreateProgramSessionsComponent} from './sitedashboard/create-program-sessions/create-program-sessions.component'
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'login', component: LoginComponent },
@@ -52,6 +54,9 @@ const routes: Routes = [
       { path: 'startups-by-programs', component: StartupbyProgramsComponent },
       { path: 'about-profile', component: AboutProfileComponent },
       { path: 'about-profile/:id', component: AboutProfileComponent },
+      { path: 'program-sessions', component: ProgramSessionsComponent },
+      { path: 'program-sessions/create-program-session', component: CreateProgramSessionsComponent },
+      { path: 'program-sessions/edit-program-session/:id', component: CreateProgramSessionsComponent },
     ]
   },
   {
