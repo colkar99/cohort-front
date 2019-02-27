@@ -1,0 +1,208 @@
+<div class="container">
+  <div class="col-md-12">
+    <button class="btn btn-default" routerLink="/admin/dashboard/program-sessions"><i
+        class="glyphicon glyphicon-arrow-left">Back</i></button>
+  </div>
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-body" *ngIf="session">
+        <form #Sessionscreate="ngForm">
+          <div class="row">
+            <h2>Program Session Details</h2>
+            <div class="col-md-6 form-group">
+              <label>Title</label>
+              <textarea class="form-control" type="text" name="title" [(ngModel)]="session.title"></textarea>
+            </div>
+            <div class="col-md-6 form-group">
+              <label>Description</label>
+              <textarea class="form-control" type="text" name="description"
+                [(ngModel)]="session.description"></textarea>
+            </div>
+            <div class="col-md-6 form-group">
+              <label>Start Date</label>
+              <input class="form-control" type="datetime-local" name="start_date_time"
+                [(ngModel)]="session.start_date_time">
+            </div>
+            <div class="col-md-6 form-group">
+              <label>End Date</label>
+              <input class="form-control" type="datetime-local" name="end_date_time"
+                [(ngModel)]="session.end_date_time">
+            </div>
+            <div class="col-md-6 form-group">
+              <label>End Date</label>
+              <input class="form-control" type="text" name="where" [(ngModel)]="session.where">
+            </div>
+
+            <!-- <div class="col-md-6 form-group" *ngIf="framework.main_image != null">
+            
+                            </div>  -->
+
+          </div>
+          <div class="row">
+            <button class="btn btn-success pull-right" (click)="updateForm()"><i
+                class="glyphicon glyphicon-floppy-saved"></i> {{!session.id?
+                            'Next':'Update'}}</button>
+            <button *ngIf="session.id != (null && undefined && 0)" class="btn btn-danger pull-right"
+              (click)="deleteform()"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+          </div>
+          <fieldset [disabled]="!session.id">
+            <div class="row">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <label>Mentors for this Session</label>
+                  <div class="row">
+                    <div class="col-md-12 col-xs-12 table-responsive">
+                      <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Additional description</th>
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let startup of session.mentors;let i = index" style="cursor: pointer; ">
+                            <td>{{startup.title}}</td>
+                            <td>{{startup.description }}</td>
+                            <td>{{startup.additional_description}}</td>
+                            <td><button class="btn btn-danger" (click)="deletementors(startup,i)"><i
+                                  class="glyphicon glyphicon-trash"></i> Remove</button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <label>List of Mentors</label>
+                  <div class="row">
+                    <div class="col-md-12 col-xs-12 table-responsive">
+                      <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th>Select</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Additional description</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let startup of mentors;let i = index" style="cursor: pointer; ">
+                            <td><input class="checkbox" type="checkbox"
+                                (change)="setvalues($event.target.checked,startup)"></td>
+                            <td>{{startup.title}}</td>
+                            <td>{{startup.description}}</td>
+                            <td>{{startup.additional_description}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <label>Startups for this Session</label>
+                    <div class="row">
+                      <div class="col-md-12 col-xs-12 table-responsive">
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th>Name</th>
+                              <th>Status</th>
+                              <th>Score</th>
+                              <th>Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let startup of session.startups;let i = index" style="cursor: pointer; ">
+                              <td>{{startup.startup_name}}</td>
+                              <td>{{startup.startup_registration.application_status}}</td>
+                              <td>{{startup.startup_registration.score}}</td>
+                              <td><button class="btn btn-danger" (click)="deletestartups(startup,i)"><i
+                                    class="glyphicon glyphicon-trash"></i> Remove</button></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="row">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <label>List of Startups</label>
+                    <div class="row">
+                      <div class="col-md-12 col-xs-12 table-responsive">
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th>Select</th>
+                              <th>Name</th>
+                              <th>Status</th>
+                              <th>Score</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let startup of startuplist;let i = index" style="cursor: pointer; ">
+                              <td><input class="checkbox" type="checkbox"
+                                  (change)="setvalues1($event.target.checked,startup)"></td>
+                              <td>{{startup.startup_name}}</td>
+                              <td>{{startup.startup_registration.application_status}}</td>
+                              <td>{{startup.startup_registration.score}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <div class="col-md-12">
+              <button class="btn btn-success" type="button" (click)="updateProgramSession()"><i
+                  class="glyphicon glyphicon-floppy-saved"></i>Update Program Session
+                 </button>
+            </div>
+
+          </fieldset>
+
+
+        </form>
+        <app-error-display></app-error-display>
+
+        <div class="modal fade" id="deletepopup" role="dialog" #deletepopup>
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" (click)="closedelete()">&times;</button>
+                <h4 class="modal-title">Warning !!!</h4>
+              </div>
+              <div class="modal-body">
+                <p>{{deletedisplay}}</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" (click)="confirmdelete()">Confirm</button>
+                <button type="button" class="btn btn-default" (click)="closedelete()">Close</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
