@@ -31,9 +31,10 @@ export class CreateProgramSessionsComponent implements OnInit {
   deleteindex: any
   deleteactivityid: any
   arrayids: Array<any> = []
-  mentors: any
+  allattendees: any = {}
   startups: any
   arrayids1: Array<any> = []
+  arrayids2: Array<any> = []
 
 
 
@@ -83,7 +84,6 @@ export class CreateProgramSessionsComponent implements OnInit {
     }
 
     this.getmentors();
-    this.getstartups();
     this.getUserDetails();
   }
   getSession(id: number) {
@@ -91,7 +91,7 @@ export class CreateProgramSessionsComponent implements OnInit {
     let data = { session: { id: id } };
     this.apiCom.putDataWithToken(url, JSON.stringify(data), this.authToken)
       .subscribe(data => {
-        console.log(data);
+        console.log("session_attendees", data);
         this.session_attendees = data;
       }, error => {
         console.log(error);
@@ -99,13 +99,14 @@ export class CreateProgramSessionsComponent implements OnInit {
       })
   }
   getmentors() {
-    let url = "";
-    this.apiCom.getDataWithAuth(url, this.authToken)
+    let url = "program/get-programs-related-users";
+    let data = { program_id: this.program_id }
+    this.apiCom.putDataWithToken(url, JSON.stringify(data), this.authToken)
       .subscribe(data => {
         console.log(data);
-        this.mentors = data;
+        this.allattendees = data;
 
-        //this.removeduplicates();
+        this.removeduplicates();
 
       }, error => {
         console.log(error);
@@ -125,17 +126,7 @@ export class CreateProgramSessionsComponent implements OnInit {
         console.log(error);
       })
   }
-  getFrameworkActivities(id: number) {
-    let url = "program/framework/show-activity";
-    let data = { framework_id: id };
-    this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
-      .subscribe(data => {
-        console.log(data);
-        this.framework_activity = data;
-      }, error => {
-        console.log(error);
-      })
-  }
+  
   updateForm() {
     if (this.session.id == (null || undefined)) {
       let url = "program/create-session"
@@ -179,51 +170,38 @@ export class CreateProgramSessionsComponent implements OnInit {
       alert(err)
     })
   }
-
+  deleteAttendees(item, i) { 
+      this.deletementors(item, i);
+      $("#deletepopup").modal('show')
+  }
 
   confirmdelete() {
-    if (this.btnname == "mentor") {
-      let url = ""
-      let params = JSON.stringify({ session_id: this.session.id, mentors_id: this.deleteactivityid })
-      this.apiCom.postDataWithToken(url, params, this.authToken).subscribe((res) => {
+    
+      let url = "program/remove-attendee-from-session"
+      let params = JSON.stringify({ session_id: this.session.id, user_id: this.deleteactivityid })
+      this.apiCom.putDataWithToken(url, params, this.authToken).subscribe((res) => {
         res;
         console.log("response", res);
-        alert("Program Mentor Deleted Successfully")
-        this.getmentors();
-        this.session.mentors.splice(this.deleteindex, 1)
+        alert("Session Attendee Deleted Successfully")
+        //this.getmentors();
+        this.session_attendees.splice(this.deleteindex, 1)
       })
-    }
-    else if (this.btnname == "startup") {
-      let url = ""
-      let params = JSON.stringify({ session_id: this.session.id, startup_id: this.deleteactivityid })
-      this.apiCom.postDataWithToken(url, params, this.authToken).subscribe((res) => {
-        res;
-        console.log("response", res);
-        alert("Startup Deleted Successfully")
-        this.getstartups();
-        this.session.startups.splice(this.deleteindex, 1)
-      })
-    }
+   
+    
     $("#deletepopup").modal('hide')
   }
   closedelete() {
     $("#deletepopup").modal('hide')
   }
 
-  deleteactivities(id, i) {
-    $("#deletepopup").modal('show')
-    this.btnname = "activity"
-    this.deletedisplay = "Are you sure, You want to delete this activity and its checklists?"
-    this.deleteindex = i;
-    this.deleteactivityid = id
-  }
+  
 
-  setvalues(checked, value) {
+  selectvalues(checked, value) {
     if (checked == true) {
-      this.arrayids.push(value.id);
+      this.arrayids.push(value.startup_users.id);
     } else {
       if (checked == false) {
-        let deleteindex = this.arrayids.indexOf(value.id)
+        let deleteindex = this.arrayids.indexOf(value.startup_users.id)
         console.log(deleteindex)
         if (deleteindex != -1) {
           this.arrayids.splice(deleteindex, 1)
@@ -233,7 +211,7 @@ export class CreateProgramSessionsComponent implements OnInit {
     }
   }
 
-  setvalues1(checked, value) {
+  selectvalues1(checked, value) {
     if (checked == true) {
       this.arrayids1.push(value.id);
     } else {
@@ -247,9 +225,23 @@ export class CreateProgramSessionsComponent implements OnInit {
       }
     }
   }
+  selectvalues2(checked, value) {
+    if (checked == true) {
+      this.arrayids2.push(value.id);
+    } else {
+      if (checked == false) {
+        let deleteindex = this.arrayids2.indexOf(value.id)
+        console.log(deleteindex)
+        if (deleteindex != -1) {
+          this.arrayids2.splice(deleteindex, 1)
+          console.log("this.formrequestarray", this.arrayids2)
+        }
+      }
+    }
+  }
   deletementors(item, i) {
-    this.btnname = "mentor"
-    this.deletedisplay = "Are you sure, You want to delete this mentor?"
+   
+    this.deletedisplay = "Are you sure, You want to delete this Attendee?"
     this.deleteindex = i;
     this.deleteactivityid = item.id
 
@@ -263,42 +255,67 @@ export class CreateProgramSessionsComponent implements OnInit {
   }
   updateProgramSession() {
     let params: any
-    if (this.arrayids.length  == 0 && this.arrayids1.length  == 0) {
-      alert("Select atleast one Startup or one Mentor to Update Program Session")
+    if (this.arrayids.length == 0 && this.arrayids1.length == 0 && this.arrayids2.length == 0) {
+      alert("Select atleast one Startup or one Mentor or One Site User to Update Attendees")
     } else {
-      params = JSON.stringify({ session: { id: this.session.id }, mentors: this.arrayids, startups: this.arrayids1 })
+      params = JSON.stringify({ session: { id: this.session.id }, startups: this.arrayids, mentors: this.arrayids1, site_users: this.arrayids2 })
 
-      let url = "program/merge-courses-with-framework"
-      this.apiCom.postDataWithToken(url, params, this.authToken).subscribe((res) => {
+      let url = "program/assign-attendess-for-session"
+      this.apiCom.putDataWithToken(url, params, this.authToken).subscribe((res) => {
         res;
-        this.session = res;
-        alert("Program Session Updated Successfully")
-        if (this.session.mentors.length > 0) {
-          this.getmentors();
-          this.allActivity.getstartups();
-          this.arrayids = []
-          this.arrayids1 = []
 
-        }
+
+        this.getSession(this.session_id);
+        alert(res)
         console.log(res);
+        $("#attendee").modal('hide')
       })
     }
-
-
 
   }
 
   removeduplicates() {
-      var i = this.mentors.length;
+    let item1 = this.session_attendees.filter((list) => list.user_type == "startup")
+    let item2 = this.session_attendees.filter((list) => list.user_type == "mentor")
+    let item3 = this.session_attendees.filter((list) => list.user_type == "site")
+
+    if (item1.length > 0) {
+      var i = this.allattendees.startup_users.length;
       while (i--) {
-        for (var j of this.session.mentors) {
-          if (this.mentors[i] && this.mentors[i].id == j.id) {
-           // this.courses1.push(this.courses[i])
-            this.mentors.splice(i, 1);
+        for (var j of item1) {
+          if (this.allattendees.startup_users[i].startup_users && this.allattendees.startup_users[i].startup_users.id == j.id) {
+            // this.courses1.push(this.courses[i])
+            this.allattendees.startup_users.splice(i, 1);
 
           }
         }
       }
+    }
+    if (item2.length > 0) {
+      var i = this.allattendees.mentors.length;
+      while (i--) {
+        for (var j of item2) {
+          if (this.allattendees.mentors[i] && this.allattendees.mentors[i].id == j.id) {
+            // this.courses1.push(this.courses[i])
+            this.allattendees.mentors.splice(i, 1);
+
+          }
+        }
+      }
+    }
+    if (item3.length > 0) {
+      var i = this.allattendees.site_users.length;
+      while (i--) {
+        for (var j of item3) {
+          if (this.allattendees.site_users[i] && this.allattendees.site_users[i].id == j.id) {
+            // this.courses1.push(this.courses[i])
+            this.allattendees.site_users.splice(i, 1);
+
+          }
+        }
+      }
+    }
+
 
   }
 
@@ -308,13 +325,21 @@ export class CreateProgramSessionsComponent implements OnInit {
     while (i--) {
       for (var j of this.session.startups) {
         if (this.startuplist[i] && this.startuplist[i].id == j.id) {
-         // this.courses1.push(this.courses[i])
+          // this.courses1.push(this.courses[i])
           this.startuplist.splice(i, 1);
 
         }
       }
     }
 
-}
+
+  }
+  addattendees() {
+    $("#attendee").modal('show');
+    this.getmentors();
+  }
+  closeattend() {
+    $("#attendee").modal('hide')
+  }
 
 }

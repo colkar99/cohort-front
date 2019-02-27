@@ -1,0 +1,55 @@
+<h3>Assign Activities to Startups</h3>
+<div *ngIf="courses.length >0">
+  <div class="row">
+    <button class="btn btn-success pull-right" type="button" (click)="assigncourses()">Assign Courses</button>
+  </div>
+    <div class="panel panel-default" *ngFor="let course of courses"> 
+        <div class="panel-body">
+            <div class="col-md-12" >
+                <div class="col-md-1">
+                  <input class="checkbox" type="checkbox" (change)="setvalues($event.target.checked,course)">
+                </div>
+                <div class="col-md-4">
+                  <span style="font-size: 20px;">#{{course.title}}</span>
+                  <h4>{{course.description}}</h4>
+                  <h5>{{course.additional_description}}</h5>
+                </div>
+                <div class="col-md-7">
+                  <div class="col-md-6">
+                    <span *ngFor="let act of course.activities">{{act.name}},</span>
+                  </div>
+                  <div class="col-md-6">
+                    <span>CheckList</span>
+                    <div *ngFor="let act of course.activities">
+                      <div *ngFor="let chec of act.checklists">
+                        <span>{{chec.name}}</span>
+                      </div>
+                    </div>
+                    
+                    
+            
+            
+                  </div>
+                  
+                </div>
+                
+            
+              </div>
+              <div class="col-md-12">
+                <form>
+                  <div class="col-md-4 form-group">
+                    <label>Target Date</label>
+                      <input class="form-control" type="date" name="target_date" [(ngModel)]="course.target_date">
+                  </div>
+                  <div class="col-md-4">
+
+                  </div>
+                  <div class="col-md-4">
+                      <button class="btn btn-primary pull-right">View Materials</button>
+                  </div>
+                </form>
+              </div>
+        </div>
+    </div>
+  
+</div>

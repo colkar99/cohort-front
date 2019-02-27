@@ -1,50 +1,51 @@
 import { Component, OnInit } from '@angular/core';
-import {SharedDataService} from '../shared-data.service'
-import {ApiCommunicationService} from '../api-communication.service'
-import {CookieService} from 'ngx-cookie-service'
-declare var $:any
+import { SharedDataService } from '../../shared-data.service'
+import { ApiCommunicationService } from '../../api-communication.service'
+import { CookieService } from 'ngx-cookie-service'
+declare var $: any
 @Component({
-  selector: 'app-about-profile',
-  templateUrl: './about-profile.component.html',
-  styleUrls: ['./about-profile.component.css']
+  selector: 'app-startup-roadmap',
+  templateUrl: './startup-roadmap.component.html',
+  styleUrls: ['./startup-roadmap.component.css']
 })
-export class AboutProfileComponent implements OnInit {
-  startupdata:any = {}
-  hideshow:any = false
-  roadmap:any = {}
-  milestoneindex:any
-  metric:any
-  description:any
-  authToken:any
-  currentstateform:any ={}
+export class StartupRoadmapComponentadmin implements OnInit {
+
+  startupdata: any = {}
+  hideshow: any = false
+  roadmap: any = {}
+  milestoneindex: any
+  metric: any
+  description: any
+  authToken: any
+  currentstateform: any = {}
   companylogo: any = "assets/photo.png"
   CompanyName: any = "PETRAS"
   Mentors: any = "Stanly,Selwyn"
   bio: any = "Bootstrap 4 Grid Examples. Three Equal Columns. Use the .col class on a specified number of elements and Bootstrap will recognize how many elements there are (and create equal-width columns). Three Equal Columns Using Numbers. You can also use numbers to control the column width."
-  currentstate:any = "Bootstrap 4 Grid Examples. Three Equal Columns. Use the .col class on a specified number of elements and Bootstrap will recognize how many elements there are (and create equal-width columns)"
-  constructor(private sharedservice:SharedDataService,
-    private apiCom:ApiCommunicationService,
-    private cookieService:CookieService) {
-    this.sharedservice.currentMessage.subscribe((res)=>{res;this.startupdata = res;})
-    console.log("startupdata",this.startupdata)
+  currentstate: any = "Bootstrap 4 Grid Examples. Three Equal Columns. Use the .col class on a specified number of elements and Bootstrap will recognize how many elements there are (and create equal-width columns)"
+  constructor(private sharedservice: SharedDataService,
+    private apiCom: ApiCommunicationService,
+    private cookieService: CookieService) {
+    this.sharedservice.currentMessage.subscribe((res) => { res; this.startupdata = res; })
+    console.log("startupdata", this.startupdata)
     this.roadmap = this.startupdata.road_map
     this.authToken = this.getCookie("Authorization")
-   }
+  }
 
   ngOnInit() {
     let url = "program/user/show-current-state-form"
-    let params = {current_state_form:{program_id:this.startupdata.startup_registration.program_id,startup_registration_id:this.startupdata.startup_registration.id}}
-    this.apiCom.postDataWithToken(url,JSON.stringify(params),this.authToken).subscribe((res)=>{
+    let params = { current_state_form: { program_id: this.startupdata.startup_registration.program_id, startup_registration_id: this.startupdata.startup_registration.id } }
+    this.apiCom.postDataWithToken(url, JSON.stringify(params), this.authToken).subscribe((res) => {
       res;
       this.currentstateform = res
     })
 
     if (this.roadmap != (null && undefined)) {
       let url = "program/startup/get-road_map-for-startup-admin"
-      let params = JSON.stringify({startup_profile_id:this.startupdata.id,road_map_id:this.roadmap.id})
-      this.apiCom.postDataWithToken(url,params,this.authToken).subscribe((res)=>{
+      let params = JSON.stringify({ startup_profile_id: this.startupdata.id, road_map_id: this.roadmap.id })
+      this.apiCom.postDataWithToken(url, params, this.authToken).subscribe((res) => {
         res;
-        this.roadmap = res 
+        this.roadmap = res
       })
     }
   }
@@ -139,9 +140,8 @@ export class AboutProfileComponent implements OnInit {
         alert("Roadmap Deleted Successfully")
         this.roadmap = null
         this.hideshow = false
-        
+
       }
     })
   }
-
 }
