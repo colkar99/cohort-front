@@ -32,6 +32,11 @@ import {ChartsBoardComponent} from './sitedashboard/charts-board/charts-board.co
 import { ProgramSessionComponent } from './startupdashboard/program-sessions/program-sessions.component';
 import { ProgramSessionsComponent} from './sitedashboard/program-sessions/program-sessions.component'
 import {CreateProgramSessionsComponent} from './sitedashboard/create-program-sessions/create-program-sessions.component'
+import {ProfileDetailsComponent} from './about-profile/profile-details/profile-details.component'
+import {StartupRoadmapComponentadmin} from './about-profile/startup-roadmap/startup-roadmap.component'
+import {ViewActivitiesComponent} from './about-profile/view-activities/view-activities.component'
+import {AssignActivitiesComponent} from './about-profile/assign-activities/assign-activities.component'
+
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'login', component: LoginComponent },
@@ -52,7 +57,14 @@ const routes: Routes = [
       { path: 'framework/create-course', component: CourseEditComponent },
       { path: 'framework/editcourse/:id', component: CourseEditComponent },
       { path: 'startups-by-programs', component: StartupbyProgramsComponent },
-      { path: 'about-profile', component: AboutProfileComponent },
+      { path: 'about-profile', component: AboutProfileComponent,pathMatch:'prefix',
+    children:[
+      { path: '', redirectTo:'company-profile',pathMatch:'full'},
+      { path: 'company-profile', component: ProfileDetailsComponent},
+      { path: 'road-map', component: StartupRoadmapComponentadmin},
+      { path: 'assign-activities', component: AssignActivitiesComponent},
+      { path: 'view-activities', component: ViewActivitiesComponent}
+    ] },
       { path: 'about-profile/:id', component: AboutProfileComponent },
       { path: 'program-sessions', component: ProgramSessionsComponent },
       { path: 'program-sessions/create-program-session', component: CreateProgramSessionsComponent },

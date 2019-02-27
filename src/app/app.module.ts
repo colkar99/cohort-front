@@ -57,7 +57,11 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { ChartsBoardComponent } from './sitedashboard/charts-board/charts-board.component'
 import {ProgramSessionComponent } from './startupdashboard/program-sessions/program-sessions.component';
 import { ProgramSessionsComponent } from './sitedashboard/program-sessions/program-sessions.component';
-import { CreateProgramSessionsComponent } from './sitedashboard/create-program-sessions/create-program-sessions.component'
+import { CreateProgramSessionsComponent } from './sitedashboard/create-program-sessions/create-program-sessions.component';
+import { AssignActivitiesComponent } from './about-profile/assign-activities/assign-activities.component';
+import { ViewActivitiesComponent } from './about-profile/view-activities/view-activities.component';
+import { ProfileDetailsComponent } from './about-profile/profile-details/profile-details.component'
+import {StartupRoadmapComponentadmin} from './about-profile/startup-roadmap/startup-roadmap.component'
 
 export function provideConfig() {
   let config = new AuthServiceConfig([
@@ -107,7 +111,11 @@ export function provideConfig() {
     ChartsBoardComponent,
     ProgramSessionComponent,
     ProgramSessionsComponent,
-    CreateProgramSessionsComponent
+    CreateProgramSessionsComponent,
+    AssignActivitiesComponent,
+    ViewActivitiesComponent,
+    ProfileDetailsComponent,
+    StartupRoadmapComponentadmin
   ],
   imports: [
     BrowserModule,

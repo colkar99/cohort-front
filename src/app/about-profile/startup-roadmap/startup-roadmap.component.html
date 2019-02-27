@@ -1,0 +1,110 @@
+<div class="col-md-12" >
+    <h1 class="text-center">  Roadmap</h1>
+
+
+
+    <div class="col-md-12" style="height:270px;">
+      <div class="oval text-center">
+        <span style="font-size: 15px;">Graduation</span>
+        <textarea class="form-control" type="text" style="margin-top:35px;width: 70%;margin-left: 40px;resize: none"
+          placeholder="Enter the goal" name="roadmap.goal" [(ngModel)]="roadmap.goal"></textarea>
+      </div>
+      <div style="position:relative">
+        <button class="circle" style="left: 24%;bottom: 0;top: -27px;position: absolute;" (click)="openmapdetails()">Target Metrics</button>
+      <button class="circle" style="left: 39%;bottom: 0;top: -2%;position: absolute;">Resources Needed</button>
+      <button class="circle" style="left: 54%;bottom: -83px;position: absolute;">Target Metrics</button>
+      </div>
+      
+    </div>
+    
+    <div class="col-md-6" style="height:270px;" *ngFor="let item of roadmap.milestones;let i = index">
+      <div class="oval-md-6 text-center">
+        <span style="font-size: 15px;">{{item.month}}</span>
+        <textarea class="form-control" type="text" style="margin-top:35px;width: 70%;margin-left: 40px;resize: none"
+          placeholder="Enter the goal" name="item.name" [(ngModel)]="item.name"></textarea>
+      </div>
+      <div style="position:relative">
+        <button type="button" class="circle" style="left: 0%;bottom: 0;top: -23px;position: absolute;" (click)="openmilestone(i)">Target Metrics</button>
+      <button type="button" class="circle" style="left: 30%;bottom: 0;top: 0;position: absolute;">Resources Needed</button>
+      <button type="button" class="circle" style="left: 63%;bottom: -78px;position: absolute;">Target Metrics</button>
+      </div>
+      
+    </div>
+    
+    <div class="col-md-12">
+      <button class="btn btn-default pull-right" type="submit" (click)="submitRoadmap()">{{!roadmap.id ? 'Save':'Update'}}</button>
+      <button *ngIf="roadmap.id !=(null && undefined)" class="btn btn-danger pull-right" (click)="deleteroadmap()">Delete</button>
+    </div>
+    
+    <div class="modal fade" id="roadmpdetails" role="dialog" #roadmpdetails>
+        <div class="modal-dialog modal-lg">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" (click)="closeroadmap()" >&times;</button>
+              <h4 class="modal-title">Roadmap Details</h4>
+            </div>  
+            <div class="modal-body">
+              <form>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <span class="label">Strategy</span>
+                    <textarea class="form-control" name="roadmap.strategy" [(ngModel)]="roadmap.strategy"></textarea>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                      <span class="label">Description</span>
+                      <textarea class="form-control" name="roadmap.description" [(ngModel)]="roadmap.description"></textarea>
+                    </div>
+                  </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" (click)="saveroadmap()">Save</button>
+              <button type="button" class="btn btn-default" (click)="closeroadmap()">Close</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    
+    
+    
+    <div class="modal fade" id="milestone" role="dialog" #milestone>
+        <div class="modal-dialog modal-lg">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" (click)="closemilestone()" >&times;</button>
+              <h4 class="modal-title">Milestone Details</h4>
+            </div>  
+            <div class="modal-body">
+              <form>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <span class="label">Metric</span>
+                    <textarea class="form-control" name="metric" [(ngModel)]="metric"></textarea>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                      <span class="label">Description</span>
+                      <textarea class="form-control" name="description" [(ngModel)]="description"></textarea>
+                    </div>
+                  </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" (click)="savemilestone()">Save</button>
+              <button type="button" class="btn btn-default" (click)="closemilestone()">Close</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+     
+
+</div>
