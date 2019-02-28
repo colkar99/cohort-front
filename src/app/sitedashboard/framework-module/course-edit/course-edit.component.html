@@ -20,9 +20,13 @@
                             <label>Additional Description</label>
                             <textarea class="form-control" type="text" name="additional_description" [(ngModel)]="course.additional_description"></textarea>
                         </div>
+                        <div class="col-md-6 form-group">
+                            <label>Pass Metric</label>
+                            <textarea class="form-control" type="text" name="pass_metric" [(ngModel)]="course.pass_metric"></textarea>
+                        </div>
                     </div>
                     <div *ngIf="course.id != (null && undefined && 0)">
-                        <div class="row">Activities <button type="button" class="btn btn-info" (click)="addactivities()"><i class="glyphicon glyphicon-plus-sign"></i> Add</button></div>
+                        <div class="row">Activities <button type="button" class="btn btn-info pull-right" (click)="addactivities()"><i class="glyphicon glyphicon-plus-sign"></i> Add</button></div>
                         <div class="row">
                             <div class="col-md-12 col-xs-12 table-responsive">
                                 <table class="table table-bordered">
@@ -49,6 +53,33 @@
                                 </table>
                             </div>
                         </div>
+
+                        <div class="row">Checklists <button type="button" class="btn btn-info pull-right" (click)="addchecklists()"><i class="glyphicon glyphicon-plus-sign"></i> Add</button></div>
+                        <div class="row">
+                            <div class="col-md-12 col-xs-12 table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                           
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of course.checklists;let i = index">
+                                            <td>{{item.name}}</td>
+                                            <td>{{item.description}}</td>
+                                            
+                                            <td><button type="button" class="btn btn-default" (click)="viewchecklists(item)"><i class="glyphicon glyphicon-eye-open"></i> View</button><button
+                                                    type="button" class="btn btn-danger" (click)="deletechecklists(item.id,i)"><i class="glyphicon glyphicon-trash"></i> Delete</button></td>
+    
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="row">
                         <button class="btn btn-success pull-right" (click)="updateForm()"><i class="glyphicon glyphicon-floppy-saved"></i> {{!course.id?
@@ -69,34 +100,34 @@
                             </div>
                             <div class="modal-body">
                                 <form [formGroup]="checklistforms">
-                                    <div class="col-md-4">
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <span class="label">Name</span>
-                                            <input class="form-control" type="text" formControlName="name" ngModel>
+                                            <textarea class="form-control" type="text" formControlName="name" ngModel></textarea>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <span class="label">Description</span>
-                                            <input class="form-control" type="text" formControlName="description"
-                                                ngModel>
+                                            <textarea class="form-control" type="text" formControlName="description"
+                                                ngModel></textarea>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <span class="label">Placeholder</span>
                                             <input class="form-control" type="text" formControlName="placeholder"
                                                 ngModel>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <span class="label">Order</span>
                                             <input class="form-control" type="text" formControlName="order" ngModel>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-12">Checklist Items
+                                    <!-- <div class="col-md-12">Checklist Items
                                         <div formArrayName="checklists" *ngFor="let item of checklistforms.get('checklists').controls; let i = index;">
                                             <div [formGroupName]="i">
                                                 <div class="col-md-6">
@@ -125,7 +156,7 @@
                                                 <button type="button" class="btn btn-default" (click)="deleteItem(i)"><i class="glyphicon glyphicon-trash"></i> Delete</button>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </form>
                             </div>
                             <div class="modal-footer">
@@ -139,6 +170,48 @@
                     </div>
 
                 </div>
+
+                <div class="modal fade" id="checklistmodal" role="dialog" #checklistmodal>
+                    <div class="modal-dialog modal-lg">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" (click)="closechecklists()">&times;</button>
+                                <h4 class="modal-title">Checklist Details</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form [formGroup]="checklists">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <span class="label">Name</span>
+                                            <textarea class="form-control" type="text" formControlName="name" ngModel></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <span class="label">Description</span>
+                                            <textarea class="form-control" type="text" formControlName="description"
+                                                ngModel></textarea>
+                                        </div>
+                                    </div>
+                                    
+
+                                   
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success" (click)="savechecklists(checklists)"><i class="glyphicon glyphicon-floppy-saved"></i> {{!checklists.value.id?
+                                    'Save':'Update' }}</button>
+                                <button type="button" class="btn btn-default" (click)="closechecklists()">Close</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
                 <div class="modal fade" id="deletepopup" role="dialog" #deletepopup>
                     <div class="modal-dialog">
 

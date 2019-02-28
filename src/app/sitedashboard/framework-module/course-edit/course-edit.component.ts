@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { ErrorDisplayComponent } from '../../../error-display/error-display.component'
 import { HttpErrorResponse } from '@angular/common/http';
-import {SharedDataService} from '../../../shared-data.service'
+import { SharedDataService } from '../../../shared-data.service'
 declare var $: any
 @Component({
   selector: 'app-course-edit',
@@ -24,7 +24,7 @@ export class CourseEditComponent implements OnInit {
   @ViewChild(ErrorDisplayComponent) errdisplay;
   activitiesarray: Array<any> = []
   checklistforms: FormGroup;
-  checklists: FormArray
+  checklists: FormGroup
   activity: any = {}
   btnname: any
   deletedisplay: string
@@ -36,7 +36,7 @@ export class CourseEditComponent implements OnInit {
     private cookieService: CookieService,
     private router: Router,
     private route: ActivatedRoute,
-    private sharedservice:SharedDataService,
+    private sharedservice: SharedDataService,
     private formBuilder: FormBuilder) {
     this.checklistforms = this.formBuilder.group({
       id: undefined,
@@ -44,8 +44,14 @@ export class CourseEditComponent implements OnInit {
       description: '',
       placeholder: '',
       order: '',
-      checklists: this.formBuilder.array([])
+      // checklists: this.formBuilder.array([])
 
+    })
+    this.checklists = this.formBuilder.group({
+      id: undefined,
+      name: '',
+      description: '',
+      
     })
   }
 
@@ -71,7 +77,7 @@ export class CourseEditComponent implements OnInit {
       // this.getcoursesActivities(this.course_id);
     }
 
-   
+
     this.getUserDetails();
   }
   getcourses(id: number) {
@@ -117,10 +123,10 @@ export class CourseEditComponent implements OnInit {
         error => console.error("couldn't post because", error)
       );
   }
-  deleteform(){
+  deleteform() {
     let url = "framework/course/delete-course-activity-and-checklists"
-    let params = {"course_id": this.course.id}
-    this.apiCom.postDataWithToken(url,params,this.authToken).subscribe((res)=>{
+    let params = { "course_id": this.course.id }
+    this.apiCom.postDataWithToken(url, params, this.authToken).subscribe((res) => {
       res;
       alert("Courses Deleted Successfully");
       this.router.navigate(['admin/dashboard/framework'])
@@ -140,40 +146,47 @@ export class CourseEditComponent implements OnInit {
 
   }
 
-  createchecklistitems(): FormGroup {
-    return this.formBuilder.group({
-      id: undefined,
-      name: '',
-      description: ''
-    })
-  }
-  updatechecklistsitems(item): FormGroup {
-    return this.formBuilder.group({
-      id: item.id,
-      name: item.name,
-      description: item.description
-    })
-  }
+  // createchecklistitems(): FormGroup {
+  //   return this.formBuilder.group({
+  //     id: undefined,
+  //     name: '',
+  //     description: ''
+  //   })
+  // }
+  // updatechecklistsitems(item): FormGroup {
+  //   return this.formBuilder.group({
+  //     id: item.id,
+  //     name: item.name,
+  //     description: item.description
+  //   })
+  // }
 
-  addItem(): void {
-    this.checklists = this.checklistforms.get('checklists') as FormArray;
-    this.checklists.push(this.createchecklistitems());
+  // addItem(): void {
+  //   this.checklists = this.checklistforms.get('checklists') as FormArray;
+  //   this.checklists.push(this.createchecklistitems());
+  // }
+  // deleteItem(i) {
+  //   this.btnname = "checklist"
+  //   console.log("id", this.checklists.controls[i].value)
+  //   this.checklists = this.checklistforms.get('checklists') as FormArray;
+  //   this.deleteindex = i
+  //   this.deletedisplay = "Are you Sure, You want to delete the checklist?"
+  //   let id = this.checklists.controls[i].value.id
+  //   if (id != (null && undefined)) {
+  //     $("#deletepopup").modal('show')
+  //   } else {
+  //     this.checklists.removeAt(i);
+  //   }
+  //   // 
+  // }
+  viewchecklists(item){
+    console.log(item)
+    $("#checklistmodal").modal('show')
+    this.checklists.get('name').setValue(item.name)
+    this.checklists.get('id').setValue(item.id)
+    this.checklists.get('description').setValue(item.description)
+    
   }
-  deleteItem(i) {
-    this.btnname = "checklist"
-    console.log("id", this.checklists.controls[i].value)
-    this.checklists = this.checklistforms.get('checklists') as FormArray;
-    this.deleteindex = i
-    this.deletedisplay = "Are you Sure, You want to delete the checklist?"
-    let id = this.checklists.controls[i].value.id
-    if (id != (null && undefined)) {
-      $("#deletepopup").modal('show')
-    } else {
-      this.checklists.removeAt(i);
-    }
-    // 
-  }
-
   viewactivities(item) {
     console.log(item)
     $("#activitiesmodal").modal('show')
@@ -183,9 +196,9 @@ export class CourseEditComponent implements OnInit {
     this.checklistforms.get('order').setValue(item.order)
     this.checklistforms.get('placeholder').setValue(item.placeholder)
     //this.checklistforms.get('formitems').setValue(item.checklists)
-    this.checklistforms.setControl('checklists', this.formBuilder.array([]));
-    this.checklists = this.checklistforms.get('checklists') as FormArray;
-    const controlArray = <FormArray>this.checklistforms.get('formitems');
+    // this.checklistforms.setControl('checklists', this.formBuilder.array([]));
+    // this.checklists = this.checklistforms.get('checklists') as FormArray;
+    // const controlArray = <FormArray>this.checklistforms.get('formitems');
 
 
     // this.formitems = this.checklistforms.get('formitems') as FormArray;
@@ -194,12 +207,12 @@ export class CourseEditComponent implements OnInit {
     //   controlArray.controls[i].get('description').setValue(item.checklists[i].description);
     //   controlArray.controls[i].get('id').setValue(item.checklists[i].id);
     // }
-    for (let i = 0; i < item.checklists.length; i++) {
+    // for (let i = 0; i < item.checklists.length; i++) {
 
-      console.log("values", this.updatechecklistsitems(item.checklists[i]))
-      this.checklists.push(this.updatechecklistsitems(item.checklists[i]));
-    }
-    this.checklists = this.checklistforms.get('checklists') as FormArray;
+    //   console.log("values", this.updatechecklistsitems(item.checklists[i]))
+    //   this.checklists.push(this.updatechecklistsitems(item.checklists[i]));
+    // }
+    // this.checklists = this.checklistforms.get('checklists') as FormArray;
 
 
 
@@ -213,7 +226,17 @@ export class CourseEditComponent implements OnInit {
     // });
 
   }
+  addchecklists(){
+    $("#checklistmodal").modal('show')
+    this.checklists = this.formBuilder.group({
+      id: undefined,
+      name: '',
+      description: ''
+      
+      // checklists: this.formBuilder.array([this.createchecklistitems()])
 
+    })
+  }
   addactivities() {
     $("#activitiesmodal").modal('show')
     this.checklistforms = this.formBuilder.group({
@@ -222,35 +245,59 @@ export class CourseEditComponent implements OnInit {
       description: '',
       placeholder: '',
       order: '',
-      checklists: this.formBuilder.array([this.createchecklistitems()])
+      // checklists: this.formBuilder.array([this.createchecklistitems()])
 
     })
   }
-  saveActivities(checklistforms) {
-    console.log("values", checklistforms)
-    let values = checklistforms.value
-    for(let i = 0; i < values.checklists.length;i++){
-      if(values.checklists[i].id == (null || undefined)){
-        delete values.checklists[i].id
-      }
-    }
+  savechecklists(checklists){
+    let values = checklists.value
     if (values.id == (null || undefined)) {
-      let url = "framework/course/create-activity-and-checklists"
-      this.apiCom.postDataWithToken(url, JSON.stringify({ activity: values, course_id: this.course.id }), this.authToken).subscribe((res) => {
+      let url = "framework/course/create-update-checklist"
+      this.apiCom.postDataWithToken(url, JSON.stringify({ checklist: values, course_id: this.course.id }), this.authToken).subscribe((res) => {
         res;
         console.log("response", res)
         this.course = res;
-        alert("Course Activities and Checklists Saved Successfully")
-        $("#activitiesmodal").modal('hide')
+        alert("Course Checklists Saved Successfully")
+        $("#checklistmodal").modal('hide')
 
       })
     } else {
-      let url = "framework/course/create-activity-and-checklists"
-      this.apiCom.postDataWithToken(url, JSON.stringify({ activity: values, course_id: this.course.id }), this.authToken).subscribe((res) => {
+      let url = "framework/course/create-update-checklist"
+      this.apiCom.postDataWithToken(url, JSON.stringify({ checklist: values, course_id: this.course.id }), this.authToken).subscribe((res) => {
         res;
         console.log("response", res)
         this.course = res;
         alert("Course Activities and Checklists Updated Successfully")
+        $("#checklistmodal").modal('hide')
+
+      })
+    }
+  }
+  saveActivities(checklistforms) {
+    console.log("values", checklistforms)
+    let values = checklistforms.value
+    // for(let i = 0; i < values.checklists.length;i++){
+    //   if(values.checklists[i].id == (null || undefined)){
+    //     delete values.checklists[i].id
+    //   }
+    // }
+    if (values.id == (null || undefined)) {
+      let url = "framework/course/create-activity"
+      this.apiCom.postDataWithToken(url, JSON.stringify({ activity: values, course_id: this.course.id }), this.authToken).subscribe((res) => {
+        res;
+        console.log("response", res)
+        this.course = res;
+        alert("Course Activities Saved Successfully")
+        $("#activitiesmodal").modal('hide')
+
+      })
+    } else {
+      let url = "framework/course/create-activity"
+      this.apiCom.postDataWithToken(url, JSON.stringify({ activity: values, course_id: this.course.id }), this.authToken).subscribe((res) => {
+        res;
+        console.log("response", res)
+        this.course = res;
+        alert("Course Activities Updated Successfully")
         $("#activitiesmodal").modal('hide')
 
       })
@@ -262,29 +309,30 @@ export class CourseEditComponent implements OnInit {
   closeactivities() {
     $("#activitiesmodal").modal('hide')
   }
+  closechecklists() {
+    $("#checklistmodal").modal('hide')
+  }
 
   confirmdelete() {
     if (this.btnname == "checklist") {
-      this.checklists = this.checklistforms.get('checklists') as FormArray;
-      let id = this.checklists.controls[this.deleteindex].value.id
-      let url = "program/framework/activity/delete-checklist";
-      let params = JSON.stringify({ checklist: { id: id } })
+      let url = "framework/course/delete-checklist";
+      let params = JSON.stringify({ checklist_id: this.deleteactivityid })
       this.apiCom.putDataWithToken(url, params, this.authToken).subscribe((res) => {
         res
-        this.checklists.removeAt(this.deleteindex)
+        this.course.checklists.splice(this.deleteindex, 1)
         $("#deletepopup").modal('hide')
         alert("Checklist Deleted Successfully")
       }, (error) => {
         alert(error)
       })
     } else if (this.btnname == "activity") {
-      let url = "framework/course/delete-activity-and-checklists";
+      let url = "framework/course/delete-activity";
       let params = JSON.stringify({ activity_id: this.deleteactivityid, course_id: this.course.id })
       this.apiCom.postDataWithToken(url, params, this.authToken).subscribe((res) => {
         res
         this.course.activities.splice(this.deleteindex, 1)
         $("#deletepopup").modal('hide')
-        alert("Checklist Deleted Successfully")
+        alert("Activity Deleted Successfully")
       }, (error) => {
         alert(error)
       })
@@ -298,6 +346,13 @@ export class CourseEditComponent implements OnInit {
     $("#deletepopup").modal('show')
     this.btnname = "activity"
     this.deletedisplay = "Are you sure, You want to delete this activity and its checklists?"
+    this.deleteindex = i;
+    this.deleteactivityid = id
+  }
+  deletechecklists(id, i) {
+    $("#deletepopup").modal('show')
+    this.btnname = "checklist"
+    this.deletedisplay = "Are you sure, You want to delete this checklist?"
     this.deleteindex = i;
     this.deleteactivityid = id
   }

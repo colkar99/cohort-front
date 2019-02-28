@@ -61,7 +61,8 @@ import { CreateProgramSessionsComponent } from './sitedashboard/create-program-s
 import { AssignActivitiesComponent } from './about-profile/assign-activities/assign-activities.component';
 import { ViewActivitiesComponent } from './about-profile/view-activities/view-activities.component';
 import { ProfileDetailsComponent } from './about-profile/profile-details/profile-details.component'
-import {StartupRoadmapComponentadmin} from './about-profile/startup-roadmap/startup-roadmap.component'
+import {StartupRoadmapComponentadmin} from './about-profile/startup-roadmap/startup-roadmap.component';
+import { ViewMaterialsComponent } from './about-profile/view-materials/view-materials.component'
 
 export function provideConfig() {
   let config = new AuthServiceConfig([
@@ -115,7 +116,8 @@ export function provideConfig() {
     AssignActivitiesComponent,
     ViewActivitiesComponent,
     ProfileDetailsComponent,
-    StartupRoadmapComponentadmin
+    StartupRoadmapComponentadmin,
+    ViewMaterialsComponent
   ],
   imports: [
     BrowserModule,
