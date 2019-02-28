@@ -172,7 +172,8 @@
 <div class="col-md-2 hidden-sm hidden-xs">
   <nav class="sidenav">
     <div style="height:90px;">
-      <img class="img-responsive img-rounded profile-image" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+      <img class="img-responsive img-rounded profile-image"
+        src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
         alt="User picture">
       <!-- <strong>{{sharedata.startupprofile.startup_name}}</strong>-->
       <strong style="color:white;position: absolute;left: 30%;">{{sharedata.startupprofile.startup_name}}</strong>
@@ -181,19 +182,24 @@
     </div>
     <hr>
     <div style="height:90px;margin-left:4%">
-        <strong style="color:lightgray">Bio</strong>
+      <strong style="color:lightgray">Bio</strong>
       <p style="color:darkgray">{{sharedata.startupprofile.description}}</p>
     </div>
     <hr>
-    
-    <div class="col-md-12">
-        
-     
-      <a [ngClass]="menuname == 'profile' ? 'bganchor' : ''" role="button" routerLink="profile" (click)="menunames('profile')">Profile</a>
-      <a [ngClass]="menuname == 'programs' ? 'bganchor' : ''" role="button" routerLink="programs" (click)="menunames('programs')">Programs</a>
-      <a [ngClass]="menuname == 'roadmap' ? 'bganchor' : ''" role="button" routerLink="road-map" (click)="menunames('roadmap')">RoadMap</a>
-      <a [ngClass]="menuname == 'program-session' ? 'bganchor' : ''" role="button" routerLink="program-sessions" (click)="menunames('program-session')">Program Session</a>
 
+    <div class="col-md-12">
+
+
+      <a [ngClass]="menuname == 'profile' ? 'bganchor' : ''" role="button" routerLink="profile"
+        (click)="menunames('profile')">Profile</a>
+      <a [ngClass]="menuname == 'programs' ? 'bganchor' : ''" role="button" routerLink="programs"
+        (click)="menunames('programs')">Programs</a>
+      <a [ngClass]="menuname == 'roadmap' ? 'bganchor' : ''" role="button" routerLink="road-map"
+        (click)="menunames('roadmap')">RoadMap</a>
+      <a [ngClass]="menuname == 'program-session' ? 'bganchor' : ''" role="button" routerLink="program-sessions"
+        (click)="menunames('program-session')">Program Session</a>
+      <a [ngClass]="menuname == 'activities' ? 'bganchor' : ''" role="button" routerLink="view-activities"
+        (click)="menunames('activities')">Activities</a>
     </div>
 
   </nav>
@@ -230,22 +236,29 @@
   <a class="closebtn" (click)="closeNav()">×</a>
   <div class="col-md-12">
     <div style="height:100px;">
-      <img class="img-responsive img-rounded profile-image1" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+      <img class="img-responsive img-rounded profile-image1"
+        src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
         alt="User picture">
       <!-- <strong>{{sharedata.startupprofile.startup_name}}</strong>-->
-     
+
     </div>
     <div>
-        <strong style="color:white;">{{sharedata.startupprofile.startup_name}}</strong><br>
-        <span style="color:white;"><strong>Mentors</strong></span><br>
-        <span style="color:white;">{{Mentors}}</span>
+      <strong style="color:white;">{{sharedata.startupprofile.startup_name}}</strong><br>
+      <span style="color:white;"><strong>Mentors</strong></span><br>
+      <span style="color:white;">{{Mentors}}</span>
     </div>
-    
+
     <strong>Menus</strong>
-    <a [ngClass]="menuname == 'profile' ? 'bganchor' : ''" role="button" routerLink="profile" (click)="menunames('profile')">Profile</a>
-    <a [ngClass]="menuname == 'programs' ? 'bganchor' : ''" role="button" routerLink="programs" (click)="menunames('programs')">Programs</a>
-    <a [ngClass]="menuname == 'roadmap' ? 'bganchor' : ''" role="button" routerLink="road-map" (click)="menunames('roadmap')">RoadMap</a>
-    <a [ngClass]="menuname == 'program-session' ? 'bganchor' : ''" role="button" routerLink="program-sessions" (click)="menunames('program-session')">Program Session</a>
+    <a [ngClass]="menuname == 'profile' ? 'bganchor' : ''" role="button" routerLink="profile"
+      (click)="menunames('profile')">Profile</a>
+    <a [ngClass]="menuname == 'programs' ? 'bganchor' : ''" role="button" routerLink="programs"
+      (click)="menunames('programs')">Programs</a>
+    <a [ngClass]="menuname == 'roadmap' ? 'bganchor' : ''" role="button" routerLink="road-map"
+      (click)="menunames('roadmap')">RoadMap</a>
+    <a [ngClass]="menuname == 'program-session' ? 'bganchor' : ''" role="button" routerLink="program-sessions"
+      (click)="menunames('program-session')">Program Session</a>
+    <a [ngClass]="menuname == 'activities' ? 'bganchor' : ''" role="button" routerLink="view-activities"
+      (click)="menunames('activities')">Activities</a>
 
   </div>
 </div>

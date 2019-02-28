@@ -1,15 +1,42 @@
 <div class="container">
   <div class="col-md-12">
-      <div class="col-md-2">
+    <div class="col-md-2">
 
-      </div>    
-      <div class="col-md-8">
-        <div>
-          
+    </div>
+    <div class="col-md-8">
+      <div class="col-md-12">
+        <h2 class="font_0">{{courses.title}}</h2>
+        <h5 class="font_3">{{courses.description}}</h5>
+        <p>{{courses.additional_description}}</p>
+      </div>
+      <div class="col-md-12" *ngFor="let act of courses.activities">
+        <p class="font_7">{{act.name}}</p>
+        <p class="font_3">{{act.description}}</p>
+        <p>{{act.placeholder}}</p>
+        <div class="col-md-12" >
+
         </div>
-      </div>  
-      <div class="col-md-2">
+        <div class="col-md-12">
 
-      </div>                                                                                    
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="col-md-6">
+
+          <h4>PASS METRIC</h4>
+          <h5>
+              {{courses.pass_metric}}
+          </h5>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="checkbox" *ngFor="let act of courses.checklists"><label class="control-label"><input type="checkbox" >{{act.name}}</label></div>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+
+    </div>
   </div>
 </div>

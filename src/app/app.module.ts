@@ -62,7 +62,9 @@ import { AssignActivitiesComponent } from './about-profile/assign-activities/ass
 import { ViewActivitiesComponent } from './about-profile/view-activities/view-activities.component';
 import { ProfileDetailsComponent } from './about-profile/profile-details/profile-details.component'
 import {StartupRoadmapComponentadmin} from './about-profile/startup-roadmap/startup-roadmap.component';
-import { ViewMaterialsComponent } from './about-profile/view-materials/view-materials.component'
+import { ViewMaterialsComponent } from './about-profile/view-materials/view-materials.component';
+import { ViewActivityComponent } from './startupdashboard/view-activity/view-activity.component';
+import { CourseMaterialComponent } from './startupdashboard/course-material/course-material.component'
 
 export function provideConfig() {
   let config = new AuthServiceConfig([
@@ -117,7 +119,9 @@ export function provideConfig() {
     ViewActivitiesComponent,
     ProfileDetailsComponent,
     StartupRoadmapComponentadmin,
-    ViewMaterialsComponent
+    ViewMaterialsComponent,
+    ViewActivityComponent,
+    CourseMaterialComponent
   ],
   imports: [
     BrowserModule,
