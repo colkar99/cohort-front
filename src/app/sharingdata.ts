@@ -11,7 +11,9 @@ import {map} from 'rxjs/operators'
 
 export class sharingData {
     public startupprofile:any = {}
-    public dashview:boolean 
+    public dashview:boolean
+    public course:any
+    public assign_view:boolean
 
 
     public showdashboard():any{

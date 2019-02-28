@@ -4,6 +4,8 @@ import { ApiCommunicationService } from '../../api-communication.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { SharedDataService } from '../../shared-data.service'
+import { sharingData } from '../../sharingdata'
+import { from } from 'rxjs';
 @Component({
   selector: 'app-assign-activities',
   templateUrl: './assign-activities.component.html',
@@ -14,20 +16,21 @@ export class AssignActivitiesComponent implements OnInit {
   loggedIn: any
   courses: any = []
   arrayitems: Array<any> = []
-  startupprofile:any = {}
+  startupprofile: any = {}
 
   constructor(private apiCom: ApiCommunicationService,
     private cookieService: CookieService,
     private router: Router,
-    private shareddata: SharedDataService
+    private shareddata: SharedDataService,
+    private sharingdata: sharingData
   ) { }
 
   getCookie(key: string) {
     return this.cookieService.get(key);
   }
   ngOnInit() {
-    this.shareddata.currentMessage.subscribe((res)=>this.startupprofile = res)
-    console.log("startupvalue",this.startupprofile)
+    this.shareddata.currentMessage.subscribe((res) => this.startupprofile = res)
+    console.log("startupvalue", this.startupprofile)
     this.authToken = this.getCookie('Authorization');
     if (this.authToken.length != 0) {
       this.loggedIn = true;
@@ -66,21 +69,24 @@ export class AssignActivitiesComponent implements OnInit {
       }
     }
   }
-  assigncourses(){
-    if(this.arrayitems.length >0){
+  assigncourses() {
+    if (this.arrayitems.length > 0) {
       let url = "framework/course/assign_activities_to_startup"
-      let params = JSON.stringify({courses:this.arrayitems,program_id:this.startupprofile.startup_registration.program_id,startup_profile_id:this.startupprofile.id})
-      this.apiCom.putDataWithToken(url,params,this.authToken).subscribe((res)=>{
+      let params = JSON.stringify({ courses: this.arrayitems, program_id: this.startupprofile.startup_registration.program_id, startup_profile_id: this.startupprofile.id })
+      this.apiCom.putDataWithToken(url, params, this.authToken).subscribe((res) => {
         res;
-        console.log("assignres",res);
+        console.log("assignres", res);
         alert("Courses Assigned Successfully")
         this.router.navigate(['admin/dashboard/about-profile'])
       })
     }
-    else{
+    else {
       alert("Select atleast one Course Activities to Assign Courses to Startups")
     }
   }
-  
+  viewMaterials(course) {
+    this.sharingdata.course = course
+    this.sharingdata.assign_view = false
+  }
 
 }
