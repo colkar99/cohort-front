@@ -7,12 +7,13 @@
     <div class="panel-body">
       <div class="col-md-12">
         <div class="col-md-1">
-          <input [disabled]="course.is_assigned == true" class="checkbox" type="checkbox"
+          <input class="checkbox" type="checkbox"
             (change)="setvalues($event.target.checked,course)">
         </div>
         <div class="col-md-4">
-          <span style="font-size: 20px;">#{{course.title}}</span>
-          <h5>{{course.description}}</h5>
+          <span style="font-size: 20px;" [innerHTML]="course.title"></span>
+          <h5 *ngFor="let ac of course.activities;let i = index">#{{i+1}}<span [innerHTML]="ac.name"></span></h5>
+          <!-- <h5 >{{course.description}}</h5> -->
         </div>
         <div class="col-md-7">
           <div class="col-md-6">
@@ -52,6 +53,9 @@
             <button *ngIf="course.is_assigned == true" class="btn btn-primary pull-right"
               (click)="viewMaterials(course)" routerLink="/admin/dashboard/review-activities/view-materials">Review
               Materials</button>
+          </div>
+          <div class="col-md-12 alert alert-danger" *ngIf="course.is_assigned == true">
+            <p>This Course is already assigned to this startup</p>
           </div>
         </form>
       </div>

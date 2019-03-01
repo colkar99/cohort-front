@@ -6,3 +6,6 @@
 .modal{
     overflow-y: auto !important;
 }
+textarea{
+    resize: vertical !important
+}

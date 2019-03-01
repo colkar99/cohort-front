@@ -65,7 +65,7 @@ import {StartupRoadmapComponentadmin} from './about-profile/startup-roadmap/star
 import { ViewMaterialsComponent } from './about-profile/view-materials/view-materials.component';
 import { ViewActivityComponent } from './startupdashboard/view-activity/view-activity.component';
 import { CourseMaterialComponent } from './startupdashboard/course-material/course-material.component'
-
+import { CKEditorModule } from 'ng2-ckeditor';
 export function provideConfig() {
   let config = new AuthServiceConfig([
     {
@@ -125,6 +125,7 @@ export function provideConfig() {
   ],
   imports: [
     BrowserModule,
+    CKEditorModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
