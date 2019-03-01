@@ -7,5 +7,19 @@
 
 input.ng-invalid.ng-touched  
 {  
-   border-color: red;  
+   border: 1px solid red;
+   border-color:red;
 }
+
+input,textarea {
+    box-shadow: 0px 2px 0px 0px rgba(106,155,176,1);
+}
+
+.form-control{
+    border: none ;
+}
+
+::placeholder { 
+    color: rgba(106,155,176,1);
+   
+  }

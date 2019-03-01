@@ -1,109 +1,117 @@
 <div class="col-md-12">
     <h3 style="text-decoration:underline;text-align: center">About Company {{startupdata.startup_name}}</h3>
     <div class="col-md-12">
-      
-      <div class="bg" *ngFor="let item of startupdata.users;let i= index">
-        <img src="assets/photo.png" alt="" style="height:125px;width: 150px;">
-        <div class="overlay">
-          <h4>{{item.full_name}}</h4>
-          <p></p>
+
+        <div class="bg" *ngFor="let item of startupdata.users;let i= index">
+            <img src="assets/photo.png" alt="" style="height:125px;width: 150px;">
+            <div class="overlay">
+                <h4>{{item.full_name}}</h4>
+                <p></p>
+            </div>
         </div>
-      </div>
     </div>
     <div class="col-md-12">
-      <h3 style="text-decoration:underline;text-align: center">Current State</h3><br>
-      <div class="panel panel-default">
-          <div class="panel-body">
-              <div class="col-md-12">
-                  <h4 class="page-heading">CurrentStateForm Info</h4>
-                  <div class="col-md-4"><label>Revenue:</label>
-                      {{currentstateform.revenue}}
-                  </div>
-                  <div class="col-md-4"><label>Traction:</label>
-                      {{currentstateform.traction}}
-                  </div>
-                  <div class="col-md-4"><label>Solution Readiness:</label>
-                      {{currentstateform.solution_readiness}}
-                  </div>
-                  <div class="col-md-4"><label>Investment:</label>
-                      {{currentstateform.investment}}
-                  </div>
-                  <div class="col-md-4"><label>Team velocity:</label>
-                      {{currentstateform.team_velocity}}
-                  </div>
-                  <div class="col-md-4"><label>Partners:</label>
-                      {{currentstateform.partners}}
-                  </div>
-                  <div class="col-md-4"><label>Vendors:</label>
-                      {{currentstateform.vendors}}
-                  </div>
-                  <div class="col-md-4"><label>Vendor Costs:</label>
-                      {{currentstateform.vendors_costs}}
-                  </div>
-                  <div class="col-md-4"><label>Experiment Testing:</label>
-                      {{currentstateform.experiment_testing}}
-                  </div>
-                  <div class="col-md-4"><label>Customer Segment:</label>
-                      {{currentstateform.customer_segment}}
-                  </div>
-                  <div class="col-md-4"><label>Problem Validation:</label>
-                      {{currentstateform.problem_validation}}
-                  </div>
-                  <div class="col-md-4"><label>Channels:</label>
-                      {{currentstateform.channels}}
-                  </div>
-                  <div class="col-md-4"><label>Governance:</label>
-                      {{currentstateform.governance}}
-                  </div>
-                  <div class="col-md-4"><label>Admin Feedback:</label>
-                      {{currentstateform.reviewer_feedback}}
-                  </div>
-                  <div class="col-md-4"><label>Admin Rating:</label>
-                      {{currentstateform.reviewer_rating}}
-                  </div>
-              </div>
-              
-          </div>
-      </div>
+        <h3 style="text-decoration:underline;text-align: center">Current State</h3><br>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <h4 class="page-heading">CurrentStateForm Info</h4>
+                    <div class="col-md-4"><label>Revenue:</label>
+                        {{currentstateform.revenue}}
+                    </div>
+                    <div class="col-md-4"><label>Traction:</label>
+                        {{currentstateform.traction}}
+                    </div>
+                    <div class="col-md-4"><label>Solution Readiness:</label>
+                        {{currentstateform.solution_readiness}}
+                    </div>
+                    <div class="col-md-4"><label>Investment:</label>
+                        {{currentstateform.investment}}
+                    </div>
+                    <div class="col-md-4"><label>Team velocity:</label>
+                        {{currentstateform.team_velocity}}
+                    </div>
+                    <div class="col-md-4"><label>Partners:</label>
+                        {{currentstateform.partners}}
+                    </div>
+                    <div class="col-md-4"><label>Vendors:</label>
+                        {{currentstateform.vendors}}
+                    </div>
+                    <div class="col-md-4"><label>Vendor Costs:</label>
+                        {{currentstateform.vendors_costs}}
+                    </div>
+                    <div class="col-md-4"><label>Experiment Testing:</label>
+                        {{currentstateform.experiment_testing}}
+                    </div>
+                    <div class="col-md-4"><label>Customer Segment:</label>
+                        {{currentstateform.customer_segment}}
+                    </div>
+                    <div class="col-md-4"><label>Problem Validation:</label>
+                        {{currentstateform.problem_validation}}
+                    </div>
+                    <div class="col-md-4"><label>Channels:</label>
+                        {{currentstateform.channels}}
+                    </div>
+                    <div class="col-md-4"><label>Governance:</label>
+                        {{currentstateform.governance}}
+                    </div>
+                    <div class="col-md-4"><label>Admin Feedback:</label>
+                        {{currentstateform.reviewer_feedback}}
+                    </div>
+                    <div class="col-md-4"><label>Admin Rating:</label>
+                        {{currentstateform.reviewer_rating}}
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
     <div class="col-md-12">
-      <h3 style="text-decoration:underline;text-align: center">Program Progress</h3><br>
-      <!-- <div style="text-align:center"> -->
-      <div class="col-md-12">
-      <div class="col-md-4">
-      <a href="#" class="tag">
-      <span class="arrow"></span>
-      Complete
-      </a>
-      </div>
-      <div class="col-md-4">
-      <a href="#" class="tag">
-      <span class="arrow"></span>
-      Cimplete
-      </a> </div>
-      <div class="col-md-4">
-      <a href="#" class="tag">
-      <span class="arrow"></span>
-      InComplete
-      </a> </div>
-      
-      <!-- </div> -->
-      <!-- <div class="col-md-1"></div>
+        <h3 style="text-decoration:underline;text-align: center">Program Progress</h3><br>
+        <!-- <div style="text-align:center"> -->
+        <div class="col-md-12">
+            <div class="col-md-3">
+                <a href="#" class="tag">
+                    <span class="arrow"></span>
+                    Profile Created
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="#" class="tag1">
+                    <span class="arrow"></span>
+                    RoadMap Drafted
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="#" class="tag" style="padding: 1px 35px 0px 33px !important;">
+                    <span class="arrow"></span>
+                    Courses OnProgress
+                </a> </div>
+            <div class="col-md-3">
+                <a href="#" class="tag">
+                    <span class="arrow"></span>
+                    Completed
+                </a> </div>
+
+            <!-- </div> -->
+            <!-- <div class="col-md-1"></div>
       <div class="shape1 col-md-2">Cimplete</div>
       <div class="col-md-1"></div>
       <div class="shape1 col-md-2">InComplete</div> -->
-      <div class="col-md-12">
-      <br>
-      <div class="slidecontainer">
-      <input type="range" min="1" max="100" value="0" class="slider" id="myRange">
-      
-      </div>
-      </div>
-      </div>
-      
-      <!-- </div> -->
-      </div>
-   <!-- <div class="col-md-12">
+            <div class="col-md-12">
+                <br>
+                <div class="slidecontainer" style="margin-bottom: 25px;">
+                    <input type="range" min="1" max="100" value="{{slidervalue}}" class="slider" id="myRange">
+
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- </div> -->
+    </div>
+    
+    <!-- <div class="col-md-12">
       <h3 style="text-decoration:underline;text-align: center">Program Progress</h3><br>
       <div style="text-align:center">
         <div class="shape1 col-md-2">Complete</div>
@@ -121,6 +129,6 @@
       </div>
 
     </div> -->
-   
-    
-  </div>
+
+
+</div>
