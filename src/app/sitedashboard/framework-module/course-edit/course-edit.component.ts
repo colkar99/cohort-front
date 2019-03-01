@@ -30,7 +30,7 @@ export class CourseEditComponent implements OnInit {
   deletedisplay: string
   deleteindex: any
   deleteactivityid: any
-
+  ckEditorConfig: any
   public user_details: any[];
   constructor(private apiCom: ApiCommunicationService,
     private cookieService: CookieService,
@@ -51,8 +51,33 @@ export class CourseEditComponent implements OnInit {
       id: undefined,
       name: '',
       description: '',
-      
+
     })
+    this.ckEditorConfig =
+      {
+       
+        "toolbarGroups": [
+          { name: 'tools' },
+          { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
+          { name: 'styles' },
+          { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'] }, 
+        ],
+        // [
+        //   { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
+        //   { name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
+        //   { name: 'insert' },
+        //   { name: 'forms' },
+        //   { name: 'tools' },
+        //   { name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
+        //   { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+        //   { name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+        //   { name: 'styles' },
+        //   { name: 'colors' },
+        //   { name: 'about' },
+        // { name: 'font' }
+        // ]
+        "removeButtons": "Source,Save,Templates,Find,Replace,Scayt,SelectAll"
+      }
   }
 
 
@@ -179,13 +204,13 @@ export class CourseEditComponent implements OnInit {
   //   }
   //   // 
   // }
-  viewchecklists(item){
+  viewchecklists(item) {
     console.log(item)
     $("#checklistmodal").modal('show')
     this.checklists.get('name').setValue(item.name)
     this.checklists.get('id').setValue(item.id)
     this.checklists.get('description').setValue(item.description)
-    
+
   }
   viewactivities(item) {
     console.log(item)
@@ -226,13 +251,13 @@ export class CourseEditComponent implements OnInit {
     // });
 
   }
-  addchecklists(){
+  addchecklists() {
     $("#checklistmodal").modal('show')
     this.checklists = this.formBuilder.group({
       id: undefined,
       name: '',
       description: ''
-      
+
       // checklists: this.formBuilder.array([this.createchecklistitems()])
 
     })
@@ -249,7 +274,7 @@ export class CourseEditComponent implements OnInit {
 
     })
   }
-  savechecklists(checklists){
+  savechecklists(checklists) {
     let values = checklists.value
     if (values.id == (null || undefined)) {
       let url = "framework/course/create-update-checklist"

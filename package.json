@@ -29,6 +29,7 @@
     "fusioncharts": "^3.13.3-sr.1",
     "jquery": "^3.3.1",
     "ng-fullcalendar": "^1.7.1",
+    "ng2-ckeditor": "^1.2.2",
     "ng2-cookies": "^1.0.12",
     "ng4-loading-spinner": "^1.2.3",
     "ngx-cookie": "^4.1.2",

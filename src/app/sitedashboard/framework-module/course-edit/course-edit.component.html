@@ -1,6 +1,7 @@
 <div class="container">
     <div class="col-md-12">
-        <button class="btn btn-default" routerLink="/admin/dashboard/framework"><i class="glyphicon glyphicon-arrow-left">Back</i></button>
+        <button class="btn btn-default" routerLink="/admin/dashboard/framework"><i
+                class="glyphicon glyphicon-arrow-left">Back</i></button>
     </div>
     <div class="col-md-12">
         <div class="panel panel-default">
@@ -10,23 +11,38 @@
                         <h2>Course Details</h2>
                         <div class="col-md-6 form-group">
                             <label>Title</label>
-                            <textarea class="form-control" type="text" name="title" [(ngModel)]="course.title"></textarea>
+                            <ckeditor name="title" [(ngModel)]="course.title" debounce="500" [readonly]="false"
+                                [config]="ckEditorConfig">
+
+                            </ckeditor>
+                            <!-- <textarea class="form-control" type="text" name="title" [(ngModel)]="course.title"></textarea> -->
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Description</label>
-                            <textarea class="form-control" type="text" name="description" [(ngModel)]="course.description"></textarea>
+                            <ckeditor name="description" [(ngModel)]="course.description" debounce="500"
+                                [readonly]="false" [config]="ckEditorConfig">
+
+                            </ckeditor>
+                            <!-- <textarea class="form-control" type="text" name="description" [(ngModel)]="course.description"></textarea> -->
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Additional Description</label>
-                            <textarea class="form-control" type="text" name="additional_description" [(ngModel)]="course.additional_description"></textarea>
+                            <ckeditor name="additional_description" [(ngModel)]="course.additional_description"
+                                debounce="500" [readonly]="false" [config]="ckEditorConfig">
+
+                            </ckeditor>
+                            <!-- <textarea class="form-control" type="text" name="additional_description" [(ngModel)]="course.additional_description"></textarea> -->
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Pass Metric</label>
-                            <textarea class="form-control" type="text" name="pass_metric" [(ngModel)]="course.pass_metric"></textarea>
+                            <textarea class="form-control" type="text" name="pass_metric"
+                                [(ngModel)]="course.pass_metric"></textarea>
                         </div>
                     </div>
                     <div *ngIf="course.id != (null && undefined && 0)">
-                        <div class="row">Activities <button type="button" class="btn btn-info pull-right" (click)="addactivities()"><i class="glyphicon glyphicon-plus-sign"></i> Add</button></div>
+                        <div class="row">Activities <button type="button" class="btn btn-info pull-right"
+                                (click)="addactivities()"><i class="glyphicon glyphicon-plus-sign"></i> Add</button>
+                        </div>
                         <div class="row">
                             <div class="col-md-12 col-xs-12 table-responsive">
                                 <table class="table table-bordered">
@@ -41,20 +57,26 @@
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let item of course.activities;let i = index">
-                                            <td>{{item.name}}</td>
-                                            <td>{{item.description}}</td>
+                                            <td [innerHTML]="item.name"></td>
+                                            <td [innerHTML]="item.description"></td>
                                             <td>{{item.placeholder}}</td>
                                             <td>{{item.order}}</td>
-                                            <td><button type="button" class="btn btn-default" (click)="viewactivities(item)"><i class="glyphicon glyphicon-eye-open"></i> View</button><button
-                                                    type="button" class="btn btn-danger" (click)="deleteactivities(item.id,i)"><i class="glyphicon glyphicon-trash"></i> Delete</button></td>
-    
+                                            <td><button type="button" class="btn btn-default"
+                                                    (click)="viewactivities(item)"><i
+                                                        class="glyphicon glyphicon-eye-open"></i> View</button><button
+                                                    type="button" class="btn btn-danger"
+                                                    (click)="deleteactivities(item.id,i)"><i
+                                                        class="glyphicon glyphicon-trash"></i> Delete</button></td>
+
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
 
-                        <div class="row">Checklists <button type="button" class="btn btn-info pull-right" (click)="addchecklists()"><i class="glyphicon glyphicon-plus-sign"></i> Add</button></div>
+                        <div class="row">Checklists <button type="button" class="btn btn-info pull-right"
+                                (click)="addchecklists()"><i class="glyphicon glyphicon-plus-sign"></i> Add</button>
+                        </div>
                         <div class="row">
                             <div class="col-md-12 col-xs-12 table-responsive">
                                 <table class="table table-bordered">
@@ -62,7 +84,7 @@
                                         <tr>
                                             <th>Name</th>
                                             <th>Description</th>
-                                           
+
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -70,10 +92,14 @@
                                         <tr *ngFor="let item of course.checklists;let i = index">
                                             <td>{{item.name}}</td>
                                             <td>{{item.description}}</td>
-                                            
-                                            <td><button type="button" class="btn btn-default" (click)="viewchecklists(item)"><i class="glyphicon glyphicon-eye-open"></i> View</button><button
-                                                    type="button" class="btn btn-danger" (click)="deletechecklists(item.id,i)"><i class="glyphicon glyphicon-trash"></i> Delete</button></td>
-    
+
+                                            <td><button type="button" class="btn btn-default"
+                                                    (click)="viewchecklists(item)"><i
+                                                        class="glyphicon glyphicon-eye-open"></i> View</button><button
+                                                    type="button" class="btn btn-danger"
+                                                    (click)="deletechecklists(item.id,i)"><i
+                                                        class="glyphicon glyphicon-trash"></i> Delete</button></td>
+
                                         </tr>
                                     </tbody>
                                 </table>
@@ -82,9 +108,11 @@
 
                     </div>
                     <div class="row">
-                        <button class="btn btn-success pull-right" (click)="updateForm()"><i class="glyphicon glyphicon-floppy-saved"></i> {{!course.id?
+                        <button class="btn btn-success pull-right" (click)="updateForm()"><i
+                                class="glyphicon glyphicon-floppy-saved"></i> {{!course.id?
                             'Next':'Update'}}</button>
-                        <button *ngIf="course.id != (null && undefined && 0)" class="btn btn-danger pull-right" (click)="deleteform()"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+                        <button *ngIf="course.id != (null && undefined && 0)" class="btn btn-danger pull-right"
+                            (click)="deleteform()"><i class="glyphicon glyphicon-trash"></i> Delete</button>
                     </div>
 
                 </form>
@@ -103,14 +131,21 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <span class="label">Name</span>
-                                            <textarea class="form-control" type="text" formControlName="name" ngModel></textarea>
+                                            <ckeditor 
+                                            formControlName="name" debounce="500"
+                                                [readonly]="false" [config]="ckEditorConfig">
+                                            </ckeditor>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <span class="label">Description</span>
-                                            <textarea class="form-control" type="text" formControlName="description"
-                                                ngModel></textarea>
+                                            <ckeditor 
+                                            formControlName="description" debounce="500"
+                                                [readonly]="false" [config]="ckEditorConfig">
+                                            </ckeditor>
+                                            <!-- <textarea class="form-control" type="text" formControlName="description"
+                                                ngModel></textarea> -->
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -160,7 +195,9 @@
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-success" (click)="saveActivities(checklistforms)"><i class="glyphicon glyphicon-floppy-saved"></i> {{!checklistforms.value.id?
+                                <button type="submit" class="btn btn-success"
+                                    (click)="saveActivities(checklistforms)"><i
+                                        class="glyphicon glyphicon-floppy-saved"></i> {{!checklistforms.value.id?
                                     'Save':'Update' }}</button>
                                 <button type="button" class="btn btn-default" (click)="closeactivities()">Close</button>
                             </div>
@@ -185,7 +222,8 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <span class="label">Name</span>
-                                            <textarea class="form-control" type="text" formControlName="name" ngModel></textarea>
+                                            <textarea class="form-control" type="text" formControlName="name"
+                                                ngModel></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -195,13 +233,14 @@
                                                 ngModel></textarea>
                                         </div>
                                     </div>
-                                    
 
-                                   
+
+
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-success" (click)="savechecklists(checklists)"><i class="glyphicon glyphicon-floppy-saved"></i> {{!checklists.value.id?
+                                <button type="submit" class="btn btn-success" (click)="savechecklists(checklists)"><i
+                                        class="glyphicon glyphicon-floppy-saved"></i> {{!checklists.value.id?
                                     'Save':'Update' }}</button>
                                 <button type="button" class="btn btn-default" (click)="closechecklists()">Close</button>
                             </div>
