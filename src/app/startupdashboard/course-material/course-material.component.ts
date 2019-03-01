@@ -45,4 +45,14 @@ export class CourseMaterialComponent implements OnInit {
   getAllCourses() {
     this.courses = this.sharingdata.course
   }
+  submitact(activity){
+    let url = "framework/course/startup-response-for-activity"
+    let params= {startup_profile_id: this.startupprofile.id,activity_id: activity.id,course_id: this.courses.id,startup_response: activity.startup_response}
+    this.apiCom.putDataWithToken(url,JSON.stringify(params),this.authToken).subscribe((res)=>{
+      res;
+      console.log(res)
+      alert("response submitted")
+      activity.startup_responsed = true
+    })
+  }
 }

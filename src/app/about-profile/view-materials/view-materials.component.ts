@@ -17,6 +17,7 @@ export class ViewMaterialsComponent implements OnInit {
   courses: any = {}
   arrayitems: Array<any> = []
   startupprofile: any = {}
+  formarray
 
   constructor(private apiCom: ApiCommunicationService,
     private cookieService: CookieService,
@@ -29,7 +30,7 @@ export class ViewMaterialsComponent implements OnInit {
     return this.cookieService.get(key);
   }
   ngOnInit() {
-   this.startupprofile = this.sharingdata.startupprofile
+   this.shareddata.currentMessage.subscribe((res)=>{this.startupprofile = res;console.log("profile",this.startupprofile)})
     console.log("startupvalue", this.startupprofile)
     this.authToken = this.getCookie('Authorization');
     if (this.authToken.length != 0) {
@@ -44,6 +45,33 @@ export class ViewMaterialsComponent implements OnInit {
   }
   getAllCourses() {
     this.courses = this.sharingdata.course
+  }
+  submitact(activity){
+    let url = "framework/course/admin-response-for-activity"
+    let params= {startup_profile_id: this.startupprofile.id,activity_id: activity.id,course_id: this.courses.id,admin_feedback: activity.admin_feedback}
+    this.apiCom.putDataWithToken(url,JSON.stringify(params),this.authToken).subscribe((res)=>{
+      res;
+      console.log(res)
+      alert("response submitted")
+      activity.admin_responsed = true
+    })
+  }
+  changepass(checked,value){
+    if(checked == true){
+      value.is_passed = true
+    }else{
+      value.is_passed = false
+    }
+  }
+  submitchecks(){
+    let url = "framework/course/admin-response-for-checklists"
+    let params = {startup_profile_id: this.startupprofile.id,course_id:this.courses.id ,checklists: this.courses.checklists}
+    this.apiCom.putDataWithToken(url,JSON.stringify(params),this.authToken).subscribe((res)=>{
+      res;
+      console.log("response",res);
+      alert("Checklists Updated Successfully")
+    })
+  
   }
 
 
