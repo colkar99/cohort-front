@@ -1,15 +1,59 @@
 <div class="container">
   <div class="col-md-12">
-      <div class="col-md-2">
+    <button class="btn btn-default" routerLink="/admin/dashboard/about-profile/assign-review-activities"><i
+        class="glyphicon glyphicon-arrow-left">Back</i></button>
+  </div>
+  <div class="col-md-12">
+    <div class="col-md-2">
 
-      </div>    
-      <div class="col-md-8">
-        <div>
-          
+    </div>
+    <div class="col-md-8">
+      <div class="col-md-12">
+        <h2 class="font_0">{{courses.title}}</h2>
+        <h5 class="font_3">{{courses.description}}</h5>
+        <p>{{courses.additional_description}}</p>
+      </div>
+      <div class="col-md-12" *ngFor="let act of courses.activities;let i = index">
+        <p class="font_7">{{act.name}}</p>
+        <p class="font_3">{{act.description}}</p>
+        <p>{{act.placeholder}}</p>
+        <div class="col-md-12 alert alert-success" *ngIf="act.admin_responsed == true">
+            <p>{{act.admin_feedback}}</p>
+            <button class="btn btn-default pull-right" (click)="act.admin_responsed = false">Edit</button>
+          </div>
+          <div class="col-md-12 " *ngIf="act.admin_responsed == false">
+            <form>
+              <div class="col-md-12 form-group">
+                <label># {{i+1}} Response</label>
+                <textarea class="form-control" name="act.admin_feedback" [(ngModel)]="act.admin_feedback"></textarea>
+              </div>
+              <div class="col-md-12">
+                <button class="btn btn-success pull-right" (click)="submitact(act)">Submit</button>
+              </div>
+            </form>
+          </div>
+      </div>
+      <div class="col-md-12">
+        <div class="col-md-6">
+
+          <h4>PASS METRIC</h4>
+          <h5>
+            {{courses.pass_metric}}
+          </h5>
         </div>
-      </div>  
-      <div class="col-md-2">
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="checkbox" *ngFor="let act of courses.checklists"><label class="control-label"><input
+                  type="checkbox" [checked]="act.is_passed == true" (change)="changepass($event.target.checked,act)">{{act.name}}</label></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <button class="btn btn-success pull-right" (click)="submitchecks()">Submit</button>
+      </div>
+    </div>
+    <div class="col-md-2">
 
-      </div>                                                                                    
+    </div>
   </div>
 </div>

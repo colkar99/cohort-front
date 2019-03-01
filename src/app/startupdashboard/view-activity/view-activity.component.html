@@ -1,20 +1,15 @@
-<h3>Assign Activities to Startups</h3>
+<h3> Activities</h3>
 <div *ngIf="courses.length >0">
-  <div class="row">
-    <button class="btn btn-success pull-right" type="button" (click)="assigncourses()">Assign Courses</button>
-  </div>
+  
   <div class="panel panel-default" *ngFor="let course of courses">
     <div class="panel-body">
       <div class="col-md-12">
-        <div class="col-md-1">
-          <input [disabled]="course.is_assigned == true" class="checkbox" type="checkbox"
-            (change)="setvalues($event.target.checked,course)">
-        </div>
+        
         <div class="col-md-4">
           <span style="font-size: 20px;">#{{course.title}}</span>
           <h5>{{course.description}}</h5>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-8">
           <div class="col-md-6">
             <span >{{course.pass_metric}},</span>
           </div>
@@ -39,19 +34,17 @@
         <form>
           <div class="col-md-4 form-group">
             <label>Target Date</label>
-            <input [disabled]="course.is_assigned == true" class="form-control" type="date" name="target_date"
+            <input disabled class="form-control" type="date" name="target_date"
               [(ngModel)]="course.target_date">
           </div>
           <div class="col-md-4">
 
           </div>
           <div class="col-md-4">
-            <button *ngIf="course.is_assigned == false" class="btn btn-primary pull-right"
-              (click)="viewMaterials(course)" routerLink="/admin/dashboard/assign-activities/view-materials">View
+            <button  class="btn btn-primary pull-right"
+              (click)="viewMaterials(course)" routerLink="/startup/dashboard/view-materials">View
               Materials</button>
-            <button *ngIf="course.is_assigned == true" class="btn btn-primary pull-right"
-              (click)="viewMaterials(course)" routerLink="/admin/dashboard/review-activities/view-materials">Review
-              Materials</button>
+           
           </div>
         </form>
       </div>

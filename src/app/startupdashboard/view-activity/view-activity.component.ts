@@ -7,11 +7,11 @@ import { SharedDataService } from '../../shared-data.service'
 import { sharingData } from '../../sharingdata'
 import { from } from 'rxjs';
 @Component({
-  selector: 'app-assign-activities',
-  templateUrl: './assign-activities.component.html',
-  styleUrls: ['./assign-activities.component.css']
+  selector: 'app-view-activity',
+  templateUrl: './view-activity.component.html',
+  styleUrls: ['./view-activity.component.css']
 })
-export class AssignActivitiesComponent implements OnInit {
+export class ViewActivityComponent implements OnInit {
   authToken: any
   loggedIn: any
   courses: any = []
@@ -29,7 +29,7 @@ export class AssignActivitiesComponent implements OnInit {
     return this.cookieService.get(key);
   }
   ngOnInit() {
-    this.shareddata.currentMessage.subscribe((res) => this.startupprofile = res)
+    this.startupprofile = this.sharingdata.startupprofile
     console.log("startupvalue", this.startupprofile)
     this.authToken = this.getCookie('Authorization');
     if (this.authToken.length != 0) {
@@ -43,7 +43,7 @@ export class AssignActivitiesComponent implements OnInit {
     this.getAllCourses();
   }
   getAllCourses() {
-    let url = "framework/course/get-assigned-courses"
+    let url = "framework/course/get-assigned-courses-for-startup"
     let params = JSON.stringify({startup_profile_id:this.startupprofile.id})
     this.apiCom.putDataWithToken(url,params, this.authToken)
       .subscribe(data => {
@@ -91,5 +91,6 @@ export class AssignActivitiesComponent implements OnInit {
     this.sharingdata.course = course
     this.sharingdata.assign_view = false
   }
+
 
 }

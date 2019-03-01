@@ -37,6 +37,8 @@ import { StartupRoadmapComponentadmin } from './about-profile/startup-roadmap/st
 import { ViewActivitiesComponent } from './about-profile/view-activities/view-activities.component'
 import { AssignActivitiesComponent } from './about-profile/assign-activities/assign-activities.component'
 import { ViewMaterialsComponent } from './about-profile/view-materials/view-materials.component'
+import { ViewActivityComponent } from './startupdashboard/view-activity/view-activity.component'
+import {CourseMaterialComponent} from './startupdashboard/course-material/course-material.component'
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'login', component: LoginComponent },
@@ -80,11 +82,14 @@ const routes: Routes = [
     children: [
       { path: 'profile', component: StartupProfileComponent },
       { path: 'road-map', component: StartupRoadmapComponent },
-      { path: 'program-sessions', component: ProgramSessionComponent }
+      { path: 'program-sessions', component: ProgramSessionComponent },
+      { path: 'view-activities', component: ViewActivityComponent },
+     
 
 
     ]
   },
+  {path:'startup/dashboard/view-materials', component:CourseMaterialComponent},
   { path: 'mentor/dashboard', component: MentordashboardComponent },
   { path: 'live-programs', component: ProgramsComponent },
   { path: 'live-programs/registration/:id', component: ProgramsRegistrationComponent },
