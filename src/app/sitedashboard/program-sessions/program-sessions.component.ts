@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,NgZone } from '@angular/core';
 import { ApiCommunicationService } from '../../api-communication.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import {SharedDataService} from '../../shared-data.service'
+declare var $: any
+declare var gapi: any;
 @Component({
   selector: 'app-program-sessions',
   templateUrl: './program-sessions.component.html',
@@ -29,11 +31,16 @@ export class ProgramSessionsComponent implements OnInit {
   unfilteredvalue: any = []
   filterfeild
   filtervalue
+  googleCalEvent: Array<any>;
+  calLoggedin: boolean;
+  current_session: any;
+
 
   constructor(private apiCom: ApiCommunicationService,
     private cookieService: CookieService,
     private router: Router,
-    private sharedDataService: SharedDataService
+    private sharedDataService: SharedDataService,
+    private zone: NgZone
     ) { }
 
     // newMessage() {
@@ -76,6 +83,7 @@ export class ProgramSessionsComponent implements OnInit {
     //   this.message = message;
     // })
     // this.newMessage();
+    this.loadAuth2()
   }
   getAllProgram() {
     this.apiCom.getDataWithoutAuth('get-list-of-programs')
@@ -169,4 +177,120 @@ export class ProgramSessionsComponent implements OnInit {
   passValue(item){
     this.sharedDataService.changeMessage(item)
   }
+  loadEvent(value,source){
+    this.googleCalEvent.push(value)
+    this.handleSignoutClick(gapi);
+  }
+
+
+
+ loadAuth2(): void {
+    gapi.load('client:auth2', () => {
+        gapi.client.init({
+            apiKey: 'AIzaSyDcJ4jzw7KYwSfohcEEuTfWthAETT3vaOM',
+            clientId: '132143603340-vugk5vh8tnisjo4omrttpva1lei4jq4a.apps.googleusercontent.com',
+            discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"],
+            scope: 'https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events'
+        }).then((auth) => {
+
+        },(error) =>{
+            console.log(error);
+        }
+        );
+    });
+}
+
+   updateSigninStatus(isSignedIn: boolean) {
+    if (isSignedIn) {
+    // this.calLoggedin = isSignedIn 
+      this.listUpcomingEvents();
+    } else {
+    this.calLoggedin = isSignedIn
+    }
+  }
+  
+   handleAuthClick(session) {
+    gapi.auth2.getAuthInstance().signIn()
+    .then((auth) => {
+        this.current_session = session;
+        this.updateSigninStatus(true);
+    }, (error) =>{
+
+    });
+    this.calLoggedin = true;
+
+  }
+   handleSignoutClick(event) {
+       debugger
+    gapi.auth2.getAuthInstance().signOut();
+    this.calLoggedin = false;
+
+  }
+
+   appendPre(message) {
+    var pre = document.getElementById('content');
+    var textContent = document.createTextNode(message + '\n');
+    pre.appendChild(textContent);
+  }
+   listUpcomingEvents() {
+       let session = {
+        'summary': 'Google I/O 2015',
+        'location': '800 Howard St., San Francisco, CA 94103',
+        'description': 'A chance to hear more about Google\'s developer products.',
+        'start': {
+          'dateTime': '2019-03-02T09:00:00-07:00',
+          'timeZone': 'UTC'
+        },
+        'end': {
+          'dateTime': '2019-03-02T17:00:00-07:00',
+          'timeZone': 'UTC'
+        },
+        'recurrence': [
+          'RRULE:FREQ=DAILY;COUNT=2'
+        ],
+        'attendees': [
+          {'email': 'karthik.raj@ilerra.com'},
+          {'email': 'senthilaug1995@gmail.com'}
+        ],
+        'reminders': {
+          'useDefault': false,
+          'overrides': [
+            {'method': 'email', 'minutes': 24 * 60},
+            {'method': 'popup', 'minutes': 10}
+          ]
+        }
+      };
+       ///////////here insert callender event
+    gapi.client.calendar.events.insert({
+      'calendarId': 'primary',
+      'resource': session
+    }).then((auth) => {
+      debugger
+        this.zone.run(() => {
+          debugger
+            // var events = auth.result.items;
+            // this.appendPre('Upcoming events:');
+            // debugger
+            // if (events.length > 0) {
+            //     for (let i = 0; i < events.length; i++) {
+            //     var event = events[i];
+            //     var when = event.start.dateTime;
+            //     let data = {title: event.summary ,start: event.start.dateTime }
+            //     this.loadEvent(data,'google');
+            //     if (!when) {
+            //         when = event.start.date;
+            //     }
+            //     this.appendPre(event.summary + ' (' + when + ')')
+            //     }
+            // } else {
+            //     this.appendPre('No upcoming events found.');
+            // }
+        });
+        debugger
+
+    },(error)=> {
+        console.log(error);
+    });
+  }
+  
 }

@@ -16,6 +16,7 @@ declare var gapi: any;
 export class ProgramSessionComponent implements OnInit  {
     // authorizeButton: HTMLElement;
     // signoutButton: HTMLElement;
+    startup_profile_id: any;
     googleCalEvent: Array<any>;
     calLoggedin: boolean;
     events: Array<any>;
@@ -30,6 +31,7 @@ export class ProgramSessionComponent implements OnInit  {
   ) {
     // this.detect.detectChanges();
     this.calLoggedin = true;
+    this.startup_profile_id = this.getCookie('startup_profile_id');
 
 
 
@@ -44,14 +46,17 @@ export class ProgramSessionComponent implements OnInit  {
   }
 
   loadEventFromBackEnd(){
-      let url ='chart/get-event';
-      this.apiCom.getDataWithoutAuth(url)
+      let url ='/program/get-sessions-for-startup';
+      let data = {startup_profile_id: parseInt(this.startup_profile_id)};
+      this.apiCom.putDataWithoutToken(url,JSON.stringify(data))
       .subscribe(data =>{
         
         for (let i = 0; i<data.length;i++){
-            this.googleCalEvent.push(data[i]);
+          let event = {title: data[i].title,start: data[i].start_date_time,end: data[i].end_date_time,description: data[i].description,where: data[i].where}
+            this.googleCalEvent.push(event);
+            this.clickLoadEvent(event);
         }
-        console.log(this.events);
+        console.log(data);
 
       },error =>{
           console.log(error);
@@ -61,12 +66,16 @@ export class ProgramSessionComponent implements OnInit  {
   clickLoadEvent(vale){
         let el = {
             title: vale.title,
-            start: vale.start
+            start: vale.start,
+            end: vale.end,
+            description: vale.description,
+            where: vale.where
           }
           this.ucCalendar.fullCalendar('renderEvent', el);
           this.ucCalendar.fullCalendar('rerenderEvents');
  
   }
+
  
   loadEvent(value,source){
     this.googleCalEvent.push(value)

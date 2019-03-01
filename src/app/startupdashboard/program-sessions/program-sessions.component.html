@@ -34,6 +34,9 @@
                 <tr>
                     <th>Title</th>
                     <th>Start date</th>
+                    <th>End date date</th>
+                    <th>Description</th>
+                    <th>Where</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -41,9 +44,12 @@
                 <tr *ngFor="let val of googleCalEvent">
                     <td>{{val.title}}</td>
                     <td>{{val.start}}</td>
+                    <td>{{val.end}}</td>
+                    <td>{{val.description}}</td>
+                    <td>{{val.where}}</td>
                     <td>
-                    <button class="btn btn-default" (click)="clickLoadEvent(val)"><i class="glyphicon glyphicon-eye-open"></i>
-                        Add to calender</button>
+                    <!-- <button class="btn btn-default" (click)="addToGoogleCalender(val)"><i class="glyphicon glyphicon-eye-open"></i>
+                        Add to google calender</button> -->
                     </td>
                 </tr>
                 </tbody>
