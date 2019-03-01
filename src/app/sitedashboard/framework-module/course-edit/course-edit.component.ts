@@ -8,6 +8,12 @@ import { ErrorDisplayComponent } from '../../../error-display/error-display.comp
 import { HttpErrorResponse } from '@angular/common/http';
 import { SharedDataService } from '../../../shared-data.service'
 declare var $: any
+declare var CKEDITOR: any;
+
+CKEDITOR.plugins.addExternal(
+  'font',
+  '../../../../../../../font',
+  'plugin.js');
 @Component({
   selector: 'app-course-edit',
   templateUrl: './course-edit.component.html',
@@ -55,7 +61,7 @@ export class CourseEditComponent implements OnInit {
     })
     this.ckEditorConfig =
       {
-       
+        //extraPlugins: 'font',
         "toolbarGroups": [
           { name: 'tools' },
           { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
