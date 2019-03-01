@@ -1,53 +1,54 @@
 <div class="container">
-  <div class="col-md-12">
-      <button class="btn btn-default" routerLink="/startup/dashboard/profile"><i class="glyphicon glyphicon-arrow-left">Back</i></button>
-  </div>
+    <div class="col-md-12">
+        <button class="btn btn-default" routerLink="/startup/dashboard/profile"><i class="glyphicon glyphicon-arrow-left">Back</i></button>
+    </div>
     <div class="col-md-12">
       <div class="col-md-2">
   
       </div>
       <div class="col-md-8">
         <div class="col-md-12">
-          <h2 class="font_0">{{courses.title}}</h2>
-          <h5 class="font_3">{{courses.description}}</h5>
-          <p>{{courses.additional_description}}</p>
+          <h2 class="font_0" [innerHTML]="courses.title"></h2>
+          <h5 class="font_3" [innerHTML]="courses.description"></h5>
+          <p [innerHTML]="courses.additional_description"></p>
         </div>
         <div class="col-md-12" *ngFor="let act of courses.activities;let i = index">
-          <p class="font_7">{{act.name}}</p>
-          <p class="font_3">{{act.description}}</p>
+         <span>#{{i+1}}</span> <p class="font_7" [innerHTML]="act.name"></p>
+          <p class="font_3" [innerHTML]="act.description"></p>
           <p>{{act.placeholder}}</p>
           <div class="col-md-12 alert alert-success" *ngIf="act.startup_responsed == true">
-            <p>{{act.startup_response}}</p>
-            <button class="btn btn-default pull-right" (click)="act.startup_responsed = false">Edit</button>
-          </div>
-          <div class="col-md-12 " *ngIf="act.startup_responsed == false">
-            <form>
-              <div class="col-md-12 form-group">
-                <label># {{i+1}} Response</label>
-                <textarea class="form-control" name="act.startup_response" [(ngModel)]="act.startup_response"></textarea>
-              </div>
-              <div class="col-md-12">
-                <button class="btn btn-success pull-right" (click)="submitact(act)">Submit</button>
-              </div>
-            </form>
-          </div>
+              <p>{{act.startup_response}}</p>
+              <button class="btn btn-default pull-right" (click)="act.startup_responsed = false">Edit</button>
+            </div>
+            <div class="col-md-12 " *ngIf="act.startup_responsed == false">
+              <form>
+                <div class="col-md-12 form-group">
+                  <label># {{i+1}} Response</label>
+                  <textarea class="form-control" name="act.startup_response" [(ngModel)]="act.startup_response"></textarea>
+                </div>
+                <div class="col-md-12">
+                  <button class="btn btn-success pull-right" (click)="submitact(act)">Submit</button>
+                </div>
+              </form>
+            </div>
         </div>
         <div class="col-md-12">
           <div class="col-md-6">
   
             <h4>PASS METRIC</h4>
             <h5>
-                {{courses.pass_metric}}
+              {{courses.pass_metric}}
             </h5>
           </div>
           <div class="col-md-6">
-              <div class="form-group">
-                <label>CHECKLISTS</label>
-                  <div class="checkbox"  *ngFor="let act of courses.checklists"><label class="control-label"><input type="checkbox" disabled [checked]="act.is_passed == true">{{act.name}}</label></div>
-              </div>
+            <h4>CHECKLISTS</h4>
+            <div class="form-group">
+              <div class="checkbox" *ngFor="let act of courses.checklists"><label class="control-label"><input
+                    type="checkbox" disabled [checked]="act.is_passed == true" (change)="changepass($event.target.checked,act)">{{act.name}} <i *ngIf="act.is_passed == true" style="color:green" class="glyphicon glyphicon-ok"></i></label></div>
+            </div>
           </div>
-          
         </div>
+        
       </div>
       <div class="col-md-2">
   
