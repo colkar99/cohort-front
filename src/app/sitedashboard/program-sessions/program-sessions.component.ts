@@ -34,6 +34,7 @@ export class ProgramSessionsComponent implements OnInit {
   googleCalEvent: Array<any>;
   calLoggedin: boolean;
   current_session: any;
+  current_users: any;
 
 
   constructor(private apiCom: ApiCommunicationService,
@@ -200,10 +201,10 @@ export class ProgramSessionsComponent implements OnInit {
     });
 }
 
-   updateSigninStatus(isSignedIn: boolean) {
+   updateSigninStatus(isSignedIn: boolean,session: any) {
     if (isSignedIn) {
     // this.calLoggedin = isSignedIn 
-      this.listUpcomingEvents();
+      this.listUpcomingEvents(session);
     } else {
     this.calLoggedin = isSignedIn
     }
@@ -213,7 +214,7 @@ export class ProgramSessionsComponent implements OnInit {
     gapi.auth2.getAuthInstance().signIn()
     .then((auth) => {
         this.current_session = session;
-        this.updateSigninStatus(true);
+        this.updateSigninStatus(true,session);
     }, (error) =>{
 
     });
@@ -232,65 +233,74 @@ export class ProgramSessionsComponent implements OnInit {
     var textContent = document.createTextNode(message + '\n');
     pre.appendChild(textContent);
   }
-   listUpcomingEvents() {
-       let session = {
-        'summary': 'Google I/O 2015',
-        'location': '800 Howard St., San Francisco, CA 94103',
-        'description': 'A chance to hear more about Google\'s developer products.',
-        'start': {
-          'dateTime': '2019-03-02T09:00:00-07:00',
-          'timeZone': 'UTC'
-        },
-        'end': {
-          'dateTime': '2019-03-02T17:00:00-07:00',
-          'timeZone': 'UTC'
-        },
-        'recurrence': [
-          'RRULE:FREQ=DAILY;COUNT=2'
-        ],
-        'attendees': [
-          {'email': 'karthik.raj@ilerra.com'},
-          {'email': 'senthilaug1995@gmail.com'}
-        ],
-        'reminders': {
-          'useDefault': false,
-          'overrides': [
-            {'method': 'email', 'minutes': 24 * 60},
-            {'method': 'popup', 'minutes': 10}
-          ]
-        }
-      };
-       ///////////here insert callender event
+   listUpcomingEvents(event: any) {
+     debugger
+     let session = {
+      'summary': event.title,
+      'location': event.where,
+      'description': event.description,
+      'start': {
+        'dateTime': event.start_date_time,
+        'timeZone': 'UTC'
+      },
+      'end': {
+        'dateTime': event.end_date_time,
+        'timeZone': 'UTC'
+      },
+      'recurrence': [
+        'RRULE:FREQ=DAILY;COUNT=2'
+      ],
+      'attendees': [
+        // {'email': 'karthik.raj@ilerra.com'},
+        // {'email': 'senthilaug1995@gmail.com'}
+      ],
+      'reminders': {
+        'useDefault': false,
+        'overrides': [
+          {'method': 'email', 'minutes': 24 * 60},
+          {'method': 'popup', 'minutes': 10}
+        ]
+      }
+    };
+     let users = event.users;
+     for (var i = 0; i<users.length;i++){
+       session.attendees.push(users[i].email)
+     }
+     debugger
+ 
+       /////////here insert callender event
     gapi.client.calendar.events.insert({
       'calendarId': 'primary',
-      'resource': session
+      'resource': session,
+      'sendNotifications': true
     }).then((auth) => {
       debugger
         this.zone.run(() => {
           debugger
-            // var events = auth.result.items;
-            // this.appendPre('Upcoming events:');
-            // debugger
-            // if (events.length > 0) {
-            //     for (let i = 0; i < events.length; i++) {
-            //     var event = events[i];
-            //     var when = event.start.dateTime;
-            //     let data = {title: event.summary ,start: event.start.dateTime }
-            //     this.loadEvent(data,'google');
-            //     if (!when) {
-            //         when = event.start.date;
-            //     }
-            //     this.appendPre(event.summary + ' (' + when + ')')
-            //     }
-            // } else {
-            //     this.appendPre('No upcoming events found.');
-            // }
+            this.updateInvited();
+
         });
         debugger
 
     },(error)=> {
         console.log(error);
+            alert("some thing happend");
     });
+  }
+
+  updateInvited(){
+    let url = "/program/update-invite"
+    let data = {session_id: this.current_session.id};
+    this.apiCom.putDataWithToken(url,JSON.stringify(data),this.authToken)
+    .subscribe(data=>{
+      console.log(data);
+      this.getAllProgram();
+      alert("Invitation successfully send");
+    },
+    error => {
+      console.log(error);
+      debugger
+    })
   }
   
 }
