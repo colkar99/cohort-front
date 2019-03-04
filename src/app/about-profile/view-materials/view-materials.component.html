@@ -14,32 +14,33 @@
         <p [innerHTML]="courses.additional_description"></p>
       </div>
       <div class="col-md-12" *ngFor="let act of courses.activities;let i = index">
-       <span>#{{i+1}}</span> <p class="font_7" [innerHTML]="act.name"></p>
+        <span>#{{i+1}}</span>
+        <p class="font_7" [innerHTML]="act.name"></p>
         <p class="font_3" [innerHTML]="act.description"></p>
         <p>{{act.placeholder}}</p>
         <div class="col-md-12 alert alert-danger" *ngIf="act.startup_responsed == false">
           <p>Startup Not Responsed Yet</p>
         </div>
         <div class="col-md-12 alert alert-success" *ngIf="act.startup_responsed == true">
-            <label>Startup Response</label>
-            <p>{{act.startup_response}}</p>
-          </div>
+          <label>Startup Response</label>
+          <p>{{act.startup_response}}</p>
+        </div>
         <div class="col-md-12 alert alert-success" *ngIf="act.admin_responsed == true">
-            <label>Admin Feedback</label>
-            <p>{{act.admin_feedback}}</p>
-            <button class="btn btn-default pull-right" (click)="act.admin_responsed = false">Edit</button>
-          </div>
-          <div class="col-md-12 " *ngIf="act.admin_responsed == false && act.startup_responsed == true">
-            <form>
-              <div class="col-md-12 form-group">
-                <label># {{i+1}}Admin Feedback</label>
-                <textarea class="form-control" name="act.admin_feedback" [(ngModel)]="act.admin_feedback"></textarea>
-              </div>
-              <div class="col-md-12">
-                <button class="btn btn-success pull-right" (click)="submitact(act)">Submit Feedback</button>
-              </div>
-            </form>
-          </div>
+          <label>Admin Feedback</label>
+          <p>{{act.admin_feedback}}</p>
+          <button class="btn btn-default pull-right" (click)="act.admin_responsed = false">Edit</button>
+        </div>
+        <div class="col-md-12 " *ngIf="act.admin_responsed == false && act.startup_responsed == true">
+          <form>
+            <div class="col-md-12 form-group">
+              <label># {{i+1}}Admin Feedback</label>
+              <textarea class="form-control" name="act.admin_feedback" [(ngModel)]="act.admin_feedback"></textarea>
+            </div>
+            <div class="col-md-12">
+              <button class="btn btn-success pull-right" (click)="submitact(act)">Submit Feedback</button>
+            </div>
+          </form>
+        </div>
       </div>
       <div class="col-md-12">
         <div class="col-md-6">
@@ -53,12 +54,17 @@
           <h4>CHECKLISTS</h4>
           <div class="form-group">
             <div class="checkbox" *ngFor="let act of courses.checklists"><label class="control-label"><input
-                  type="checkbox" [checked]="act.is_passed == true" (change)="changepass($event.target.checked,act)">{{act.name}} <i *ngIf="act.is_passed == true" style="color:green" class="glyphicon glyphicon-ok"></i></label></div>
+                  type="checkbox" [checked]="act.is_passed == true"
+                  (change)="changepass($event.target.checked,act)">{{act.name}} <i *ngIf="act.is_passed == true"
+                  style="color:green" class="glyphicon glyphicon-ok"></i></label></div>
           </div>
         </div>
       </div>
       <div class="col-md-12">
         <button class="btn btn-success pull-right" (click)="submitchecks()">Update Checklists</button>
+        <button *ngIf="courses.ex_date && courses.all_activity_responsed == true" class="btn btn-danger pull-right"
+          (click)="sendRemainder(courses)">Send Remainder
+        </button>
       </div>
     </div>
     <div class="col-md-2">

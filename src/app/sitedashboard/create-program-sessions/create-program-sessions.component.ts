@@ -265,8 +265,11 @@ export class CreateProgramSessionsComponent implements OnInit {
         res;
 
 
-        this.getSession(this.session_id);
-        alert(res)
+        this.getSession(this.session.id);
+        this.arrayids = []
+        this.arrayids1 = []
+        this.arrayids2 = []
+        alert(res.message)
         console.log(res);
         $("#attendee").modal('hide')
       })

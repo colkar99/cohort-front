@@ -17,6 +17,8 @@ export class AssignActivitiesComponent implements OnInit {
   courses: any = []
   arrayitems: Array<any> = []
   startupprofile: any = {}
+  date:Array<boolean> = [];
+  activity_response:Array<boolean> = []
 
   constructor(private apiCom: ApiCommunicationService,
     private cookieService: CookieService,
@@ -47,8 +49,29 @@ export class AssignActivitiesComponent implements OnInit {
     let params = JSON.stringify({startup_profile_id:this.startupprofile.id})
     this.apiCom.putDataWithToken(url,params, this.authToken)
       .subscribe(data => {
-        console.log("courses", data);
+        console.log("courses1", data);
         this.courses = data;
+        let date = new Date();
+        console.log(this.courses[1].target_date >= new Date().toISOString().slice(0, 10))
+        debugger
+        
+        
+        for(let i = 0;i<this.courses.length;i++){
+          if(this.courses[i].target_date >= new Date().toISOString().slice(0, 10)){
+            this.courses[i].ex_date = true;
+          }else{
+            this.courses[i].ex_date = false;
+          }
+          this.courses[i].all_activity_responsed = false
+          for(let j =0;j< this.courses[i].activities.length;j++){
+            if(this.courses[i].activities[j].startup_responsed == false){
+              this.courses[i].all_activity_responsed = true;
+            }
+            console.log("this.courses[i].all_activity_responsed ",this.courses[i].all_activity_responsed )
+          }
+          
+          
+        }
 
       }, error => {
         console.log(error);
@@ -90,6 +113,16 @@ export class AssignActivitiesComponent implements OnInit {
   viewMaterials(course) {
     this.sharingdata.course = course
     this.sharingdata.assign_view = false
+  }
+
+  sendRemainder(course){
+    let url = "framework/course/send-reminder"
+    let params = JSON.stringify({startup_profile_id:this.startupprofile.id,course_id:course.id})
+    this.apiCom.putDataWithToken(url,params,this.authToken).subscribe((res)=>{
+      res;
+      console.log("resremainder",res)
+      alert("Remainder Sent Successfully")
+    })
   }
 
 }
