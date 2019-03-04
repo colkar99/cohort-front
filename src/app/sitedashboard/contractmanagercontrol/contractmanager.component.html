@@ -6,7 +6,7 @@
                 <select class="form-control" id="sel1" (change)="onChange($event.target.value)" name="program_id"
                     [(ngModel)]="program_id">
                     <option></option>
-                    <option *ngFor="let program of program_modules" value="{{program.id}}">{{program.title}}</option>
+                    <option *ngFor="let program of program_modules" value="{{program.id}}" [innerHTML]="program.title"></option>
                 </select>
             </div>
         </div>

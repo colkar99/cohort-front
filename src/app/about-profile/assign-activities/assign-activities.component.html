@@ -12,7 +12,7 @@
         </div>
         <div class="col-md-4">
           <span style="font-size: 20px;" [innerHTML]="course.title"></span>
-          <h5 *ngFor="let ac of course.activities;let i = index">#{{i+1}}<span [innerHTML]="ac.name"></span></h5>
+          <h5 *ngFor="let ac of course.activities;let i = index"><span [ngStyle]="{'color': ac.admin_responsed? 'green':'red'}" [innerHTML]="ac.name" ></span></h5>
           <!-- <h5 >{{course.description}}</h5> -->
         </div>
         <div class="col-md-7">
