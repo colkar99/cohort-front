@@ -1,15 +1,4 @@
 
-  .oval {
-    left:27%;
-    width: 300px;
-   height: 150px;
-   border-radius: 50%;
-   background: lightgreen;
-   overflow: hidden;
-   border-color: aqua;
-   border:4px solid;
-   position: relative
-}
 
 .label{
    font-size: 14px;
@@ -54,6 +43,82 @@
    vertical-align: middle;
    line-height: 60px;
  }
-
-
  
+ @media (max-width: 575.98px) { 
+   .oval {
+     left: 4%;
+   width: 300px;
+   height: 150px;
+   border-radius: 50%;
+   background: lightgreen;
+   overflow: hidden;
+   border-color: aqua;
+   border: 4px solid;
+   position: relative;
+}
+     .child_circle1{
+       left:-5%;
+       bottom: 0;
+       top: -27px;
+       position: absolute;
+     }
+     .child_circle2{
+       left: 42%;bottom: 0;top: -2%;position: absolute;
+     }
+     .child_circle3{
+       left: 85%;bottom: -81px;position: absolute;
+     }
+  }
+
+  @media (min-width: 600px) { 
+   .oval {
+     left:27%;
+     width: 300px;
+    height: 150px;
+    border-radius: 50%;
+    background: lightgreen;
+    overflow: hidden;
+    border-color: aqua;
+    border:4px solid;
+    position: relative
+}
+   .child_circle1{
+     left:24%;
+     bottom: 0;
+     top: -27px;
+     position: absolute;
+   }
+   .child_circle2{
+     left: 39%;bottom: 0;top: -2%;position: absolute;
+   }
+   .child_circle3{
+     left: 54%;bottom: -81px;position: absolute;
+   }
+}
+
+@media (max-width: 575.98px) { 
+ .child1_circle1{
+   left:-7%;
+   bottom: 0;
+   top: -27px;
+   position: absolute;
+ }
+ .child1_circle2{
+   left: 40%;bottom: 0;top: -2%;position: absolute;
+ }
+ .child1_circle3{
+   left: 87%;bottom: -84px;position: absolute;
+ }
+}
+
+@media (min-width: 600px) {
+.child1_circle1{
+ left: 0%;bottom: 0;top: -23px;position: absolute;
+}
+.child1_circle2{
+ left: 30%;bottom: 0;top: 0;position: absolute;
+}
+.child1_circle3{
+ left: 61%;bottom: -82px;position: absolute;
+}
+}

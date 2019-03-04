@@ -23,7 +23,7 @@
                 <div class="form-group">
                     <label>Filterby Type</label>
                     <select class="form-control" name="filterfeild" [(ngModel)]="filterfeild">
-                        <option value="">---Select---</option>
+                        <option [value]="undefined" hidden selected>---Select---</option>
                         <option value="application_status">Status</option>
                         <option value="score">Score</option>
                         <option value="app_status_description">Status description</option>
@@ -71,7 +71,8 @@
                                     <td>{{startup.startup_registration.app_status_description}}</td>
                                     <td>{{startup.startup_registration.score}}</td>
                                     <td>
-                                        <button class="btn btn-default" (click)="viewprofile(startup)"><i class="glyphicon glyphicon-eye-open"></i>
+                                        <button class="btn btn-default" (click)="viewprofile(startup)"><i
+                                                class="glyphicon glyphicon-eye-open"></i>
                                             View</button>
                                     </td>
                                 </tr>

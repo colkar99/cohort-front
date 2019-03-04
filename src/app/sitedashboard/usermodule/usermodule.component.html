@@ -18,8 +18,9 @@
               <form [formGroup]='user' (ngSubmit)="user.valid && onSubmit(user)">
                 <div formGroupName='user'>
                   <div class="col-md-6 form-group">
-                    <label for="user_type">Slect user type</label>
+                    <label for="user_type">User type</label>
                     <select class="form-control" id="user_type" formControlName="user_type" (change)="getRoles($event.target.value)">
+                      <option  [value]="undefined" hidden selected>---Select---</option>
                       <option *ngFor="let value of userOptions" [value]="value.value">{{value.name}}</option>
                       <!-- <option [value]="mentor">mentor</option> -->
                       <!-- <option [ngValue]="startup">Startup User</option> -->
@@ -54,6 +55,7 @@
                 <div class="col-md-6 form-group" formGroupName='role' *ngIf="isRolesAvailable">
                   <label for="user_type">Select role</label>
                   <select class="form-control" id="role" formControlName="role_id">
+                      <option  [value]="undefined" hidden selected>---Select---</option>
                     <option *ngFor="let role of roles" [value]="role.id">{{role.name}}</option>
                     <!-- <option [value]="mentor">mentor</option> -->
                     <!-- <option [ngValue]="startup">Startup User</option> -->
@@ -86,7 +88,7 @@
                 <div class="form-group">
                   <label>Filterby Type</label>
                   <select class="form-control" name="filterfeild" [(ngModel)]="filterfeild">
-                    <option value="">---Select---</option>
+                    <option  [value]="undefined" hidden selected>---Select---</option>
                     <option value="full_name">Name</option>
                     <option value="email">Email</option>
                     <option value="phone_number">Phone number</option>

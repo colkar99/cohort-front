@@ -11,7 +11,7 @@
                             <div class="form-group">
                                 <label>Filterby Type</label>
                                 <select class="form-control" name="filterfeild" [(ngModel)]="filterfeild">
-                                    <option value="">---Select---</option>
+                                    <option [value]="undefined" hidden selected>---Select---</option>
                                     <option value="title">Title</option>
 
                                     <option value="level">Level</option>
@@ -23,8 +23,9 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Value</label>
-                                <input [disabled]="filterfeild == ('' || null || undefined)" class="form-control" name="filtervalue"
-                                    #or [(ngModel)]="filtervalue" (ngModelChange)="filtervalues(or.value)">
+                                <input [disabled]="filterfeild == ('' || null || undefined)" class="form-control"
+                                    name="filtervalue" #or [(ngModel)]="filtervalue"
+                                    (ngModelChange)="filtervalues(or.value)">
                             </div>
                         </div>
                         <div class="col-md-2">
@@ -53,7 +54,8 @@
                                     <td>{{framework.description}}</td>
                                     <td>{{framework.level}}</td>
                                     <td>{{framework.thumb_image}}</td>
-                                    <td><button class="btn btn-default" routerLink="edit/{{framework.id}}"><i class="glyphicon glyphicon-eye-open"></i>
+                                    <td><button class="btn btn-default" routerLink="edit/{{framework.id}}"><i
+                                                class="glyphicon glyphicon-eye-open"></i>
                                             View</button></td>
                                 </tr>
                             </tbody>
@@ -67,7 +69,8 @@
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading" style="height:57px;">List of Courses <button class="btn btn-info pull-right"
-                    type="button" routerLink="create-course"><i class="glyphicon glyphicon-plus-sign"></i> New Courses</button></div>
+                    type="button" routerLink="create-course"><i class="glyphicon glyphicon-plus-sign"></i> New
+                    Courses</button></div>
             <div class="panel-body">
                 <div class="col-md-12" *ngIf="courses">
                     <form>
@@ -75,7 +78,7 @@
                             <div class="form-group">
                                 <label>Filterby Type</label>
                                 <select class="form-control" name="filterfeild1" [(ngModel)]="filterfeild1">
-                                    <option value="">---Select---</option>
+                                    <option [value]="undefined" hidden selected>---Select---</option>
                                     <option value="title">Title</option>
 
 
@@ -87,8 +90,9 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Value</label>
-                                <input [disabled]="filterfeild1 == ('' || null || undefined)" class="form-control" name="filtervalue1"
-                                    #or1 [(ngModel)]="filtervalue1" (ngModelChange)="filtervalues1(or1.value)">
+                                <input [disabled]="filterfeild1 == ('' || null || undefined)" class="form-control"
+                                    name="filtervalue1" #or1 [(ngModel)]="filtervalue1"
+                                    (ngModelChange)="filtervalues1(or1.value)">
                             </div>
                         </div>
                         <div class="col-md-2">
@@ -112,10 +116,11 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let framework of courses;let i = index">
-                                    <td  [innerHTML]="framework.title"></td>
+                                    <td [innerHTML]="framework.title"></td>
                                     <td [innerHTML]="framework.description"></td>
                                     <td [innerHTML]="framework.additional_description"></td>
-                                    <td><button class="btn btn-default" (click)="setsourceedit(framework)" routerLink="editcourse/{{framework.id}}"><i
+                                    <td><button class="btn btn-default" (click)="setsourceedit(framework)"
+                                            routerLink="editcourse/{{framework.id}}"><i
                                                 class="glyphicon glyphicon-eye-open"></i> View</button></td>
                                 </tr>
                             </tbody>

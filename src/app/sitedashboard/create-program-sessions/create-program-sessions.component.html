@@ -11,7 +11,7 @@
             <h2>Program Session Details</h2>
             <div class="col-md-6 form-group">
               <label>Title</label>
-              <textarea class="form-control" type="text" name="title" [(ngModel)]="session.title"></textarea>
+              <textarea required class="form-control" type="text" name="title" [(ngModel)]="session.title"></textarea>
             </div>
             <div class="col-md-6 form-group">
               <label>Description</label>
@@ -20,17 +20,27 @@
             </div>
             <div class="col-md-6 form-group">
               <label>Start Date</label>
-              <input class="form-control" type="datetime-local" name="start_date_time"
+              <input required class="form-control" type="datetime-local" name="start_date_time"
                 [(ngModel)]="session.start_date_time">
             </div>
             <div class="col-md-6 form-group">
               <label>End Date</label>
-              <input class="form-control" type="datetime-local" name="end_date_time"
+              <input required class="form-control" type="datetime-local" name="end_date_time"
                 [(ngModel)]="session.end_date_time">
             </div>
             <div class="col-md-6 form-group">
-              <label>End Date</label>
-              <input class="form-control" type="text" name="where" [(ngModel)]="session.where">
+              <label>Place</label>
+              <input required class="form-control" type="text" name="where" [(ngModel)]="session.where">
+            </div>
+            <div class="col-md-6 form-group">
+              <label>Timezone</label>
+              <select required class="form-control" name="time_zone" [(ngModel)]="session.time_zone">
+                <option [value]="undefined" disabled hidden selected>---Select---</option>
+                <option value="Asia/Calcutta">Asia/Calcutta</option>
+                <option value="Etc/UTC">Etc/UTC</option>
+                <option value="Etc/Universal">Etc/Universal</option>
+                <option value="Etc/Greenwich">Etc/Greenwich</option>
+              </select>
             </div>
 
             <!-- <div class="col-md-6 form-group" *ngIf="framework.main_image != null">

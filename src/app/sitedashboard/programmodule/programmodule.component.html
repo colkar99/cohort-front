@@ -12,7 +12,7 @@
                             <div class="form-group">
                                 <label>Filterby Type</label>
                                 <select class="form-control" name="filterfeild1" [(ngModel)]="filterfeild1">
-                                    <option value="">---Select---</option>
+                                    <option  [value]="undefined" hidden selected>---Select---</option>
                                     <option value="title">Title</option>
 
                                     <option value="duration">Duration</option>
@@ -52,7 +52,7 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let program of listprograms">
-                                    <td>{{program.title}}</td>
+                                    <td [innerHTML]="program.title"></td>
                                     <td>{{program.start_date}}</td>
                                     <td>{{program.end_date}}</td>
                                     <td>{{program.duration}}</td>
@@ -81,7 +81,7 @@
                             <div class="form-group">
                                 <label>Filterby Type</label>
                                 <select class="form-control" name="filterfeild2" [(ngModel)]="filterfeild2">
-                                    <option value="">---Select---</option>
+                                    <option  [value]="undefined" hidden selected>---Select---</option>
                                     <option value="program_type_title">Title</option>
 
 
@@ -148,7 +148,7 @@
                             <div class="form-group">
                                 <label>Filterby Type</label>
                                 <select class="form-control" name="filterfeild3" [(ngModel)]="filterfeild3">
-                                    <option value="">---Select---</option>
+                                    <option  [value]="undefined" hidden selected>---Select---</option>
                                     <option value="country">Country</option>
                                     <option value="state_province_region">State</option>
                                     <option value="city">City</option>
@@ -219,7 +219,7 @@
                             <div class="form-group">
                                 <label>Filterby Type</label>
                                 <select class="form-control" name="filterfeild4" [(ngModel)]="filterfeild4">
-                                    <option value="">---Select---</option>
+                                    <option  [value]="undefined" hidden selected>---Select---</option>
                                     <option value="title">Title</option>
 
 

@@ -4,6 +4,7 @@ import { ApiCommunicationService } from '../../../api-communication.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router,ActivatedRoute} from '@angular/router';
 declare var $: any;
+declare var CKEDITOR: any;
 
 @Component({
     selector: 'app-createprogram',
@@ -30,6 +31,7 @@ export class CreateProgramComponent implements OnInit {
     main_image= "";
     logo_image = "";
     imageSrc;
+    ckEditorConfig: any
 
     constructor(
         private cookieService: CookieService,
@@ -49,6 +51,31 @@ export class CreateProgramComponent implements OnInit {
           window.location.href = '/login';
         }
         this.getProgramModuleDatas();
+        this.ckEditorConfig =
+      {
+        //extraPlugins: 'font', 
+        "toolbarGroups": [
+          { name: 'tools' },
+          { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
+          { name: 'styles' },
+          { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'] }, 
+        ],
+        // [
+        //   { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
+        //   { name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
+        //   { name: 'insert' },
+        //   { name: 'forms' },
+        //   { name: 'tools' },
+        //   { name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
+        //   { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+        //   { name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+        //   { name: 'styles' },
+        //   { name: 'colors' },
+        //   { name: 'about' },
+        // { name: 'font' }
+        // ]
+        "removeButtons": "Source,Save,Templates,Find,Replace,Scayt,SelectAll"
+      }
     }
     ngOnInit(){
         

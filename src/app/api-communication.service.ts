@@ -35,7 +35,7 @@ export class ApiCommunicationService {
     return this.http.post(this.domainUrl,params,this.httpOptions)
     .pipe(
       map((res) =>{res;this.spinnerservice.hide();return res;})).pipe(
-      catchError((error:any)=>{this.spinnerservice.hide();return throwError(error.error.message)})
+      catchError((error:HttpErrorResponse)=>{this.spinnerservice.hide();return throwError(error.error.message)})
       
     );
   }
@@ -48,7 +48,7 @@ export class ApiCommunicationService {
     return this.http.post<any>(this.domainUrl,params,{headers: headers})
     .pipe(
       map((res) =>{res;this.spinnerservice.hide();return res;})).pipe(
-      catchError((error:any)=>{this.spinnerservice.hide();return throwError(error.error.message)})
+      catchError((error:HttpErrorResponse)=>{this.spinnerservice.hide();return throwError(error.error.message)})
       
     );
   }
@@ -60,7 +60,7 @@ export class ApiCommunicationService {
     return this.http.put<any>(this.domainUrl,params,{headers: headers})
     .pipe(
       map((res) =>{res;this.spinnerservice.hide();return res;})).pipe(
-      catchError((error:any)=>{this.spinnerservice.hide();return throwError(error.error.message)})
+      catchError((error:HttpErrorResponse)=>{this.spinnerservice.hide();return throwError(error.error.message)})
       
     );
   }
@@ -72,7 +72,7 @@ export class ApiCommunicationService {
     return this.http.put<any>(this.domainUrl,params,this.httpOptions)
     .pipe(
       map((res) =>{res;this.spinnerservice.hide();return res;})).pipe(
-      catchError((error:any)=>{this.spinnerservice.hide();return throwError(error.error.message)})
+      catchError((error:HttpErrorResponse)=>{this.spinnerservice.hide();return throwError(error.error.message)})
       
     );
   }
@@ -85,7 +85,7 @@ export class ApiCommunicationService {
     return this.http.get<any>(this.domainUrl,{headers: headers})
     .pipe(
       map((res) =>{res;this.spinnerservice.hide();return res;})).pipe(
-      catchError((error:any)=>{this.spinnerservice.hide();return throwError(error.error.message)})
+      catchError((error:HttpErrorResponse)=>{this.spinnerservice.hide();return throwError(error.error.message)})
       
     );
   };
@@ -95,7 +95,7 @@ export class ApiCommunicationService {
     return this.http.get<any>(this.domainUrl)
     .pipe(
       map((res) =>{res;this.spinnerservice.hide();return res;})).pipe(
-      catchError((error:any)=>{this.spinnerservice.hide();return throwError(error.error.message)})
+      catchError((error:HttpErrorResponse)=>{this.spinnerservice.hide();return throwError(error.error.message)})
       
     );
   }; 
@@ -107,7 +107,7 @@ export class ApiCommunicationService {
     return this.http.post<any>(this.domainUrl,params,this.httpOptions)
     .pipe(
       map((res) =>{res;this.spinnerservice.hide();return res;})).pipe(
-      catchError((error:any)=>{this.spinnerservice.hide();return throwError(error.error.message)})
+      catchError((error:HttpErrorResponse)=>{this.spinnerservice.hide();return throwError(error.error.message)})
       
     );
   };
@@ -119,7 +119,7 @@ export class ApiCommunicationService {
     return this.http.post<any>(this.domainUrl,params,this.httpOptions)
     .pipe(
       map((res) =>{res;this.spinnerservice.hide();return res;})).pipe(
-      catchError((error:any)=>{this.spinnerservice.hide();return throwError(error.error.message)})
+      catchError((error:HttpErrorResponse)=>{this.spinnerservice.hide();return throwError(error.error.message)})
       
     );
   };
@@ -132,7 +132,7 @@ export class ApiCommunicationService {
     return this.http.post(this.domainUrl,params,{headers:headers})
     .pipe(
       map((res) =>{res;this.spinnerservice.hide();return res;})).pipe(
-      catchError((error:any)=>{this.spinnerservice.hide();return throwError(error.error.message)})
+      catchError((error:HttpErrorResponse)=>{this.spinnerservice.hide();return throwError(error.error.message)})
       
     );
   }
@@ -145,7 +145,7 @@ export class ApiCommunicationService {
     return this.http.put(this.domainUrl,params,{headers:headers})
     .pipe(
       map((res) =>{res;this.spinnerservice.hide();return res;})).pipe(
-      catchError((error:any)=>{this.spinnerservice.hide();return throwError(error.error.message)})
+      catchError((error:HttpErrorResponse)=>{this.spinnerservice.hide();return throwError(error.error.message)})
       
     );
   }
