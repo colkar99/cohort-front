@@ -5,7 +5,7 @@
             <select class="form-control" id="role" (change)="showStartups($event.target.value)" name="programselected"
                 [(ngModel)]="programselected">
                 <option value="" selected>---Select---</option>
-                <option *ngFor="let program of allPrograms" value="{{program.id}}">{{program.title}}</option>
+                <option *ngFor="let program of allPrograms" value="{{program.id}}" [innerHTML]="program.title"></option>
                 <!-- <option [value]="mentor">mentor</option> -->
                 <!-- <option [ngValue]="startup">Startup User</option> -->
             </select>
