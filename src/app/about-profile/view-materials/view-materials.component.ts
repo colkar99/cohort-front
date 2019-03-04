@@ -73,6 +73,15 @@ export class ViewMaterialsComponent implements OnInit {
     })
   
   }
+  sendRemainder(course){
+    let url = "framework/course/send-reminder"
+    let params = JSON.stringify({startup_profile_id:this.startupprofile.id,course_id:course.id})
+    this.apiCom.putDataWithToken(url,params,this.authToken).subscribe((res)=>{
+      res;
+      console.log("resremainder",res)
+      alert("Remainder Sent Successfully")
+    })
+  }
 
 
 }
