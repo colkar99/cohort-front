@@ -35,6 +35,7 @@ export class ProgramSessionsComponent implements OnInit {
   calLoggedin: boolean;
   current_session: any;
   current_users: any;
+  curret_event_id: string;
 
 
   constructor(private apiCom: ApiCommunicationService,
@@ -210,11 +211,20 @@ export class ProgramSessionsComponent implements OnInit {
     }
   }
   
-   handleAuthClick(session) {
+   handleAuthClick(session,type) {
     gapi.auth2.getAuthInstance().signIn()
     .then((auth) => {
         this.current_session = session;
-        this.updateSigninStatus(true,session);
+        if (type === "create"){
+          // this.updateSigninStatus(true,session);
+          this.listUpcomingEvents(this.current_session)
+        }
+        else if (type === "delete"){
+          this.listUpcomingEventsDelete(this.current_session)
+
+        }else {
+          this.listUpcomingEventsUpdate(this.current_session)
+        }
     }, (error) =>{
 
     });
@@ -228,11 +238,11 @@ export class ProgramSessionsComponent implements OnInit {
 
   }
 
-   appendPre(message) {
-    var pre = document.getElementById('content');
-    var textContent = document.createTextNode(message + '\n');
-    pre.appendChild(textContent);
-  }
+  //  appendPre(message) {
+  //   var pre = document.getElementById('content');
+  //   var textContent = document.createTextNode(message + '\n');
+  //   pre.appendChild(textContent);
+  // }
    listUpcomingEvents(event: any) {
      debugger
      let session = {
@@ -240,16 +250,16 @@ export class ProgramSessionsComponent implements OnInit {
       'location': event.where,
       'description': event.description,
       'start': {
-        'dateTime': event.start_date_time,
-        'timeZone': 'UTC'
+        'dateTime': new Date(event.start_date_time).toISOString().replace('Z', ''),
+        'timeZone': event.time_zone
       },
       'end': {
-        'dateTime': event.end_date_time,
-        'timeZone': 'UTC'
+        'dateTime': new Date(event.end_date_time).toISOString().replace('Z', ''),
+        'timeZone': event.time_zone
       },
-      'recurrence': [
-        'RRULE:FREQ=DAILY;COUNT=2'
-      ],
+      // 'recurrence': [
+      //   'RRULE:FREQ=DAILY;COUNT=2'
+      // ],
       'attendees': [
         // {'email': 'karthik.raj@ilerra.com'},
         // {'email': 'senthilaug1995@gmail.com'}
@@ -261,10 +271,11 @@ export class ProgramSessionsComponent implements OnInit {
           {'method': 'popup', 'minutes': 10}
         ]
       }
+      // 'id': event.id
     };
      let users = event.users;
      for (var i = 0; i<users.length;i++){
-       session.attendees.push(users[i].email)
+       session.attendees.push({'email': users[i].email})
      }
      debugger
  
@@ -277,7 +288,9 @@ export class ProgramSessionsComponent implements OnInit {
       debugger
         this.zone.run(() => {
           debugger
-            this.updateInvited();
+          console.log(auth);
+          this.curret_event_id = auth.result.id;
+            this.updateInvited(this.curret_event_id,true);
 
         });
         debugger
@@ -288,13 +301,101 @@ export class ProgramSessionsComponent implements OnInit {
     });
   }
 
-  updateInvited(){
+  listUpcomingEventsUpdate(event: any) {
+    debugger
+    let session = {
+     'summary': event.title,
+     'location': event.where,
+     'description': event.description,
+     'start': {
+       'dateTime': new Date(event.start_date_time).toISOString().replace('Z', ''),
+       'timeZone': 'Asia/Calcutta'
+     },
+     'end': {
+       'dateTime': new Date(event.end_date_time).toISOString().replace('Z', ''),
+       'timeZone': 'Asia/Calcutta'
+     },
+    //  'recurrence': [
+    //    'RRULE:FREQ=DAILY;COUNT=2'
+    //  ],
+     'attendees': [
+       // {'email': 'karthik.raj@ilerra.com'},
+       // {'email': 'senthilaug1995@gmail.com'}
+     ],
+     'reminders': {
+       'useDefault': false,
+       'overrides': [
+         {'method': 'email', 'minutes': 24 * 60},
+         {'method': 'popup', 'minutes': 10}
+       ]
+     },
+     'id': event.event_id
+     // 'id': event.id
+   };
+    let users = event.users;
+    for (var i = 0; i<users.length;i++){
+      session.attendees.push({'email': users[i].email})
+    }
+    debugger
+
+      /////////here insert callender event
+   gapi.client.calendar.events.patch({
+     'calendarId': 'primary',
+     'resource': session,
+     'sendNotifications': true,
+     'eventId': event.event_id
+   }).then((auth) => {
+     debugger
+       this.zone.run(() => {
+         debugger
+         console.log(auth);
+         this.curret_event_id = auth.result.id;
+           this.updateInvited(this.curret_event_id,true);
+
+       });
+       debugger
+
+   },(error)=> {
+       console.log(error);
+           alert("some thing happend");
+   });
+ }
+
+ listUpcomingEventsDelete(event: any) {
+  debugger
+
+    /////////here insert callender event
+ gapi.client.calendar.events.delete({
+   'calendarId': 'primary',
+  //  'resource': session,
+   'sendNotifications': true,
+   'eventId': event.event_id
+ }).then((auth) => {
+   debugger
+     this.zone.run(() => {
+       debugger
+       console.log(auth);
+       this.curret_event_id = auth.result.id;
+         this.updateInvited(this.curret_event_id,false);
+     });
+     debugger
+
+ },(error)=> {
+     console.log(error);
+         alert("some thing happend");
+ });
+}
+
+
+  updateInvited(current_event_id: string,invited: boolean){
     let url = "/program/update-invite"
-    let data = {session_id: this.current_session.id};
+    let data = {session_id: this.current_session.id,event_id: current_event_id,invited: invited};
     this.apiCom.putDataWithToken(url,JSON.stringify(data),this.authToken)
     .subscribe(data=>{
       console.log(data);
       this.getAllProgram();
+      gapi.auth2.getAuthInstance().signOut();
+      this.calLoggedin = false;
       alert("Invitation successfully send");
     },
     error => {
