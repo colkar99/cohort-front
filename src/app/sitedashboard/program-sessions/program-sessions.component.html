@@ -65,36 +65,35 @@
                       <i class="glyphicon glyphicon-ban-circle"></i>  Reject</button>
               </div> -->
 
-                    <div class="col-md-12 col-xs-12 table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-
-                                    <th>Title</th>
-                                    <th>Description</th>
-                                    <th>Start Date</th>
-                                    <th>End Date</th>
-                                    <th>Place</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let startup of allStartups;let i = index" style="cursor: pointer; ">
-
-                                    <td>{{startup.title}}</td>
-                                    <td>{{startup.description}}</td>
-                                    <td>{{startup.start_date_time}}</td>
-                                    <td>{{startup.end_date_time}}</td>
-                                    <td>{{startup.where}}</td>
-                                    <td>
-                                        <button class="btn btn-default" routerLink="edit-program-session/{{startup.id}}"
-                                            (click)="passValue(startup)"><i class="glyphicon glyphicon-eye-open"></i>
-                                            View</button>
-                                        <button (click)="handleAuthClick(startup)" class="btn btn-success">Invite from
-                                            google calender</button>
-                                        <button *ngIf="startup.invited === true" (click)="handleAuthClick(startup)"
-                                            class="btn btn-success" [disabled]="startup.invited === true">Already
-                                            invited</button>
+                  
+                  <div class="col-md-12 col-xs-12 table-responsive">
+                      <table class="table table-bordered">
+                          <thead>
+                              <tr>
+                                  
+                                  <th>Title</th>
+                                  <th>Description</th>
+                                  <th>Start Date</th>
+                                  <th>End Date</th>
+                                  <th>Place</th>
+                                  <th>Action</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr *ngFor="let startup of allStartups;let i = index" style="cursor: pointer; ">
+                                 
+                                  <td>{{startup.title}}</td>
+                                  <td>{{startup.description}}</td>
+                                  <td>{{startup.start_date_time}}</td>
+                                  <td>{{startup.end_date_time}}</td>
+                                  <td>{{startup.where}}</td>
+                                  <td>
+                                      <button class="btn btn-default" routerLink="edit-program-session/{{startup.id}}"(click)="passValue(startup)"><i class="glyphicon glyphicon-eye-open"></i>
+                                          View</button>
+                                          <button *ngIf="!startup.invited" (click)="handleAuthClick(startup,'create')" class="btn btn-success" >Invite from google calender</button>
+                                          <button *ngIf="startup.invited" (click)="handleAuthClick(startup,'update')" class="btn btn-success">Update from google</button>
+                                          <button *ngIf="startup.invited" (click)="handleAuthClick(startup,'delete')" class="btn btn-danger">Delete from google</button>
+                                  </td>
 
                                     </td>
 
