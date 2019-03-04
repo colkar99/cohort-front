@@ -1,61 +1,62 @@
 <div class="container">
-  <div class="row" *ngIf="!startup">
-      <div class="col-md-12 form-group">
-          <label for="user_type">Select Program</label>
-          <select class="form-control" id="role" (change)="showStartups($event.target.value)" name="programselected"
-              [(ngModel)]="programselected">
-              <option value="" selected>---Select---</option>
-              <option *ngFor="let program of allPrograms" value="{{program.id}}">{{program.title}}</option>
-              <!-- <option [value]="mentor">mentor</option> -->
-              <!-- <option [ngValue]="startup">Startup User</option> -->
-          </select>
-      </div>
-  </div>
+    <div class="row" *ngIf="!startup">
+        <div class="col-md-12 form-group">
+            <label for="user_type">Select Program</label>
+            <select class="form-control" id="role" (change)="showStartups($event.target.value)" name="programselected"
+                [(ngModel)]="programselected">
+                <option value="" selected>---Select---</option>
+                <option *ngFor="let program of allPrograms" value="{{program.id}}">{{program.title}}</option>
+                <!-- <option [value]="mentor">mentor</option> -->
+                <!-- <option [ngValue]="startup">Startup User</option> -->
+            </select>
+        </div>
+    </div>
 
-  <div class="row" *ngIf="showStartup && allStartups.length == 0">
-      <div class="alert alert-danger">
-          <strong>Oops!</strong> No Sessions have created for this program.
-      </div>
-  </div>
-  <div class="row">
-      <form>
-          <div class="col-md-6">
-              <div class="form-group">
-                  <label>Filterby Type</label>
-                  <select class="form-control" name="filterfeild" [(ngModel)]="filterfeild">
-                      <option value="">---Select---</option>
-                      <option value="application_status">Status</option>
-                      <option value="score">Score</option>
-                      <option value="app_status_description">Status description</option>
-                      <option value="startup_name">Startup Name</option>
+    <div class="row" *ngIf="showStartup && allStartups.length == 0">
+        <div class="alert alert-danger">
+            <strong>Oops!</strong> No Sessions have created for this program.
+        </div>
+    </div>
+    <div class="row">
+        <form>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Filterby Type</label>
+                    <select class="form-control" name="filterfeild" [(ngModel)]="filterfeild">
+                        <option [value]="undefined" hidden selected>---Select---</option>
+                        <option value="application_status">Status</option>
+                        <option value="score">Score</option>
+                        <option value="app_status_description">Status description</option>
+                        <option value="startup_name">Startup Name</option>
 
-                  </select>
-              </div>
-          </div>
-          <div class="col-md-4">
-              <div class="form-group">
-                  <label>Value</label>
-                  <input [disabled]="filterfeild == ('' || null || undefined)" class="form-control" name="filtervalue"
-                      #or [(ngModel)]="filtervalue" (ngModelChange)="filtervalues(or.value)">
-              </div>
-          </div>
-          <div class="col-md-2">
-              <div class="form-group">
-                  <label> </label>
-                  <button class="btn btn-default" type="reset" (click)="resetprogram()">Reset</button>
-              </div>
-          </div>
-      </form>
-  </div>
-  <div class="row" >
-      <div class="panel panel-default">
-          <div class="panel-heading" style="height:57px;">List of Program Sessions <button type="button" class="btn btn-info pull-right"
-           routerLink="create-program-session" ><i class="glyphicon glyphicon-plus-sign"></i>
-            New Session</button></div>
-          <div class="panel-body">
-              <div class="row">
-                 
-                  <!-- <div class="col-md-12 col-xs-12">
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Value</label>
+                    <input [disabled]="filterfeild == ('' || null || undefined)" class="form-control" name="filtervalue"
+                        #or [(ngModel)]="filtervalue" (ngModelChange)="filtervalues(or.value)">
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label> </label>
+                    <button class="btn btn-default" type="reset" (click)="resetprogram()">Reset</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="height:57px;">List of Program Sessions <button type="button"
+                    class="btn btn-info pull-right" routerLink="create-program-session"><i
+                        class="glyphicon glyphicon-plus-sign"></i>
+                    New Session</button></div>
+            <div class="panel-body">
+                <div class="row">
+
+                    <!-- <div class="col-md-12 col-xs-12">
                   <button class="btn btn-default pull-right" type="button" (click)="initiatecsfi()">
                       <i class="glyphicon glyphicon-envelope"></i>   Initiate Current State Form</button>
                   <button class="btn btn-success pull-right" type="button" (click)="startupAccept()">
@@ -63,43 +64,46 @@
                   <button class="btn btn-danger pull-right" type="button" (click)="startupReject()">
                       <i class="glyphicon glyphicon-ban-circle"></i>  Reject</button>
               </div> -->
-                  
-                  <div class="col-md-12 col-xs-12 table-responsive">
-                      <table class="table table-bordered">
-                          <thead>
-                              <tr>
-                                  
-                                  <th>Title</th>
-                                  <th>Description</th>
-                                  <th>Start Date</th>
-                                  <th>End Date</th>
-                                  <th>Place</th>
-                                  <th>Action</th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                              <tr *ngFor="let startup of allStartups;let i = index" style="cursor: pointer; ">
-                                 
-                                  <td>{{startup.title}}</td>
-                                  <td>{{startup.description}}</td>
-                                  <td>{{startup.start_date_time}}</td>
-                                  <td>{{startup.end_date_time}}</td>
-                                  <td>{{startup.where}}</td>
-                                  <td>
-                                      <button class="btn btn-default" routerLink="edit-program-session/{{startup.id}}"(click)="passValue(startup)"><i class="glyphicon glyphicon-eye-open"></i>
-                                          View</button>
-                                          <button  (click)="handleAuthClick(startup)" class="btn btn-success" >Invite from google calender</button>
-                                          <button *ngIf="startup.invited === true" (click)="handleAuthClick(startup)" class="btn btn-success" [disabled]="startup.invited === true">Already invited</button>
 
-                                  </td>
+                    <div class="col-md-12 col-xs-12 table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
 
-                              </tr>
-                          </tbody>
-                      </table>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th>Place</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let startup of allStartups;let i = index" style="cursor: pointer; ">
+
+                                    <td>{{startup.title}}</td>
+                                    <td>{{startup.description}}</td>
+                                    <td>{{startup.start_date_time}}</td>
+                                    <td>{{startup.end_date_time}}</td>
+                                    <td>{{startup.where}}</td>
+                                    <td>
+                                        <button class="btn btn-default" routerLink="edit-program-session/{{startup.id}}"
+                                            (click)="passValue(startup)"><i class="glyphicon glyphicon-eye-open"></i>
+                                            View</button>
+                                        <button (click)="handleAuthClick(startup)" class="btn btn-success">Invite from
+                                            google calender</button>
+                                        <button *ngIf="startup.invited === true" (click)="handleAuthClick(startup)"
+                                            class="btn btn-success" [disabled]="startup.invited === true">Already
+                                            invited</button>
+
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-

@@ -24,7 +24,7 @@
               <form>
                 <div class="col-md-12 form-group">
                   <label># {{i+1}} Response</label>
-                  <textarea class="form-control" name="act.startup_response" [(ngModel)]="act.startup_response"></textarea>
+                  <textarea class="form-control" placeholder="{{courses.placeholder}}" name="act.startup_response" [(ngModel)]="act.startup_response"></textarea>
                 </div>
                 <div class="col-md-12">
                   <button class="btn btn-success pull-right" (click)="submitact(act)">Submit</button>

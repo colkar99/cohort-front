@@ -1,6 +1,7 @@
 <div class="container">
     <div class="col-md-12">
-        <button class="btn btn-default pull-left" routerLink="/admin/dashboard/program"><i class="glyphicon glyphicon-arrow-left"></i>Back</button>
+        <button class="btn btn-default pull-left" routerLink="/admin/dashboard/program"><i
+                class="glyphicon glyphicon-arrow-left"></i>Back</button>
     </div>
     <div class="row">
         <form [formGroup]='program' *ngIf="showForm" (ngSubmit)=" onProgramSubmit(program,datas)" validate>
@@ -9,14 +10,16 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading" style="height:60px;">Select Program Type
-                            
+
                         </div>
                         <div class="panel-body">
                             <div class="col-md-12 form-group">
                                 <div class="form-group">
                                     <label for="sel1">Select Program type:</label>
-                                    <select class="form-control" id="sel1" formControlName="program_type_id" [ngClass]="{errmsg: !program.controls['program_type_id'].valid && submitted}">
-                                        <option *ngFor="let program_type of datas.program_types" [value]="program_type.id">{{program_type.program_type_title}}</option>
+                                    <select class="form-control" id="sel1" formControlName="program_type_id"
+                                        [ngClass]="{errmsg: !program.controls['program_type_id'].valid && submitted}">
+                                        <option *ngFor="let program_type of datas.program_types"
+                                            [value]="program_type.id">{{program_type.program_type_title}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -27,7 +30,7 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading" style="height:60px;">Select program location
-                           
+
                         </div>
                         <div class="panel-body">
                             <div class="col-md-12 form-group">
@@ -36,8 +39,10 @@
                                     <select class="form-control" id="sel1" formControlName="ProgramLocation_id"
                                         [ngClass]="{errmsg: !program.controls['ProgramLocation_id'].valid && submitted}">
                                         <option [value]=" "></option>
-                                        <option *ngFor="let program_location of datas.program_locations" [value]="program_location.id">City:
-                                            {{program_location.city}},State: {{program_location.state_province_region}}</option>
+                                        <option *ngFor="let program_location of datas.program_locations"
+                                            [value]="program_location.id">City:
+                                            {{program_location.city}},State: {{program_location.state_province_region}}
+                                        </option>
                                     </select>
                                 </div>
                             </div>
@@ -57,9 +62,11 @@
                             <div class="col-md-12 form-group">
                                 <div class="form-group">
                                     <label for="sel1">Select Framework:</label>
-                                    <select class="form-control" id="sel1" formControlName="framework_id" [ngClass]="{errmsg: !program.controls['framework_id'].valid && submitted}">
+                                    <select class="form-control" id="sel1" formControlName="framework_id"
+                                        [ngClass]="{errmsg: !program.controls['framework_id'].valid && submitted}">
                                         <option [value]=" "></option>
-                                        <option *ngFor="let framework of datas.frameworks" [value]="framework.id">{{framework.title}}</option>
+                                        <option *ngFor="let framework of datas.frameworks" [value]="framework.id">
+                                            {{framework.title}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -75,8 +82,21 @@
                         <div class="panel-body">
                             <div class="col-md-4 form-group">
                                 <label>Title:</label>
-                                <input class="form-control" type="text" name="" formControlName="title" [ngClass]="{errmsg: !program.controls['title'].valid && submitted}"
-                                    required />
+                                <ckeditor name="title" formControlName="title" debounce="500" [readonly]="false"
+                                    [config]="ckEditorConfig">
+
+                                </ckeditor>
+                                <!-- <input class="form-control" type="text" name="" formControlName="title"
+                                 [ngClass]="{errmsg: !program.controls['title'].valid && submitted}"  required/> -->
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>Program Description:</label>
+                                <ckeditor name="description" formControlName="description" debounce="500"
+                                    [readonly]="false" [config]="ckEditorConfig">
+
+                                </ckeditor>
+                                <!-- <textarea class="form-control"  name="description" formControlName="description" 
+                                    [ngClass]="{errmsg: !program.controls['description'].valid && submitted}" required></textarea> -->
                             </div>
                             <div class="col-md-4 form-group">
                                 <label>Start date:</label>
@@ -101,14 +121,16 @@
 
                             <div class="col-md-4 form-group">
                                 <label>Main image:</label>
-                                <input class="form-control" type="file" id="main_image" placeholder="main_image" name="main_image"
-                                    type="file" accept="image/*" (change)="handleInputChange($event,true,false)"
+                                <input class="form-control" type="file" id="main_image" placeholder="main_image"
+                                    name="main_image" type="file" accept="image/*"
+                                    (change)="handleInputChange($event,true,false)"
                                     [ngClass]="{errmsg: !program.controls['main_image'].valid && submitted}" />
                             </div>
                             <div class="col-md-4 form-group">
                                 <label>Logo image:</label>
-                                <input class="form-control" type="file" id="logo_image" placeholder="logo_image" name="logo_image"
-                                    type="file" accept="image/*" (change)="handleInputChange($event,false,true)"
+                                <input class="form-control" type="file" id="logo_image" placeholder="logo_image"
+                                    name="logo_image" type="file" accept="image/*"
+                                    (change)="handleInputChange($event,false,true)"
                                     [ngClass]="{errmsg: !program.controls['logo_image'].valid && submitted}" />
                             </div>
 
@@ -119,21 +141,19 @@
                             </div>
                             <div class="col-md-4 form-group">
                                 <label>Program registration start date:</label>
-                                <input class="form-control" type="date" name="application_start_date" formControlName="application_start_date"
+                                <input class="form-control" type="date" name="application_start_date"
+                                    formControlName="application_start_date"
                                     [ngClass]="{errmsg: !program.controls['application_start_date'].valid && submitted}"
                                     required />
                             </div>
                             <div class="col-md-4 form-group">
                                 <label>Program registration end date:</label>
-                                <input class="form-control" type="date" name="application_end_date" formControlName="application_end_date"
+                                <input class="form-control" type="date" name="application_end_date"
+                                    formControlName="application_end_date"
                                     [ngClass]="{errmsg: !program.controls['application_end_date'].valid && submitted}"
                                     required />
                             </div>
-                            <div class="col-md-4 form-group">
-                                <label>Program Description:</label>
-                                <textarea class="form-control" name="description" formControlName="description"
-                                    [ngClass]="{errmsg: !program.controls['description'].valid && submitted}" required></textarea>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -146,31 +166,39 @@
                         <div class="panel-body">
                             <div class="col-md-4 form-group">
                                 <label for="sel1">Select program Admin:</label>
-                                <select class="form-control" id="sel1" formControlName="program_admin" [ngClass]="{errmsg: !program.controls['program_admin'].valid && submitted}">
+                                <select class="form-control" id="sel1" formControlName="program_admin"
+                                    [ngClass]="{errmsg: !program.controls['program_admin'].valid && submitted}">
                                     <option [value]=" "> </option>
-                                    <option *ngFor="let program_admin of datas.users.program_admin" [value]="program_admin.id">{{program_admin.full_name}}</option>
+                                    <option *ngFor="let program_admin of datas.users.program_admin"
+                                        [value]="program_admin.id">{{program_admin.full_name}}</option>
                                 </select>
                             </div>
                             <div class="col-md-4 form-group">
                                 <label for="sel1">Select program Director:</label>
-                                <select class="form-control" id="sel1" formControlName="program_director" [ngClass]="{errmsg: !program.controls['program_director'].valid && submitted}">
+                                <select class="form-control" id="sel1" formControlName="program_director"
+                                    [ngClass]="{errmsg: !program.controls['program_director'].valid && submitted}">
                                     <option [value]=" "></option>
-                                    <option *ngFor="let program_director of datas.users.program_director" [value]="program_director.id">{{program_director.full_name}}</option>
+                                    <option *ngFor="let program_director of datas.users.program_director"
+                                        [value]="program_director.id">{{program_director.full_name}}</option>
                                 </select>
                             </div>
                             <div class="col-md-4 form-group">
                                 <label for="sel1">Select Application manager:</label>
-                                <select class="form-control" id="sel1" formControlName="application_manager" [ngClass]="{errmsg: !program.controls['application_manager'].valid && submitted}">
+                                <select class="form-control" id="sel1" formControlName="application_manager"
+                                    [ngClass]="{errmsg: !program.controls['application_manager'].valid && submitted}">
                                     <option [value]=" "></option>
-                                    <option *ngFor="let application_manager of datas.users.application_manager" [value]="application_manager.id">{{application_manager.full_name}}</option>
+                                    <option *ngFor="let application_manager of datas.users.application_manager"
+                                        [value]="application_manager.id">{{application_manager.full_name}}</option>
                                 </select>
                             </div>
                             <div class="col-md-4 form-group">
                                 <label for="sel1">Select contract manager:</label>
-                                <select class="form-control" id="sel1" formControlName="contract_manager" [ngClass]="{errmsg: !program.controls['contract_manager'].valid && submitted}"
+                                <select class="form-control" id="sel1" formControlName="contract_manager"
+                                    [ngClass]="{errmsg: !program.controls['contract_manager'].valid && submitted}"
                                     required>
                                     <option [value]=" "> </option>
-                                    <option *ngFor="let contract_manager of datas.users.contract_manager" [value]="contract_manager.id">{{contract_manager.full_name}}</option>
+                                    <option *ngFor="let contract_manager of datas.users.contract_manager"
+                                        [value]="contract_manager.id">{{contract_manager.full_name}}</option>
                                 </select>
                             </div>
                         </div>
@@ -178,9 +206,11 @@
                 </div>
             </div>
             <div class="col-md-12 text-center">
-                    <button class="btn btn-success" type="submit"><i class="glyphicon glyphicon-floppy-saved"></i> {{!program.value.id? 'Save':'Update'}}</button>
-                    <p style="color:red;" *ngIf="!program.controls.valid && submitted">Please fill up the following fields</p>
-                </div>
+                <button class="btn btn-success" type="submit"><i class="glyphicon glyphicon-floppy-saved"></i>
+                    {{!program.value.id? 'Save':'Update'}}</button>
+                <p style="color:red;" *ngIf="!program.controls.valid && submitted">Please fill up the following fields
+                </p>
+            </div>
 
             <div class="row">
                 <div class="panel panel-default">
@@ -204,7 +234,9 @@
 
                                         <td>{{item.question}}</td>
 
-                                        <td><button class="btn btn-danger" type="button" (click)="deleteappques(item,i)"><i class="glyphicon glyphicon-trash"></i> Remove</button></td>
+                                        <td><button class="btn btn-danger" type="button"
+                                                (click)="deleteappques(item,i)"><i
+                                                    class="glyphicon glyphicon-trash"></i> Remove</button></td>
 
 
 
@@ -237,7 +269,8 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let startup of displayallques;let i = index" style="cursor: pointer; ">
-                                        <td><input class="checkbox" type="checkbox" (change)="setvalues($event.target.checked,startup)"></td>
+                                        <td><input class="checkbox" type="checkbox"
+                                                (change)="setvalues($event.target.checked,startup)"></td>
                                         <td>{{startup.question}}</td>
 
 
@@ -249,7 +282,8 @@
                             </table>
                         </div>
                         <div class="col-md-12">
-                            <button class="btn btn-success" type="button" (click)="updateApplicationQuestions()"><i class="glyphicon glyphicon-floppy-saved"></i> Update
+                            <button class="btn btn-success" type="button" (click)="updateApplicationQuestions()"><i
+                                    class="glyphicon glyphicon-floppy-saved"></i> Update
                                 Program Questions</button>
                         </div>
                     </div>
@@ -288,7 +322,7 @@
                     </div>
                 </div>
             </div> -->
-            
+
         </form>
     </div>
 
@@ -450,13 +484,15 @@
                         </div>
                         <div class="col-md-12">
                             <h2 class="page-heading">Application registration questions</h2>
-                            <div class="col-md-12" *ngFor="let app_que of reviewAndSubmit.application_questions; let i = index">
+                            <div class="col-md-12"
+                                *ngFor="let app_que of reviewAndSubmit.application_questions; let i = index">
                                 <label>Question No: {{i + 1}} </label>
                                 <p>{{app_que.question}}</p>
                             </div>
                         </div>
                         <div class="col-md-12 text-center">
-                            <button class="btn btn-success" (click)="onSubmitProgramForms()"><i class="glyphicon-floppy-saved"></i> Submit</button>
+                            <button class="btn btn-success" (click)="onSubmitProgramForms()"><i
+                                    class="glyphicon-floppy-saved"></i> Submit</button>
                         </div>
                     </div>
                 </div>
