@@ -22,7 +22,8 @@ export class SitedashboardComponent implements OnInit {
   programChart: any;
   chartInstance: any = {};
   window_location: any;
-  public user_details: any[];
+  role:string = ""
+  public user_details: any = {};
 
   constructor(private apiCom: ApiCommunicationService,
               private cookieService: CookieService,
@@ -46,6 +47,8 @@ export class SitedashboardComponent implements OnInit {
          }
         console.log("success!", data);
         this.user_details = data;
+        this.role = this.user_details.roles[0].name
+        console.log("role",this.role)
         // if(this.user_details.role[0].user_role_type){}
     }, 
       error => console.error("couldn't post because", error)

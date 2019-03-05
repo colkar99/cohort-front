@@ -29,12 +29,13 @@
     </div>
     <div id="navbar_admin" class="collapse navbar-collapse">
       <ul class="nav navbar-nav ">
-        <li><a routerLink="user">User Module</a></li>
-        <li><a routerLink="program">Programs Module</a></li>
-        <li><a routerLink="framework">FrameWork Module</a></li>
-        <li><a routerLink="program-controls">Program Control</a></li>
-        <li><a routerLink="startups-by-programs">Startup Profiles</a></li>
-        <li><a routerLink="program-sessions">Program Sessions</a></li>
+        <li *ngIf="role == 'site_admin'"><a routerLink="user">User Module</a></li>
+        <li *ngIf="role == 'contract_manager'"><a routerLink="contract-manager">Contract Manager</a></li>
+        <li *ngIf="role == 'site_admin' ||role == 'program_admin' ||role == 'program_director'"><a routerLink="program">Programs Module</a></li>
+        <li *ngIf="role == 'site_admin' ||role == 'program_admin' ||role == 'program_director'"><a routerLink="framework">FrameWork Module</a></li>
+        <li *ngIf="role == 'site_admin' ||role == 'program_admin' ||role == 'program_director'||role == 'application_manager'"><a routerLink="program-controls">Program Control</a></li>
+        <li *ngIf="role != 'contract_manager'"><a routerLink="startups-by-programs">Startup Profiles</a></li>
+        <li *ngIf="role == 'site_admin' ||role == 'program_admin' ||role == 'program_director'"><a routerLink="program-sessions">Program Sessions</a></li>
         <!-- <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -56,12 +57,12 @@
         <button class="btn btn-default btn-block dropdown-toggle"  type="button" data-toggle="dropdown">Menu
         <span class="caret"></span></button>
         <ul class="dropdown-menu text-center" style="width:100%;text-align: center;">
-            <li><a routerLink="user" >User Module</a></li>
-            <li><a routerLink="program" >Programs Module</a></li>
-            <li><a routerLink="framework" >FrameWork Module</a></li>
-            <li><a routerLink="program-controls" >Program Control</a></li>
-            <li><a routerLink="startups-by-programs" >Startup Profiles</a></li>
-            <li><a routerLink="program-sessions">Program Sessions</a></li>
+          <li *ngIf="role == 'site_admin'"><a routerLink="user">User Module</a></li>
+          <li *ngIf="role == 'site_admin' ||role == 'program_admin' ||role == 'program_director'"><a routerLink="program">Programs Module</a></li>
+          <li *ngIf="role == 'site_admin' ||role == 'program_admin' ||role == 'program_director'"><a routerLink="framework">FrameWork Module</a></li>
+          <li *ngIf="role == 'site_admin' ||role == 'program_admin' ||role == 'program_director'||role == 'application_manager'"><a routerLink="program-controls">Program Control</a></li>
+          <li *ngIf="role != 'contract_manager'"><a routerLink="startups-by-programs">Startup Profiles</a></li>
+          <li *ngIf="role == 'site_admin' ||role == 'program_admin' ||role == 'program_director'"><a routerLink="program-sessions">Program Sessions</a></li>
         </ul>
     </div>
 </div>

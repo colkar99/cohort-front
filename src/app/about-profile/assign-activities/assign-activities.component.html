@@ -20,7 +20,7 @@
             <span >{{course.pass_metric}},</span>
           </div>
           <div class="col-md-6">
-            <span>CheckList</span>
+            <span><strong>CheckList</strong></span>
             <div *ngFor="let act of course.checklists">
              
                 <span [ngStyle]="{'color': act.is_passed? 'green':'red'}">{{act.name}}</span>
@@ -38,7 +38,7 @@
       </div>
       <div class="col-md-12">
         <form>
-          <div class="col-md-4 form-group">
+          <div class="col-md-4 col-sm-12 col-xs-12 form-group">
             <label>Target Date</label>
             <input  class="form-control" type="date" name="target_date"
               [(ngModel)]="course.target_date">
@@ -46,7 +46,7 @@
           <div class="col-md-4">
 
           </div>
-          <div class="col-md-4">
+          <div class="col-md-4 col-sm-12 col-xs-12">
             <button *ngIf="course.is_assigned == false" class="btn btn-primary pull-right"
               (click)="viewMaterials(course)" routerLink="/admin/dashboard/assign-activities/view-materials">View
               Materials</button>
@@ -57,7 +57,7 @@
              >Send Remainder
               </button>
           </div>
-          <div class="col-md-12 alert alert-danger" *ngIf="course.is_assigned == true">
+          <div class="col-md-12 col-xs-12 col-sm-12 alert alert-danger" *ngIf="course.is_assigned == true">
             <p>This Course is already assigned to this startup</p>
           </div>
         </form>
