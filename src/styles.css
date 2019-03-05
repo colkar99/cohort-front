@@ -16,7 +16,7 @@ input.ng-invalid.ng-touched
    border-color:red !important;
 }
 
-input,textarea,select {
+input[type="text"], input[type="email"],input[type="password"],input[type="number"],input[type="date"],textarea,select {
     box-shadow: 0px 2px 0px 0px rgba(106,155,176,1) !important;
 }
 

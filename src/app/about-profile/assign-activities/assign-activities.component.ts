@@ -52,12 +52,12 @@ export class AssignActivitiesComponent implements OnInit {
         console.log("courses1", data);
         this.courses = data;
         let date = new Date();
-        console.log(this.courses[1].target_date >= new Date().toISOString().slice(0, 10))
+        console.log( new Date().toISOString().slice(0, 10) >=this.courses[1].target_date )
         debugger
         
         
         for(let i = 0;i<this.courses.length;i++){
-          if(this.courses[i].target_date >= new Date().toISOString().slice(0, 10)){
+          if( new Date().toISOString().slice(0, 10) >=this.courses[i].target_date){
             this.courses[i].ex_date = true;
           }else{
             this.courses[i].ex_date = false;

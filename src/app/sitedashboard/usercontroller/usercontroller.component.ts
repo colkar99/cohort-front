@@ -15,7 +15,7 @@ declare var $: any;
 
 export class UsercontrollerComponent implements OnInit {
 
-    userDatas: Array<any> = [];
+    userDatas: Array<any> = []
     auth: string;
     loggedIn: boolean;
     user: any = {};
@@ -118,6 +118,7 @@ export class UsercontrollerComponent implements OnInit {
                     this.showForm = true;
                     this.createUserForm();
                     this.getRoles(this.userDatas[0].user.user_type);
+                   
                 },
                 error => console.error("couldn't post because", error)
             );
@@ -241,5 +242,30 @@ export class UsercontrollerComponent implements OnInit {
             return
         }
 
+    }
+    defaultprevileges(){
+        let url = "permission/create-default-permissions"
+        let params = JSON.stringify({user_id:this.user.value.user.id,role_id:this.userDatas[0].roles[0].id})
+        console.log(this.roles,params)
+        this.apiService.putDataWithToken(url,params,this.auth).subscribe((res)=>{
+            res;
+            console.log("response",res)
+            let data = {user_id:this.user.value.user.id}
+            this.apiService.postDataWithToken('get-user-related-data', JSON.stringify(data), this.auth)
+            .subscribe(
+                data => {
+                    console.log(data[0]);
+                    this.userDatas = data;
+                    this.privileges = data[0].privileges;
+                    this.modules = data[0].modules;
+                    // this.user = data[0].user;
+                    this.showForm = true;
+                    this.createUserForm();
+                    this.getRoles(this.userDatas[0].user.user_type);
+                   
+                },
+                error => console.error("couldn't post because", error)
+            );
+        })
     }
 }
