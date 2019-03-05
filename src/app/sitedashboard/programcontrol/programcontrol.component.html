@@ -79,6 +79,7 @@
                                 <tr>
                                     <th>Select</th>
                                     <th>Startup Name</th>
+                                    <th>Email</th>
                                     <th>Status</th>
                                     <th>Status description</th>
                                     <th>Score</th>
@@ -90,6 +91,7 @@
                                     <td><input class="checbox" type="checkbox"
                                             (change)="setarray($event.srcElement.checked,startup)"></td>
                                     <td>{{startup.startup_name}}</td>
+                                    <td>{{startup.founder_email}}</td>
                                     <td>{{startup.application_status}}</td>
                                     <td>{{startup.app_status_description}}</td>
                                     <td>{{startup.score}}</td>
