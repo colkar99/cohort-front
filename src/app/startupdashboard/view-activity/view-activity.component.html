@@ -6,18 +6,18 @@
       <div class="col-md-12">
         
         <div class="col-md-4">
-          <span style="font-size: 20px;" class="control-span">#<p [innerHTML]="course.title"></p></span>
-          <h5 > # <span [innerHTML]="act.name" *ngFor="let act of course.activities"></span></h5>
+          <span style="font-size: 20px;" class="control-span"><p [innerHTML]="course.title"></p></span>
+          <h5 ><span [ngStyle]="{'color': act.startup_responsed? 'green':'red'}" [innerHTML]="act.name" *ngFor="let act of course.activities"></span></h5>
         </div>
         <div class="col-md-8">
           <div class="col-md-6">
             <span >{{course.pass_metric}},</span>
           </div>
           <div class="col-md-6">
-            <span>CheckList</span>
+            <span><strong>CheckList</strong></span>
             <div *ngFor="let act of course.checklists">
              
-                <span>{{act.name}}</span>
+                <span>{{act.name}}</span><i *ngIf="act.is_passed" class="glyphicon glyphicon-ok" style="color:green"></i>
               
             </div>
 

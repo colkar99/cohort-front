@@ -11,11 +11,11 @@
             <h2>Program Session Details</h2>
             <div class="col-md-6 form-group">
               <label>Title</label>
-              <textarea required class="form-control" type="text" name="title" [(ngModel)]="session.title"></textarea>
+              <textarea required class="form-control" name="title" [(ngModel)]="session.title"></textarea>
             </div>
             <div class="col-md-6 form-group">
               <label>Description</label>
-              <textarea class="form-control" type="text" name="description"
+              <textarea class="form-control"  name="description"
                 [(ngModel)]="session.description"></textarea>
             </div>
             <div class="col-md-6 form-group">
@@ -49,7 +49,7 @@
 
           </div>
           <div class="col-md-12">
-            <button class="btn btn-success pull-right" (click)="updateForm()"><i
+            <button class="btn btn-success pull-right" [disabled]="!Sessionscreate.valid" (click)="Sessionscreate.valid && updateForm()"><i
                 class="glyphicon glyphicon-floppy-saved"></i> {{!session.id?
                             'Next':'Update'}}</button>
             <button *ngIf="session.id != (null && undefined && 0)" class="btn btn-danger pull-right"

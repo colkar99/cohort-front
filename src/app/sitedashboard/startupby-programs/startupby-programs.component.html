@@ -57,6 +57,7 @@
                             <thead>
                                 <tr>
                                     <th>Startup Name</th>
+                                    <th>Email</th>
                                     <th>Status</th>
                                     <th>Status description</th>
                                     <th>Score</th>
@@ -67,6 +68,7 @@
                                 <tr *ngFor="let startup of allStartups;let i = index" style="cursor: pointer; ">
 
                                     <td>{{startup.startup_name}}</td>
+                                    <td>{{startup.email}}</td>
                                     <td>{{startup.startup_registration.application_status}}</td>
                                     <td>{{startup.startup_registration.app_status_description}}</td>
                                     <td>{{startup.startup_registration.score}}</td>

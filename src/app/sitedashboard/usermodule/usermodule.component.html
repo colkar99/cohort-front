@@ -100,7 +100,7 @@
               <div class="col-md-4" *ngIf="filterfeild != 'user_type'">
                 <div class="form-group">
                   <label>Value</label>
-                  <input [disabled]="filterfeild == ('' || null || undefined)" class="form-control" name="filtervalue"
+                  <input type="text" [disabled]="filterfeild == ('' || null || undefined)" class="form-control" name="filtervalue"
                     #or [(ngModel)]="filtervalue" (ngModelChange)="filtervalues(or.value)">
                 </div>
               </div>

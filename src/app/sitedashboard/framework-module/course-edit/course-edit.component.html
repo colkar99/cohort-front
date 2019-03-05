@@ -39,81 +39,98 @@
                                 [(ngModel)]="course.pass_metric"></textarea>
                         </div>
                     </div>
-                    <div *ngIf="course.id != (null && undefined && 0)">
-                        <div class="row">Activities <button type="button" class="btn btn-info pull-right"
-                                (click)="addactivities()"><i class="glyphicon glyphicon-plus-sign"></i> Add</button>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 col-xs-12 table-responsive">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Description</th>
-                                            <th>Placeholder</th>
-                                            <th>Order</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let item of course.activities;let i = index">
-                                            <td [innerHTML]="item.name"></td>
-                                            <td [innerHTML]="item.description"></td>
-                                            <td>{{item.placeholder}}</td>
-                                            <td>{{item.order}}</td>
-                                            <td><button type="button" class="btn btn-default"
-                                                    (click)="viewactivities(item)"><i
-                                                        class="glyphicon glyphicon-eye-open"></i> View</button><button
-                                                    type="button" class="btn btn-danger"
-                                                    (click)="deleteactivities(item.id,i)"><i
-                                                        class="glyphicon glyphicon-trash"></i> Delete</button></td>
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <div class="row">Checklists <button type="button" class="btn btn-info pull-right"
-                                (click)="addchecklists()"><i class="glyphicon glyphicon-plus-sign"></i> Add</button>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 col-xs-12 table-responsive">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Description</th>
-
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let item of course.checklists;let i = index">
-                                            <td>{{item.name}}</td>
-                                            <td>{{item.description}}</td>
-
-                                            <td><button type="button" class="btn btn-default"
-                                                    (click)="viewchecklists(item)"><i
-                                                        class="glyphicon glyphicon-eye-open"></i> View</button><button
-                                                    type="button" class="btn btn-danger"
-                                                    (click)="deletechecklists(item.id,i)"><i
-                                                        class="glyphicon glyphicon-trash"></i> Delete</button></td>
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                    </div>
                     <div class="row">
                         <button class="btn btn-success pull-right" (click)="updateForm()"><i
                                 class="glyphicon glyphicon-floppy-saved"></i> {{!course.id?
-                            'Next':'Update'}}</button>
+                                'Next':'Update Course'}}</button>
                         <button *ngIf="course.id != (null && undefined && 0)" class="btn btn-danger pull-right"
-                            (click)="deleteform()"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+                            (click)="deleteform()"><i class="glyphicon glyphicon-trash"></i> Delete Course</button>
                     </div>
+                    <br>
+                    <div class="row" *ngIf="course.id != (null && undefined && 0)">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" style="height:57px;">List of Activities <button type="button"
+                                    class="btn btn-info pull-right" (click)="addactivities()"><i
+                                        class="glyphicon glyphicon-plus-sign"></i> Add Activities</button></div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12 col-xs-12 table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Description</th>
+                                                    <th>Placeholder</th>
+                                                    <th>Order</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let item of course.activities;let i = index">
+                                                    <td [innerHTML]="item.name"></td>
+                                                    <td [innerHTML]="item.description"></td>
+                                                    <td>{{item.placeholder}}</td>
+                                                    <td>{{item.order}}</td>
+                                                    <td><button type="button" class="btn btn-default"
+                                                            (click)="viewactivities(item)"><i
+                                                                class="glyphicon glyphicon-eye-open"></i>
+                                                            View Activities</button><button type="button" class="btn btn-danger"
+                                                            (click)="deleteactivities(item.id,i)"><i
+                                                                class="glyphicon glyphicon-trash"></i> Delete Activities</button>
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading" style="height:57px;">List of Checklists <button type="button"
+                                    class="btn btn-info pull-right" (click)="addchecklists()"><i
+                                        class="glyphicon glyphicon-plus-sign"></i> Add</button></div>
+                                        <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-12 col-xs-12 table-responsive">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Name</th>
+                                                        <th>Description</th>
+
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let item of course.checklists;let i = index">
+                                                        <td>{{item.name}}</td>
+                                                        <td>{{item.description}}</td>
+
+                                                        <td><button type="button" class="btn btn-default"
+                                                                (click)="viewchecklists(item)"><i
+                                                                    class="glyphicon glyphicon-eye-open"></i>
+                                                                View Checklist</button><button type="button"
+                                                                class="btn btn-danger"
+                                                                (click)="deletechecklists(item.id,i)"><i
+                                                                    class="glyphicon glyphicon-trash"></i>
+                                                                Delete Checklist</button></td>
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                
+
 
                 </form>
                 <app-error-display></app-error-display>
@@ -131,18 +148,16 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <span class="label">Name</span>
-                                            <ckeditor 
-                                            formControlName="name" debounce="500"
-                                                [readonly]="false" [config]="ckEditorConfig">
+                                            <ckeditor formControlName="name" debounce="500" [readonly]="false"
+                                                [config]="ckEditorConfig">
                                             </ckeditor>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <span class="label">Description</span>
-                                            <ckeditor 
-                                            formControlName="description" debounce="500"
-                                                [readonly]="false" [config]="ckEditorConfig">
+                                            <ckeditor formControlName="description" debounce="500" [readonly]="false"
+                                                [config]="ckEditorConfig">
                                             </ckeditor>
                                             <!-- <textarea class="form-control" type="text" formControlName="description"
                                                 ngModel></textarea> -->
