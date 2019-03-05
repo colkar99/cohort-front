@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
             if (data.roles[0].name == "program_admin") this.router.navigate(['admin/dashboard']);
             if (data.roles[0].name == "program_director") this.router.navigate(['admin/dashboard']);
             if (data.roles[0].name == "application_manager") this.router.navigate(['admin/dashboard']);
-            if (data.roles[0].name == "contract_manager") this.router.navigate(['/dashboard/contract-manager']);
+            if (data.roles[0].name == "contract_manager") this.router.navigate(['admin/dashboard']);
           } else if (data.user_type == "startup") {
             this.router.navigate(['startup/dashboard/profile']);
           } else if (data.user_type == "mentor") {

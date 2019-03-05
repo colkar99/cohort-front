@@ -30,6 +30,7 @@
     <div id="navbar_admin" class="collapse navbar-collapse">
       <ul class="nav navbar-nav ">
         <li *ngIf="role == 'site_admin'"><a routerLink="user">User Module</a></li>
+        <li *ngIf="role == 'contract_manager'"><a routerLink="contract-manager">Contract Manager</a></li>
         <li *ngIf="role == 'site_admin' ||role == 'program_admin' ||role == 'program_director'"><a routerLink="program">Programs Module</a></li>
         <li *ngIf="role == 'site_admin' ||role == 'program_admin' ||role == 'program_director'"><a routerLink="framework">FrameWork Module</a></li>
         <li *ngIf="role == 'site_admin' ||role == 'program_admin' ||role == 'program_director'||role == 'application_manager'"><a routerLink="program-controls">Program Control</a></li>

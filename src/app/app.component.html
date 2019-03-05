@@ -24,7 +24,7 @@
         <li *ngIf="this.loggedIn && this.user_type == 'startup'" routerLink="startup/dashboard/profile"><a>Profile</a>
         </li>
         <li *ngIf="this.loggedIn && this.user_type == 'mentor'" routerLink="mentor/dashboard"><a>Profile</a></li>
-        <li *ngIf="this.loggedIn && this.user_type == 'contract_manager'" routerLink="dashboard/contract-manager">
+        <li *ngIf="this.loggedIn && this.user_type == 'contract_manager'" routerLink="admin/dashboard" (click)="showChart()">
           <a>Dashboard
           </a></li>
 

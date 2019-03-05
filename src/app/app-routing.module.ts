@@ -74,7 +74,10 @@ const routes: Routes = [
       { path: 'program-sessions/create-program-session', component: CreateProgramSessionsComponent },
       { path: 'program-sessions/edit-program-session/:id', component: CreateProgramSessionsComponent },
       { path: 'assign-activities/view-materials', component: ViewMaterialsComponent },
-      { path: 'review-activities/view-materials', component: ViewMaterialsComponent }
+      { path: 'review-activities/view-materials', component: ViewMaterialsComponent },
+      { path: 'contract-manager', component: ContractManagerComponent },
+      { path: 'contract-manager/:id', component: ContractFormComponent },
+      { path: 'contract-manager/edit/:id', component: ContractformEditComponent },
     ]
   },
   {
@@ -93,9 +96,9 @@ const routes: Routes = [
   { path: 'mentor/dashboard', component: MentordashboardComponent },
   { path: 'live-programs', component: ProgramsComponent },
   { path: 'live-programs/registration/:id', component: ProgramsRegistrationComponent },
-  { path: 'dashboard/contract-manager', component: ContractManagerComponent },
-  { path: 'dashboard/contract-manager/:id', component: ContractFormComponent },
-  { path: 'dashboard/contract-manager/edit/:id', component: ContractformEditComponent },
+  // { path: 'dashboard/contract-manager', component: ContractManagerComponent },
+  // { path: 'dashboard/contract-manager/:id', component: ContractFormComponent },
+  // { path: 'dashboard/contract-manager/edit/:id', component: ContractformEditComponent },
   { path: 'current-state-form', component: CurrentStateFormComponent },
   { path: 'current-state-form/:id', component: CurrentStateFormComponent },
   { path: 'contract-form-sign', component: ContractformSignComponent },
