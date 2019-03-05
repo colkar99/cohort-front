@@ -44,8 +44,8 @@ export class StartupRoadmapComponentadmin implements OnInit {
       let url = "program/startup/get-road_map-for-startup-admin"
       let params = JSON.stringify({ startup_profile_id: this.startupdata.id, road_map_id: this.roadmap.id })
       this.apiCom.postDataWithToken(url, params, this.authToken).subscribe((res) => {
-        res;
-        this.roadmap = res
+        this.roadmap = res;
+        console.log(this.roadmap);
       })
     }
   }

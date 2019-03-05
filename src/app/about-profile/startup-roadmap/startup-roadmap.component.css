@@ -28,8 +28,30 @@
    border:4px solid;
    
 }
+.circle2{
+  position: absolute;
+  width: 68px;
+  height: 64px;
+  border-radius: 100%;
+  background-color:#7cccf9;
+  overflow: hidden;
+  border-color: lightblue;
+  /* border:4px solid; */
+  font-weight: 600;
+  font-size: 320%;
+  color: white;
+  bottom: 100%;
+  right: 102px;
+}
 
-
+@media only screen and (min-width: 728px) { 
+  /* .circle2{
+    right: 101px;
+    font-size: 212%;
+    width: 46px;
+    height: 44px;
+  } */
+}
 .text_circle {
    font-size: 20px;
    margin:20px;
@@ -94,6 +116,7 @@
    .child_circle3{
      left: 54%;bottom: -81px;position: absolute;
    }
+
 }
 
 @media (max-width: 575.98px) { 
@@ -109,6 +132,16 @@
  .child1_circle3{
    left: 87%;bottom: -84px;position: absolute;
  }
+ .circle2{
+  right: auto;
+  font-size: 253%;
+  width: 52px;
+  height: 48px;
+  top: 0;
+}
+/* .milestone-div{
+  padding-bottom: 28px;
+} */
 }
 
 @media (min-width: 600px) {
@@ -121,4 +154,5 @@
 .child1_circle3{
  left: 61%;bottom: -82px;position: absolute;
 }
+
 }

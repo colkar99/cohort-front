@@ -1,4 +1,4 @@
-<div class="col-md-12" >
+<!-- <div class="col-md-12" >
     <h1 class="text-center">  Roadmap</h1>
 
 
@@ -41,7 +41,6 @@
     <div class="modal fade" id="roadmpdetails" role="dialog" #roadmpdetails>
         <div class="modal-dialog modal-lg">
         
-          <!-- Modal content-->
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" (click)="closeroadmap()" >&times;</button>
@@ -77,7 +76,6 @@
     <div class="modal fade" id="milestone" role="dialog" #milestone>
         <div class="modal-dialog modal-lg">
         
-          <!-- Modal content-->
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" (click)="closemilestone()" >&times;</button>
@@ -107,6 +105,48 @@
           
         </div>
       </div>
-     
-
 </div>
+ -->
+
+<div class="row">
+  <div class="col-md-12 text-center"><h1>Road Map</h1></div>
+  <div class="col-md-12" style="background: #b7cdf8;margin-bottom: 30px;" >
+      <div class="colo-md-12 text-center">
+        <h2 style="color:grey">Main Goal</h2>
+          <h4><strong>{{roadmap.goal}}</strong></h4>
+          <hr>
+          <label style="color:grey">Goal description</label>
+          <h5>{{roadmap.description}}</h5>
+          <hr>
+          <label style="color:grey">Goal strategy</label>
+          <p>{{roadmap.strategy}}</p>
+        </div>
+  </div>
+  <div class="col-md-12" style="width:100%;position: relative;"><hr style="border: 10px solid #9696c3;"></div>
+  <div class="col-md-4 col-sm-4 text-center" *ngFor="let item of roadmap.milestones;let i = index">
+    <div class="col-md-2 col-md-offset-5 col-sm-2 col-sm-offset-5 circle2" >{{i + 1}}</div>
+    <div class="col-md-12 col-sm-12" style="background: #c4aedd;position:static;">
+      <p style="font-size: 15px;">#{{i + 1}} {{item.month}} month target</p>
+      <div class="colo-md-12 col-sm-12">
+          <label style="color:grey">Milestone name</label>
+        <h3><strong>{{item.name}}</strong></h3>
+        <hr>
+        <label style="color:grey">Milestone description</label>
+        <h4>{{item.description}}</h4>
+        <hr>
+        <label style="color:grey">Milestone metric</label>
+        <p>{{item.metric}}</p>
+        <hr>
+        <div *ngFor="let resource of item.resources; let i = index">
+          <label style="color:grey">#{{i + 1}} Resource requested</label>
+          <p><strong>Resource type: </strong>{{resource.resource_type}}</p>
+          <p><strong>Resource Count: </strong>{{resource.no_of_resource}}</p>
+          <p><strong>Date needed: </strong>{{resource.date_needed}}</p>
+          <p><strong>Hours needed: </strong>{{resource.hours_needed}}</p>
+          <p><strong>Payment mode: </strong>{{resource.payment_mode}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
