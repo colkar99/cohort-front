@@ -1,0 +1,249 @@
+<div class="container">
+  <div class="row" *ngIf="user.user_type != 'mentor'">
+    <button *ngIf="user.user_type == 'site'" type="button" class="btn btn-default" routerLink="/admin/dashboard"><i
+        class="glyphicon glyphicon-arrow-left"></i>Back</button>
+    <button *ngIf="user.user_type == 'startup'" type="button" class="btn btn-default"
+      routerLink="/startup/dashboard/profile"><i class="glyphicon glyphicon-arrow-left"></i>Back</button>
+  </div>
+  <br>
+  <div class="row panel panel-default">
+    <div class="col-md-3">
+      <br>
+      <div class="col-md-12" style="height:250px;border:1px solid;">
+        <div class="bg" (click)="changepic()">
+          <img src="{{imageurl}}" alt="" style="height:200px;width: 200px;">
+          <div class="overlay">
+            <h4></h4>
+            <p>Change Picture</p>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <h4>Welcome <strong>{{user.full_name}}</strong></h4>
+        </div>
+      </div>
+
+      <div class="col-md-12" style="padding-top:10px;">
+        <button type="submit" class="btn btn-default" (click)="changepwd()"><i
+            class="glyphicon glyphicon-pencil"></i>Change Password</button>
+      </div>
+      <div class="modal fade" id="passchange" role="dialog" #passchange>
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" (click)="closepwd()">&times;</button>
+              <h4 class="modal-title">Reset Password</h4>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label>Email</label>
+                <input class="form-control" type="email" name="resetmail" [(ngModel)]="resetmail">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" (click)="submitpwd()">Send Mail</button>
+              <button type="button" class="btn btn-default" (click)="closepwd()">Close</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <h2 class="text-center">My Account</h2>
+      <h5 class="text-center">View and edit your personal info below.</h5>
+      <br>
+      <div class="row">
+        <form #EditProfile="ngForm">
+          <div class="col-md-12">
+            <div class="col-md-6 form-group" style="display: none;">
+              <label for="email">Upload_image</label>
+              <input class="form-control" type="file" id="user_main_image" placeholder="user_main_image"
+                name="user_main_image" type="file" accept="image/*" (change)="handleInputChange($event)" />
+            </div>
+            <h2>Personal Info</h2>
+            <div class="col-md-6 form-group">
+              <label>First Name</label>
+              <input type="text" class="form-control" name="first_name" [(ngModel)]="user.first_name">
+            </div>
+            <div class="col-md-6 form-group">
+              <label>Last Name</label>
+              <input type="text" class="form-control" name="last_name" [(ngModel)]="user.last_name">
+            </div>
+            <div class="col-md-6 form-group">
+              <label>Email</label>
+              <input type="email" class="form-control" name="email" [(ngModel)]="user.email">
+            </div>
+            <div class="col-md-6 form-group">
+              <label>Phone</label>
+              <input type="number" class="form-control" name="phone_number" [(ngModel)]="user.phone_number">
+            </div>
+            <div class="col-md-12 form-group">
+              <label>User Type</label>
+              <input disabled type="text" class="form-control" name="user_type" [(ngModel)]="user.user_type">
+            </div>
+            <h2>Social Networks</h2>
+            <div class="col-md-6 form-group">
+              <label>LinkedIn Profile</label>
+              <input type="text" class="form-control" name="linkedin_link" [(ngModel)]="user.linkedin_link">
+            </div>
+            <div class="col-md-6 form-group">
+              <label>Facebook Profile</label>
+              <input type="email" class="form-control" name="facebook_link" [(ngModel)]="user.facebook_link">
+            </div>
+            <div class="col-md-6 form-group">
+              <label>Skype</label>
+              <input type="text" class="form-control" name="skype_id" [(ngModel)]="user.skype_id">
+            </div>
+            <div class="col-md-6 form-group">
+              <label>Other Links(to add multiple links use , b/w each links)</label>
+              <input type="text" class="form-control" name="other_links" [(ngModel)]="user.other_links">
+            </div>
+            <h2>Address</h2>
+            <div class="col-md-6 form-group">
+              <label>Address 1</label>
+              <textarea class="form-control" name="address_line_1" [(ngModel)]="user.address_line_1"></textarea>
+            </div>
+            <div class="col-md-6 form-group">
+              <label>Address 2</label>
+              <textarea class="form-control" name="address_line_2" [(ngModel)]="user.address_line_2"></textarea>
+            </div>
+            <div class="col-md-6 form-group">
+              <label>City</label>
+              <input type="text" class="form-control" name="city" [(ngModel)]="user.city">
+            </div>
+            <div class="col-md-6 form-group">
+              <label>State</label>
+              <input type="text" class="form-control" name="state_province_region"
+                [(ngModel)]="user.state_province_region">
+            </div>
+            <div class="col-md-6 form-group">
+              <label>Country</label>
+              <input type="text" class="form-control" name="country" [(ngModel)]="user.country">
+            </div>
+            <div class="col-md-6 form-group">
+              <label>ZipCode / PostalCode</label>
+              <input type="text" class="form-control" name="zip_pincode_postalcode"
+                [(ngModel)]="user.zip_pincode_postalcode">
+            </div>
+            <h2>Additional Info</h2>
+            <div class="col-md-6 form-group">
+              <label>Commitments</label>
+              <textarea class="form-control" name="commitment" [(ngModel)]="user.commitment"></textarea>
+            </div>
+            <div class="col-md-6 form-group">
+              <label>Credentials</label>
+              <textarea class="form-control" name="credentials" [(ngModel)]="user.credentials"></textarea>
+            </div>
+            <div class="col-md-12 form-group">
+              <label>Designation</label>
+              <input type="text" class="form-control" name="designation" [(ngModel)]="user.designation">
+            </div>
+            <div *ngIf="user.mentor_user != (null && undefined)">
+              <h2>Mentor Details</h2>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <span class="label">Title</span>
+                  <textarea class="form-control" name="title" [(ngModel)]="user.mentor_user.title"></textarea>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <span class="label">Company</span>
+                  <textarea class="form-control" name="company" [(ngModel)]="user.mentor_user.company"></textarea>
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                <div class="form-group">
+                  <span class="label">Why Mentor?</span>
+                  <textarea class="form-control" name="why_mentor" placeholder="Describe yourself"
+                    [(ngModel)]="user.mentor_user.why_mentor"></textarea>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <span class="label">Startup Experience </span>
+                  <select class="form-control" name="startup_experience_level"
+                    [(ngModel)]="user.mentor_user.startup_experience_level">
+                    <option value="">---Select</option>
+                    <option value="Founded">FOUNDED</option>
+                    <option value="Fundraised">FUNDRAISED</option>
+                    <option value="Exited">EXITED</option>
+                    <option value="Invested">INVESTED</option>
+                    <option value="Advised">ADVISED</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <span class="label"> </span>
+                  <textarea class="form-control" name="startup_experience"
+                    placeholder="Describe your Startup Experience"
+                    [(ngModel)]="user.mentor_user.startup_experience"></textarea>
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                <div class="form-group">
+                  <span class="label">Area of Expertise </span>
+                  <select class="form-control" name="area_of_expertise"
+                    [(ngModel)]="user.mentor_user.area_of_expertise">
+                    <option value="">---Select</option>
+                    <option value="Growth">GROWTH</option>
+                    <option value="Product">PRODUCT</option>
+                    <option value="Operations">OPERATIONS</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <span class="label"> </span>
+                  <textarea class="form-control" name="expertise_expanded"
+                    placeholder="Describe your Startup Experience"
+                    [(ngModel)]="user.mentor_user.expertise_expanded"></textarea>
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                <label>Mentorship Type</label>
+                <div class="form-group">
+                  <div class="radio"><label class="control-label"><input type="radio" name="looking_for"
+                        value="I'd like to dedicate to one startup as a lead mentor"
+                        [(ngModel)]="user.mentor_user.looking_for">I'd
+                      like to dedicate to one startup as a lead mentor </label></div>
+                </div>
+                <div class="form-group">
+                  <div class="radio"><label class="control-label"><input type="radio" name="looking_for"
+                        value="I'd like to provide my specialized insight / expertise to many startups"
+                        [(ngModel)]="user.mentor_user.looking_for">I'd like to provide my specialized insight /
+                      expertise to
+                      many startups </label></div>
+                </div>
+
+                <!-- <div class="form-group">
+                      <span class="label">Mentorship type</span>
+                      <input class="radio" type="radio" name="looking_for"
+                        value="I'd like to dedicate to one startup as a lead mentor" [(ngModel)]="additonal.looking_for">I'd
+                      like to dedicate to one startup as a lead mentor
+                      <input class="radio" type="radio" name="looking_for"
+                        value="I'd like to provide my specialized insight / expertise to many startups"
+                        [(ngModel)]="additonal.looking_for">I'd like to provide my specialized insight / expertise to many
+                      startups
+    
+                    </div> -->
+              </div>
+            </div>
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-success" (click)="updateAccount()"><i
+                  class="glyphicon glyphicon-floppy-saved"></i>Update Account</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>

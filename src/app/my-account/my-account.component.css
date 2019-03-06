@@ -1,0 +1,59 @@
+.bg, .overlay {
+    text-align: center;
+    
+  }
+  img, .overlay {
+    transition: 0.3s all;
+    border-radius: 3px;
+  }
+  .bg {
+    float: left;
+    max-width: 31%;
+    position: relative;
+    margin: 0.5%;
+    padding-top: 5px;
+    padding-left: 10px;
+  }
+  .bg img {
+    width: 100%;
+    margin-bottom: -4px;
+    border-radius: 50%;
+  }
+  .bg .overlay {
+    position: absolute;
+    top: 0;
+    left: 9px;
+    bottom: 0;
+    width: 280%;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    opacity: 0;
+  }
+  .bg .overlay h2 {
+   
+    font-family: 'Droid Serif', serif;
+  }
+  .bg .overlay p {
+    font-family: 'Julius Sans One', sans-serif;
+  }
+  .bg:hover .overlay {
+    opacity: 1;
+  }
+  .bg:hover img {
+    -webkit-filter: blur(2px);
+    filter: blur(2px);
+  }
+
+  .label{
+    font-size: 14px;
+    color: black;
+    background-color: none; 
+  }
+
+  @media only screen and (max-width: 600px){
+    h4{
+      position: absolute;
+      top: 210px;
+    }
+  }

@@ -66,6 +66,7 @@ import { ViewMaterialsComponent } from './about-profile/view-materials/view-mate
 import { ViewActivityComponent } from './startupdashboard/view-activity/view-activity.component';
 import { CourseMaterialComponent } from './startupdashboard/course-material/course-material.component'
 import { CKEditorModule } from 'ng2-ckeditor';
+import { MyAccountComponent } from './my-account/my-account.component';
 export function provideConfig() {
   let config = new AuthServiceConfig([
     {
@@ -121,7 +122,8 @@ export function provideConfig() {
     StartupRoadmapComponentadmin,
     ViewMaterialsComponent,
     ViewActivityComponent,
-    CourseMaterialComponent
+    CourseMaterialComponent,
+    MyAccountComponent
   ],
   imports: [
     BrowserModule,
