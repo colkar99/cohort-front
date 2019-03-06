@@ -63,7 +63,7 @@ export class CourseEditComponent implements OnInit {
           { name: 'tools' },
           { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
           { name: 'styles' },
-          { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'] }, 
+          { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'] },
         ],
         // [
         //   { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
@@ -162,15 +162,19 @@ export class CourseEditComponent implements OnInit {
   }
 
   updateForm() {
+    if ((this.course.title && this.course.description && this.course.pass_metric) != "" && (this.course.title && this.course.description && this.course.pass_metric) != (null && undefined)) {
+      let url = "framework/course/create-and-update-course"
+      this.apiCom.postDataWithToken(url, JSON.stringify({ course: this.course }), this.authToken).subscribe((res) => {
+        res;
+        this.course = res;
+        this.errdisplay.openpopup("Success!!!", "Course created Successfully")
+      }, (err: HttpErrorResponse) => {
+        this.errdisplay.openpopup("Error!!!", err)
+      })
 
-    let url = "framework/course/create-and-update-course"
-    this.apiCom.postDataWithToken(url, JSON.stringify({ course: this.course }), this.authToken).subscribe((res) => {
-      res;
-      this.course = res;
-      this.errdisplay.openpopup("Success!!!", "Course created Successfully")
-    }, (err: HttpErrorResponse) => {
-      this.errdisplay.openpopup("Error!!!", err)
-    })
+    } else {
+      alert("Title,Description,Pass Metric are Mandatory")
+    }
 
   }
 
@@ -279,27 +283,32 @@ export class CourseEditComponent implements OnInit {
   }
   savechecklists(checklists) {
     let values = checklists.value
-    if (values.id == (null || undefined)) {
-      let url = "framework/course/create-update-checklist"
-      this.apiCom.postDataWithToken(url, JSON.stringify({ checklist: values, course_id: this.course.id }), this.authToken).subscribe((res) => {
-        res;
-        console.log("response", res)
-        this.course = res;
-        alert("Course Checklists Saved Successfully")
-        $("#checklistmodal").modal('hide')
-
-      })
-    } else {
-      let url = "framework/course/create-update-checklist"
-      this.apiCom.postDataWithToken(url, JSON.stringify({ checklist: values, course_id: this.course.id }), this.authToken).subscribe((res) => {
-        res;
-        console.log("response", res)
-        this.course = res;
-        alert("Course Activities and Checklists Updated Successfully")
-        $("#checklistmodal").modal('hide')
-
-      })
+    if(values.name != "" && values.name != (null && undefined)){
+      if (values.id == (null || undefined)) {
+        let url = "framework/course/create-update-checklist"
+        this.apiCom.postDataWithToken(url, JSON.stringify({ checklist: values, course_id: this.course.id }), this.authToken).subscribe((res) => {
+          res;
+          console.log("response", res)
+          this.course = res;
+          alert("Course Checklists Saved Successfully")
+          $("#checklistmodal").modal('hide')
+  
+        })
+      } else {
+        let url = "framework/course/create-update-checklist"
+        this.apiCom.postDataWithToken(url, JSON.stringify({ checklist: values, course_id: this.course.id }), this.authToken).subscribe((res) => {
+          res;
+          console.log("response", res)
+          this.course = res;
+          alert("Course Activities and Checklists Updated Successfully")
+          $("#checklistmodal").modal('hide')
+  
+        })
+      }
+    }else{
+      alert("Checklist Name is Mandatory")
     }
+    
   }
   saveActivities(checklistforms) {
     console.log("values", checklistforms)
@@ -309,27 +318,32 @@ export class CourseEditComponent implements OnInit {
     //     delete values.checklists[i].id
     //   }
     // }
-    if (values.id == (null || undefined)) {
-      let url = "framework/course/create-activity"
-      this.apiCom.postDataWithToken(url, JSON.stringify({ activity: values, course_id: this.course.id }), this.authToken).subscribe((res) => {
-        res;
-        console.log("response", res)
-        this.course = res;
-        alert("Course Activities Saved Successfully")
-        $("#activitiesmodal").modal('hide')
+    if ((values.name && values.description && values.placeholder) != "" && (values.name && values.description && values.placeholder) != (null && undefined)) {
+      if (values.id == (null || undefined)) {
+        let url = "framework/course/create-activity"
+        this.apiCom.postDataWithToken(url, JSON.stringify({ activity: values, course_id: this.course.id }), this.authToken).subscribe((res) => {
+          res;
+          console.log("response", res)
+          this.course = res;
+          alert("Course Activities Saved Successfully")
+          $("#activitiesmodal").modal('hide')
 
-      })
-    } else {
-      let url = "framework/course/create-activity"
-      this.apiCom.postDataWithToken(url, JSON.stringify({ activity: values, course_id: this.course.id }), this.authToken).subscribe((res) => {
-        res;
-        console.log("response", res)
-        this.course = res;
-        alert("Course Activities Updated Successfully")
-        $("#activitiesmodal").modal('hide')
+        })
+      } else {
+        let url = "framework/course/create-activity"
+        this.apiCom.postDataWithToken(url, JSON.stringify({ activity: values, course_id: this.course.id }), this.authToken).subscribe((res) => {
+          res;
+          console.log("response", res)
+          this.course = res;
+          alert("Course Activities Updated Successfully")
+          $("#activitiesmodal").modal('hide')
 
-      })
+        })
+      }
+    }else{
+      alert("Name,Description,Placeholder is Mandatory")
     }
+
 
 
 

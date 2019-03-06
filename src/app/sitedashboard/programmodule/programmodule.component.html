@@ -73,7 +73,7 @@
         <div class="panel panel-default">
             <div class="panel-heading heading_height">List of Program types <button class="btn btn-info pull-right"
                     data-toggle="modal" data-target="#programTypemodel" (click)="this.initForm();"><i class="glyphicon glyphicon-plus-sign"></i>
-                    New Program type</button></div>
+                     Program type</button></div>
             <div class="panel-body">
                 <div class="col-md-12">
                     <form>
@@ -139,7 +139,7 @@
         <div class="panel panel-default">
             <div class="panel-heading heading_height">List of Program Locations <button class="btn btn-info pull-right"
                     data-toggle="modal" data-target="#programLocationmodel" (click)="initForm()"><i class="glyphicon glyphicon-plus-sign"></i>
-                    New Program
+                     Program
                     location</button></div>
             <div class="panel-body">
                 <div class="col-md-12">
@@ -284,11 +284,11 @@
                         <form #questionform="ngForm">
                             <div class="col-md-6 form-group">
                                 <label>Title</label>
-                                <input type="text" class="form-control" name="title" [(ngModel)]="question.title" />
+                                <input required type="text" class="form-control" name="title" [(ngModel)]="question.title" />
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Question</label>
-                                <textarea type="text" class="form-control" name="question" [(ngModel)]="question.question"></textarea>
+                                <textarea required type="text" class="form-control" name="question" [(ngModel)]="question.question"></textarea>
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Description</label>
@@ -296,16 +296,16 @@
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Placeholder</label>
-                                <input type="text" class="form-control" name="placeholder" [(ngModel)]="question.placeholder" />
+                                <input required type="text" class="form-control" name="placeholder" [(ngModel)]="question.placeholder" />
                             </div>
 
                             <div class="col-md-6 form-group" *ngIf="question_edit">
                                 <input type="hidden" class="form-control" name="id" [(ngModel)]="question.id" />
                             </div>
                             <div class="col-md-12 text-center">
-                                <button class="btn btn-success" *ngIf="!question_edit" type="submit" (click)="submitProgramType(questionform,'questions')"><i
+                                <button class="btn btn-success" *ngIf="!question_edit" type="submit" [disabled]="!questionform.valid" (click)="questionform.valid && submitProgramType(questionform,'questions')"><i
                                         class="glyphicon glyphicon-floppy-saved"></i> Submit</button>
-                                <button class="btn btn-success" *ngIf="question_edit" type="submit" (click)="updateProgramType(questionform,'questions')"><i
+                                <button class="btn btn-success" *ngIf="question_edit" type="submit"  [disabled]="!questionform.valid" (click)="questionform.valid && updateProgramType(questionform,'questions')"><i
                                         class="glyphicon glyphicon-floppy-saved"></i> Update</button>
                                 <button class="btn btn-danger" *ngIf="question_edit" type="submit" (click)="deleteQuestion(questionform.value.id)"><i
                                         class="glyphicon glyphicon-trash"></i>Delete</button>
@@ -334,7 +334,7 @@
                         <form #form="ngForm">
                             <div class="col-md-6 form-group">
                                 <label>Title</label>
-                                <input type="text" class="form-control" name="program_type_title" [(ngModel)]="program_type.program_type_title" />
+                                <input required type="text" class="form-control" name="program_type_title" [(ngModel)]="program_type.program_type_title" />
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Description</label>
@@ -342,7 +342,7 @@
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Enter duration in months</label>
-                                <input type="number" class="form-control" name="program_type_duration" [(ngModel)]="program_type.program_type_duration" />
+                                <input required type="number" class="form-control" name="program_type_duration" [(ngModel)]="program_type.program_type_duration" />
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Upload logo</label>
@@ -356,9 +356,9 @@
                                 <input type="hidden" class="form-control" name="id" [(ngModel)]="program_type.id" />
                             </div>
                             <div class="col-md-12 text-center">
-                                <button class="btn btn-success" *ngIf="!program_type_edit" type="submit" (click)="submitProgramType(form,'type')"><i
+                                <button class="btn btn-success" *ngIf="!program_type_edit" type="submit" [disabled]="!form.valid" (click)="form.valid && submitProgramType(form,'type')"><i
                                         class="glyphicon glyphicon-floppy-saved"></i> Submit</button>
-                                <button class="btn btn-success" *ngIf="program_type_edit" type="submit" (click)="updateProgramType(form,'type')"><i
+                                <button class="btn btn-success" *ngIf="program_type_edit" type="submit" [disabled]="!form.valid" (click)="form.valid && updateProgramType(form,'type')"><i
                                         class="glyphicon glyphicon-floppy-saved"></i> Update</button>
                                 <button class="btn btn-danger" *ngIf="program_type_edit" type="submit" (click)="deleteProgramType(form.value.id,'type')">
                                     <i class="glyphicon glyphicon-trash"></i>Delete</button>
@@ -385,7 +385,7 @@
                         <form #locationForm="ngForm">
                             <div class="col-md-6 form-group">
                                 <label>Address line 1</label>
-                                <input type="text" class="form-control" name="address_line_1" [(ngModel)]="program_location.address_line_1" />
+                                <input required type="text" class="form-control" name="address_line_1" [(ngModel)]="program_location.address_line_1" />
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Address line 2</label>
@@ -393,27 +393,27 @@
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>City</label>
-                                <input type="text" class="form-control" name="city" [(ngModel)]="program_location.city" />
+                                <input required type="text" class="form-control" name="city" [(ngModel)]="program_location.city" />
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>State</label>
-                                <input type="text" class="form-control" name="state_province_region" [(ngModel)]="program_location.state_province_region" />
+                                <input required type="text" class="form-control" name="state_province_region" [(ngModel)]="program_location.state_province_region" />
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Postal/Pincode</label>
-                                <input type="text" class="form-control" name="zip_pincode_postalcode" [(ngModel)]="program_location.zip_pincode_postalcode" />
+                                <input required type="text" class="form-control" name="zip_pincode_postalcode" [(ngModel)]="program_location.zip_pincode_postalcode" />
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Country</label>
-                                <input type="text" class="form-control" name="country" [(ngModel)]="program_location.country" />
+                                <input required type="text" class="form-control" name="country" [(ngModel)]="program_location.country" />
                             </div>
                             <div class="col-md-6 form-group" *ngIf="program_location_edit">
                                 <input type="hidden" class="form-control" name="id" [(ngModel)]="program_location.id" />
                             </div>
                             <div class="col-md-12 text-center">
-                                <button class="btn btn-success" *ngIf="!program_location_edit" type="submit" (click)="submitProgramType(locationForm,'location')"><i
+                                <button class="btn btn-success" *ngIf="!program_location_edit" type="submit" [disabled]="!locationForm.valid" (click)="locationForm.valid && submitProgramType(locationForm,'location')"><i
                                         class="glyphicon glyphicon-floppy-saved"></i> Submit</button>
-                                <button class="btn btn-success" *ngIf="program_location_edit" type="submit" (click)="updateProgramType(locationForm,'location')"><i
+                                <button class="btn btn-success" *ngIf="program_location_edit" type="submit" [disabled]="!locationForm.valid" (click)="locationForm.valid && updateProgramType(locationForm,'location')"><i
                                         class="glyphicon glyphicon-floppy-saved"></i> Update</button>
                                 <button class="btn btn-danger" *ngIf="program_location_edit" type="submit" (click)="deleteProgramType(locationForm.value.id,'location')"><i
                                         class="glyphicon glyphicon-trash"></i>Delete</button>
