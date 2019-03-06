@@ -5,8 +5,8 @@
   </div>
   <div class="panel panel-default" *ngFor="let course of courses;let i = index">
     <div class="panel-body">
-      <div class="col-md-12">
-        <div class="col-md-1">
+      <div class="col-md-12 col-xs-12 col-sm-12">
+        <div class="col-md-1 col-xs-12 col-sm-12">
           <input class="checkbox" type="checkbox"
             (change)="setvalues($event.target.checked,course)">
         </div>
@@ -47,15 +47,20 @@
 
           </div>
           <div class="col-md-4 col-sm-12 col-xs-12">
-            <button *ngIf="course.is_assigned == false" class="btn btn-primary pull-right"
+            <!-- <button *ngIf="course.is_assigned == false" class="btn btn-primary btn-sm pull-right"
               (click)="viewMaterials(course)" routerLink="/admin/dashboard/assign-activities/view-materials">View
               Materials</button>
-            <button *ngIf="course.is_assigned == true" class="btn btn-primary pull-right"
+            <button *ngIf="course.is_assigned == true" class="btn btn-primary btn-sm pull-right"
               (click)="viewMaterials(course)" routerLink="/admin/dashboard/review-activities/view-materials">Review
               Materials</button>
-              <button *ngIf="course.ex_date && course.all_activity_responsed == true" class="btn btn-danger pull-right" (click)="sendRemainder(course)"
+              <button *ngIf="course.ex_date && course.all_activity_responsed == true" class="btn btn-danger btn-sm pull-right" (click)="sendRemainder(course)"
              >Send Remainder
-              </button>
+              </button> -->
+              <div class="btn-group">
+                <button *ngIf="course.is_assigned == false"  class="btn btn-primary btn-sm" (click)="viewMaterials(course)" routerLink="/admin/dashboard/assign-activities/view-materials">View Materials</button>
+                <button *ngIf="course.is_assigned == true" class="btn btn-primary btn-sm" (click)="viewMaterials(course)" routerLink="/admin/dashboard/review-activities/view-materials">Review Materials</button>
+                <button *ngIf="course.ex_date && course.all_activity_responsed == true" class="btn btn-danger btn-sm" (click)="sendRemainder(course)">Send Remainder</button>
+              </div>
           </div>
           <div class="col-md-12 col-xs-12 col-sm-12 alert alert-danger" *ngIf="course.is_assigned == true">
             <p>This Course is already assigned to this startup</p>
