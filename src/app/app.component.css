@@ -48,7 +48,15 @@ html {
   color: black;
   background-color: none; 
 }
-  
+.dropdown-menu>ul>li>a {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: 400;
+  line-height: 1.42857143;
+  color: white ;
+  white-space: nowrap;
+}
 
 .navbar-toggle {
   border: none;
@@ -81,3 +89,29 @@ html {
 .navbar-toggle.collapsed .bottom-bar {
   transform: rotate(0);
 }
+
+ 
+@media (min-width: 768px) {
+  ul{
+    background: #222;
+  }
+  .dropdown-menu>li:hover{
+    background: gray;
+    color: black !important;
+  }
+  ul.nav li:hover > ul.dropdown-menu {
+    display: block;
+    color: black !important;
+  }
+  #navbar {
+    text-align: center;
+  }
+  .dropdown-menu>li>a{
+    color: white ;
+  }
+  .dropdown-menu>li>a:hover {
+    
+    text-decoration: none;
+    background: gray;
+  }
+} 

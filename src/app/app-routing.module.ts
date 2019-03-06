@@ -39,6 +39,7 @@ import { AssignActivitiesComponent } from './about-profile/assign-activities/ass
 import { ViewMaterialsComponent } from './about-profile/view-materials/view-materials.component'
 import { ViewActivityComponent } from './startupdashboard/view-activity/view-activity.component'
 import {CourseMaterialComponent} from './startupdashboard/course-material/course-material.component'
+import {MyAccountComponent} from './my-account/my-account.component'
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'login', component: LoginComponent },
@@ -105,7 +106,8 @@ const routes: Routes = [
   { path: 'contract-form-sign/:id', component: ContractformSignComponent },
 
   { path: 'reset-password/:id', component: ResetPasswordComponent },
-  { path: 'reset-password', component: ResetPasswordComponent }
+  { path: 'reset-password', component: ResetPasswordComponent },
+  { path: 'my-account', component: MyAccountComponent }
 
 ];
 
