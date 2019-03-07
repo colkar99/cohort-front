@@ -10,7 +10,7 @@ import {CookieService} from 'ngx-cookie-service'
 export class ProfileDetailsComponent implements OnInit {
   startupdata:any = {}
   slidervalue:any = 0
-  
+  startup:any = {}
   authToken:any
   currentstateform:any ={}
  
@@ -18,6 +18,7 @@ export class ProfileDetailsComponent implements OnInit {
     private apiCom:ApiCommunicationService,
     private cookieService:CookieService) {
     this.sharedservice.currentMessage.subscribe((res)=>{res;this.startupdata = res;
+      this.startup = res.startup_registration
     if(this.startupdata.current_status.status == "SPC"){
       this.slidervalue = 25
     }else if(this.startupdata.current_status.status == "RMD"){

@@ -38,6 +38,7 @@ export class ProgramsRegistrationComponent implements OnInit {
     this.apiService.postData('program/startup-registration',JSON.stringify(data))
     .subscribe(data =>{
       console.log(data);
+      alert("Registration Successful")
       this.router.navigate(['/']);
     },error =>{
       alert(`The following error has occured: ${error}`);

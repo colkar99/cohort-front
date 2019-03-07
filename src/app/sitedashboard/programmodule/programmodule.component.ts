@@ -163,6 +163,7 @@ export class ProgramModuleComponent implements OnInit {
             this.apiService.postDataWithToken(url, JSON.stringify(data), this.auth)
                 .subscribe(data => {
                     console.log(data);
+                    alert("Created Successfully")
                     this.getallques();
                 }, error => {
                     console.log(error);
@@ -171,6 +172,7 @@ export class ProgramModuleComponent implements OnInit {
             this.apiService.postDataWithToken(url, JSON.stringify(data), this.auth)
                 .subscribe(data => {
                     console.log(data);
+                    alert("Created Successfully")
                     this.getAllProgram();
                 }, error => {
                     console.log(error);
@@ -208,6 +210,7 @@ export class ProgramModuleComponent implements OnInit {
                 console.log(data);
                 this.getAllProgram();
                 this.getallques();
+                alert("Updated Successfully")
             }, error => {
                 console.log(error);
             })
