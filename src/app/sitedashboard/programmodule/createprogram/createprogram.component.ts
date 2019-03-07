@@ -197,6 +197,7 @@ export class CreateProgramComponent implements OnInit {
         this.apiService.postDataWithToken("create-program",JSON.stringify(data),this.auth)
         .subscribe(data => {
             console.log(data);
+            alert("Cohort Program Created Successfully")
             $('#reviewAndSubmitModel').modal('hide');
             this.router.navigate(['/admin/dashboard/program']);
 

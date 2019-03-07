@@ -3,7 +3,7 @@
   <div class="row">
     <button class="btn btn-success pull-right" type="button" (click)="assigncourses()">Assign Courses</button>
   </div>
-  <div class="panel panel-default" *ngFor="let course of courses;let i = index">
+  <div class="panel panel-default" *ngFor="let course of courses;let i = index" style="border:1px solid;border-color:black" [ngStyle]="{'background': [course.color]}">
     <div class="panel-body">
       <div class="col-md-12 col-xs-12 col-sm-12">
         <div class="col-md-1 col-xs-12 col-sm-12">
@@ -11,12 +11,15 @@
             (change)="setvalues($event.target.checked,course)">
         </div>
         <div class="col-md-4">
+            <span><strong>Course</strong></span><br>
           <span style="font-size: 20px;" [innerHTML]="course.title"></span>
+          <span><strong>Activities</strong></span><br>
           <h5 *ngFor="let ac of course.activities;let i = index"><span [ngStyle]="{'color': ac.admin_responsed? 'green':'red'}" [innerHTML]="ac.name" ></span></h5>
           <!-- <h5 >{{course.description}}</h5> -->
         </div>
         <div class="col-md-7">
           <div class="col-md-6">
+              <span><strong>Pass Metrics</strong></span><br>
             <span >{{course.pass_metric}},</span>
           </div>
           <div class="col-md-6">
@@ -59,7 +62,7 @@
               <div class="btn-group">
                 <button *ngIf="course.is_assigned == false"  class="btn btn-primary btn-sm" (click)="viewMaterials(course)" routerLink="/admin/dashboard/assign-activities/view-materials">View Materials</button>
                 <button *ngIf="course.is_assigned == true" class="btn btn-primary btn-sm" (click)="viewMaterials(course)" routerLink="/admin/dashboard/review-activities/view-materials">Review Materials</button>
-                <button *ngIf="course.ex_date && course.all_activity_responsed == true" class="btn btn-danger btn-sm" (click)="sendRemainder(course)">Send Remainder</button>
+                <button *ngIf="course.ex_date && course.all_activity_responsed == true && course.target_date" class="btn btn-danger btn-sm" (click)="sendRemainder(course)">Send Remainder</button>
               </div>
           </div>
           <div class="col-md-12 col-xs-12 col-sm-12 alert alert-danger" *ngIf="course.is_assigned == true">

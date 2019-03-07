@@ -1,12 +1,96 @@
 <div class="col-md-12">
-    <h3 style="text-decoration:underline;text-align: center">About Company {{startupdata.startup_name}}</h3>
+    <h3 style="text-decoration:underline;text-align: center">About {{startupdata.startup_name}}</h3>
     <div class="col-md-12">
-
-        <div class="bg" *ngFor="let item of startupdata.users;let i= index">
-            <img src="assets/photo.png" alt="" style="height:125px;width: 150px;">
+        <h4 class="page-heading">Users</h4>
+        <div class="bg"  style="border:1px solid;height: 130px;" *ngFor="let item of startupdata.users;let i= index">
+            <img src="assets/avatar_2x.png" alt="" style="height:125px;width: 150px;">
             <div class="overlay">
                 <h4>{{item.full_name}}</h4>
                 <p></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <h3 style="text-decoration:underline;text-align: center">Startup Details</h3><br>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="col-md-12">
+                        <h4 class="page-heading">Company info</h4> 
+                    <div class="col-md-4"><label>Startup Name:</label>
+                        {{startup.startup_name}}
+                    </div>
+                    <div class="col-md-4"><label>Founded date:</label>
+                        {{startup.founded_date}}
+                    </div>
+                    <div class="col-md-4"><label>Entity type:</label>
+                        {{startup.entity_type}}
+                    </div>
+                    <div class="col-md-12"><label>Company website:</label>
+                        {{startup.website_url}}
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <h4 class="page-heading">Application Status</h4>
+                    <div class="col-md-4"><label>Application status:</label>
+                        {{startup.application_status}}
+                    </div>
+                    <div class="col-md-8"><label>Status Description:</label>
+                        {{startup.app_status_description}}
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <h4 class="page-heading">Founder info</h4>
+                    <div class="col-md-4"><label>Founder Name:</label>
+                        {{startup.founder_name}}
+                    </div>
+                    <div class="col-md-8"><label>Email:</label>
+                        {{startup.founder_email}}
+                    </div>
+                    <div class="col-md-4"><label>Contact number:</label>
+                        {{startup.founder_phone_number}}
+                    </div>
+                    <div class="col-md-8"><label>Skills:</label>
+                        {{startup.founder_skills}}
+                    </div>
+                    <div class="col-md-4"><label>Commitment:</label>
+                        {{startup.founder_commitment}}
+                    </div>
+                    <div class="col-md-4"><label>Experience:</label>
+                        {{startup.founder_experience}}
+                    </div>
+                    <div class="col-md-4"><label>Credentials:</label>
+                        {{startup.founder_credentials}}
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <h4 class="page-heading">Startup Address</h4>
+                    <div class="col-md-4"><label> Address line 1:</label>
+                        {{startup.startup_address_line_1}}
+
+                    </div>
+                    <div class="col-md-4"><label>Address line 2:</label>
+                        {{startup.startup_address_line_2}}
+
+                    </div>
+                    <div class="col-md-4"><label> City:</label>
+                        {{startup.startup_city}}
+
+                    </div>
+                    <div class="col-md-4"><label>State: </label>
+                        {{startup.startup_state_province_region}}
+
+                    </div>
+                    <div class="col-md-4"><label>Country:</label>
+                        {{startup.startup_country}}
+
+                    </div>
+                    <div class="col-md-4"><label>Zip/Pincode:</label>
+                        {{startup.startup_zip_pincode_postalcode}}
+
+                    </div>
+
+
+                </div>
             </div>
         </div>
     </div>
@@ -15,7 +99,7 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="col-md-12">
-                    <h4 class="page-heading">CurrentStateForm Info</h4>
+                    <h4 class="page-heading"></h4>
                     <div class="col-md-4"><label>Revenue:</label>
                         {{currentstateform.revenue}}
                     </div>
@@ -101,16 +185,16 @@
             <div class="col-md-12">
                 <br>
                 <div class="slidecontainer" style="margin-bottom: 25px;">
-                    <input type="range" min="1" max="100" value="{{slidervalue}}" class="slider" id="myRange">
+                    <input disabled type="range" min="1" max="100" value="{{slidervalue}}" class="slider" id="myRange">
 
                 </div>
             </div>
         </div>
-        
+
 
         <!-- </div> -->
     </div>
-    
+
     <!-- <div class="col-md-12">
       <h3 style="text-decoration:underline;text-align: center">Program Progress</h3><br>
       <div style="text-align:center">

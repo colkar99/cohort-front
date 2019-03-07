@@ -55,12 +55,19 @@ export class AssignActivitiesComponent implements OnInit {
         console.log( new Date().toISOString().slice(0, 10) >=this.courses[1].target_date )
         debugger
         
-        
+       
         for(let i = 0;i<this.courses.length;i++){
           if( new Date().toISOString().slice(0, 10) >=this.courses[i].target_date){
             this.courses[i].ex_date = true;
           }else{
             this.courses[i].ex_date = false;
+          }
+          if(this.courses[i].course_passed == true && this.courses[i].is_assigned == true){
+            this.courses[i].color = "lightgreen"
+          }else if(this.courses[i].course_passed == false && this.courses[i].is_assigned == true){
+            this.courses[i].color = "#ff8989"
+          }else{
+            this.courses[i].color = "none"
           }
           this.courses[i].all_activity_responsed = false
           for(let j =0;j< this.courses[i].activities.length;j++){
