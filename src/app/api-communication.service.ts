@@ -15,7 +15,7 @@ export class ApiCommunicationService {
   // private  url = "http://localhost:3000/v1/";
   // public imgUrl = "http://localhost:3000";
   public url = "http://ec2-54-172-0-213.compute-1.amazonaws.com/v1/";
-  public imgUrl = "http://ec2-54-172-0-213.compute-1.amazonaws.com"
+  public imgUrl = "http://ec2-54-172-0-213.compute-1.amazonaws.com";
 
 
   domainUrl: string;
