@@ -29,9 +29,9 @@ export class EditProgramComponent implements OnInit {
   imageSrc: any
   programquestions: any = []
   arrayids: any = []
-  allquestions:any = []
-  displayallques:any = []
-  ckEditorConfig:any
+  allquestions: any = []
+  displayallques: any = []
+  ckEditorConfig: any
   constructor(
     private cookieService: CookieService,
     private formBuilder: FormBuilder,
@@ -57,7 +57,7 @@ export class EditProgramComponent implements OnInit {
           { name: 'tools' },
           { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
           { name: 'styles' },
-          { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'] }, 
+          { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'] },
         ],
         // [
         //   { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
@@ -86,7 +86,7 @@ export class EditProgramComponent implements OnInit {
     })
   }
   //main image upload
-  handleInputChange(e,main,logo) {
+  handleInputChange(e, main, logo) {
     var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
     var pattern = /image-*/;
     var reader = new FileReader();
@@ -94,20 +94,20 @@ export class EditProgramComponent implements OnInit {
       alert('invalid format');
       return;
     }
-    reader.onload = this._handleReaderLoaded.bind(this,main,logo);
+    reader.onload = this._handleReaderLoaded.bind(this, main, logo);
     reader.readAsDataURL(file);
   }
-  _handleReaderLoaded(main: boolean,logo: boolean,e) {
-      debugger
+  _handleReaderLoaded(main: boolean, logo: boolean, e) {
+    debugger
     let reader = e.target;
     this.imageSrc = reader.result;
     console.log(this.imageSrc)
     debugger
-    if (main){
-        this.main_image = this.imageSrc
+    if (main) {
+      this.main_image = this.imageSrc
     }
-    else{
-        this.logo_image = this.imageSrc
+    else {
+      this.logo_image = this.imageSrc
     }
     // this.user.value.user.user_main_image = this.imageSrc;
   }
@@ -149,7 +149,7 @@ export class EditProgramComponent implements OnInit {
   getProgramModuleDatas() {
     this.apiService.getDataWithAuth("get-program-module", this.auth)
       .subscribe(data => {
-        this.allquestions = Object.assign([],data.application_questions)
+        this.allquestions = Object.assign([], data.application_questions)
         this.datas = data;
         // const controls = data.application_questions.map(c => new FormControl(false));
         // controls[0].setValue(true); // Set the first checkbox to true (checked)
@@ -243,10 +243,10 @@ export class EditProgramComponent implements OnInit {
   //array collection of selected Questions in list
   setvalues(checked, value) {
     if (checked == true) {
-      this.arrayids.push({id:value.id});
+      this.arrayids.push({ id: value.id });
     } else {
       if (checked == false) {
-        
+
         let deleteindex = this.arrayids.findIndex(x => x.id == value.id)
         debugger
         console.log(deleteindex)
@@ -261,13 +261,13 @@ export class EditProgramComponent implements OnInit {
   //delete program questions
   deleteappques(item, i) {
     let url = "program/delete-application-question-to-program"
-    let params = JSON.stringify({program_id:this.program.value.id,application_questions:[{id:item.id}]})
+    let params = JSON.stringify({ program_id: this.program.value.id, application_questions: [{ id: item.id }] })
     this.apiService.putDataWithToken(url, params, this.auth).subscribe((res) => {
       res;
       console.log("response", res);
       alert("Program Question Deleted Successfully")
       this.getquestions();
-      this.programquestions.splice(i,1);
+      this.programquestions.splice(i, 1);
 
 
     })
@@ -284,7 +284,7 @@ export class EditProgramComponent implements OnInit {
       let url = "program/assign-application-question-to-program"
       this.apiService.putDataWithToken(url, params, this.auth).subscribe((res) => {
         res;
-        console.log("updated program questions",res)
+        console.log("updated program questions", res)
         this.programquestions = res.application_questions;
         alert("Program Questions Updated Successfully")
         if (this.programquestions.length > 0) {
@@ -303,37 +303,46 @@ export class EditProgramComponent implements OnInit {
   //get program questions
   getquestions() {
     let url = "show-application-questions-by-program"
-    let params = JSON.stringify({program_id:this.program.value.id})
-    this.apiService.putDataWithToken(url,params,this.auth).subscribe((res)=>{
+    let params = JSON.stringify({ program_id: this.program.value.id })
+    this.apiService.putDataWithToken(url, params, this.auth).subscribe((res) => {
       res;
       this.programquestions = res;
-      console.log("programques",this.programquestions)
+      console.log("programques", this.programquestions)
       this.removeduplicates();
     })
-   
+
   }
   // removing duplicate questions
   removeduplicates() {
-    let qestarray = Object.assign([],this.allquestions)
+    let qestarray = Object.assign([], this.allquestions)
     var i = qestarray.length;
-    if(this.programquestions.length >0){
+    if (this.programquestions.length > 0) {
       while (i--) {
         for (var j of this.programquestions) {
           if (qestarray[i] && qestarray[i].id == j.id) {
             // this.courses1.push(this.courses[i])
-            qestarray.splice(i,1)
+            qestarray.splice(i, 1)
           }
         }
         this.displayallques = qestarray
-  
-  
+
+
       }
-    }else{
+    } else {
       this.displayallques = qestarray
     }
-    
+
   }
-  checkdate(e){
-    console.log("e",e)
+  checkdate(e) {
+    console.log("e", this.program.value)
+    if (e != "" && e != undefined) {
+      if (e < this.program.value.start_date) {
+        
+      } else {
+        this.program.controls['application_start_date'].setValue(undefined)
+        alert("Registration Date should be lesser than Program Start Date")
+      }
+    }
+
   }
 }
