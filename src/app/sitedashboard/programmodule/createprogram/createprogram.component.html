@@ -99,17 +99,17 @@
                             </div>
                             <div class="col-md-4 form-group">
                                 <label>Start date:</label>
-                                <input class="form-control" type="date" name="start_date" formControlName="start_date"
+                                <input class="form-control" type="date" name="start_date" formControlName="start_date" (ngModelChange)="prgstartdate($event)"
                                     [ngClass]="{errmsg: !program.controls['start_date'].valid && submitted}" required />
                             </div>
                             <div class="col-md-4 form-group">
                                 <label>End date:</label>
-                                <input class="form-control" type="date" name="end_date" formControlName="end_date"
+                                <input [disabled]="!program.controls['start_date'].valid" class="form-control" type="date" name="end_date" formControlName="end_date" (ngModelChange)="prgenddate($event)"
                                     [ngClass]="{errmsg: !program.controls['end_date'].valid && submitted}" required />
                             </div>
                             <div class="col-md-4 form-group">
                                 <label>Enter seat capacity:</label>
-                                <input class="form-control" type="text" min="0" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" name="seat_size" formControlName="seat_size"
+                                <input class="form-control" type="number"  min="0" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" name="seat_size" formControlName="seat_size"
                                     [ngClass]="{errmsg: !program.controls['seat_size'].valid && submitted}" required />
                             </div>
                             <div class="col-md-4 form-group">
@@ -117,6 +117,7 @@
                                 <input class="form-control" type="text" name="industry" formControlName="industry"
                                     [ngClass]="{errmsg: !program.controls['industry'].valid && submitted}" required />
                             </div>
+
                             <div class="col-md-4 form-group">
                                 <label>Main image:</label>
                                 <input class="form-control" type="file" id="main_image" placeholder="main_image"
@@ -124,17 +125,14 @@
                                     (change)="handleInputChange($event,true,false)"
                                     [ngClass]="{errmsg: !program.controls['main_image'].valid && submitted}" />
                             </div>
-                            <!-- <div class="col-md-4 form-group">
-                        <label>Main image:</label>
-                        <input class="form-control" type="file" name="main_image" formControlName="main_image"
-                         />
-                    </div> -->
                             <div class="col-md-4 form-group">
                                 <label>Logo image:</label>
-                                <input class="form-control" type="file" name="logo_image"
-                                    [ngClass]="{errmsg: !program.controls['logo_image'].valid && submitted}"
-                                    accept="image/*" (change)="handleInputChange($event,false,true)" />
+                                <input class="form-control" type="file" id="logo_image" placeholder="logo_image"
+                                    name="logo_image" type="file" accept="image/*"
+                                    (change)="handleInputChange($event,false,true)"
+                                    [ngClass]="{errmsg: !program.controls['logo_image'].valid && submitted}" />
                             </div>
+
                             <div class="col-md-4 form-group">
                                 <label>Duration in months:</label>
                                 <input disabled class="form-control" type="text" name="duration" formControlName="duration"
@@ -142,14 +140,14 @@
                             </div>
                             <div class="col-md-4 form-group">
                                 <label>Program registration start date:</label>
-                                <input class="form-control" type="date" name="application_start_date"
+                                <input [disabled]="!program.controls['start_date'].valid || !program.controls['end_date'].valid " class="form-control" type="date" name="application_start_date" (ngModelChange)="checkdate($event)"
                                     formControlName="application_start_date"
                                     [ngClass]="{errmsg: !program.controls['application_start_date'].valid && submitted}"
                                     required />
                             </div>
                             <div class="col-md-4 form-group">
                                 <label>Program registration end date:</label>
-                                <input class="form-control" type="date" name="application_end_date"
+                                <input [disabled]="!program.controls['start_date'].valid || !program.controls['end_date'].valid " class="form-control" type="date" name="application_end_date" (ngModelChange)="checkdate1($event)"
                                     formControlName="application_end_date"
                                     [ngClass]="{errmsg: !program.controls['application_end_date'].valid && submitted}"
                                     required />

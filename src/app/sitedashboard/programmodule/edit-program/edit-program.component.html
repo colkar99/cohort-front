@@ -100,12 +100,12 @@
                             </div>
                             <div class="col-md-4 form-group">
                                 <label>Start date:</label>
-                                <input class="form-control" type="date" name="start_date" formControlName="start_date"
+                                <input class="form-control" type="date" name="start_date" formControlName="start_date" (ngModelChange)="prgstartdate($event)"
                                     [ngClass]="{errmsg: !program.controls['start_date'].valid && submitted}" required />
                             </div>
                             <div class="col-md-4 form-group">
                                 <label>End date:</label>
-                                <input class="form-control" type="date" name="end_date" formControlName="end_date"
+                                <input [disabled]="!program.controls['start_date'].valid" class="form-control" type="date" name="end_date" formControlName="end_date" (ngModelChange)="prgenddate($event)"
                                     [ngClass]="{errmsg: !program.controls['end_date'].valid && submitted}" required />
                             </div>
                             <div class="col-md-4 form-group">
@@ -141,14 +141,14 @@
                             </div>
                             <div class="col-md-4 form-group">
                                 <label>Program registration start date:</label>
-                                <input class="form-control" type="date" name="application_start_date" (ngModelChange)="checkdate($event)"
+                                <input [disabled]="!program.controls['start_date'].valid || !program.controls['end_date'].valid " class="form-control" type="date" name="application_start_date" (ngModelChange)="checkdate($event)"
                                     formControlName="application_start_date"
                                     [ngClass]="{errmsg: !program.controls['application_start_date'].valid && submitted}"
                                     required />
                             </div>
                             <div class="col-md-4 form-group">
                                 <label>Program registration end date:</label>
-                                <input class="form-control" type="date" name="application_end_date"
+                                <input [disabled]="!program.controls['start_date'].valid || !program.controls['end_date'].valid " class="form-control" type="date" name="application_end_date" (ngModelChange)="checkdate1($event)"
                                     formControlName="application_end_date"
                                     [ngClass]="{errmsg: !program.controls['application_end_date'].valid && submitted}"
                                     required />

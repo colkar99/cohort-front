@@ -340,9 +340,48 @@ export class EditProgramComponent implements OnInit {
         
       } else {
         this.program.controls['application_start_date'].setValue(undefined)
-        alert("Registration Date should be lesser than Program Start Date")
+        alert("Registration Start Date should be lesser than Program Start Date")
       }
     }
 
+  }
+
+  checkdate1(e) {
+    console.log("e", this.program.value)
+    if (e != "" && e != undefined) {
+      if (e < this.program.value.start_date && e > this.program.value.start_date) {
+        
+      } else {
+        this.program.controls['application_end_date'].setValue(undefined)
+        alert("Registration End Date should be lesser than Program Start Date & Greater than Registration Start Date")
+      }
+    }
+
+  }
+  prgenddate(e) {
+    console.log("e", this.program.value)
+    if (e != "" && e != undefined) {
+      if (e > this.program.value.start_date ) {
+        let DisplayTo = new Date(this.program.value.end_date)
+        let DisplayFrom = new Date(this.program.value.start_date)
+        console.log("hello duration", DisplayTo.getMonth() - DisplayFrom.getMonth() + (12 * (DisplayTo.getFullYear() - DisplayFrom.getFullYear())))
+        let value =  DisplayTo.getMonth() - DisplayFrom.getMonth() + (12 * (DisplayTo.getFullYear() - DisplayFrom.getFullYear()))
+       this.program.controls['duration'].setValue(value) ;
+      } else {
+        this.program.controls['end_date'].setValue(undefined)
+        alert("Program End Date should be Greater than Program Start Date")
+      }
+    }
+
+  }
+
+  prgstartdate(e){
+    if(e != "" && this.program.value.end_date !="" && e != undefined && this.program.value.end_date != undefined ) {
+      let DisplayTo = new Date(this.program.value.end_date)
+      let DisplayFrom = new Date(this.program.value.start_date)
+      let value =  DisplayTo.getMonth() - DisplayFrom.getMonth() + (12 * (DisplayTo.getFullYear() - DisplayFrom.getFullYear()))
+      console.log("hello duration", DisplayTo.getMonth() - DisplayFrom.getMonth() + (12 * (DisplayTo.getFullYear() - DisplayFrom.getFullYear())))
+      this.program.controls['duration'].setValue(value) ;
+    }
   }
 }
