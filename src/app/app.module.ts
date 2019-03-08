@@ -67,6 +67,7 @@ import { ViewActivityComponent } from './startupdashboard/view-activity/view-act
 import { CourseMaterialComponent } from './startupdashboard/course-material/course-material.component'
 import { CKEditorModule } from 'ng2-ckeditor';
 import { MyAccountComponent } from './my-account/my-account.component';
+import { ImageCompressService,ResizeOptions,ImageUtilityService } from 'ng2-image-compress';
 export function provideConfig() {
   let config = new AuthServiceConfig([
     {
@@ -138,7 +139,7 @@ export function provideConfig() {
     Ng4LoadingSpinnerModule.forRoot() 
   ],
   providers: [CookieService,SharedDataService,sharingData,
-              {provide: AuthServiceConfig,useFactory: provideConfig}],
+              {provide: AuthServiceConfig,useFactory: provideConfig},ImageCompressService,ResizeOptions],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

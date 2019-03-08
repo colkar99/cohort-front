@@ -3,6 +3,7 @@ import { SharedDataService } from '../shared-data.service'
 import { ApiCommunicationService } from '../api-communication.service'
 import { CookieService } from 'ngx-cookie-service'
 import { Router } from '@angular/router'
+import { ImageCompressService, ResizeOptions, ImageUtilityService, IImage, SourceImage } from  'ng2-image-compress';
 declare var $: any;
 @Component({
   selector: 'app-my-account',
@@ -19,7 +20,8 @@ export class MyAccountComponent implements OnInit {
   constructor(private sharedservice: SharedDataService,
     private apiCom: ApiCommunicationService,
     private cookieService: CookieService,
-    private router: Router) {
+    private router: Router,
+    private imgCompressService: ImageCompressService) {
 
   }
 
@@ -36,15 +38,25 @@ export class MyAccountComponent implements OnInit {
   }
 
   handleInputChange(e) {
-    var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
-    var pattern = /image-*/;
-    var reader = new FileReader();
-    if (!file.type.match(pattern)) {
-      alert('invalid format');
-      return;
-    }
-    reader.onload = this._handleReaderLoaded.bind(this);
-    reader.readAsDataURL(file);
+    ImageCompressService.filesToCompressedImageSource(e.target.files).then(observableImages => {
+      observableImages.subscribe((image) => {
+        console.log("image",image)
+        this.user.user_main_image = image.compressedImage.imageDataUrl
+      }, (error) => {
+        console.log("Error while converting");
+      }, () => {
+                 
+      });
+    });
+    // var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
+    // var pattern = /image-*/;
+    // var reader = new FileReader();
+    // if (!file.type.match(pattern)) {
+    //   alert('invalid format');
+    //   return;
+    // }
+    // reader.onload = this._handleReaderLoaded.bind(this);
+    // reader.readAsDataURL(file);
   }
   _handleReaderLoaded(e) {
     let reader = e.target;
