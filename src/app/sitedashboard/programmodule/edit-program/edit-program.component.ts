@@ -333,4 +333,7 @@ export class EditProgramComponent implements OnInit {
     }
     
   }
+  checkdate(e){
+    console.log("e",e)
+  }
 }

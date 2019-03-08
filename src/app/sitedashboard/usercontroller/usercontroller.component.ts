@@ -26,8 +26,9 @@ export class UsercontrollerComponent implements OnInit {
     modules: Array<any> = [];
     privilege: any = {};
     privilegeForm: any = {};
-    imageSrc:any
-    imgUrl:any
+    imageSrc: any
+    imgUrl: any
+    submitted: boolean = false
 
 
     constructor(
@@ -54,7 +55,7 @@ export class UsercontrollerComponent implements OnInit {
             show_rule: [null, Validators.required],
             delete_rule: [null, Validators.required]
         })
-        
+
     }
     ngOnInit() {
         this.getUserData();
@@ -94,9 +95,9 @@ export class UsercontrollerComponent implements OnInit {
             })
         });
         console.log(this.user)
-        if(this.user.value.user.user_main_image.url != null){
+        if (this.user.value.user.user_main_image.url != null) {
             this.imgUrl = this.apiService.imgUrl + this.user.value.user.user_main_image.url
-        }else{
+        } else {
             this.imgUrl = "assets/avatar_2x.png"
         }
         this.userOptions = [
@@ -118,7 +119,7 @@ export class UsercontrollerComponent implements OnInit {
                     this.showForm = true;
                     this.createUserForm();
                     this.getRoles(this.userDatas[0].user.user_type);
-                   
+
                 },
                 error => console.error("couldn't post because", error)
             );
@@ -138,19 +139,23 @@ export class UsercontrollerComponent implements OnInit {
                 error => console.error("couldn't post because", error)
             );
     }
-    onSubmit(user: {}) {
+    onSubmit(user) {
         // console.log(this.user.value);
-        let data = JSON.stringify(this.user.value);
-        console.log(data);
-        this.apiService.putDataWithToken('update-user-by-admin', data, this.auth)
-            .subscribe(
-                data => {
-                    console.log(data);
-                    this.getUserData();
-                    alert("User successfully edited by admin")
-                },
-                error => console.error("couldn't post because", error)
-            );
+        this.submitted = true
+        if (user.valid) {
+            let data = JSON.stringify(this.user.value);
+            console.log(data);
+            this.apiService.putDataWithToken('update-user-by-admin', data, this.auth)
+                .subscribe(
+                    data => {
+                        console.log(data);
+                        this.getUserData();
+                        alert("User successfully edited by admin")
+                    },
+                    error => console.error("couldn't post because", error)
+                );
+        }
+
     }
     changePrivilegeValue(privilege) {
         this.privilege = privilege;
@@ -243,29 +248,29 @@ export class UsercontrollerComponent implements OnInit {
         }
 
     }
-    defaultprevileges(){
+    defaultprevileges() {
         let url = "permission/create-default-permissions"
-        let params = JSON.stringify({user_id:this.user.value.user.id,role_id:this.userDatas[0].roles[0].id})
-        console.log(this.roles,params)
-        this.apiService.putDataWithToken(url,params,this.auth).subscribe((res)=>{
+        let params = JSON.stringify({ user_id: this.user.value.user.id, role_id: this.userDatas[0].roles[0].id })
+        console.log(this.roles, params)
+        this.apiService.putDataWithToken(url, params, this.auth).subscribe((res) => {
             res;
-            console.log("response",res)
-            let data = {user_id:this.user.value.user.id}
+            console.log("response", res)
+            let data = { user_id: this.user.value.user.id }
             this.apiService.postDataWithToken('get-user-related-data', JSON.stringify(data), this.auth)
-            .subscribe(
-                data => {
-                    console.log(data[0]);
-                    this.userDatas = data;
-                    this.privileges = data[0].privileges;
-                    this.modules = data[0].modules;
-                    // this.user = data[0].user;
-                    this.showForm = true;
-                    this.createUserForm();
-                    this.getRoles(this.userDatas[0].user.user_type);
-                   
-                },
-                error => console.error("couldn't post because", error)
-            );
+                .subscribe(
+                    data => {
+                        console.log(data[0]);
+                        this.userDatas = data;
+                        this.privileges = data[0].privileges;
+                        this.modules = data[0].modules;
+                        // this.user = data[0].user;
+                        this.showForm = true;
+                        this.createUserForm();
+                        this.getRoles(this.userDatas[0].user.user_type);
+
+                    },
+                    error => console.error("couldn't post because", error)
+                );
         })
     }
 }

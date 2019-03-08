@@ -110,7 +110,7 @@
                             </div>
                             <div class="col-md-4 form-group">
                                 <label>Enter seat capacity:</label>
-                                <input class="form-control" type="number" name="seat_size" formControlName="seat_size"
+                                <input class="form-control" type="number"  min="0" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" name="seat_size" formControlName="seat_size"
                                     [ngClass]="{errmsg: !program.controls['seat_size'].valid && submitted}" required />
                             </div>
                             <div class="col-md-4 form-group">
@@ -136,12 +136,12 @@
 
                             <div class="col-md-4 form-group">
                                 <label>Duration in months:</label>
-                                <input class="form-control" type="text" name="duration" formControlName="duration"
+                                <input disabled class="form-control" type="text" name="duration" formControlName="duration"
                                     [ngClass]="{errmsg: !program.controls['duration'].valid && submitted}" required />
                             </div>
                             <div class="col-md-4 form-group">
                                 <label>Program registration start date:</label>
-                                <input class="form-control" type="date" name="application_start_date"
+                                <input class="form-control" type="date" name="application_start_date" (ngModelChange)="checkdate($event)"
                                     formControlName="application_start_date"
                                     [ngClass]="{errmsg: !program.controls['application_start_date'].valid && submitted}"
                                     required />

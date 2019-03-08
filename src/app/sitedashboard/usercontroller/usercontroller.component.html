@@ -8,7 +8,7 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-12" *ngIf="showForm">
-                        <form [formGroup]='user' (ngSubmit)="user.valid && onSubmit(user)">
+                        <form [formGroup]='user' (ngSubmit)="onSubmit(user)">
                             <div formGroupName='user'>
                                 <div class="col-md-6 form-group">
                                     <label for="user_type">Slect user type</label>
@@ -64,8 +64,10 @@
                                 </select>
                             </div>
                             <div class="col-md-12 text-center">
-                                <button [disabled]="!user.valid" class="btn btn-success"><i class="glyphicon glyphicon-floppy-saved"></i> Update</button>
+                                <button  class="btn btn-success"><i class="glyphicon glyphicon-floppy-saved"></i> Update</button>
+                                <p style="color:red;" *ngIf="!user.valid && submitted">Please fill up the following fields
                             </div>
+                            
                         </form>
                     </div>
                 </div>
@@ -188,6 +190,7 @@
                             <div class="col-md-12 text-center">
                                 <button class="btn btn-success" type=submit><i class="glyphicon glyphicon-floppy-saved"></i> Update</button>
                             </div>
+                            
                         </form>
                     </div>
                 </div>
