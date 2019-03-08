@@ -2,7 +2,7 @@
     margin-top: 8%;
 }
 .errmsg{
-    border: 1px solid red;
+    border: 2px solid red;
 }
 
 input.ng-invalid.ng-touched  

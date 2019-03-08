@@ -12,19 +12,24 @@ textarea{
 }   
 select.ng-invalid.ng-touched  
 {  
-   border: 1px solid red !important;
-   border-color:red !important;
+   border: 1px solid red ;
+   border-color:red ;
 }
 textarea.ng-invalid.ng-touched{
-    border: 1px solid red !important;
-    border-color:red !important;
+    border: 1px solid red ;
+    border-color:red ;
     padding-bottom: 1px;
 }
 
 input.ng-invalid.ng-touched  
 {  
-   border: 1px solid red !important;
-   border-color:red !important;
+   border: 1px solid red ;
+   border-color:red ;
+}
+
+form.submitted .ng-invalid
+{
+    border:2px solid #f00;
 }
 
 input[type="text"],input[type="datetime-local"], input[type="email"],input[type="password"],input[type="number"],input[type="date"],textarea,select {
@@ -32,7 +37,7 @@ input[type="text"],input[type="datetime-local"], input[type="email"],input[type=
 }
 
 input.form-control,textarea.form-control,select.form-control{
-    border: none !important;
+    border: none ;
 }
 
 ::placeholder { 

@@ -28,6 +28,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading" style="height:60px;">Select program location
@@ -108,7 +109,7 @@
                             </div>
                             <div class="col-md-4 form-group">
                                 <label>Enter seat capacity:</label>
-                                <input class="form-control" type="number" name="seat_size" formControlName="seat_size"
+                                <input class="form-control" type="text" min="0" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" name="seat_size" formControlName="seat_size"
                                     [ngClass]="{errmsg: !program.controls['seat_size'].valid && submitted}" required />
                             </div>
                             <div class="col-md-4 form-group">
@@ -136,7 +137,7 @@
                             </div>
                             <div class="col-md-4 form-group">
                                 <label>Duration in months:</label>
-                                <input class="form-control" type="text" name="duration" formControlName="duration"
+                                <input disabled class="form-control" type="text" name="duration" formControlName="duration"
                                     [ngClass]="{errmsg: !program.controls['duration'].valid && submitted}" required />
                             </div>
                             <div class="col-md-4 form-group">
