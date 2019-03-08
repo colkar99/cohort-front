@@ -28,6 +28,7 @@
                         <option value="score">Score</option>
                         <option value="app_status_description">Status description</option>
                         <option value="startup_name">Startup Name</option>
+                        <option value="founder_email">Email</option>
 
                     </select>
                 </div>
@@ -67,8 +68,8 @@
                             <tbody>
                                 <tr *ngFor="let startup of allStartups;let i = index" style="cursor: pointer; ">
 
-                                    <td>{{startup.startup_name}}</td>
-                                    <td>{{startup.email}}</td>
+                                    <td>{{startup.startup_registration.startup_name}}</td>
+                                    <td>{{startup.startup_registration.founder_email}}</td>
                                     <td>{{startup.startup_registration.application_status}}</td>
                                     <td>{{startup.startup_registration.app_status_description}}</td>
                                     <td>{{startup.startup_registration.score}}</td>
