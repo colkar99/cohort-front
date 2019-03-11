@@ -362,11 +362,16 @@ export class EditProgramComponent implements OnInit {
     console.log("e", this.program.value)
     if (e != "" && e != undefined) {
       if (e > this.program.value.start_date ) {
-        let DisplayTo = new Date(this.program.value.end_date)
-        let DisplayFrom = new Date(this.program.value.start_date)
-        console.log("hello duration", DisplayTo.getMonth() - DisplayFrom.getMonth() + (12 * (DisplayTo.getFullYear() - DisplayFrom.getFullYear())))
-        let value =  DisplayTo.getMonth() - DisplayFrom.getMonth() + (12 * (DisplayTo.getFullYear() - DisplayFrom.getFullYear()))
-       this.program.controls['duration'].setValue(value) ;
+        let DisplayTo = new Date(this.program.value.end_date).getMonth()
+            let DisplayFrom = new Date(this.program.value.start_date).getMonth()
+          //  console.log("hello duration", DisplayTo.getMonth() - DisplayFrom.getMonth() + (12 * (DisplayTo.getFullYear() - DisplayFrom.getFullYear())))
+            let value:any = [];
+            for (let i = DisplayFrom; i <= DisplayTo; i++) {
+              value.push(i)
+            }
+            console.log(value)
+            // let value =  DisplayTo.getMonth() - DisplayFrom.getMonth() + (12 * (DisplayTo.getFullYear() - DisplayFrom.getFullYear()))
+           this.program.controls['duration'].setValue(value.length) ;
       } else {
         this.program.controls['end_date'].setValue(undefined)
         alert("Program End Date should be Greater than Program Start Date")
@@ -377,11 +382,16 @@ export class EditProgramComponent implements OnInit {
 
   prgstartdate(e){
     if(e != "" && this.program.value.end_date !="" && e != undefined && this.program.value.end_date != undefined ) {
-      let DisplayTo = new Date(this.program.value.end_date)
-      let DisplayFrom = new Date(this.program.value.start_date)
-      let value =  DisplayTo.getMonth() - DisplayFrom.getMonth() + (12 * (DisplayTo.getFullYear() - DisplayFrom.getFullYear()))
-      console.log("hello duration", DisplayTo.getMonth() - DisplayFrom.getMonth() + (12 * (DisplayTo.getFullYear() - DisplayFrom.getFullYear())))
-      this.program.controls['duration'].setValue(value) ;
+      let DisplayTo = new Date(this.program.value.end_date).getMonth()
+      let DisplayFrom = new Date(this.program.value.start_date).getMonth()
+    //  console.log("hello duration", DisplayTo.getMonth() - DisplayFrom.getMonth() + (12 * (DisplayTo.getFullYear() - DisplayFrom.getFullYear())))
+      let value:any = [];
+      for (let i = DisplayFrom; i <= DisplayTo; i++) {
+        value.push(i)
+      }
+      console.log(value)
+      // let value =  DisplayTo.getMonth() - DisplayFrom.getMonth() + (12 * (DisplayTo.getFullYear() - DisplayFrom.getFullYear()))
+     this.program.controls['duration'].setValue(value.length) ;
     }
   }
 }
