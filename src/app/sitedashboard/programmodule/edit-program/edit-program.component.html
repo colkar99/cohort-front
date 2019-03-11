@@ -420,11 +420,11 @@
                             <h3 class="page-heading">Program Details</h3>
                             <div class="col-md-3">
                                 <label>Title: </label>
-                                <p>{{reviewAndSubmit.program_details.title}}</p>
+                                <p [innerHTML]="reviewAndSubmit.program_details.title"></p>
                             </div>
                             <div class="col-md-3">
                                 <label>Description: </label>
-                                <p>{{reviewAndSubmit.program_details.description}}</p>
+                                <p [innerHTML]="reviewAndSubmit.program_details.description"></p>
                             </div>
                             <div class="col-md-3">
                                 <label>Start date:</label>
@@ -446,14 +446,7 @@
                                 <label>Main Image: </label>
                                 <p>{{reviewAndSubmit.program_details.main_image}}</p>
                             </div>
-                            <div class="col-md-3">
-                                <label>Logo image: </label>
-                                <p>{{reviewAndSubmit.program_details.logo_image}}</p>
-                            </div>
-                            <div class="col-md-3">
-                                <label>Duration: </label>
-                                <p>{{reviewAndSubmit.program_details.duration}}</p>
-                            </div>
+                           
                             <div class="col-md-3">
                                 <label>Application start date: </label>
                                 <p>{{reviewAndSubmit.program_details.application_start_date}}</p>

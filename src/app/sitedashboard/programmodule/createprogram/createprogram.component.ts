@@ -194,8 +194,7 @@ export class CreateProgramComponent implements OnInit {
         this.program.value.logo_image = this.logo_image;
         this.hideArrayControl = false
         let data = {"program": this.program.value, "application_questions": this.reviewAndSubmit.application_questions};
-        this.apiService.postDataWithToken("create-program",JSON.stringify(data),this.auth)
-        .subscribe(data => {
+        this.apiService.postDataWithToken("create-program",JSON.stringify(data),this.auth).subscribe(data => {
             console.log(data);
             alert("Cohort Program Created Successfully")
             $('#reviewAndSubmitModel').modal('hide');
