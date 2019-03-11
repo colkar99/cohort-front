@@ -248,7 +248,7 @@ export class CreateProgramComponent implements OnInit {
       checkdate1(e) {
         console.log("e", this.program.value)
         if (e != "" && e != undefined) {
-          if (e < this.program.value.start_date && e > this.program.value.start_date) {
+          if (e < this.program.value.start_date && e > this.program.value.application_start_date) {
             
           } else {
             this.program.controls['application_end_date'].setValue(undefined)
