@@ -50,6 +50,21 @@ export class ViewActivityComponent implements OnInit {
         console.log("courses", data);
         this.courses = data;
 
+
+        for(let i = 0;i<this.courses.length;i++){
+         
+          if(this.courses[i].course_passed == true && this.courses[i].is_assigned == true){
+            this.courses[i].color = "#d2efd2"
+          }else if(this.courses[i].course_passed == false && this.courses[i].is_assigned == true){
+            this.courses[i].color = "#f1ccd1"
+          }else{
+            this.courses[i].color = "gainsboro"
+          }
+          
+          
+          
+        }
+
       }, error => {
         console.log(error);
       })

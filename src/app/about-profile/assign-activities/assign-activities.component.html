@@ -65,9 +65,12 @@
                 <button *ngIf="course.ex_date && course.all_activity_responsed == true && course.target_date" class="btn btn-danger btn-sm" (click)="sendRemainder(course)">Send Remainder</button>
               </div>
           </div>
-          <div class="col-md-12 col-xs-12 col-sm-12 alert alert-danger" *ngIf="course.is_assigned == true">
+          <div class="col-md-12 col-xs-12 col-sm-12 alert alert-danger" *ngIf="course.is_assigned == true && course.course_passed == false">
             <p>This Course is already assigned to this startup</p>
           </div>
+          <div class="col-md-12 col-xs-12 col-sm-12 alert alert-success" *ngIf="course.is_assigned == true  && course.course_passed == true">
+              <p>Course Completed</p>
+            </div>
         </form>
       </div>
     </div>

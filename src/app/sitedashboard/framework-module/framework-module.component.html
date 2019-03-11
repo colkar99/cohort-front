@@ -44,7 +44,7 @@
                                     <th>Title</th>
                                     <th>Description</th>
                                     <th>Level</th>
-                                    <th>Thumb image</th>
+                                    <!-- <th>Thumb image</th> -->
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -53,7 +53,7 @@
                                     <td>{{framework.title}}</td>
                                     <td>{{framework.description}}</td>
                                     <td>{{framework.level}}</td>
-                                    <td>{{framework.thumb_image}}</td>
+                                    <!-- <td>{{framework.thumb_image}}</td> -->
                                     <td><button class="btn btn-default" routerLink="edit/{{framework.id}}"><i
                                                 class="glyphicon glyphicon-eye-open"></i>
                                             View</button></td>
@@ -109,16 +109,16 @@
                             <thead>
                                 <tr>
                                     <th>Title</th>
-                                    <th>Description</th>
-                                    <th>Additional Description</th>
+                                    <!-- <th>Description</th>
+                                    <th>Additional Description</th> -->
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let framework of courses;let i = index">
                                     <td [innerHTML]="framework.title"></td>
-                                    <td [innerHTML]="framework.description"></td>
-                                    <td [innerHTML]="framework.additional_description"></td>
+                                    <!-- <td [innerHTML]="framework.description"></td>
+                                    <td [innerHTML]="framework.additional_description"></td> -->
                                     <td><button class="btn btn-default" (click)="setsourceedit(framework)"
                                             routerLink="editcourse/{{framework.id}}"><i
                                                 class="glyphicon glyphicon-eye-open"></i> View</button></td>

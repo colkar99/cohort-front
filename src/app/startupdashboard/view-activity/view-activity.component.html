@@ -1,24 +1,31 @@
 <h3> Activities</h3>
 <div *ngIf="courses.length >0">
-  
-  <div class="panel panel-default" *ngFor="let course of courses">
+
+  <div class="panel panel-default" *ngFor="let course of courses;let i = index"
+    style="border:1px solid;border-color:black" [ngStyle]="{'background': [course.color]}">
     <div class="panel-body">
       <div class="col-md-12">
-        
+
         <div class="col-md-4">
-          <span style="font-size: 20px;" class="control-span"><p [innerHTML]="course.title"></p></span>
-          <h5 ><span [ngStyle]="{'color': act.startup_responsed? 'green':'red'}" [innerHTML]="act.name" *ngFor="let act of course.activities"></span></h5>
+          <span><strong>Course</strong></span><br>
+          <span style="font-size: 20px;" class="control-span">
+            <p [innerHTML]="course.title"></p>
+          </span>
+          <span><strong>Activities</strong></span><br>
+          <h5><span [ngStyle]="{'color': act.startup_responsed? 'green':'red'}" [innerHTML]="act.name"
+              *ngFor="let act of course.activities"></span></h5>
         </div>
         <div class="col-md-8">
           <div class="col-md-6">
-            <span >{{course.pass_metric}},</span>
+            <span><strong>Pass Metrics</strong></span><br>
+            <span>{{course.pass_metric}},</span>
           </div>
           <div class="col-md-6">
             <span><strong>CheckList</strong></span>
             <div *ngFor="let act of course.checklists">
-             
-                <span>{{act.name}}</span><i *ngIf="act.is_passed" class="glyphicon glyphicon-ok" style="color:green"></i>
-              
+
+              <span>{{act.name}}</span><i *ngIf="act.is_passed" class="glyphicon glyphicon-ok" style="color:green"></i>
+
             </div>
 
 
@@ -34,18 +41,20 @@
         <form>
           <div class="col-md-4 form-group">
             <label>Target Date</label>
-            <input disabled class="form-control" type="date" name="target_date"
-              [(ngModel)]="course.target_date">
+            <input disabled class="form-control" type="date" name="target_date" [(ngModel)]="course.target_date">
           </div>
           <div class="col-md-4">
 
           </div>
           <div class="col-md-4">
-            <button  class="btn btn-primary pull-right"
-              (click)="viewMaterials(course)" routerLink="/startup/dashboard/view-materials">View
+            <button class="btn btn-primary pull-right" (click)="viewMaterials(course)"
+              routerLink="/startup/dashboard/view-materials">View
               Materials</button>
-           
+
           </div>
+          <div class="col-md-12 col-xs-12 col-sm-12 alert alert-success" *ngIf="course.is_assigned == true  && course.course_passed == true">
+              <p>Course Completed</p>
+            </div>
         </form>
       </div>
     </div>
