@@ -37,6 +37,7 @@ export class ProgramModuleComponent implements OnInit {
     listprogramtypes: any
     listlocations: any
     message: any
+    ques_index:any
     constructor(
         private cookieService: CookieService,
         private formBuilder: FormBuilder,
@@ -130,10 +131,18 @@ export class ProgramModuleComponent implements OnInit {
         $('#programLocationmodel').modal('show');
 
     }
-    initQuestionsvalue(value) {
+    initQuestionsvalue(value,i) {
         this.question = value;
         this.question_edit = true;
+        this.ques_index = i;
         $('#programquestionmodal').modal('show');
+    }
+    closeques(){
+        this.question_edit = false;
+        this.getallques();
+    }
+    closeprograms(){
+        
     }
     submitProgramType(form: any, type: string) {
         debugger
@@ -263,7 +272,7 @@ export class ProgramModuleComponent implements OnInit {
         })
     }
     addques() {
-        this.question = {}
+        document.getElementById('resetques').click()
     }
 
     filtervalues(value: string) {

@@ -259,7 +259,7 @@
                                     <td>{{ques.title}}</td>
                                     <td>{{ques.question}}</td>
                                     <td>{{ques.description}}</td>
-                                    <td><button (click)="initQuestionsvalue(ques)" class="btn btn-default"><i class="glyphicon glyphicon-eye-open">
+                                    <td><button (click)="initQuestionsvalue(ques,i)" class="btn btn-default"><i class="glyphicon glyphicon-eye-open">
                                             </i> View</button></td>
                                 </tr>
                             </tbody>
@@ -276,7 +276,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal" (click)="closeques()">&times;</button>
                     <h4 class="modal-title">Question Detail</h4>
                 </div>
                 <div class="modal-body">
@@ -309,6 +309,10 @@
                                         class="glyphicon glyphicon-floppy-saved"></i> Update</button>
                                 <button class="btn btn-danger" *ngIf="question_edit" type="submit" (click)="deleteQuestion(questionform.value.id)"><i
                                         class="glyphicon glyphicon-trash"></i>Delete</button>
+                                        
+                            </div>
+                            <div hidden>
+                                <button id="resetques" hidden class="btn btn-default" type="reset">Reset</button>
                             </div>
                         </form>
                     </div>
