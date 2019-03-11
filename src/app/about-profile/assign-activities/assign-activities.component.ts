@@ -63,11 +63,11 @@ export class AssignActivitiesComponent implements OnInit {
             this.courses[i].ex_date = false;
           }
           if(this.courses[i].course_passed == true && this.courses[i].is_assigned == true){
-            this.courses[i].color = "lightgreen"
+            this.courses[i].color = "#d2efd2"
           }else if(this.courses[i].course_passed == false && this.courses[i].is_assigned == true){
-            this.courses[i].color = "#ff8989"
+            this.courses[i].color = "#f1ccd1"
           }else{
-            this.courses[i].color = "none"
+            this.courses[i].color = "gainsboro"
           }
           this.courses[i].all_activity_responsed = false
           for(let j =0;j< this.courses[i].activities.length;j++){

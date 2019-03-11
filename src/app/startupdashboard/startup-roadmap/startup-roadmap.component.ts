@@ -175,20 +175,25 @@ export class StartupRoadmapComponent implements OnInit {
     })
   }
   openresource(i) {
-    let item = this.roadmap.milestones[i]
-    this.milestoneid = item.id
-    let url = "program/startup/request-resource-get"
-    let params = JSON.stringify({ milestone_id: this.milestoneid })
-    this.apiCom.putDataWithToken(url, params, this.authToken).subscribe((res) => {
-      res;
-      if (res.length > 0) {
-        this.resources = res[0]
-      } else {
-        this.resources = {}
-      }
-      console.log(res)
-      $("#resourcesneeded").modal('show')
-    })
+    if (this.roadmap.id != null && this.roadmap.id != undefined) {
+      let item = this.roadmap.milestones[i]
+      this.milestoneid = item.id
+      let url = "program/startup/request-resource-get"
+      let params = JSON.stringify({ milestone_id: this.milestoneid })
+      this.apiCom.putDataWithToken(url, params, this.authToken).subscribe((res) => {
+        res;
+        if (res.length > 0) {
+          this.resources = res[0]
+        } else {
+          this.resources = {}
+        }
+        console.log(res)
+        $("#resourcesneeded").modal('show')
+      })
+    }else{
+      alert("Save Roadmap to Enter the Resource Needed")
+    }
+
   }
 
   saveresource() {
