@@ -17,6 +17,7 @@ export class StartupProfileComponent implements OnInit {
   funding: any = {}
   editprofile: boolean = false
   user: any = {}
+  socialedit:boolean = false
   constructor(private apiCom: ApiCommunicationService, public sharedata: sharingData,
     private router: Router,
     private cookieService: CookieService) {
@@ -29,7 +30,7 @@ export class StartupProfileComponent implements OnInit {
     let params = JSON.stringify({ startup_profile: { id: this.startupid } })
     this.apiCom.postDataWithToken(url, params, this.authToken).subscribe((res) => {
       res;
-      console.log(res);
+      console.log("responseprofile",res);
       this.startupprofile = res;
     })
   }
@@ -166,6 +167,10 @@ export class StartupProfileComponent implements OnInit {
       alert("User Deleted Successfully")
       $("#userpopup").modal('hide')
     })
+  }
+
+  submitsocial(){
+    this.socialedit = false
   }
 
 }

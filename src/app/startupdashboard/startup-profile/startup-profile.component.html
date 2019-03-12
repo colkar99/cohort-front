@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<!-- <div class="container-fluid">
   <h3 style="text-decoration:underline;text-align: center">About Company </h3>
   <div class="col-md-12">
     
@@ -45,110 +45,113 @@
         </tr>
       </tbody>
     </table>
-  </div>
+  </div> -->
 
-  <div class="modal fade" id="fundpopup" role="dialog" #fundpopup>
-    <div class="modal-dialog modal-lg">
+<div class="modal fade" id="fundpopup" role="dialog" #fundpopup>
+  <div class="modal-dialog modal-lg">
 
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" (click)="closefunding()">&times;</button>
-          <h4 class="modal-title">Fund Details</h4>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="col-md-4">
-              <div class="form-group">
-                <span class="label">Source</span>
-                <input class="form-control" type="text" name="source" [(ngModel)]="funding.source">
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <span class="label">Amount</span>
-                <input class="form-control" type="number" name="amount" [(ngModel)]="funding.amount">
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <span class="label">Date</span>
-                <input class="form-control" type="date" name="date" [(ngModel)]="funding.date">
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <span class="label">Description</span>
-                <textarea class="form-control" type="text" name="description" [(ngModel)]="funding.description"></textarea>
-              </div>
-            </div>
-
-
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-default" (click)="savefunding()">{{!funding.id? 'Save':'Update' }}</button>
-          <button type="button" class="btn btn-default" (click)="closefunding()">Close</button>
-        </div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" (click)="closefunding()">&times;</button>
+        <h4 class="modal-title">Fund Details</h4>
       </div>
+      <div class="modal-body">
+        <form>
+          <div class="col-md-4">
+            <div class="form-group">
+              <span class="label">Source</span>
+              <input class="form-control" type="text" name="source" [(ngModel)]="funding.source">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <span class="label">Amount</span>
+              <input class="form-control" type="number" name="amount" [(ngModel)]="funding.amount">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <span class="label">Date</span>
+              <input class="form-control" type="date" name="date" [(ngModel)]="funding.date">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <span class="label">Description</span>
+              <textarea class="form-control" type="text" name="description"
+                [(ngModel)]="funding.description"></textarea>
+            </div>
+          </div>
 
 
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-default" (click)="savefunding()">{{!funding.id? 'Save':'Update' }}</button>
+        <button type="button" class="btn btn-default" (click)="closefunding()">Close</button>
+      </div>
     </div>
 
+
   </div>
 
-  <div class="modal fade" id="userpopup" role="dialog" #userpopup>
-    <div class="modal-dialog">
+</div>
 
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" (click)="closeuser()">&times;</button>
-          <h4 class="modal-title">User Details</h4>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="col-md-4">
-              <div class="form-group">
-                <span class="label">FirstName</span>
-                <input class="form-control" type="text" name="first_name" [(ngModel)]="user.first_name">
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <span class="label">LastName</span>
-                <input class="form-control" type="text" name="last_name" [(ngModel)]="user.last_name">
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <span class="label">Email</span>
-                <input class="form-control" type="email" name="email" [(ngModel)]="user.email">
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <span class="label">Phone Number</span>
-                <input class="form-control" type="number" name="phone_number" [(ngModel)]="user.phone_number">
-              </div>
-            </div>
+<div class="modal fade" id="userpopup" role="dialog" #userpopup>
+  <div class="modal-dialog">
 
-
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-success" (click)="saveuser()"><i class="glyphicon glyphicon-floppy-saved"></i> {{!user.id? 'Save':'Update' }}</button>
-          <button *ngIf="user.id" type="button" class="btn btn-danger" (click)="deleteuser()"><i class="glyphicon glyphicon-trash"></i> Delete</button>
-          <button type="button" class="btn btn-default" (click)="closeuser()">Close</button>
-        </div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" (click)="closeuser()">&times;</button>
+        <h4 class="modal-title">User Details</h4>
       </div>
+      <div class="modal-body">
+        <form>
+          <div class="col-md-4">
+            <div class="form-group">
+              <span class="label">FirstName</span>
+              <input class="form-control" type="text" name="first_name" [(ngModel)]="user.first_name">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <span class="label">LastName</span>
+              <input class="form-control" type="text" name="last_name" [(ngModel)]="user.last_name">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <span class="label">Email</span>
+              <input class="form-control" type="email" name="email" [(ngModel)]="user.email">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <span class="label">Phone Number</span>
+              <input class="form-control" type="number" name="phone_number" [(ngModel)]="user.phone_number">
+            </div>
+          </div>
 
 
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success" (click)="saveuser()"><i
+            class="glyphicon glyphicon-floppy-saved"></i> {{!user.id? 'Save':'Update' }}</button>
+        <button *ngIf="user.id" type="button" class="btn btn-danger" (click)="deleteuser()"><i
+            class="glyphicon glyphicon-trash"></i> Delete</button>
+        <button type="button" class="btn btn-default" (click)="closeuser()">Close</button>
+      </div>
     </div>
 
+
   </div>
 
+</div>
 
 
-  <div class="col-md-12 col-xs-12 table-responsive">
+
+<!--  <div class="col-md-12 col-xs-12 table-responsive">
     <label>Acheivements & Milestones</label><br>
     <table class="table table-bordered table-responsive">
       <thead>
@@ -167,97 +170,276 @@
         </tr>
       </tbody>
     </table>
-  </div>
-  <div class="col-md-12">
-    <div class="row">
-      <a href="#profile" class="btn btn-info" data-toggle="collapse" style="width:100%;"><i class="glyphicon glyphicon-eye-open"></i> View Profile</a>
-      <div id="profile" class="collapse row">
-        <div class="panel panel-default">
-          <div class="panel-body">
+  </div> 
+  
 
-            <form>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <span class="label">Startup Name</span>
-                  <input class="form-control" type="text" name="startupprofile.startup_name" [(ngModel)]="startupprofile.startup_name">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <span class="label">Startup Founded Date</span>
-                  <input class="form-control" type="date" name="startupprofile.founded_date" [(ngModel)]="startupprofile.founded_date">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <span class="label">Startup Email</span>
-                  <input class="form-control" type="text" name="startupprofile.email" [(ngModel)]="startupprofile.email">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <span class="label">Team Size</span>
-                  <input class="form-control" type="text" name="startupprofile.team_size" [(ngModel)]="startupprofile.team_size">
-                </div>
-              </div>
-              <div class="col-md-8">
-                <div class="form-group">
-                  <span class="label">Startup Bio</span>
-                  <textarea class="form-control" type="text" name="startupprofile.description" [(ngModel)]="startupprofile.description"></textarea>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <span class="label">Address 1</span>
-                  <textarea class="form-control" type="text" name="startupprofile.address_line_1" [(ngModel)]="startupprofile.address_line_1"></textarea>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <span class="label">Address 2</span>
-                  <textarea class="form-control" type="text" name="startupprofile.address_line_2" [(ngModel)]="startupprofile.address_line_2"></textarea>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <span class="label">City</span>
-                  <input class="form-control" type="text" name="startupprofile.city" [(ngModel)]="startupprofile.city">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <span class="label">State</span>
-                  <input class="form-control" type="text" name="startupprofile.state_province_region" [(ngModel)]="startupprofile.state_province_region">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <span class="label">Country</span>
-                  <input class="form-control" type="text" name="startupprofile.country" [(ngModel)]="startupprofile.country">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <span class="label">Zipcode/Pincode</span>
-                  <input class="form-control" type="text" name="startupprofile.zip_pincode_postalcode" [(ngModel)]="startupprofile.zip_pincode_postalcode">
-                </div>
-              </div>
-            </form>
-            <div class="col-md-12 text-center">
-              <button class="btn btn-success" (click)="submitprofile()"><i class="glyphicon glyphicon-floppy-saved"></i> Update Profile</button>
+
+
+</div>  -->
+
+<head>
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="container">
+    <br>
+    <br>
+    <div class="col-md-12">
+      <ul class="nav nav-pills navbar-default">
+        <li class="active"><a href="#set1a" data-toggle="tab">Social Networks</a></li>
+        <li><a href="#set1b" data-toggle="tab">Official Docs</a></li>
+        <li><a href="#rate" data-toggle="tab">Testimonials </a></li>
+      </ul>
+    </div>
+    <div class="tab-content">
+      <div id="set1a" class="tab-pane active">
+        <form>
+          <div class="form-group" style="margin-top:5%;">
+            <div class="col-md-1">
+              <span><i class="fa fa-facebook-square fa-3x"></i></span>
             </div>
+            <div class="col-md-11">
+              <input type="text" class="form-control" placeholder="Facebook profile Url">
+            </div>
+          </div>
+          <div class="form-group" style="padding-top: 5%;">
+            <div class="col-md-1">
+              <span><i class="fa fa-twitter fa-3x"></i></span>
+            </div>
+            <div class="col-md-11">
+              <input type="text" class="form-control" placeholder="Twitter profile Url">
+            </div>
+          </div>
+          <div class="form-group" style="padding-top: 4%;">
+            <div class="col-md-1">
+              <span><i class="fa fa-instagram fa-3x"></i></span>
+            </div>
+            <div class="col-md-11">
+              <input type="text" class="form-control" placeholder="Instagram profile Url">
+            </div>
+          </div>
+          <div class="form-group" style="padding-top: 4%;">
+            <div class="col-md-1">
+              <span><i class="fa fa-youtube fa-3x"></i></span>
+            </div>
+            <div class="col-md-11">
+              <input type="text" class="form-control" placeholder="Youtube Url">
+            </div>
+          </div>
+          <div class="form-group" style="padding-top: 4%;padding-bottom:5%;">
+            <div class="col-md-1">
+              <span><i class="fa fa-pinterest fa-3x"></i></span>
+            </div>
+            <div class="col-md-11">
+              <input type="text" class="form-control" placeholder="Pinterest Url">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <button *ngIf="socialedit == true" class="button pull-right" type="submit"
+              (click)="submitsocial()">Submit</button>
+            <button *ngIf="socialedit == false" class="button pull-right" type="button"
+              (click)="socialedit = true">Edit</button>
+          </div>
+        </form>
+      </div>
+      <div id="set1b" class="tab-pane fade">
+        <div class="col-md-12" style="margin-top:5%;">
+          <h4><strong>About Us</strong></h4>
+          <p>{{startupprofile.description}}</p>
+          <div class="panel panel-default">
+            <div class="panel-heading" style="height:57px;">Funding
+              <button class="button pull-right" (click)="addfunding()"><i class="glyphicon glyphicon-plus-sign"></i>
+                Fund</button>
+            </div>
+            <div class="panel-body">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Source</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Actions</th>
 
+                  </tr>
+                </thead>
+                <tbody *ngIf="startupprofile">
+                  <tr *ngFor="let item of startupprofile.founding_sources;let i = index">
+                    <td>{{item.source}}</td>
+                    <td>{{item.amount}}</td>
+                    <td>{{item.date |date:'dd-MM-yyyy'}}</td>
+                    <td>
+                      <button type="button" class="btn btn-default" (click)="viewfunding(item,i)"><i
+                          class="glyphicon glyphicon-eye-open"></i> View</button>
+                      <button type="button" class="btn btn-danger" (click)="deletefunding(item,i)"><i
+                          class="glyphicon glyphicon-trash"></i> Delete</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading" style="height:57px;">Achievements & Milestones
+              <button class="button pull-right" (click)="addmilestones()"><i class="glyphicon glyphicon-plus-sign"></i>
+                Achievement</button>
+            </div>
+            <div class="panel-body">
+              <table class="table table-bordered table-responsive">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Overview</th>
+                    <th>Description</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>22-01-2019</td>
+                    <td>Overview</td>
+                    <td>Desc</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="col-md-12">
+                <div class="row">
+                  <a href="#profile" class="btn btn-info" data-toggle="collapse" style="width:100%;"><i
+                      class="glyphicon glyphicon-eye-open"></i> View Profile</a>
+                  <div id="profile" class="collapse row">
+                    <div class="panel panel-default">
+                      <div class="panel-body">
+
+                        <form>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <span class="label">Startup Name</span>
+                              <input class="form-control" type="text" name="startupprofile.startup_name"
+                                [(ngModel)]="startupprofile.startup_name">
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <span class="label">Startup Founded Date</span>
+                              <input class="form-control" type="date" name="startupprofile.founded_date"
+                                [(ngModel)]="startupprofile.founded_date">
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <span class="label">Startup Email</span>
+                              <input class="form-control" type="text" name="startupprofile.email"
+                                [(ngModel)]="startupprofile.email">
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <span class="label">Team Size</span>
+                              <input class="form-control" type="text" name="startupprofile.team_size"
+                                [(ngModel)]="startupprofile.team_size">
+                            </div>
+                          </div>
+                          <div class="col-md-8">
+                            <div class="form-group">
+                              <span class="label">Startup Bio</span>
+                              <textarea class="form-control" type="text" name="startupprofile.description"
+                                [(ngModel)]="startupprofile.description"></textarea>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <span class="label">Address 1</span>
+                              <textarea class="form-control" type="text" name="startupprofile.address_line_1"
+                                [(ngModel)]="startupprofile.address_line_1"></textarea>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <span class="label">Address 2</span>
+                              <textarea class="form-control" type="text" name="startupprofile.address_line_2"
+                                [(ngModel)]="startupprofile.address_line_2"></textarea>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <span class="label">City</span>
+                              <input class="form-control" type="text" name="startupprofile.city"
+                                [(ngModel)]="startupprofile.city">
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <span class="label">State</span>
+                              <input class="form-control" type="text" name="startupprofile.state_province_region"
+                                [(ngModel)]="startupprofile.state_province_region">
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <span class="label">Country</span>
+                              <input class="form-control" type="text" name="startupprofile.country"
+                                [(ngModel)]="startupprofile.country">
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <span class="label">Zipcode/Pincode</span>
+                              <input class="form-control" type="text" name="startupprofile.zip_pincode_postalcode"
+                                [(ngModel)]="startupprofile.zip_pincode_postalcode">
+                            </div>
+                          </div>
+                        </form>
+                        <div class="col-md-12 text-center">
+                          <button class="btn btn-success" (click)="submitprofile()"><i
+                              class="glyphicon glyphicon-floppy-saved"></i> Update Profile</button>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      <div id="rate" class="tab-pane fade">
+        <div class="col-md-12">
+          <h1 style="margin-top:5%;font-family: 'Times New Roman', Times, serif;font-weight: bold;
+          font-size: 30px;" class="text-center">The Team</h1>
+        </div>
+        <div class="col-md-12">
+          <div class="bg" (click)="adduser()">
+            <img src="assets/adduser.jpeg" alt="" style="height:125px;width: 150px;">
+            <div class="overlay">
+              <h4>Add Team Member</h4>
+
+            </div>
+          </div>
+          <div style="height:200px;" *ngFor="let item of startupprofile.users;let i= index">
+            <div class="bg" (click)="viewuser(item,i)">
+              <img src="assets/photo.png" alt="" style="height:125px;width: 150px;">
+              <div class="overlay">
+                <h4>{{item.full_name}}</h4>
+                <p></p>
+              </div>
+            </div>
+            <div style="position:absolute;top:60%;left:17%;">
+              <h3>{{item.designation|uppercase}}</h3>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
   </div>
-
-
-
-</div>
+</body>
