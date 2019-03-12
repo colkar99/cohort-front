@@ -20,8 +20,8 @@ export class StartupControlComponent implements OnInit {
   appRespQues: any;
   startup_id: number;
   currentstateform: CurrentstateFormVO
-  currentstateedit:boolean = true
-  edit_admin:boolean = false
+  currentstateedit: boolean = true
+  edit_admin: boolean = false
 
   constructor(private apiCom: ApiCommunicationService,
     private cookieService: CookieService,
@@ -55,13 +55,13 @@ export class StartupControlComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
         this.startup = data.startup_application;
-        if(this.startup.application_status == "PR" || this.startup.application_status == "RP"){
+        if (this.startup.application_status == "PR" || this.startup.application_status == "RP") {
           this.edit_admin = true
         }
-        if(this.startup.current_state_form_reviewed == false){
+        if (this.startup.current_state_form_reviewed == false) {
           this.currentstateedit = false
-        }else{
-         this.currentstateedit = true
+        } else {
+          this.currentstateedit = true
         }
         if (this.startup.application_status != "PR" && this.startup.application_status != "RP" && this.startup.application_status != "RC" && this.startup.application_status != "CSFI") {
           let url = "program/user/show-current-state-form";
@@ -101,19 +101,55 @@ export class StartupControlComponent implements OnInit {
   submitAdminResponse(form: any) {
     let url = "admin-feedback-for-startup-response";
     let data = { application_questions_response: form.value };
-    this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
-      .subscribe(data => {
-        console.log(data);
-        this.getStartupRegQues();
-        this.appRespQues 
-        if(this.currentstateform.reviewer_rating != "" && this.currentstateform.reviewer_rating != (0 && null && undefined)){
-          this.submitCSFS();
-          this.edit_admin = false
-          console.log("submitscfs")
-        }
-      }, error => {
-        console.log(error);
-      })
+    if (this.reviewCheck(form) == false) {
+      this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
+        .subscribe(data => {
+          console.log(data);
+          this.getStartupRegQues();
+          this.appRespQues
+          if (this.currentstateform.reviewer_rating != "" && this.currentstateform.reviewer_rating != (0 && null && undefined)) {
+            this.submitCSFS();
+            this.edit_admin = false
+            console.log("submitscfs")
+          }
+        }, error => {
+          console.log(error);
+        })
+    }else{
+      alert("Please fill all the feedback and rating")
+    }
+    // this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
+    //   .subscribe(data => {
+    //     console.log(data);
+    //     this.getStartupRegQues();
+    //     this.appRespQues 
+    //     if(this.currentstateform.reviewer_rating != "" && this.currentstateform.reviewer_rating != (0 && null && undefined)){
+    //       this.submitCSFS();
+    //       this.edit_admin = false
+    //       console.log("submitscfs")
+    //     }
+    //   }, error => {
+    //     console.log(error);
+    //   })
+  }
+  reviewCheck(form): any {
+    console.log("formvalue",form.value)
+    let formdata = [];
+
+    for (let i = 0; i < this.appRespQues.length; i++) {
+      formdata.push(form.value[i])
+    }
+    console.log(formdata)
+    let value: boolean = false;
+    for (let i = 0; i < formdata.length; i++) {
+      if (formdata[i].reviewer_rating != (null && undefined) && formdata[i].reviewer_feedback != (null && undefined)) {
+
+      } else {
+        value = true
+      }
+    }
+    return value;
+
   }
   requestCurrentStateForm(id: number) {
     let url = "program/admin/request-current-form";
@@ -142,17 +178,17 @@ export class StartupControlComponent implements OnInit {
       let total = 0;
       this.currentstateform.total_rating = 0;
       for (let i = 0; i < this.appRespQues.length; i++) {
-        console.log("this.appRespQues[i].reviewer_rating",this.appRespQues[i].reviewer_rating)
+        console.log("this.appRespQues[i].reviewer_rating", this.appRespQues[i].reviewer_rating)
         total += this.appRespQues[i].reviewer_rating
       }
       this.currentstateform.total_rating = Number(this.currentstateform.reviewer_rating) + Number(total)
-      var url:string
-      if(this.startup.current_state_form_reviewed == false){
+      var url: string
+      if (this.startup.current_state_form_reviewed == false) {
         url = "program/admin/response-current-state-form"
-      }else{
+      } else {
         url = "program/admin/edit-current-state-form-admin"
       }
-       
+
       let params = JSON.stringify({ "current_state_form": this.currentstateform })
 
 
@@ -169,31 +205,29 @@ export class StartupControlComponent implements OnInit {
 
   }
 
-  startupAccept(){
+  startupAccept() {
     debugger
     let url = "startup-accept-by-admin";
-    let data = {startup_registration_id: this.startup_id};
-    this.apiCom.postDataWithToken(url,JSON.stringify(data),this.authToken)
-    .subscribe(data => 
-      {
-        console.log("acceptdata"+data);
+    let data = { startup_registration_id: this.startup_id };
+    this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
+      .subscribe(data => {
+        console.log("acceptdata" + data);
       },
-      error=> {
-        console.log(error);
-      });
+        error => {
+          console.log(error);
+        });
   }
-  startupReject(){
+  startupReject() {
     debugger
     let url = "startup-reject-by-admin";
-    let data = {startup_registration_id: this.startup_id};
-    this.apiCom.postDataWithToken(url,JSON.stringify(data),this.authToken)
-    .subscribe(data => 
-      {
-        console.log("rejectdata"+data);
+    let data = { startup_registration_id: this.startup_id };
+    this.apiCom.postDataWithToken(url, JSON.stringify(data), this.authToken)
+      .subscribe(data => {
+        console.log("rejectdata" + data);
       },
-      error=> {
-        console.log(error);
-      })
+        error => {
+          console.log(error);
+        })
   }
 
 
