@@ -22,6 +22,11 @@ export class StartupRoadmapComponent implements OnInit {
   description: string
   milestoneid: any
   resources: any = {}
+  kpigoal: any
+  kpidescription: any
+  kpimetric: any
+  mileindex: any = -1
+  roadedit: boolean = true;
   constructor(private apiCom: ApiCommunicationService,
     private cookieService: CookieService,
     public sharedata: sharingData) {
@@ -44,6 +49,7 @@ export class StartupRoadmapComponent implements OnInit {
         this.apiCom.postDataWithToken(url, params, this.authToken).subscribe((res) => {
           res;
           this.roadmap = res
+          this.maingoal();
         })
       } else {
 
@@ -59,7 +65,7 @@ export class StartupRoadmapComponent implements OnInit {
           } else {
             this.roadmap.milestones.push({ month: string })
           }
-
+          this.maingoal();
         }
         console.log("months", this.montharray)
       }
@@ -137,6 +143,7 @@ export class StartupRoadmapComponent implements OnInit {
     console.log("params", params)
     this.apiCom.postDataWithToken(url, params, this.authToken).subscribe((res) => {
       res;
+      this.roadedit = true;
       console.log(res);
       if (this.roadmap.id == (null || undefined)) {
         alert("Roadmap Saved Successfully")
@@ -174,9 +181,9 @@ export class StartupRoadmapComponent implements OnInit {
       }
     })
   }
-  openresource(i) {
+  openresource() {
     if (this.roadmap.id != null && this.roadmap.id != undefined) {
-      let item = this.roadmap.milestones[i]
+      let item = this.roadmap.milestones[this.mileindex]
       this.milestoneid = item.id
       let url = "program/startup/request-resource-get"
       let params = JSON.stringify({ milestone_id: this.milestoneid })
@@ -190,7 +197,7 @@ export class StartupRoadmapComponent implements OnInit {
         console.log(res)
         $("#resourcesneeded").modal('show')
       })
-    }else{
+    } else {
       alert("Save Roadmap to Enter the Resource Needed")
     }
 
@@ -225,6 +232,49 @@ export class StartupRoadmapComponent implements OnInit {
   }
   closeresource() {
     $("#resourcesneeded").modal('hide')
+  }
+  maingoal() {
+    if(this.mileindex != -1){
+      this.roadmap.milestones[this.mileindex].name = this.kpigoal
+      this.roadmap.milestones[this.mileindex].metric = this.kpimetric
+      this.roadmap.milestones[this.mileindex].description = this.kpidescription
+    }
+    this.mileindex = -1
+      this.kpidescription = this.roadmap.description
+      this.kpimetric = this.roadmap.strategy
+      this.kpigoal = this.roadmap.goal
+  }
+  milegoal(item, i) {
+    if (this.mileindex == -1) {
+      this.roadmap.goal = this.kpigoal
+      this.roadmap.strategy = this.kpimetric
+      this.roadmap.description = this.kpidescription
+
+      this.mileindex = i
+      this.kpidescription = item.description
+      this.kpimetric = item.metric
+      this.kpigoal = item.name
+    }
+    else if(this.mileindex == undefined){
+      this.mileindex = i
+      this.kpidescription = item.description
+      this.kpimetric = item.metric
+      this.kpigoal = item.name
+    }
+    else {
+      this.roadmap.milestones[this.mileindex].name = this.kpigoal
+      this.roadmap.milestones[this.mileindex].metric = this.kpimetric
+      this.roadmap.milestones[this.mileindex].description = this.kpidescription
+
+      this.mileindex = i
+      this.kpidescription = item.description
+      this.kpimetric = item.metric
+      this.kpigoal = item.name
+      
+      
+
+    }
+
   }
 
 

@@ -64,4 +64,8 @@ input.form-control,textarea.form-control,select.form-control{
     margin: 4px 2px;
     cursor: pointer;
   }
+
+  * {
+    font-family: 'Times New Roman', Times, serif;
+   }
   

@@ -1,7 +1,4 @@
-<h1 class="text-center"> Roadmap</h1>
-
-
-
+<!-- 
 <div class="col-md-12 col-sm-12 col-xs-12" style="height:270px;">
   <div class="oval text-center">
     <span style="font-size: 15px;">Graduation</span>
@@ -35,12 +32,12 @@
 <div class="col-md-12 col-sm-12 col-xs-12 text-center">
   <button class="btn btn-lg btn-success"  type="submit" (click)="submitRoadmap()"><i class="glyphicon glyphicon-floppy-saved"></i> {{!roadmap.id ? 'Save':'Update'}}</button>
   <button *ngIf="roadmap.id !=(null && undefined)" class="btn btn-danger pull-right" (click)="deleteroadmap()">Delete</button>
-</div>
+</div> -->
 
 <div class="modal fade" id="roadmpdetails" role="dialog" #roadmpdetails>
   <div class="modal-dialog modal-lg">
 
-    <!-- Modal content-->
+
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" (click)="closeroadmap()">&times;</button>
@@ -76,7 +73,7 @@
 <div class="modal fade" id="milestone" role="dialog" #milestone>
   <div class="modal-dialog modal-lg">
 
-    <!-- Modal content-->
+
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" (click)="closemilestone()">&times;</button>
@@ -149,14 +146,15 @@
                 <option value="">---Select---</option>
                 <option value="Cash">Cash</option>
                 <option value="Equity">Equity</option>
-                
+
               </select>
             </div>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success" (click)="saveresource()"><i class="glyphicon glyphicon-floppy-saved"></i>{{!resources.id? 'Save':'Update'}}</button>
+        <button type="button" class="btn btn-success" (click)="saveresource()"><i
+            class="glyphicon glyphicon-floppy-saved"></i>{{!resources.id? 'Save':'Update'}}</button>
         <button type="button" class="btn btn-default" (click)="closeresource()">Close</button>
       </div>
     </div>
@@ -164,7 +162,77 @@
   </div>
 </div>
 
-
+<div class="container">
+  <div class="col-md-12" style="margin-top:5%;">
+    <h3 class="text-center" style="font-family: 'Times New Roman', Times, serif;font-weight: bold"> The Roadmap</h3>
+  </div>
+  <div class="col-md-12">
+    <div class="col-md-12">
+      <label>Goals by Month</label>
+      <br>
+      <div class="btn-group">
+        <button type="button" class="btn btn-default" (click)="maingoal()">Main Goal</button>
+        <button type="button" class="btn btn-default" *ngFor="let item of roadmap.milestones;let i = index" (click)="milegoal(item,i)">{{item.month}}</button>
+       
+      </div>
+    </div>
+    <div class="col-md-12" style="margin-top:5%;">
+      <div class="panel with-nav-tabs panel-default">
+        <div class="panel-heading">
+          <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab1default" data-toggle="tab">Goal</a></li>
+            <li><a href="#tab2default" data-toggle="tab">KPI</a></li>
+            <li><a href="#tab3default" data-toggle="tab">Status</a></li>
+            <!-- <li class="dropdown">
+                            <a href="#" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#tab4default" data-toggle="tab">Default 4</a></li>
+                                <li><a href="#tab5default" data-toggle="tab">Default 5</a></li>
+                            </ul>
+                        </li> -->
+          </ul>
+        </div>
+        <div class="panel-body">
+          <div class="tab-content">
+            <div class="tab-pane fade in active" id="tab1default">
+              <div class="col-md-12">
+                <form>
+                  <div class="col-md-12 form-group">
+                    <textarea [disabled]="roadedit == true" class="form-control" name="kpigoal" [(ngModel)]="kpigoal"></textarea>
+                  </div>
+                  <div class="col-md-12" *ngIf="mileindex != -1">
+                    <button *ngIf="roadmap.id" class="button pull-right" (click)="openresource()">Request Resource</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="tab2default">
+                <div class="col-md-12">
+                    <form>
+                      <div class="form-group">
+                        <label *ngIf="!mileindex">Strategy</label>
+                        <label *ngIf="mileindex">Metric</label>
+                        <textarea [disabled]="roadedit == true" class="form-control" name="kpimetric" [(ngModel)]="kpimetric"></textarea>
+                      </div>
+                      <div class="form-group">
+                          <label>Description</label>
+                          <textarea [disabled]="roadedit == true" class="form-control" name="kpidescription" [(ngModel)]="kpidescription"></textarea>
+                        </div>
+                    </form>
+                  </div>
+            </div>
+            <div class="tab-pane fade" id="tab3default">Default 3</div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <button *ngIf="roadedit == true" type="button" class="button pull-right" (click)="roadedit = false">Edit</button>
+      <button *ngIf="roadedit == false" type="submit" class="button pull-right" (click)="submitRoadmap()">Submit</button>
+    </div>
+  </div>
+</div>
 
 
 
