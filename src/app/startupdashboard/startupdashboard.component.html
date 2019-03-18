@@ -3,179 +3,13 @@
 </head>
 
 
-<!-- <div class="page-wrapper chiller-theme toggled">
-  <a id="show-sidebar" class="btn btn-sm btn-dark" >
-    <i class="fas fa-bars"></i>
-  </a>
-  <nav id="sidebar" class="sidebar-wrapper"  style="cursor:pointer">
-    <div class="sidebar-content">
-      <div class="sidebar-brand">
-        <a>pro sidebar</a>
-        <div id="close-sidebar">
-          <i class="fas fa-times"></i>
-        </div>
-      </div>
-      <div class="sidebar-header">
-        <div class="user-pic">
-          <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
-            alt="User picture">
-        </div>
-        <div class="user-info">
-          <span class="user-name">
-            <strong>{{sharedata.startupprofile.startup_name}}</strong>
-          </span>
-          <span class="user-role">Mentors</span>
-          <span class="user-status">
-
-            <span>{{Mentors}}</span>
-          </span>
-        </div>
-      </div>
-      <!-- sidebar-header  -->
-<!--  <div class="sidebar-menu">
-        <div>
-          <ul>
-            <li class="header-menu">
-              <span>Bio</span>
-              <div>
-                  <span>{{sharedata.startupprofile.description}}</span>
-              </div>
-              
-            </li>
-          </ul>
-        </div>
-      </div>
-      <!-- sidebar-search  -->
-<!--<div class="sidebar-menu">
-        <ul>
-          <li class="header-menu">
-            <span>Menus</span>
-          </li>
-          <li class="active">
-            <a routerLink="profile">
-              <i class="fa fa-tachometer-alt"></i>
-              <span>Profile</span>
-              <!-- <span class="badge badge-pill badge-warning">New</span> -->
-<!--   </a>
-            
-          </li>
-          <li class="">
-            <a >
-              <i class="fa fa-shopping-cart"></i>
-              <span>Programs</span>
-              
-            </a>
-            
-          </li>
-          <li class="">
-              <a routerLink="road-map">
-                <i class="fa fa-shopping-cart"></i>
-                <span>Road Map</span>
-               
-              </a>
-              
-            </li>
-          
-        </ul>
-      </div>
-      <!-- sidebar-menu  -->
-<!-- </div>
-    <!-- sidebar-content  -->
-<!-- <div class="sidebar-footer">
-        <a >
-          <i class="fa fa-bell"></i>
-          <span class="badge badge-pill badge-warning notification">3</span>
-        </a>
-        <a >
-          <i class="fa fa-envelope"></i>
-          <span class="badge badge-pill badge-success notification">7</span>
-        </a>
-        <a >
-          <i class="fa fa-cog"></i>
-          <span class="badge-sonar"></span>
-        </a>
-        <a >
-          <i class="fa fa-power-off"></i>
-        </a>
-      </div> -->
-<!--  </nav>
-  <!-- sidebar-wrapper  -->
-<!--<div class="col-md-12">
-      
-    
-
-  </div> -->
-<!-- page-content" -->
-<!--</div> -->
-
-
-
-
-
-<!--<div class="container">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-4">
-        <div class="col-md-6">
-          <img src="{{companylogo}}" style="height:100px;width: 125px;">
-        </div>
-        <div class="col-md-6">
-          <span>{{CompanyName}}</span><br>
-          <label>Mentor(s):</label><br>
-          {{Mentors}}
-
-        </div>
-       <!-- <div class="col-md-12">
-          <button class="btn btn-primary pull-left">View RoadMap</button>
-        </div> -->
-<!-- <div class="col-md-12">
-          <h4 style="text-decoration:underline">Bio</h4>
-          <p>{{bio}}</p>
-        </div> -->
-<!--<div class="col-md-12">
-          <h4 style="text-decoration:underline">Financials</h4>
-          <div class="col-md-12">
-            <table class="table table-bordered table-responsive">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Age</th>
-                  <th>Nickname</th>
-                  <th>Employee</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Arun</td>
-                  <td>28</td>
-                  <td>Arun</td>
-                  <td>true</td>
-                </tr>
-
-              </tbody>
-            </table>
-          </div>
-
-        </div> -->
-<!--
-      </div>
-      <div class="col-md-8">
-        
-      </div>
-    </div>
-  </div>
-</div>  -->
-
-
-
-
-<div class="col-md-2 hidden-sm hidden-xs">
+<!-- <div class="col-md-2 hidden-sm hidden-xs">
   <nav class="sidenav">
     <div style="height:90px;">
       <img class="img-responsive img-rounded profile-image"
         src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
         alt="User picture">
-      <!-- <strong>{{sharedata.startupprofile.startup_name}}</strong>-->
+     
       <strong style="color:white;position: absolute;left: 30%;">{{sharedata.startupprofile.startup_name}}</strong>
       <span style="color:white;position: absolute;left: 30%;top: 6%;"><strong>Mentors</strong></span>
       <span style="color:white;position: absolute;left: 30%;top: 10%;">{{Mentors}}</span>
@@ -192,8 +26,7 @@
 
       <a [ngClass]="menuname == 'profile' ? 'bganchor' : ''" role="button" routerLink="profile"
         (click)="menunames('profile')">Profile</a>
-      <!-- <a [ngClass]="menuname == 'programs' ? 'bganchor' : ''" role="button" routerLink="programs"
-        (click)="menunames('programs')">Programs</a> -->
+     
       <a [ngClass]="menuname == 'roadmap' ? 'bganchor' : ''" role="button" routerLink="road-map"
         (click)="menunames('roadmap')">RoadMap</a>
       <a [ngClass]="menuname == 'program-session' ? 'bganchor' : ''" role="button" routerLink="program-sessions"
@@ -208,30 +41,6 @@
 
 </div>
 
-<!-- <ul class="nav-mobile hidden-lg hidden-md">
-  <li style="background-color:white"></li>
-  <li class="menu-container" style="background-color:blue;">
-    <input id="menu-toggle" type="checkbox">
-    <label for="menu-toggle" class="menu-button">
-      <svg class="icon-open" viewBox="0 0 24 24">
-        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
-      </svg>
-      <svg class="icon-close" viewBox="0 0 100 100">
-        <path d="M83.288 88.13c-2.114 2.112-5.575 2.112-7.69 0L53.66 66.188c-2.113-2.112-5.572-2.112-7.686 0l-21.72 21.72c-2.114 2.113-5.572 2.113-7.687 0l-4.693-4.692c-2.114-2.114-2.114-5.573 0-7.688l21.72-21.72c2.112-2.115 2.112-5.574 0-7.687L11.87 24.4c-2.114-2.113-2.114-5.57 0-7.686l4.842-4.842c2.113-2.114 5.57-2.114 7.686 0l21.72 21.72c2.114 2.113 5.572 2.113 7.688 0l21.72-21.72c2.115-2.114 5.574-2.114 7.688 0l4.695 4.695c2.112 2.113 2.112 5.57-.002 7.686l-21.72 21.72c-2.112 2.114-2.112 5.573 0 7.686L88.13 75.6c2.112 2.11 2.112 5.572 0 7.687l-4.842 4.84z" />
-      </svg>
-    </label>
-    <ul class="menu-sidebar">
-      <li><a [ngClass]="menuname == 'profile' ? 'bganchor' : ''" role="button" routerLink="profile" (click)="menunames('profile')">Profile</a></li>
-      <li> <a [ngClass]="menuname == 'programs' ? 'bganchor' : ''" role="button" routerLink="programs" (click)="menunames('programs')">Programs</a></li>
-      <li> <a [ngClass]="menuname == 'roadmap' ? 'bganchor' : ''" role="button" routerLink="road-map" (click)="menunames('roadmap')">RoadMap</a></li>
-
-
-
-      
-    </ul>
-  </li>
-</ul> -->
-
 <div id="mySidebar" class="col-md-2 sidebar hidden-lg hidden-md" [hidden]="mobilenav == false">
   <a class="closebtn" (click)="closeNav()">×</a>
   <div class="col-md-12">
@@ -239,7 +48,7 @@
       <img class="img-responsive img-rounded profile-image1"
         src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
         alt="User picture">
-      <!-- <strong>{{sharedata.startupprofile.startup_name}}</strong>-->
+      
 
     </div>
     <div>
@@ -251,8 +60,7 @@
     <strong>Menus</strong>
     <a [ngClass]="menuname == 'profile' ? 'bganchor' : ''" role="button" routerLink="profile"
       (click)="menunames('profile')">Profile</a>
-    <!-- <a [ngClass]="menuname == 'programs' ? 'bganchor' : ''" role="button" routerLink="programs"
-      (click)="menunames('programs')">Programs</a> -->
+    
     <a [ngClass]="menuname == 'roadmap' ? 'bganchor' : ''" role="button" routerLink="road-map"
       (click)="menunames('roadmap')">RoadMap</a>
     <a [ngClass]="menuname == 'program-session' ? 'bganchor' : ''" role="button" routerLink="program-sessions"
@@ -267,14 +75,74 @@
   <button class="openbtn" (click)="openNav()"> <i class="glyphicon glyphicon-arrow-right"></i></button> <!-- ☰ -->
 
 
-</div>
+<!-- </div>
 <div class="col-md-1"></div>
 <div class="col-md-9 col-xs-12 co-sm-12">
   <router-outlet></router-outlet>
+</div> -->
+
+
+<div class="container">
+  <div class="col-md-12">
+    <div class="col-md-6">
+      <br>
+      <br>
+      <div class="col-md-4">
+        <img class="img-responsive img-rounded" src="assets/avatar_2x.png"
+          style="border-radius:50%;height:150px;width:150px;">
+      </div>
+      <div class="col-md-3">
+        <h4 style="font-family:'Times New Roman', Times, serif">
+          <strong>{{sharedata.startupprofile.startup_name}}</strong></h4>
+      </div>
+      <div class="col-md-3">
+
+      </div>
+
+    </div>
+    <div class="col-md-6">
+      <br>
+      <br>
+      <div class="col-md-12">
+        <h4>Industry:</h4>
+      </div>
+      <br>
+      <div class="col-md-12">
+        <h4>Size:</h4>
+      </div>
+      <br>
+      <div class="col-md-12">
+        <h4 >Location:</h4>
+      </div>
+      <br>
+      <div class="col-md-12">
+        <h4 >Website:</h4>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+
+  </div>
+ 
+  <div class="col-md-6" style="margin-left:2%;">
+      <br>
+    <div class="col-md-3">
+        <button type="button" class="button" routerLink="profile">OverView</button>
+    </div>
+    <div class="col-md-3">
+        <button type="button"  class="button" routerLink="road-map">RoadMap</button>
+    </div>
+    <div class="col-md-3">
+        <button type="button" class="button" routerLink="view-activities">Contents</button>
+    </div>
+    <div class="col-md-3">
+        <button type="button"  class="button" routerLink="status-updates">Updates</button>
+    </div>
+    
+
+
+  </div>
+  <div class="col-md-12 col-xs-12 co-sm-12">
+    <router-outlet></router-outlet>
+  </div>
 </div>
-
-
-
-<!-- onload="this.onload=function(){};handleClientLoad()"
-onreadystatechange="if (this.readyState === 'complete') this.onload()">
-</script>  -->

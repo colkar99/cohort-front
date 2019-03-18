@@ -68,6 +68,7 @@ import { CourseMaterialComponent } from './startupdashboard/course-material/cour
 import { CKEditorModule } from 'ng2-ckeditor';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { ImageCompressService,ResizeOptions,ImageUtilityService } from 'ng2-image-compress';
+import { StartupUpdatesComponent } from './startupdashboard/startup-updates/startup-updates.component';
 export function provideConfig() {
   let config = new AuthServiceConfig([
     {
@@ -124,7 +125,8 @@ export function provideConfig() {
     ViewMaterialsComponent,
     ViewActivityComponent,
     CourseMaterialComponent,
-    MyAccountComponent
+    MyAccountComponent,
+    StartupUpdatesComponent
   ],
   imports: [
     BrowserModule,

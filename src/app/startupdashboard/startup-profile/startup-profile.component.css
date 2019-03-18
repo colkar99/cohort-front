@@ -80,6 +80,8 @@
   .bg img {
     width: 100%;
     margin-bottom: -4px;
+    border-radius: 50%;
+    border: 1px solid
   }
   .bg .overlay {
     position: absolute;
@@ -87,6 +89,7 @@
     left: 0;
     bottom: 0;
     width: 100%;
+    border-radius: 50%;
     background: rgba(0, 0, 0, 0.2);
     color: #fff;
     opacity: 0;
@@ -118,3 +121,21 @@
       margin: 1% auto;
     }
   }
+
+
+.nav-pills .active {
+    border-bottom: 3px solid #1bbef4;
+    color: white;
+}
+.nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+  color: black;
+  background-color: transparent;
+}
+.nav-pills>li{
+  border-bottom: 3px solid lightblue;
+  color: white;
+}
+.nav-pills>li>a {
+  color: black;
+  border-radius: 0px;
+}

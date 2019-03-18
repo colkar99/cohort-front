@@ -40,6 +40,7 @@ import { ViewMaterialsComponent } from './about-profile/view-materials/view-mate
 import { ViewActivityComponent } from './startupdashboard/view-activity/view-activity.component'
 import {CourseMaterialComponent} from './startupdashboard/course-material/course-material.component'
 import {MyAccountComponent} from './my-account/my-account.component'
+import {StartupUpdatesComponent} from './startupdashboard/startup-updates/startup-updates.component'
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'login', component: LoginComponent },
@@ -88,6 +89,7 @@ const routes: Routes = [
       { path: 'road-map', component: StartupRoadmapComponent },
       { path: 'program-sessions', component: ProgramSessionComponent },
       { path: 'view-activities', component: ViewActivityComponent },
+      { path: 'status-updates', component: StartupUpdatesComponent },
      
 
 
