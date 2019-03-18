@@ -38,6 +38,7 @@ export class StartupProfileComponent implements OnInit {
   getCookie(key: string) {
     return this.cookieService.get(key);
   }
+  addmilestones(){};
 
   addfunding() {
     $("#fundpopup").modal('show');
