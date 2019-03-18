@@ -22,7 +22,7 @@ export class PusherService {
     // this.http.post('http://localhost:3120/update', {'likes': num_likes})
     // .subscribe(data => {});
     let s_data = {like: num_likes}
-    this.http.post('http://localhost:3000/v1/update',{s_data})
+    this.http.post('http://ec2-54-172-0-213.compute-1.amazonaws.com/v1/update',{s_data})
     .subscribe(data => {console.log(data)});
   }
 
