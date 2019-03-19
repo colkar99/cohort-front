@@ -104,7 +104,7 @@ export class AssignActivitiesComponent implements OnInit {
     if (this.arrayitems.length > 0) {
      
       let url = "framework/course/assign_activities_to_startup"
-      let params = JSON.stringify({ courses: this.arrayitems, program_id: this.startupprofile.startup_registration.program_id, startup_profile_id: this.startupprofile.id })
+      let params = JSON.stringify({ courses: this.arrayitems, program_id: this.startupprofile.startup_registration.program_id, startup_profile_id: this.startupprofile.id,singular:true })
       console.log(params)
       this.apiCom.putDataWithToken(url, params, this.authToken).subscribe((res) => {
         res;

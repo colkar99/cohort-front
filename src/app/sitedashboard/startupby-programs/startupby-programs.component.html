@@ -1,89 +1,305 @@
-<div class="container">
-    <div class="row" *ngIf="!startup">
-        <div class="col-md-12 form-group">
-            <label for="user_type">Select Program</label>
-            <select class="form-control" id="role" (change)="showStartups($event.target.value)" name="programselected"
-                [(ngModel)]="programselected">
-                <option value="" selected>---Select---</option>
-                <option *ngFor="let program of allPrograms" value="{{program.id}}" [innerHTML]="program.title"></option>
-                <!-- <option [value]="mentor">mentor</option> -->
-                <!-- <option [ngValue]="startup">Startup User</option> -->
-            </select>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row" *ngIf="!startup">
+            <div class="col-md-12 form-group">
+                <label for="user_type">Select Program</label>
+                <select class="form-control" id="role" (change)="showStartups($event.target.value)"
+                    name="programselected" [(ngModel)]="programselected">
+                    <option value="" selected>---Select---</option>
+                    <option *ngFor="let program of allPrograms" value="{{program.id}}" [innerHTML]="program.title">
+                    </option>
+                    <!-- <option [value]="mentor">mentor</option> -->
+                    <!-- <option [ngValue]="startup">Startup User</option> -->
+                </select>
+            </div>
         </div>
-    </div>
 
-    <div class="row" *ngIf="showStartup && allStartups.length == 0">
-        <div class="alert alert-danger">
-            <strong>Oops!</strong> No startup have selected for this program.
+        <div class="row" *ngIf="showStartup && allStartups.length == 0">
+            <div class="alert alert-danger">
+                <strong>Oops!</strong> No startup have selected for this program.
+            </div>
         </div>
-    </div>
-    <div class="col-md-12">
-        <form>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>Filterby Type</label>
-                    <select class="form-control" name="filterfeild" [(ngModel)]="filterfeild">
-                        <option [value]="undefined" hidden selected>---Select---</option>
-                        <option value="application_status">Status</option>
-                        <option value="score">Score</option>
-                        <option value="app_status_description">Status description</option>
-                        <option value="startup_name">Startup Name</option>
-                        <option value="founder_email">Email</option>
+        <div class="col-md-12 well">
+            <form>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Filterby Type</label>
+                        <select class="form-control" name="filterfeild" [(ngModel)]="filterfeild">
+                            <option [value]="undefined" hidden selected>---Select---</option>
+                            <option value="application_status">Status</option>
+                            <option value="score">Score</option>
+                            <option value="app_status_description">Status description</option>
+                            <option value="startup_name">Startup Name</option>
+                            <option value="founder_email">Email</option>
 
-                    </select>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label>Value</label>
-                    <input [disabled]="filterfeild == ('' || null || undefined)" class="form-control" name="filtervalue"
-                        #or [(ngModel)]="filtervalue" (ngModelChange)="filtervalues(or.value)">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Value</label>
+                        <input type="text" [disabled]="filterfeild == ('' || null || undefined)" class="form-control"
+                            name="filtervalue" #or [(ngModel)]="filtervalue" (ngModelChange)="filtervalues(or.value)">
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label> </label>
-                    <button class="btn btn-default" type="reset" (click)="resetprogram()">Reset</button>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label> </label>
+                        <button style="margin-top: 17%;" class="btn btn-default" type="reset"
+                            (click)="resetprogram()">Reset</button>
+                        <button class="btn btn-default" type="button" (click)="showfeeds()"><i class="fa fa-rss">Manage
+                                Feeds</i></button>
+                    </div>
                 </div>
-            </div>
-        </form>
-    </div>
-    <div class="row" *ngIf="showStartup && allStartups.length > 0">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="row">
-                    <label>List of registered startups</label>
-                    <div class="col-md-12 col-xs-12 table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Startup Name</th>
-                                    <th>Email</th>
-                                    <th>Status</th>
-                                    <th>Status description</th>
-                                    <th>Score</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let startup of allStartups;let i = index" style="cursor: pointer; ">
+            </form>
+        </div>
+        <div class="col-md-12" *ngIf="showStartup && allStartups.length > 0">
+            <div class="panel panel-default">
+                <div class="panel-heading">List of registered startups</div>
+                <div class="panel-body">
+                    <div class="row">
 
-                                    <td>{{startup.startup_registration.startup_name}}</td>
-                                    <td>{{startup.startup_registration.founder_email}}</td>
-                                    <td>{{startup.startup_registration.application_status}}</td>
-                                    <td>{{startup.startup_registration.app_status_description}}</td>
-                                    <td>{{startup.startup_registration.score}}</td>
-                                    <td>
-                                        <button class="btn btn-default" (click)="viewprofile(startup)"><i
-                                                class="glyphicon glyphicon-eye-open"></i>
-                                            View</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="col-md-12 col-xs-12 table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Startup Name</th>
+                                        <th>Email</th>
+                                        <th>Status</th>
+                                        <th>Status description</th>
+                                        <th>Score</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let startup of allStartups;let i = index" style="cursor: pointer; ">
+
+                                        <td>{{startup.startup_registration.startup_name}}</td>
+                                        <td>{{startup.startup_registration.founder_email}}</td>
+                                        <td>{{startup.startup_registration.application_status}}</td>
+                                        <td>{{startup.startup_registration.app_status_description}}</td>
+                                        <td>{{startup.startup_registration.score}}</td>
+                                        <td>
+                                            <button class="btn btn-default" (click)="viewprofile(startup)"><i
+                                                    class="glyphicon glyphicon-eye-open"></i>
+                                                View</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Assign Courses</div>
+                <div class="panel-body">
+                    <div class="row">
+
+                        <div class="col-md-12 col-xs-12 table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Select</th>
+                                        <th>Title</th>
+                                        <th>Target date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let course of courses;let i = index" style="cursor: pointer; ">
+
+                                        <td><input type="checkbox" class="checkbox"
+                                                (change)="setids($event.srcElement.checked,course)"></td>
+                                        <td [innerHTML]="course.title"></td>
+                                        <td><input class="form-control" type="date" name="target_date_{{i}}"
+                                                [ngModel]="course.target_date"
+                                                (ngModelChange)="setmsg(i,course,$event)"></td>
+
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <button class="btn btn-primary" (click)="assigncourses()">Assign to All Startups</button>
+            <button class="btn btn-default" (click)="openstartups()">Select Startups to Assign</button>
+        </div>
+        <div class="modal fade" id="selectstarts" role="dialog" #selectstarts>
+            <div class="modal-dialog modal-lg">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" (click)="closestartpopup()">&times;</button>
+                        <h4 class="modal-title">Select Startups</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+
+                            <div class="col-md-12 col-xs-12 table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Select</th>
+                                            <th>Startup Name</th>
+                                            <th>Email</th>
+                                            <th>Status</th>
+                                            <th>Status description</th>
+                                            <th>Score</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let startup of allStartups;let i = index" style="cursor: pointer; ">
+                                            <td><input type="checkbox" class="checkbox"
+                                                    (change)="setstartupsids($event.srcElement.checked,startup)"></td>
+                                            <td>{{startup.startup_registration.startup_name}}</td>
+                                            <td>{{startup.startup_registration.founder_email}}</td>
+                                            <td>{{startup.startup_registration.application_status}}</td>
+                                            <td>{{startup.startup_registration.app_status_description}}</td>
+                                            <td>{{startup.startup_registration.score}}</td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" (click)="assignselectcourses()">Assign
+                            Courses</button>
+                        <button type="button" class="btn btn-default" (click)="closestartpopup()">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="modal fade" id="newsfeeds" role="dialog" #newsfeeds>
+                <div class="modal-dialog modal-lg">
+        
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" (click)="closefeeds()">&times;</button>
+                            <h4 class="modal-title">Feeds</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="col-md-12">
+                                <div class="col-md-12" style="margin-top:5%;">
+                                    <div class="well col-md-12" style="height:70px;">
+        
+                                        <img style="height:30px;width:30px;border-radius:50%;"
+                                            src="assets/images/Vive-Blue.png">
+        
+        
+                                        <input
+                                            style="border:1px solid;box-shadow:none !important;position: absolute;left: 5%;top: 27%;width: 80%;"
+                                            type="text" name="description" [(ngModel)]="feed.description" class="form-control"
+                                            placeholder="any updates?">
+        
+        
+                                        <button class="btn btn-primary" style="border-radius:50%;position: absolute;left: 86%;"
+                                            (click)="addfeedimages()"><i class="glyphicon glyphicon-camera"></i></button>
+                                        <button class="btn btn-primary" style="border-radius:50%;position: absolute;left: 90%;"
+                                            (click)="createfeed()"><i class="glyphicon glyphicon-send"></i></button>
+        
+                                    </div>
+                                    <div hidden>
+                                        <input class="form-control" type="file" id="images" name="images" placeholder="images"
+                                            accept="image/*" (change)="handleInputChange($event)" />
+                                    </div>
+        
+                                    <div class="well col-md-12" *ngFor="let feeds of allfeeds;let i = index">
+                                        <div class="col-md-1" style="width:4%">
+                                            <img *ngIf="feeds.posted_by != null" style="height:30px;width:30px;border-radius:50%;"
+                                                src="{{apiCom.imgUrl}}{{feeds.posted_by.main_image.url}}">
+                                        </div>
+                                        <div class="col-md-1" style="width:4%">
+                                                <img *ngIf="feeds.posted_by == null" style="height:30px;width:30px;border-radius:50%;"
+                                                    src="assets/images/Vive-Blue.png">
+                                            </div>
+                                        <div class="col-md-10">
+                                            <span *ngIf="feeds.posted_by != null">{{feeds.posted_by.startup_name}} </span>
+                                            <span *ngIf="feeds.posted_by == null">VIVE-ADMIN </span>
+                                        </div>
+                                        <div class="col-md-1" >
+        
+                                            <span class="dropdown">
+                                                <a class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                                    aria-haspopup="true" aria-expanded="false">
+                                                    <i class="glyphicon glyphicon-option-vertical pull-right"></i></a>
+                                                <ul class="dropdown-menu" style="cursor: pointer;">
+                                                    <li><a (click)="editfeed(feeds)">Edit</a></li>
+                                                    <li (click)="deletefeed(feeds)"><a>Delete</a></li>
+        
+                                                </ul>
+        
+                                            </span>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <br>
+                                            <p>{{feeds.description}}</p>
+                                        </div>
+                                        <div class="col-md-12"
+                                            *ngIf="feeds.images.url != null && feeds.images.url != undefined">
+                                            <br>
+                                            <img src="{{apiCom.imgUrl}}{{feeds.images.url}}" style="height:100px;width:auto">
+                                        </div>
+        
+                                    </div>
+        
+                                   
+        
+        
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                           
+                            <button type="button" class="btn btn-default" (click)="closefeeds()">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="editfeeds" role="dialog" #editfeeds>
+                    <div class="modal-dialog modal-lg">
+                  
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" (click)="closeupdatefeed()">&times;</button>
+                          <h4 class="modal-title">Feeds</h4>
+                        </div>
+                        <div class="modal-body">
+                          <form>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <textarea class="form-control" name="description" [(ngModel)]="feed.description"></textarea>
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                                <input class="form-control" type="file" id="images1" name="images1" placeholder="images" accept="image/*"
+                                (change)="handleInputChange($event)" />
+                            </div>
+                          </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" (click)="updatefeed()">Update Feed</button>
+                            <button type="button" class="btn btn-default" (click)="closeupdatefeed()">Close</button>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
     </div>
-</div>
+    
+</body>

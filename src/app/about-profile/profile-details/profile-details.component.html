@@ -1,155 +1,6 @@
 <div class="col-md-12">
-    <h3 style="text-decoration:underline;text-align: center">About {{startupdata.startup_name}}</h3>
-    <div class="col-md-12">
-        <h4 class="page-heading">Users</h4>
-        <div class="bg"  style="border:1px solid;height: 130px;" *ngFor="let item of startupdata.users;let i= index">
-            <img src="assets/avatar_2x.png" alt="" style="height:125px;width: 150px;">
-            <div class="overlay">
-                <h4>{{item.full_name}}</h4>
-                <p></p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-12">
-        <h3 style="text-decoration:underline;text-align: center">Startup Details</h3><br>
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="col-md-12">
-                        <h4 class="page-heading">Company info</h4> 
-                    <div class="col-md-4"><label>Startup Name:</label>
-                        {{startup.startup_name}}
-                    </div>
-                    <div class="col-md-4"><label>Founded date:</label>
-                        {{startup.founded_date}}
-                    </div>
-                    <div class="col-md-4"><label>Entity type:</label>
-                        {{startup.entity_type}}
-                    </div>
-                    <div class="col-md-12"><label>Company website:</label>
-                        {{startup.website_url}}
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <h4 class="page-heading">Application Status</h4>
-                    <div class="col-md-4"><label>Application status:</label>
-                        {{startup.application_status}}
-                    </div>
-                    <div class="col-md-8"><label>Status Description:</label>
-                        {{startup.app_status_description}}
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <h4 class="page-heading">Founder info</h4>
-                    <div class="col-md-4"><label>Founder Name:</label>
-                        {{startup.founder_name}}
-                    </div>
-                    <div class="col-md-8"><label>Email:</label>
-                        {{startup.founder_email}}
-                    </div>
-                    <div class="col-md-4"><label>Contact number:</label>
-                        {{startup.founder_phone_number}}
-                    </div>
-                    <div class="col-md-8"><label>Skills:</label>
-                        {{startup.founder_skills}}
-                    </div>
-                    <div class="col-md-4"><label>Commitment:</label>
-                        {{startup.founder_commitment}}
-                    </div>
-                    <div class="col-md-4"><label>Experience:</label>
-                        {{startup.founder_experience}}
-                    </div>
-                    <div class="col-md-4"><label>Credentials:</label>
-                        {{startup.founder_credentials}}
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <h4 class="page-heading">Startup Address</h4>
-                    <div class="col-md-4"><label> Address line 1:</label>
-                        {{startup.startup_address_line_1}}
-
-                    </div>
-                    <div class="col-md-4"><label>Address line 2:</label>
-                        {{startup.startup_address_line_2}}
-
-                    </div>
-                    <div class="col-md-4"><label> City:</label>
-                        {{startup.startup_city}}
-
-                    </div>
-                    <div class="col-md-4"><label>State: </label>
-                        {{startup.startup_state_province_region}}
-
-                    </div>
-                    <div class="col-md-4"><label>Country:</label>
-                        {{startup.startup_country}}
-
-                    </div>
-                    <div class="col-md-4"><label>Zip/Pincode:</label>
-                        {{startup.startup_zip_pincode_postalcode}}
-
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-12">
-        <h3 style="text-decoration:underline;text-align: center">Current State</h3><br>
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="col-md-12">
-                    <h4 class="page-heading"></h4>
-                    <div class="col-md-4"><label>Revenue:</label>
-                        {{currentstateform.revenue}}
-                    </div>
-                    <div class="col-md-4"><label>Traction:</label>
-                        {{currentstateform.traction}}
-                    </div>
-                    <div class="col-md-4"><label>Solution Readiness:</label>
-                        {{currentstateform.solution_readiness}}
-                    </div>
-                    <div class="col-md-4"><label>Investment:</label>
-                        {{currentstateform.investment}}
-                    </div>
-                    <div class="col-md-4"><label>Team velocity:</label>
-                        {{currentstateform.team_velocity}}
-                    </div>
-                    <div class="col-md-4"><label>Partners:</label>
-                        {{currentstateform.partners}}
-                    </div>
-                    <div class="col-md-4"><label>Vendors:</label>
-                        {{currentstateform.vendors}}
-                    </div>
-                    <div class="col-md-4"><label>Vendor Costs:</label>
-                        {{currentstateform.vendors_costs}}
-                    </div>
-                    <div class="col-md-4"><label>Experiment Testing:</label>
-                        {{currentstateform.experiment_testing}}
-                    </div>
-                    <div class="col-md-4"><label>Customer Segment:</label>
-                        {{currentstateform.customer_segment}}
-                    </div>
-                    <div class="col-md-4"><label>Problem Validation:</label>
-                        {{currentstateform.problem_validation}}
-                    </div>
-                    <div class="col-md-4"><label>Channels:</label>
-                        {{currentstateform.channels}}
-                    </div>
-                    <div class="col-md-4"><label>Governance:</label>
-                        {{currentstateform.governance}}
-                    </div>
-                    <div class="col-md-4"><label>Admin Feedback:</label>
-                        {{currentstateform.reviewer_feedback}}
-                    </div>
-                    <div class="col-md-4"><label>Admin Rating:</label>
-                        {{currentstateform.reviewer_rating}}
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
+    <h3 style="text-align: center">About {{startupdata.startup_name}}</h3>
+    <br>
     <div class="col-md-12 col-sm-12 col-xs-12">
         <h3 style="text-decoration:underline;text-align: center">Program Progress</h3><br>
         <!-- <div style="text-align:center"> -->
@@ -194,6 +45,425 @@
 
         <!-- </div> -->
     </div>
+    <div class="col-md-12">
+        <h4 class="page-heading" style="text-decoration:underline;text-align: center">Users</h4>
+        <div class="bg" style="border:1px solid;height: 130px;" *ngFor="let item of startupdata.users;let i= index">
+            <img src="assets/avatar_2x.png" alt="" style="height:125px;width: 150px;">
+            <div class="overlay">
+                <h4>{{item.full_name}}</h4>
+                <p></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <h3 style="text-decoration:underline;text-align: center">Current State</h3><br>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <h4 class="page-heading"></h4>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label>REVENUE</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label><i class="glyphicon glyphicon-chevron-left"></i></label>
+                        </div>
+                        <div class="col-md-8">
+                            {{currentstateform.revenue}}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label>TRACTION</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label><i class="glyphicon glyphicon-chevron-left"></i></label>
+                        </div>
+                        <div class="col-md-8">
+                            {{currentstateform.traction}}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label>SOLUTION READINESS</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label><i class="glyphicon glyphicon-chevron-left"></i></label>
+                        </div>
+                        <div class="col-md-8">
+                            {{currentstateform.solution_readiness}}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label>INVESTMENT</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label><i class="glyphicon glyphicon-chevron-left"></i></label>
+                        </div>
+                        <div class="col-md-8">
+                            {{currentstateform.investment}}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label>TEAM VELOCITY</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label><i class="glyphicon glyphicon-chevron-left"></i></label>
+                        </div>
+                        <div class="col-md-8">
+                            {{currentstateform.team_velocity}}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label>PARTNERS</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label><i class="glyphicon glyphicon-chevron-left"></i></label>
+                        </div>
+                        <div class="col-md-8">
+                            {{currentstateform.partners}}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label>VENDORS</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label><i class="glyphicon glyphicon-chevron-left"></i></label>
+                        </div>
+                        <div class="col-md-8">
+                            {{currentstateform.vendors}}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label>VENDORS COSTS</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label><i class="glyphicon glyphicon-chevron-left"></i></label>
+                        </div>
+                        <div class="col-md-8">
+                            {{currentstateform.vendors_costs}}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label>EXPERIMENT TESTING</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label><i class="glyphicon glyphicon-chevron-left"></i></label>
+                        </div>
+                        <div class="col-md-8">
+                            {{currentstateform.experiment_testing}}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label>CUSTOMER SEGMENT</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label><i class="glyphicon glyphicon-chevron-left"></i></label>
+                        </div>
+                        <div class="col-md-8">
+                            {{currentstateform.customer_segment}}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label>PROBLEM VALIDATION</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label><i class="glyphicon glyphicon-chevron-left"></i></label>
+                        </div>
+                        <div class="col-md-8">
+                            {{currentstateform.problem_validation}}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label>CHANNELS</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label><i class="glyphicon glyphicon-chevron-left"></i></label>
+                        </div>
+                        <div class="col-md-8">
+                            {{currentstateform.channels}}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label>GOVERNANCE</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label><i class="glyphicon glyphicon-chevron-left"></i></label>
+                        </div>
+                        <div class="col-md-8">
+                            {{currentstateform.governance}}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label>ADMIN FEEDBACK</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label><i class="glyphicon glyphicon-chevron-left"></i></label>
+                        </div>
+                        <div class="col-md-8">
+                            {{currentstateform.reviewer_feedback}}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label>ADMIN RATING</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label><i class="glyphicon glyphicon-chevron-left"></i></label>
+                        </div>
+                        <div class="col-md-8">
+                            {{currentstateform.reviewer_rating}}
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <h3 style="text-decoration:underline;text-align: center">Startup Details</h3><br>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <h4 class="page-heading">Company info</h4>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label>STARTUP NAME</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label><i class="glyphicon glyphicon-chevron-left"></i></label>
+                        </div>
+                        <div class="col-md-8">
+                            {{startup.startup_name}}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label>FOUNDED DATE</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label><i class="glyphicon glyphicon-chevron-left"></i></label>
+                        </div>
+                        <div class="col-md-8">
+                            {{startup.founded_date}}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label>ENTITY TYPE</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label><i class="glyphicon glyphicon-chevron-left"></i></label>
+                        </div>
+                        <div class="col-md-8">
+                            {{startup.entity_type}}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label>COMPANY WEBSITE</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label><i class="glyphicon glyphicon-chevron-left"></i></label>
+                        </div>
+                        <div class="col-md-8">
+                            {{startup.website_url}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <h4 class="page-heading">Application Status</h4>
+
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label>APPLICATION STATUS</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label><i class="glyphicon glyphicon-chevron-left"></i></label>
+                        </div>
+                        <div class="col-md-8">
+                            {{startup.application_status}}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label>STATUS DESCRIPTION</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label><i class="glyphicon glyphicon-chevron-left"></i></label>
+                        </div>
+                        <div class="col-md-8">
+                            {{startup.app_status_description}}
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-12">
+                    <h4 class="page-heading">Founder info</h4>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label>FOUNDER NAME</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label><i class="glyphicon glyphicon-chevron-left"></i></label>
+                        </div>
+                        <div class="col-md-8">
+                            {{startup.founder_name}}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label>EMAIL</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label><i class="glyphicon glyphicon-chevron-left"></i></label>
+                        </div>
+                        <div class="col-md-8">
+                            {{startup.founder_email}}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label>CONTACT NUMBER</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label><i class="glyphicon glyphicon-chevron-left"></i></label>
+                        </div>
+                        <div class="col-md-8">
+                            {{startup.founder_phone_number}}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label>SKILLS</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label><i class="glyphicon glyphicon-chevron-left"></i></label>
+                        </div>
+                        <div class="col-md-8">
+                            {{startup.founder_skills}}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label>COMMITMENT</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label><i class="glyphicon glyphicon-chevron-left"></i></label>
+                        </div>
+                        <div class="col-md-8">
+                            {{startup.founder_commitment}}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label>EXPERIENCE</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label><i class="glyphicon glyphicon-chevron-left"></i></label>
+                        </div>
+                        <div class="col-md-8">
+                            {{startup.founder_experience}}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label>CREDENTIALS</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label><i class="glyphicon glyphicon-chevron-left"></i></label>
+                        </div>
+                        <div class="col-md-8">
+                            {{startup.founder_credentials}}
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-12">
+                    <h4 class="page-heading">Startup Address</h4>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label>ADDRESS LINE 1</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label><i class="glyphicon glyphicon-chevron-left"></i></label>
+                        </div>
+                        <div class="col-md-8">
+                            {{startup.startup_address_line_1}}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label>ADDRESS LINE 2</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label><i class="glyphicon glyphicon-chevron-left"></i></label>
+                        </div>
+                        <div class="col-md-8">
+                            {{startup.startup_address_line_2}}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label>CITY</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label><i class="glyphicon glyphicon-chevron-left"></i></label>
+                        </div>
+                        <div class="col-md-8">
+                            {{startup.startup_city}}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label>STATE</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label><i class="glyphicon glyphicon-chevron-left"></i></label>
+                        </div>
+                        <div class="col-md-8">
+                            {{startup.startup_state_province_region}}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label>COUNTRY</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label><i class="glyphicon glyphicon-chevron-left"></i></label>
+                        </div>
+                        <div class="col-md-8">
+                            {{startup.startup_country}}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label>ZIP / PINCODE</label>
+                        </div>
+                        <div class="col-md-1">
+                            <label><i class="glyphicon glyphicon-chevron-left"></i></label>
+                        </div>
+                        <div class="col-md-8">
+                            {{startup.startup_zip_pincode_postalcode}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- <div class="col-md-12">
       <h3 style="text-decoration:underline;text-align: center">Program Progress</h3><br>

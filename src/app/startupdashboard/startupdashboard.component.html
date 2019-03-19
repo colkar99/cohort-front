@@ -87,9 +87,20 @@
     <div class="col-md-6">
       <br>
       <br>
-      <div class="col-md-4">
-        <img class="img-responsive img-rounded" src="assets/avatar_2x.png"
-          style="border-radius:50%;height:150px;width:150px;">
+      <div class="col-md-4" (click)="changedp()">
+        <!-- <img class="img-responsive img-rounded" src="assets/avatar_2x.png"
+          style="border-radius:50%;height:150px;width:150px;"> -->
+        <div class="bg" style="margin-left: 5%;" >
+          <img src="{{imgUrl}}" alt="" style="height:125px;width: 125px;">
+          <div class="overlay">
+            <h4>Edit Picture</h4>
+            <p></p>
+          </div>
+        </div>
+        <div style="display: none;">
+            <input id="main_image" class="form-control" type="file" id="main_image" placeholder="main_image"
+            name="main_image" type="file" accept="image/*" (change)="handleInputChange($event)" />
+        </div>
       </div>
       <div class="col-md-3">
         <h4 style="font-family:'Times New Roman', Times, serif">
@@ -104,41 +115,41 @@
       <br>
       <br>
       <div class="col-md-12">
-        <h4>Industry:</h4>
+        <h4>Industry: {{sharedata.startupprofile.startup_registration.entity_type}}</h4>
       </div>
       <br>
       <div class="col-md-12">
-        <h4>Size:</h4>
+        <h4>Size: {{sharedata.startupprofile.team_size}}</h4>
       </div>
       <br>
       <div class="col-md-12">
-        <h4 >Location:</h4>
+        <h4>Location: {{sharedata.startupprofile.startup_registration.startup_country}}</h4>
       </div>
       <br>
       <div class="col-md-12">
-        <h4 >Website:</h4>
+        <h4>Website: {{sharedata.startupprofile.startup_registration.website_url}}</h4>
       </div>
     </div>
   </div>
   <div class="col-md-12">
 
   </div>
- 
+
   <div class="col-md-6" style="margin-left:2%;">
-      <br>
+    <br>
     <div class="col-md-3">
-        <button type="button" class="button" routerLink="profile">OverView</button>
+      <button type="button" class="button" routerLink="profile">OverView</button>
     </div>
     <div class="col-md-3">
-        <button type="button"  class="button" routerLink="road-map">RoadMap</button>
+      <button type="button" class="button" routerLink="road-map">RoadMap</button>
     </div>
     <div class="col-md-3">
-        <button type="button" class="button" routerLink="view-activities">Contents</button>
+      <button type="button" class="button" routerLink="view-activities">Contents</button>
     </div>
     <div class="col-md-3">
-        <button type="button"  class="button" routerLink="status-updates">Updates</button>
+      <button type="button" class="button" routerLink="status-updates">Updates</button>
     </div>
-    
+
 
 
   </div>
