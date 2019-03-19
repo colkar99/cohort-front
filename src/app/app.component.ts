@@ -22,8 +22,8 @@ export class AppComponent implements OnInit {
   additonal: any = {}
   user_type:any;
   ////////////////////
-  title_2 =  "Pusher likes";
-  likes = 10;
+  // title_2 =  "Pusher likes";
+  // likes = 10;
 
 
   constructor(private cookieService: CookieService,
@@ -36,10 +36,10 @@ export class AppComponent implements OnInit {
   }
   ngOnInit() {
     // this.cookieService.set( 'appCookie', 'This is hello apps.' );
-    this.pusherService.channel.bind('new-like', data => {
-      debugger
-      this.likes = data.data ;
-    });
+    // this.pusherService.channel.bind('new-like', data => {
+    //   debugger
+    //   this.likes = data.data ;
+    // });
     this.sharedData.currentMessage.subscribe(message => {
       this.message = message;
       this.loggedIn = true;
@@ -62,11 +62,11 @@ export class AppComponent implements OnInit {
     // console.log(this.testCock);
   }
 
-  liked(){
-    this.likes = this.likes + 1;
-    this.pusherService.like( this.likes )
+  // liked(){
+  //   this.likes = this.likes + 1;
+  //   this.pusherService.like( this.likes )
 
-  }
+  // }
   getCookie(key: string) {
     return this.cookieService.get(key);
   }

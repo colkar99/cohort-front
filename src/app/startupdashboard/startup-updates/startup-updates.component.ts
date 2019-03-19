@@ -5,7 +5,9 @@ import { CookieService } from 'ngx-cookie-service';
 import { HttpErrorResponse } from '@angular/common/http';
 declare var $: any
 import { sharingData } from '../../sharingdata'
-import { ImageCompressService, ResizeOptions, ImageUtilityService, IImage, SourceImage } from  'ng2-image-compress';
+import { ImageCompressService } from  'ng2-image-compress';
+import { PusherService } from '../../pusher.service';
+
 @Component({
   selector: 'app-startup-updates',
   templateUrl: './startup-updates.component.html',
@@ -18,8 +20,9 @@ export class StartupUpdatesComponent implements OnInit {
   allfeeds:any
   feed:any = {}
   status:string = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
-  constructor( private imgCompressService: ImageCompressService,private apiCom: ApiCommunicationService, public sharedata: sharingData,
+  constructor( private imgCompressService: ImageCompressService,public apiCom: ApiCommunicationService, public sharedata: sharingData,
     private router: Router,
+    private pusherService: PusherService,
     private cookieService: CookieService) {
     this.startupid = this.getCookie('startup_profile_id');
     this.authToken = this.getCookie('Authorization');
@@ -29,6 +32,10 @@ export class StartupUpdatesComponent implements OnInit {
 
   ngOnInit() {
     this.showfeeds();
+    this.pusherService.channel.bind('new-like', data => {
+      debugger
+      this.feed = data.data ;
+    });
   }
   showfeeds(){
     let url= "program/show-news-feeds"
