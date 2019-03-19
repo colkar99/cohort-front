@@ -3,13 +3,15 @@ import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { SharedDataService } from './shared-data.service';
 import { ApiCommunicationService } from './api-communication.service'
+import { PusherService } from './pusher.service';
+
 declare var $: any
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   count = 2;
   title = 'cohort';
   checkStatus: string;
@@ -19,16 +21,25 @@ export class AppComponent {
   mentor: any = {};
   additonal: any = {}
   user_type:any;
+  ////////////////////
+  title_2 =  "Pusher likes";
+  likes = 10;
+
 
   constructor(private cookieService: CookieService,
     private router: Router,
     private sharedData: SharedDataService,
-    private apiCom:ApiCommunicationService
+    private apiCom:ApiCommunicationService,
+    private pusherService: PusherService
   ) {
     // this.detect.detectChanges();
   }
   ngOnInit() {
     // this.cookieService.set( 'appCookie', 'This is hello apps.' );
+    this.pusherService.channel.bind('new-like', data => {
+      debugger
+      this.likes = data.data ;
+    });
     this.sharedData.currentMessage.subscribe(message => {
       this.message = message;
       this.loggedIn = true;
@@ -51,6 +62,11 @@ export class AppComponent {
     // console.log(this.testCock);
   }
 
+  liked(){
+    this.likes = this.likes + 1;
+    this.pusherService.like( this.likes )
+
+  }
   getCookie(key: string) {
     return this.cookieService.get(key);
   }

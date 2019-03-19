@@ -171,6 +171,7 @@ export class StartupProfileComponent implements OnInit {
 
   submitsocial(){
     this.socialedit = false
+    this.submitprofile();
   }
 
 }

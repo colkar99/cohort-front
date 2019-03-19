@@ -5,7 +5,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 // import { HttpErrorResponse } from '@angular/common/http';
 import { SharedDataService } from '../../shared-data.service'
-
+declare var $:any
+import { ImageCompressService, ResizeOptions, ImageUtilityService, IImage, SourceImage } from  'ng2-image-compress';
 @Component({
   selector: 'app-startupby-programs',
   templateUrl: './startupby-programs.component.html',
@@ -29,11 +30,17 @@ export class StartupbyProgramsComponent implements OnInit {
   filterfeild
   filtervalue
   unfilteredvalue: any = []
+  courses: any
+  selectedcourses: any = []
+  startupsidall: any = []
+  selected_startups:any = []
+  allfeeds:any = []
+  feed:any = {}
   constructor(private apiCom: ApiCommunicationService,
     private cookieService: CookieService,
     private router: Router,
     private sharedDataService: SharedDataService
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.authToken = this.getCookie('Authorization');
@@ -115,16 +122,40 @@ export class StartupbyProgramsComponent implements OnInit {
         this.allStartups.sort((a, b) => { if (a.score < b.score) { return 1; } if (a.score > b.score) { return -1; } })
         console.log("this.allStartups" + this.allStartups)
         this.showStartup = true;
+
+        if (this.unfilteredvalue.length > 0) {
+          this.startupsidall = []
+          for (let i = 0; i < this.unfilteredvalue.length; i++) {
+            this.startupsidall.push(this.unfilteredvalue[i].id)
+          }
+          console.log("this.startupsidall",this.startupsidall)
+          this.getAllCourses();
+        }
       }, error => {
         console.log(error);
       })
 
+  }
+  getAllCourses() {
+    let url = "framework/course/view-all"
+    this.apiCom.getDataWithAuth(url, this.authToken)
+      .subscribe(data => {
+        console.log(data);
+        this.courses = data;
+
+      }, error => {
+        console.log(error);
+      })
   }
   viewprofile(item) {
     console.log(item)
     this.sharedDataService.changeMessage(item);
     this.router.navigate(['admin/dashboard/about-profile'])
   }
+  setmsg(i, item,e) {
+    console.log("helloitem",item,e)
+    this.courses[i].target_date = e
+}
 
   filtervalues(value: string) {
     let item = value.toLowerCase();
@@ -142,8 +173,154 @@ export class StartupbyProgramsComponent implements OnInit {
 
   }
 
-  resetprogram(){
+  resetprogram() {
     this.allStartups = this.unfilteredvalue
   }
+  setids(checked, item) {
+    if (checked == true) {
+      if (this.selectedcourses == (null || undefined)) {
+        this.selectedcourses = []
+        this.selectedcourses.push(item);
+      } else {
+        this.selectedcourses.push(item);
+      }
+    } else {
+      if (checked == false) {
+        let deleteindex = this.selectedcourses.findIndex(x => x.id == item.id)
+        console.log(deleteindex)
+        if (deleteindex != -1) {
+          this.selectedcourses.splice(deleteindex, 1)
+          console.log("this.formrequestarray", this.selectedcourses)
+        }
+      }
+    }
 
+  }
+  assigncourses(){
+    if(this.selectedcourses != (null && undefined) && this.selectedcourses.length >0){
+      let url = "framework/course/assign_activities_to_startup"
+      let params = JSON.stringify({ courses: this.selectedcourses, program_id: this.programselected, startups: this.startupsidall,singular:false })
+      console.log(params)
+      this.apiCom.putDataWithToken(url, params, this.authToken).subscribe((res) => {
+        res;
+        console.log("assignres", res);
+        alert("Courses Assigned Successfully")
+        $("#selectstarts").modal("hide");
+        this.getAllCourses();
+        this.selectedcourses = [];
+
+      })
+    }else{
+      alert("Select atleast one course to assign")
+    }
+  }
+  openstartups(){
+    $("#selectstarts").modal("show");
+    this.selected_startups = []
+  }
+  assignselectcourses(){
+    let url = "framework/course/assign_activities_to_startup"
+      let params = JSON.stringify({ courses: this.selectedcourses, program_id: this.programselected, startups: this.selected_startups,singular:false })
+      console.log(params)
+      this.apiCom.putDataWithToken(url, params, this.authToken).subscribe((res) => {
+        res;
+        console.log("assignres", res);
+        this.getAllCourses();
+        alert("Courses Assigned Successfully")
+        $("#selectstarts").modal("hide");
+      })
+
+  }
+  closestartpopup(){
+    $("#selectstarts").modal("hide");
+    this.selected_startups = []
+  }
+  setstartupsids(checked,item){
+    if (checked == true) {
+      if (this.selected_startups == (null || undefined)) {
+        this.selected_startups = []
+        this.selected_startups.push(item.id);
+      } else {
+        this.selected_startups.push(item.id);
+      }
+    } else {
+      if (checked == false) {
+        let deleteindex = this.selected_startups.findIndex(x => x == item.id)
+        console.log(deleteindex)
+        if (deleteindex != -1) {
+          this.selected_startups.splice(deleteindex, 1)
+          console.log("this.selected_startups", this.selected_startups)
+        }
+      }
+    }
+  }
+  showfeeds(){
+    let url= "program/show-news-feeds"
+    let params = JSON.stringify({program:{id:this.programselected}})
+    this.apiCom.putDataWithToken(url,params,this.authToken).subscribe((res)=>{
+      res;
+      this.allfeeds = res;
+      console.log("allfeeds",this.allfeeds)
+      $("#newsfeeds").modal("show"); 
+    })
+  }
+  createfeed(){
+    let url = "program/create-news-feed"
+    let params = JSON.stringify({news_feed:{title:null,description:this.feed.description,images:this.feed.images,program_id:this.programselected}})
+    this.apiCom.postDataWithToken(url,params,this.authToken).subscribe((res)=>{
+      res;
+      console.log("createdfeed",res);
+      alert("Feeds posted Successfully")
+     this.feed = {}
+    })
+  }
+  addfeedimages(){
+    document.getElementById("images").click()
+  }
+  closefeeds(){
+    $("#newsfeeds").modal("hide");
+  }
+  handleInputChange(e) {
+    ImageCompressService.filesToCompressedImageSource(e.target.files).then(observableImages => {
+      observableImages.subscribe((image) => {
+        console.log("image",image)
+        this.feed.images = image.compressedImage.imageDataUrl;
+       // this.submitprofile();
+      }, (error) => {
+        console.log("Error while converting");
+      }, () => {
+                 
+      });
+    });
+  }
+  editfeed(item){
+    $("#editfeeds").modal("show");
+    this.feed = Object.assign({},item)
+
+  }
+  updatefeed(){
+    let url = "program/update-news-feed"
+    let params = JSON.stringify({news_feed:{id:this.feed.id,title:this.feed.title,description:this.feed.description,images:this.feed.images,program_id:this.programselected}})
+    this.apiCom.putDataWithToken(url,params,this.authToken).subscribe((res)=>{
+      res;
+      console.log("createdfeed",res);
+      alert("Feeds Updated Successfully")
+     this.feed = {}
+     $("#editfeeds").modal("hide");
+    })
+  }
+  closeupdatefeed(){
+    this.feed = {}
+    $("#editfeeds").modal("hide");
+  }
+  deletefeed(feeds){
+    let url = "program/delete-news-feed"
+    let params = JSON.stringify({news_feed:{id:feeds.id}})
+    this.apiCom.putDataWithToken(url,params,this.authToken).subscribe((res)=>{
+      res;
+      console.log("createdfeed",res);
+      alert("Feeds Deleted Successfully")
+     this.feed = {}
+    })
+  }
 }
