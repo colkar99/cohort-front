@@ -34,7 +34,8 @@ export class StartupUpdatesComponent implements OnInit {
     this.showfeeds();
     this.pusherService.channel.bind('news-feed-data', data => {
       debugger
-      this.allfeeds = data.news_feeds ;
+      // this.allfeeds = data.news_feeds ;
+      this.showfeeds();
     });
   }
   showfeeds(){
