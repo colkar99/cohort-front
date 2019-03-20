@@ -34,7 +34,7 @@ export class StartupUpdatesComponent implements OnInit {
     this.showfeeds();
     this.pusherService.channel.bind('new-like', data => {
       debugger
-      this.feed = data.data ;
+      this.allfeeds = data.news_feeds ;
     });
   }
   showfeeds(){

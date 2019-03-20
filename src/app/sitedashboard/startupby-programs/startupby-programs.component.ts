@@ -6,7 +6,9 @@ import { Router } from '@angular/router';
 // import { HttpErrorResponse } from '@angular/common/http';
 import { SharedDataService } from '../../shared-data.service'
 declare var $:any
-import { ImageCompressService, ResizeOptions, ImageUtilityService, IImage, SourceImage } from  'ng2-image-compress';
+import { ImageCompressService } from  'ng2-image-compress';
+import { PusherService } from '../../pusher.service';
+
 @Component({
   selector: 'app-startupby-programs',
   templateUrl: './startupby-programs.component.html',
@@ -39,7 +41,8 @@ export class StartupbyProgramsComponent implements OnInit {
   constructor(private apiCom: ApiCommunicationService,
     private cookieService: CookieService,
     private router: Router,
-    private sharedDataService: SharedDataService
+    private sharedDataService: SharedDataService,
+    private pusherService: PusherService
   ) { }
 
   ngOnInit() {
@@ -61,6 +64,10 @@ export class StartupbyProgramsComponent implements OnInit {
     }
 
     this.getAllProgram();
+    this.pusherService.channel.bind('new-like', data => {
+      debugger
+      this.allfeeds = data.news_feeds ;
+    });
     // this.sharedDataService.currentMessage.subscribe(message => {
     //   this.message = message;
     // })
