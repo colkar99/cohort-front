@@ -51,7 +51,7 @@
                         <label> </label>
                         <button style="margin-top: 17%;" class="btn btn-default" type="reset"
                             (click)="resetprogram()">Reset</button>
-                        <button class="btn btn-default" type="button" (click)="showfeeds()"><i class="fa fa-rss">Manage
+                        <button [disabled]="!location_program_id != ('' && null && undefined)" class="btn btn-default" type="button" (click)="showfeeds()"><i class="fa fa-rss">Manage
                                 Feeds</i></button>
                     </div>
                 </div>
@@ -131,8 +131,8 @@
             </div>
         </div>
         <div class="col-md-12">
-            <button class="btn btn-primary" (click)="assigncourses()">Assign to All Startups</button>
-            <button class="btn btn-default" (click)="openstartups()">Select Startups to Assign</button>
+            <button [disabled]="!location_program_id != ('' && null && undefined)"  class="btn btn-primary" (click)="assigncourses()">Assign to All Startups</button>
+            <button [disabled]="!location_program_id != ('' && null && undefined)"  class="btn btn-default" (click)="openstartups()">Select Startups to Assign</button>
         </div>
         <div class="modal fade" id="selectstarts" role="dialog" #selectstarts>
             <div class="modal-dialog modal-lg">
@@ -185,121 +185,231 @@
             </div>
         </div>
         <div class="modal fade" id="newsfeeds" role="dialog" #newsfeeds>
-                <div class="modal-dialog modal-lg">
-        
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" (click)="closefeeds()">&times;</button>
-                            <h4 class="modal-title">Feeds</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="col-md-12">
-                                <div class="col-md-12" style="margin-top:5%;">
-                                    <div class="well col-md-12" style="height:70px;">
-        
+            <div class="modal-dialog modal-lg" style="width: 95%;">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" (click)="closefeeds()">&times;</button>
+                        <h4 class="modal-title">Feeds</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-md-12">
+                            <div class="col-md-12" style="margin-top:5%;">
+                                <div class="well col-md-12" style="height:70px;">
+
+                                    <img style="height:30px;width:30px;border-radius:50%;"
+                                        src="assets/images/Vive-Blue.png">
+
+
+                                    <input
+                                        style="border:1px solid;box-shadow:none !important;position: absolute;left: 7%;top: 27%;width: 80%;"
+                                        type="text" name="description" [(ngModel)]="feed.description"
+                                        class="form-control" placeholder="any updates?">
+
+
+                                    <button class="btn btn-primary"
+                                        style="border-radius:50%;position: absolute;left: 88%;"
+                                        (click)="addfeedimages()"><i class="glyphicon glyphicon-camera"></i></button>
+                                    <button class="btn btn-primary"
+                                        style="border-radius:50%;position: absolute;left: 94%;"
+                                        (click)="createfeed()"><i class="glyphicon glyphicon-send"></i></button>
+
+                                </div>
+                                <div hidden>
+                                    <input class="form-control" type="file" id="images" name="images"
+                                        placeholder="images" accept="image/*" (change)="handleInputChange($event)" />
+                                </div>
+
+                                <div class="well col-md-12" *ngFor="let feeds of allfeeds;let i = index">
+                                    <div class="col-md-1" style="width:4%" *ngIf="feeds.posted_by != null">
+                                        <img *ngIf="feeds.posted_by.main_image.url != null"
+                                            style="height:30px;width:30px;border-radius:50%;"
+                                            src="{{apiCom.imgUrl}}{{feeds.posted_by.main_image.url}}">
+                                        <img *ngIf="feeds.posted_by.main_image.url == null"
+                                            style="height:30px;width:30px;border-radius:50%;"
+                                            src="assets/avatar_2x.png">
+                                    </div>
+                                    <div class="col-md-1" style="width:4%" *ngIf="feeds.posted_by == null">
                                         <img style="height:30px;width:30px;border-radius:50%;"
                                             src="assets/images/Vive-Blue.png">
-        
-        
-                                        <input
-                                            style="border:1px solid;box-shadow:none !important;position: absolute;left: 7%;top: 27%;width: 80%;"
-                                            type="text" name="description" [(ngModel)]="feed.description" class="form-control"
-                                            placeholder="any updates?">
-        
-        
-                                        <button class="btn btn-primary" style="border-radius:50%;position: absolute;left: 86%;"
-                                            (click)="addfeedimages()"><i class="glyphicon glyphicon-camera"></i></button>
-                                        <button class="btn btn-primary" style="border-radius:50%;position: absolute;left: 94%;"
-                                            (click)="createfeed()"><i class="glyphicon glyphicon-send"></i></button>
-        
                                     </div>
-                                    <div hidden>
-                                        <input class="form-control" type="file" id="images" name="images" placeholder="images"
-                                            accept="image/*" (change)="handleInputChange($event)" />
+                                    <div class="col-md-10">
+                                        <span *ngIf="feeds.posted_by != null">{{feeds.posted_by.startup_name}} </span>
+                                        <span *ngIf="feeds.posted_by == null">VIVE-ADMIN </span>
                                     </div>
-        
-                                    <div class="well col-md-12" *ngFor="let feeds of allfeeds;let i = index">
-                                        <div class="col-md-1" style="width:4%" *ngIf="feeds.posted_by != null">
-                                            <img  style="height:30px;width:30px;border-radius:50%;"
-                                                src="{{apiCom.imgUrl}}{{feeds.posted_by.main_image.url}}">
-                                        </div>
-                                        <div class="col-md-1" style="width:4%" *ngIf="feeds.posted_by == null">
-                                                <img  style="height:30px;width:30px;border-radius:50%;"
-                                                    src="assets/images/Vive-Blue.png">
-                                            </div>
-                                        <div class="col-md-10">
-                                            <span *ngIf="feeds.posted_by != null">{{feeds.posted_by.startup_name}} </span>
-                                            <span *ngIf="feeds.posted_by == null">VIVE-ADMIN </span>
-                                        </div>
-                                        <div class="col-md-1" >
-        
-                                            <span class="dropdown">
-                                                <a class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                                    aria-haspopup="true" aria-expanded="false">
-                                                    <i class="glyphicon glyphicon-option-vertical pull-right"></i></a>
-                                                <ul class="dropdown-menu" style="cursor: pointer;">
-                                                    <li><a (click)="editfeed(feeds)">Edit</a></li>
-                                                    <li (click)="deletefeed(feeds)"><a>Delete</a></li>
-        
-                                                </ul>
-        
-                                            </span>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <br>
-                                            <p>{{feeds.description}}</p>
-                                        </div>
-                                        <div class="col-md-12"
-                                            *ngIf="feeds.images.url != null && feeds.images.url != undefined">
-                                            <br>
-                                            <img src="{{apiCom.imgUrl}}{{feeds.images.url}}" style="height:100px;width:auto">
-                                        </div>
-        
+                                    <div class="col-md-1">
+
+                                        <span class="dropdown">
+                                            <a class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                                aria-haspopup="true" aria-expanded="false">
+                                                <i class="glyphicon glyphicon-option-vertical pull-right"></i></a>
+                                            <ul class="dropdown-menu" style="cursor: pointer;">
+                                                <li><a (click)="editfeed(feeds)">Edit</a></li>
+                                                <li (click)="deletefeed(feeds)"><a>Delete</a></li>
+
+                                            </ul>
+
+                                        </span>
                                     </div>
-        
-                                   
-        
-        
+                                    <div class="col-md-12">
+                                        <br>
+                                        <p>{{feeds.description}}</p>
+                                    </div>
+                                    <div class="col-md-12"
+                                        *ngIf="feeds.images.url != null && feeds.images.url != undefined">
+                                        <br>
+                                        <img src="{{apiCom.imgUrl}}{{feeds.images.url}}"
+                                            style="height:100px;width:auto">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <!-- <div class="col-md-2">
+                                          <i class="fa fa-heart" style="color:black">Likes</i>
+                                        </div> -->
+                                        <div class="col-md-2">
+                                          <a (click)="opencomments(feeds.news_feed_comments)"><i class="fa fa-comment"
+                                              style="color:black"></i>{{feeds.news_feed_comments.length}} Comments</a>
+                                        </div>
+                                        <br>
+                                      </div>
+                                      <div class="col-md-12 well">
+                                        <img style="height:30px;width:30px;border-radius:50%;" src="assets/images/Vive-Blue.png">
+                                
+                                
+                                        <input style="border:1px solid;box-shadow:none !important;position: absolute;left: 5%;top: 27%;width: 80%;"
+                                          type="text" name="comment_{{i}}" [(ngModel)]="comment[i]" class="form-control" placeholder="comments?">
+                                
+                                        <button class="btn btn-primary" style="border-radius:50%;position: absolute;left: 90%;"
+                                          (click)="createcomment(feeds.id,i)"><i class="glyphicon glyphicon-send"></i></button>
+                                      </div>
+
                                 </div>
+
+
+
+
                             </div>
                         </div>
-                        <div class="modal-footer">
-                           
-                            <button type="button" class="btn btn-default" (click)="closefeeds()">Close</button>
-                        </div>
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-default" (click)="closefeeds()">Close</button>
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="editfeeds" role="dialog" #editfeeds>
-                    <div class="modal-dialog modal-lg">
-                  
-                      <!-- Modal content-->
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" (click)="closeupdatefeed()">&times;</button>
-                          <h4 class="modal-title">Feeds</h4>
-                        </div>
-                        <div class="modal-body">
-                          <form>
-                            <div class="col-md-12">
-                              <div class="form-group">
-                                <textarea class="form-control" name="description" [(ngModel)]="feed.description"></textarea>
-                              </div>
-                            </div>
-                            <div class="col-md-12">
-                                <input class="form-control" type="file" id="images1" name="images1" placeholder="images" accept="image/*"
-                                (change)="handleInputChange($event)" />
-                            </div>
-                          </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" (click)="updatefeed()">Update Feed</button>
-                            <button type="button" class="btn btn-default" (click)="closeupdatefeed()">Close</button>
-                          </div>
-                      </div>
+        </div>
+        <div class="modal fade" id="editfeeds" role="dialog" #editfeeds>
+            <div class="modal-dialog modal-lg">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" (click)="closeupdatefeed()">&times;</button>
+                        <h4 class="modal-title">Feeds</h4>
                     </div>
-                  </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <textarea class="form-control" name="description"
+                                        [(ngModel)]="feed.description"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <input class="form-control" type="file" id="images1" name="images1" placeholder="images"
+                                    accept="image/*" (change)="handleInputChange($event)" />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" (click)="updatefeed()">Update Feed</button>
+                        <button type="button" class="btn btn-default" (click)="closeupdatefeed()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="commentspop" role="dialog" #commentspop>
+            <div class="modal-dialog modal-lg">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" (click)="closecomments()">&times;</button>
+                        <h4 class="modal-title">Comments</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="well col-md-12" *ngFor="let com of showcomments;let i = index">
+                            <div class="col-md-1" style="width:4%" *ngIf="com.startup_profile != null">
+                                <img *ngIf="com.startup_profile.main_image.url != null"
+                                    style="height:30px;width:30px;border-radius:50%;"
+                                    src="{{apiCom.imgUrl}}{{com.startup_profile.main_image.url}}">
+                                <img *ngIf="com.startup_profile.main_image.url == null"
+                                    style="height:30px;width:30px;border-radius:50%;" src="assets/avatar_2x.png">
+                            </div>
+                            <div class="col-md-1" style="width:4%" *ngIf="com.startup_profile == null">
+                                <img style="height:30px;width:30px;border-radius:50%;"
+                                    src="assets/images/Vive-Blue.png">
+                            </div>
+                            <div class="col-md-10">
+                                <span *ngIf="com.startup_profile != null">{{com.startup_profile.startup_name}} </span>
+                                <span *ngIf="com.startup_profile == null">VIVE-ADMIN </span>
+                            </div>
+                            <div class="col-md-1" >
+
+                                <span class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        <i class="glyphicon glyphicon-option-vertical pull-right"
+                                            ></i></a>
+                                    <ul class="dropdown-menu" style="cursor: pointer;">
+                                        <li><a (click)="editcomments(com)">Edit</a></li>
+                                        <li (click)="deletecomments(com)"><a>Delete</a></li>
+
+                                    </ul>
+
+                                </span>
+                            </div>
+                            <div class="col-md-12">
+                                <br>
+                                <p>{{com.comment}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-default" (click)="closecomments()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="editcommentpop" role="dialog" #editcommentpop>
+            <div class="modal-dialog modal-lg">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" (click)="closeeditcomment()">&times;</button>
+                        <h4 class="modal-title">Comments</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <textarea class="form-control" name="comment"
+                                        [(ngModel)]="commentobj.comment"></textarea>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" (click)="updatecomments()">Update Comment</button>
+                        <button type="button" class="btn btn-default" (click)="closeeditcomment()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    
+
 </body>

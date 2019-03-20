@@ -38,6 +38,9 @@ export class StartupbyProgramsComponent implements OnInit {
   selected_startups:any = []
   allfeeds:any = []
   feed:any = {}
+  commentobj:any = {}
+  showcomments:any = []
+  comment:any = []
   constructor(private apiCom: ApiCommunicationService,
     private cookieService: CookieService,
     private router: Router,
@@ -118,6 +121,7 @@ export class StartupbyProgramsComponent implements OnInit {
 
   showStartups(id: any) {
     debugger
+    this.location_program_id = id
     let data = { "program_id": id };
     this.cookieService.set('program_id', id, 30, '/');
     let url = "startup/show-profiles-for-admin";
@@ -329,6 +333,48 @@ export class StartupbyProgramsComponent implements OnInit {
       console.log("createdfeed",res);
       alert("Feeds Deleted Successfully")
      this.feed = {}
+    })
+  }
+  createcomment(id,i){
+    let url = "program/create-news-feed-comment"
+    let params = JSON.stringify({news_feed_comment:{news_feed_id:id,comment:this.comment[i]}});
+    this.apiCom.postDataWithToken(url,params,this.authToken).subscribe((res)=>{
+      res;
+      this.comment[i] = undefined
+    })
+  }
+  updatecomments(){
+    let url = "program/update-news-feed-comment";
+    let params = JSON.stringify({news_feed_comment:{id:this.commentobj.id,comment:this.commentobj.comment,news_feed_id:this.commentobj.news_feed_id}})
+    this.apiCom.putDataWithToken(url,params,this.authToken).subscribe((res)=>{
+      res;
+      $("#editcommentpop").modal("hide")
+    })
+  }
+  opencomments(news_feed_comments){
+    this.showcomments = news_feed_comments;
+    $("#commentspop").modal("show")
+  }
+  closecomments(){
+    $("#commentspop").modal("hide");
+    this.showcomments = [];
+  }
+  editcomments(com){
+    this.commentobj = Object.assign({},com)
+    $("#editcommentpop").modal("show")
+  }
+  closeeditcomment(){
+    this.commentobj ={}
+    $("#editcommentpop").modal("hide")
+  }
+  deletecomments(com){
+    let url = "program/delete-news-feed-comment"
+    let params = JSON.stringify({news_feed_comment:{id:com.id}})
+    this.apiCom.putDataWithToken(url,params,this.authToken).subscribe((res)=>{
+      res;
+      console.log("createdfeed",res);
+      alert("Comments Deleted Successfully")
+     this.commentobj = {}
     })
   }
 }

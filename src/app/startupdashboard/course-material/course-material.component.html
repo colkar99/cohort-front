@@ -20,6 +20,10 @@
               <p>{{act.startup_response}}</p>
               <button class="btn btn-default pull-right" (click)="act.startup_responsed = false">Edit</button>
             </div>
+            <div class="col-md-12 alert alert-success" *ngIf="act.admin_responsed == true">
+              <p>{{act.admin_feedback}}</p>
+              
+            </div>
             <div class="col-md-12 " *ngIf="act.startup_responsed == false">
               <form>
                 <div class="col-md-12 form-group">
