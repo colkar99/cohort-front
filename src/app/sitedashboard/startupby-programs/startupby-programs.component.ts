@@ -122,6 +122,8 @@ export class StartupbyProgramsComponent implements OnInit {
   showStartups(id: any) {
     debugger
     this.location_program_id = id
+    this.showStartup = false;
+    this.allStartups = []
     let data = { "program_id": id };
     this.cookieService.set('program_id', id, 30, '/');
     let url = "startup/show-profiles-for-admin";
@@ -273,8 +275,11 @@ export class StartupbyProgramsComponent implements OnInit {
       res;
       this.allfeeds = res;
       console.log("allfeeds",this.allfeeds)
-      $("#newsfeeds").modal("show"); 
+      
     })
+  }
+  openfeedspop(){
+    $("#newsfeeds").modal("show"); 
   }
   createfeed(){
     let url = "program/create-news-feed"
