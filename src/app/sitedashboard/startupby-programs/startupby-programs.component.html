@@ -51,7 +51,7 @@
                         <label> </label>
                         <button style="margin-top: 17%;" class="btn btn-default" type="reset"
                             (click)="resetprogram()">Reset</button>
-                        <button [disabled]="!location_program_id != ('' && null && undefined)" class="btn btn-default" type="button" (click)="showfeeds()"><i class="fa fa-rss">Manage
+                        <button [disabled]="!location_program_id != (null && undefined)" class="btn btn-default" type="button" (click)="showfeeds()"><i class="fa fa-rss">Manage
                                 Feeds</i></button>
                     </div>
                 </div>
@@ -131,8 +131,8 @@
             </div>
         </div>
         <div class="col-md-12">
-            <button [disabled]="!location_program_id != ('' && null && undefined)"  class="btn btn-primary" (click)="assigncourses()">Assign to All Startups</button>
-            <button [disabled]="!location_program_id != ('' && null && undefined)"  class="btn btn-default" (click)="openstartups()">Select Startups to Assign</button>
+            <button [disabled]="!location_program_id != (null && undefined)"  class="btn btn-primary" (click)="assigncourses()">Assign to All Startups</button>
+            <button [disabled]="!location_program_id != (null && undefined)"  class="btn btn-default" (click)="openstartups()">Select Startups to Assign</button>
         </div>
         <div class="modal fade" id="selectstarts" role="dialog" #selectstarts>
             <div class="modal-dialog modal-lg">
