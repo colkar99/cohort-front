@@ -203,14 +203,14 @@
         
         
                                         <input
-                                            style="border:1px solid;box-shadow:none !important;position: absolute;left: 5%;top: 27%;width: 80%;"
+                                            style="border:1px solid;box-shadow:none !important;position: absolute;left: 7%;top: 27%;width: 80%;"
                                             type="text" name="description" [(ngModel)]="feed.description" class="form-control"
                                             placeholder="any updates?">
         
         
                                         <button class="btn btn-primary" style="border-radius:50%;position: absolute;left: 86%;"
                                             (click)="addfeedimages()"><i class="glyphicon glyphicon-camera"></i></button>
-                                        <button class="btn btn-primary" style="border-radius:50%;position: absolute;left: 90%;"
+                                        <button class="btn btn-primary" style="border-radius:50%;position: absolute;left: 94%;"
                                             (click)="createfeed()"><i class="glyphicon glyphicon-send"></i></button>
         
                                     </div>
@@ -220,12 +220,12 @@
                                     </div>
         
                                     <div class="well col-md-12" *ngFor="let feeds of allfeeds;let i = index">
-                                        <div class="col-md-1" style="width:4%">
-                                            <img *ngIf="feeds.posted_by != null" style="height:30px;width:30px;border-radius:50%;"
+                                        <div class="col-md-1" style="width:4%" *ngIf="feeds.posted_by != null">
+                                            <img  style="height:30px;width:30px;border-radius:50%;"
                                                 src="{{apiCom.imgUrl}}{{feeds.posted_by.main_image.url}}">
                                         </div>
-                                        <div class="col-md-1" style="width:4%">
-                                                <img *ngIf="feeds.posted_by == null" style="height:30px;width:30px;border-radius:50%;"
+                                        <div class="col-md-1" style="width:4%" *ngIf="feeds.posted_by == null">
+                                                <img  style="height:30px;width:30px;border-radius:50%;"
                                                     src="assets/images/Vive-Blue.png">
                                             </div>
                                         <div class="col-md-10">
