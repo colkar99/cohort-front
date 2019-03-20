@@ -39,6 +39,7 @@ export class StartupUpdatesComponent implements OnInit {
   }
   showfeeds(){
     let url= "program/show-news-feeds"
+    console.log("this.startupprofile",this.startupprofile)
     let params = JSON.stringify({program:{id:this.startupprofile.startup_registration.program_id}})
     this.apiCom.putDataWithToken(url,params,this.authToken).subscribe((res)=>{
       res;
