@@ -64,7 +64,7 @@ export class StartupbyProgramsComponent implements OnInit {
     }
 
     this.getAllProgram();
-    this.pusherService.channel.bind('new-like', data => {
+    this.pusherService.channel.bind('news-feed-data', data => {
       debugger
       this.allfeeds = data.news_feeds ;
     });
