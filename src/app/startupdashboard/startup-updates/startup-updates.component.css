@@ -1,0 +1,47 @@
+@media screen and (max-width:578.5px){
+    .statusinput{
+        border:1px solid;box-shadow:none !important;left: 5%;top: 27%;width: 71%;
+    }
+    .statusbtn1{
+        border-radius:50%;position: absolute;left: 69%;top: 45%;
+    }
+    .statusbtn2{
+        border-radius:50%;position: absolute;left: 85%;top: 45%;
+    }
+    .commentinput{
+        border:1px solid;box-shadow:none !important;position: absolute;left: 5%;top: 27%;width: 73%;
+    }
+    .commentbtn{
+        border-radius:50%;position: absolute;left: 81%;
+    }
+    .wellheight{
+        height:auto;
+    }
+    .feedimg{
+        height:100px;width:100%
+    }
+}
+
+@media screen and (min-width:580px){
+    .statusinput{
+        border:1px solid;box-shadow:none !important;position: absolute;left: 5%;top: 27%;width: 80%;
+    }
+    .statusbtn1{
+        border-radius:50%;position: absolute;left: 86%;
+    }
+    .statusbtn2{
+        border-radius:50%;position: absolute;left: 90%;
+    }
+    .commentinput{
+        border:1px solid;box-shadow:none !important;position: absolute;left: 5%;top: 27%;width: 80%;
+    }
+    .commentbtn{
+        border-radius:50%;position: absolute;left: 90%;
+    }
+    .wellheight{
+        height:70px;
+    }
+    .feedimg{
+        height:100px;width:auto
+    }
+}
