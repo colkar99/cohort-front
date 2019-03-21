@@ -1,18 +1,15 @@
-<div class="container">
+
   <div class="col-md-12" style="margin-top:5%;">
-    <div class="well col-md-12" style="height:70px;">
+    <div class="well col-md-12 wellheight" >
 
       <img style="height:30px;width:30px;border-radius:50%;" src="{{apiCom.imgUrl}}{{startupprofile.main_image.url}}">
 
 
-      <input style="border:1px solid;box-shadow:none !important;position: absolute;left: 5%;top: 27%;width: 80%;"
-        type="text" name="description" [(ngModel)]="feed.description" class="form-control" placeholder="any updates?">
+      <input type="text" name="description" [(ngModel)]="feed.description" class="form-control statusinput" placeholder="any updates?">
 
 
-      <button class="btn btn-primary" style="border-radius:50%;position: absolute;left: 86%;"
-        (click)="addfeedimages()"><i class="glyphicon glyphicon-camera"></i></button>
-      <button class="btn btn-primary" style="border-radius:50%;position: absolute;left: 90%;" (click)="createfeed()"><i
-          class="glyphicon glyphicon-send"></i></button>
+      <button class="btn btn-primary statusbtn1" (click)="addfeedimages()"><i class="glyphicon glyphicon-camera"></i></button>
+      <button class="btn btn-primary statusbtn2" (click)="createfeed()"><i class="glyphicon glyphicon-send"></i></button>
 
     </div>
     <div hidden>
@@ -54,7 +51,7 @@
       </div>
       <div class="col-md-12" *ngIf="feeds.images.url != null && feeds.images.url != undefined">
         <br>
-        <img src="{{apiCom.imgUrl}}{{feeds.images.url}}" style="height:100px;width:auto">
+        <img class="feedimg" src="{{apiCom.imgUrl}}{{feeds.images.url}}" >
       </div>
       <div class="col-md-12">
         <!-- <div class="col-md-2">
@@ -70,10 +67,10 @@
         <img style="height:30px;width:30px;border-radius:50%;" src="{{apiCom.imgUrl}}{{startupprofile.main_image.url}}">
 
 
-        <input style="border:1px solid;box-shadow:none !important;position: absolute;left: 5%;top: 27%;width: 80%;"
-          type="text" name="comment_{{i}}" [(ngModel)]="comment[i]" class="form-control" placeholder="comments?">
+        <input 
+          type="text" name="comment_{{i}}" [(ngModel)]="comment[i]" class="form-control commentinput" placeholder="comments?">
 
-        <button class="btn btn-primary" style="border-radius:50%;position: absolute;left: 90%;"
+        <button class="btn btn-primary commentbtn"
           (click)="createcomment(feeds.id,i)"><i class="glyphicon glyphicon-send"></i></button>
       </div>
 
@@ -99,7 +96,6 @@
 
 
   </div>
-</div>
 
 <div class="modal fade" id="editfeeds" role="dialog" #editfeeds>
   <div class="modal-dialog modal-lg">

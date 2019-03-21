@@ -144,16 +144,37 @@ img, .overlay {
   border-radius: 50%;
   border: 1px solid
 }
-.bg .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 280%;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.2);
-  color: #fff;
-  opacity: 0;
+@media screen and (max-width:575.8px){
+  .bg .overlay {
+    position: absolute;
+    top: 0;
+    left: 6;
+    bottom: 0;
+    width: 95%;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    opacity: 0;
+  }
+  .startupnames{
+    text-align: center;
+  }
+}
+@media screen and (min-width:580px){
+  .bg .overlay {
+    position: absolute;
+    top: 0;
+    left: 6;
+    bottom: 0;
+    width: 280%;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    opacity: 0;
+  }
+  .startupnames{
+    text-align: left;
+  }
 }
 .bg .overlay h2 {
  

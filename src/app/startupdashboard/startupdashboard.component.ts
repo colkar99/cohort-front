@@ -29,6 +29,7 @@ export class StartupdashboardComponent implements OnInit {
     this.startupid = this.getCookie('startup_profile_id');
     this.authToken = this.getCookie('Authorization');
     this.menuname = "profile"
+    this.startupprofile.startup_registration = {}
    
 
   }

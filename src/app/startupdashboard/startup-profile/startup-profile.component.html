@@ -427,19 +427,28 @@
 
             </div>
           </div>
-          <div class="text-center" style="height:200px;margin-left:5%;" *ngFor="let item of startupprofile.users;let i= index">
-            <div class="bg" style="margin-left: 5%;" (click)="viewuser(item,i)">
+          <div class="text-center" style="height:200px;margin-left:5%;">
+            <div class=" bg" style="height:120px;margin-left: 5%;" (click)="viewuser(item,i)"  *ngFor="let item of startupprofile.users;let i= index">
               <img src="assets/photo.png" alt="" style="height:125px;width: 125px;">
               <div class="overlay">
                 <h4>{{item.full_name}}</h4>
                 <p></p>
               </div>
+              <div style="position:absolute;top:92%;left:6%;">
+                <!-- <h3>{{item.designation|uppercase}}</h3> -->
+                <h3>FOUNDER</h3>
+              </div>
+              <div>
+                <br><br><br>
+              </div>
             </div>
-            <div style="position:absolute;top:60%;left:17%;">
-              <h3>{{item.designation|uppercase}}</h3>
-            </div>
+            
           </div>
-
+            
+        </div>
+        <div class="col-md-12">
+          <h1 style="margin-top:5%;font-family: 'Times New Roman', Times, serif;font-weight: bold;
+          font-size: 30px;" class="text-center">The Team</h1>
         </div>
 
       </div>
