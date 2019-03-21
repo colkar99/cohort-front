@@ -69,6 +69,8 @@ import { CKEditorModule } from 'ng2-ckeditor';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { ImageCompressService,ResizeOptions,ImageUtilityService } from 'ng2-image-compress';
 import { StartupUpdatesComponent } from './startupdashboard/startup-updates/startup-updates.component';
+import { ActionCableService, Channel } from 'angular2-actioncable';
+
 export function provideConfig() {
   let config = new AuthServiceConfig([
     {
@@ -140,7 +142,7 @@ export function provideConfig() {
     FullCalendarModule,
     Ng4LoadingSpinnerModule.forRoot() 
   ],
-  providers: [CookieService,SharedDataService,sharingData,
+  providers: [CookieService,SharedDataService,sharingData,ActionCableService,
               {provide: AuthServiceConfig,useFactory: provideConfig},ImageCompressService,ResizeOptions],
   bootstrap: [AppComponent]
 })

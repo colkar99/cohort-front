@@ -3,7 +3,6 @@ import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { SharedDataService } from './shared-data.service';
 import { ApiCommunicationService } from './api-communication.service'
-import { PusherService } from './pusher.service';
 
 declare var $: any
 @Component({
@@ -29,8 +28,7 @@ export class AppComponent implements OnInit {
   constructor(private cookieService: CookieService,
     private router: Router,
     private sharedData: SharedDataService,
-    private apiCom:ApiCommunicationService,
-    private pusherService: PusherService
+    private apiCom:ApiCommunicationService
   ) {
     // this.detect.detectChanges();
   }
