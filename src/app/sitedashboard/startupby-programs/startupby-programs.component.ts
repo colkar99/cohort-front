@@ -81,8 +81,8 @@ export class StartupbyProgramsComponent implements OnInit {
     // })
     // this.newMessage();
     const channel: Channel = this.cableService
-    // .cable('ws://ec2-54-172-0-213.compute-1.amazonaws.com/news-feed-websocket')
-    .cable('ws://localhost:3000/news-feed-websocket')
+    .cable('ws://ec2-54-172-0-213.compute-1.amazonaws.com/news-feed-websocket')
+    // .cable('ws://localhost:3000/news-feed-websocket')
     .channel('NewsFeedsChannel');
     this.subscription = channel.received().subscribe(message => {
       debugger
