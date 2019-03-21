@@ -7,7 +7,9 @@ import { Router } from '@angular/router';
 import { SharedDataService } from '../../shared-data.service'
 declare var $:any
 import { ImageCompressService } from  'ng2-image-compress';
-import { PusherService } from '../../pusher.service';
+// import { PusherService } from '../../pusher.service';
+import { Subscription } from 'rxjs';
+import { ActionCableService, Channel } from 'angular2-actioncable';
 
 @Component({
   selector: 'app-startupby-programs',
@@ -15,6 +17,7 @@ import { PusherService } from '../../pusher.service';
   styleUrls: ['./startupby-programs.component.css']
 })
 export class StartupbyProgramsComponent implements OnInit {
+  subscription: Subscription;
   message: any
   authToken: string;
   loggedIn: boolean;
@@ -45,7 +48,8 @@ export class StartupbyProgramsComponent implements OnInit {
     private cookieService: CookieService,
     private router: Router,
     private sharedDataService: SharedDataService,
-    private pusherService: PusherService
+    private cableService: ActionCableService
+    // private pusherService: PusherService
   ) { }
 
   ngOnInit() {
@@ -67,15 +71,23 @@ export class StartupbyProgramsComponent implements OnInit {
     }
 
     this.getAllProgram();
-    this.pusherService.channel.bind('news-feed-data', data => {
-      debugger
-      // this.allfeeds = data.news_feeds ;
-      this.showfeeds();
-    });
+    // this.pusherService.channel.bind('news-feed-data', data => {
+    //   debugger
+    //   // this.allfeeds = data.news_feeds ;
+    //   this.showfeeds();
+    // });
     // this.sharedDataService.currentMessage.subscribe(message => {
     //   this.message = message;
     // })
     // this.newMessage();
+    const channel: Channel = this.cableService
+    // .cable('ws://ec2-54-172-0-213.compute-1.amazonaws.com/news-feed-websocket')
+    .cable('ws://localhost:3000/news-feed-websocket')
+    .channel('NewsFeedsChannel');
+    this.subscription = channel.received().subscribe(message => {
+      debugger
+      this.showfeeds();
+    });
   }
   // newMessage() {
   //   this.sharedDataService.changeMessage('Hello World');

@@ -2,11 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ApiCommunicationService } from '../../api-communication.service'
 import { Router } from '@angular/router'
 import { CookieService } from 'ngx-cookie-service';
-import { HttpErrorResponse } from '@angular/common/http';
+// import { HttpErrorResponse } from '@angular/common/http';
 declare var $: any
 import { sharingData } from '../../sharingdata'
 import { ImageCompressService } from  'ng2-image-compress';
-import { PusherService } from '../../pusher.service';
+// import { PusherService } from '../../pusher.service';
+import { Subscription } from 'rxjs';
+import { ActionCableService, Channel } from 'angular2-actioncable';
+
 
 @Component({
   selector: 'app-startup-updates',
@@ -14,6 +17,8 @@ import { PusherService } from '../../pusher.service';
   styleUrls: ['./startup-updates.component.css']
 })
 export class StartupUpdatesComponent implements OnInit {
+  subscription: Subscription;
+
   startupid:any
   authToken:any
   startupprofile:any = {}
@@ -25,8 +30,9 @@ export class StartupUpdatesComponent implements OnInit {
   status:string = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
   constructor( private imgCompressService: ImageCompressService,public apiCom: ApiCommunicationService, public sharedata: sharingData,
     private router: Router,
-    private pusherService: PusherService,
-    private cookieService: CookieService) {
+    // private pusherService: PusherService,
+    private cookieService: CookieService,
+    private cableService: ActionCableService,) {
     this.startupid = this.getCookie('startup_profile_id');
     this.authToken = this.getCookie('Authorization');
     this.startupprofile = this.sharedata.startupprofile
@@ -35,9 +41,15 @@ export class StartupUpdatesComponent implements OnInit {
 
   ngOnInit() {
     this.showfeeds();
-    this.pusherService.channel.bind('news-feed-data', data => {
+    // this.pusherService.channel.bind('news-feed-data', data => {
+    //   this.showfeeds();
+    // });
+    const channel: Channel = this.cableService
+    // .cable('ws://ec2-54-172-0-213.compute-1.amazonaws.com/news-feed-websocket')
+    .cable('ws://localhost:3000/news-feed-websocket')
+    .channel('NewsFeedsChannel');
+    this.subscription = channel.received().subscribe(message => {
       debugger
-      // this.allfeeds = data.news_feeds ;
       this.showfeeds();
     });
   }
