@@ -131,6 +131,12 @@
               <input class="form-control" type="number" name="phone_number" [(ngModel)]="user.phone_number">
             </div>
           </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <span class="label">Designation</span>
+              <input class="form-control" type="text" name="designation" [(ngModel)]="user.designation">
+            </div>
+          </div>
 
 
         </form>
@@ -429,14 +435,14 @@
           </div>
           <div class="text-center" style="height:200px;margin-left:5%;">
             <div class=" bg" style="height:120px;margin-left: 5%;" (click)="viewuser(item,i)"  *ngFor="let item of startupprofile.users;let i= index">
-              <img src="assets/photo.png" alt="" style="height:125px;width: 125px;">
+              <img src="assets/avatar_2x.png" alt="" style="height:125px;width: 125px;">
               <div class="overlay">
                 <h4>{{item.full_name}}</h4>
                 <p></p>
               </div>
               <div style="position:absolute;top:92%;left:6%;">
-                <!-- <h3>{{item.designation|uppercase}}</h3> -->
-                <h3>FOUNDER</h3>
+                <h3>{{item.designation|uppercase}}</h3>
+                <!-- <h3>FOUNDER</h3> -->
               </div>
               <div>
                 <br><br><br>
@@ -446,10 +452,7 @@
           </div>
             
         </div>
-        <div class="col-md-12">
-          <h1 style="margin-top:5%;font-family: 'Times New Roman', Times, serif;font-weight: bold;
-          font-size: 30px;" class="text-center">The Team</h1>
-        </div>
+        
 
       </div>
 

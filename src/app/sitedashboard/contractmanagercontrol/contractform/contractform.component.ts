@@ -120,17 +120,38 @@ export class ContractFormComponent implements OnInit {
     if (value.id == (null || undefined)) {
       let url = "program/startup/create-contract"
       let params = JSON.stringify({ contract_form: value })
-      this.apiCom.postDataWithToken(url,params,this.authToken).subscribe((res)=>{
+      this.apiCom.postDataWithToken(url, params, this.authToken).subscribe((res) => {
         res;
         alert("Contract Created Successfully")
         $('#reviewFormModal').modal('hide');
         this.router.navigate(['dashboard/contract-manager']);
+        // const hellosign = require('hellosign-sdk')({ key: 'dc4cf77efa5de233152278e4387eb71b2b8e318dbceadf75764923f6e3e6e909' });
+
+        // const opts = {
+        //   test_mode: 1,
+        //   title: 'NDA with Acme Co.',
+        //   subject: 'The NDA we talked about',
+        //   message: 'Please sign this NDA and then we can discuss more.',
+        //   signers: [
+        //     {
+        //       email_address: 'itssenthilvalliappan@gmail.com',
+        //       name: 'Senthil Valliappan'
+        //     }
+        //   ],
+        //   files: ['NDA.pdf']
+        // };
+
+        // hellosign.signatureRequest.send(opts).then((res) => {
+        //   // handle response
+        // }).catch((err) => {
+        //   // handle error
+        // });
 
       })
-    }else{
+    } else {
       let url = "program/startup/update-contract"
       let params = JSON.stringify({ contract_form: value })
-      this.apiCom.putDataWithToken(url,params,this.authToken).subscribe((res)=>{
+      this.apiCom.putDataWithToken(url, params, this.authToken).subscribe((res) => {
         res;
         alert("Contract Updated Successfully")
         $('#reviewFormModal').modal('hide');

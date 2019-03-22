@@ -90,7 +90,7 @@
       <div class="col-md-4" (click)="changedp()">
         <!-- <img class="img-responsive img-rounded" src="assets/avatar_2x.png"
           style="border-radius:50%;height:150px;width:150px;"> -->
-        <div class="bg" style="margin-left: 5%;" >
+        <div class="bg" style="margin-left: 5%;">
           <img src="{{imgUrl}}" alt="" style="height:125px;width: 125px;">
           <div class="overlay">
             <h4>Edit Picture</h4>
@@ -98,7 +98,7 @@
           </div>
         </div>
         <div style="display: none;">
-            <input id="main_image" class="form-control" type="file" id="main_image" placeholder="main_image"
+          <input id="main_image" class="form-control" type="file" id="main_image" placeholder="main_image"
             name="main_image" type="file" accept="image/*" (change)="handleInputChange($event)" />
         </div>
       </div>
@@ -111,7 +111,7 @@
       </div>
 
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6 hidden-sm hidden-xs">
       <br>
       <br>
       <div class="col-md-12">
@@ -130,23 +130,46 @@
         <h4>Website: {{sharedata.startupprofile.startup_registration.website_url}}</h4>
       </div>
     </div>
+    <div class="col-md-6 hidden-lg hidden-md">
+      <table class="table table-bordered">
+
+        <tbody>
+          <tr>
+            <td>Industry</td>
+            <td>{{sharedata.startupprofile.startup_registration.entity_type}}</td>
+          </tr>
+          <tr>
+            <td>Size</td>
+            <td>{{sharedata.startupprofile.team_size}}</td>
+          </tr>
+          <tr>
+            <td>Location</td>
+            <td>{{sharedata.startupprofile.startup_registration.startup_country}}</td>
+          </tr>
+          <tr>
+            <td>Website</td>
+            <td>{{sharedata.startupprofile.startup_registration.website_url}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
   <div class="col-md-12">
 
   </div>
 
-  <div class="col-md-6" style="margin-left:2%;">
+  <div class="col-md-6 hidden-sm hidden-xs" style="margin-left:2%;">
     <br>
     <div class="col-md-3">
       <button type="button" class="button" routerLink="profile" (click)="buttonVal('view')">OverView</button>
       <i *ngIf="buttonVals === 1" class="glyphicon glyphicon-triangle-bottom" style="margin-left: 42%;"></i>
     </div>
     <div class="col-md-3">
-      <button type="button" class="button" routerLink="road-map"  (click)="buttonVal('roadmap')">RoadMap</button>
-      <i *ngIf="buttonVals === 2" class="glyphicon glyphicon-triangle-bottom"  style="margin-left: 42%;"></i>
+      <button type="button" class="button" routerLink="road-map" (click)="buttonVal('roadmap')">RoadMap</button>
+      <i *ngIf="buttonVals === 2" class="glyphicon glyphicon-triangle-bottom" style="margin-left: 42%;"></i>
     </div>
     <div class="col-md-3">
-      <button type="button" class="button" routerLink="view-activities"  (click)="buttonVal('content')">Contents</button>
+      <button type="button" class="button" routerLink="view-activities" (click)="buttonVal('content')">Contents</button>
       <i *ngIf="buttonVals === 3" class="glyphicon glyphicon-triangle-bottom" style="margin-left: 42%;"></i>
     </div>
     <div class="col-md-3">
@@ -156,6 +179,28 @@
 
 
 
+  </div>
+  <div class="col-md-6 hidden-lg hidden-md">
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary" style="padding:6px;" routerLink="profile" (click)="buttonVal('view')">Overview</button>
+      <!-- <i *ngIf="buttonVals === 1" class="glyphicon glyphicon-triangle-bottom" style="margin-left: 42%;"></i> -->
+      <button type="button" class="btn btn-primary" routerLink="road-map" (click)="buttonVal('roadmap')">Road Map</button>
+      <!-- <i *ngIf="buttonVals === 2" class="glyphicon glyphicon-triangle-bottom" style="margin-left: 42%;"></i> -->
+      <button type="button" class="btn btn-primary" routerLink="view-activities" (click)="buttonVal('content')">Contents</button>
+      <!-- <i *ngIf="buttonVals === 3" class="glyphicon glyphicon-triangle-bottom" style="margin-left: 42%;"></i> -->
+      <button type="button" class="btn btn-primary" routerLink="status-updates" (click)="buttonVal('update')">Updates</button>
+      <!-- <i *ngIf="buttonVals === 4" class="glyphicon glyphicon-triangle-bottom" style="margin-left: 42%;"></i> -->
+    </div>
+    <div class="btn-group">
+      <!-- <button type="button" class="btn btn-primary" style="padding:6px;" routerLink="profile" (click)="buttonVal('view')">Overview</button> -->
+      <i *ngIf="buttonVals === 1" class="glyphicon glyphicon-triangle-bottom" style="margin-left: 10px;"></i>
+      <!-- <button type="button" class="btn btn-primary" routerLink="road-map" (click)="buttonVal('roadmap')">Road Map</button> -->
+      <i *ngIf="buttonVals === 2" class="glyphicon glyphicon-triangle-bottom" style="margin-left:100px;"></i>
+      <!-- <button type="button" class="btn btn-primary" routerLink="view-activities" (click)="buttonVal('content')">Contents</button> -->
+      <i *ngIf="buttonVals === 3" class="glyphicon glyphicon-triangle-bottom" style="margin-left: 175px;"></i>
+      <!-- <button type="button" class="btn btn-primary" routerLink="status-updates" (click)="buttonVal('update')">Updates</button> -->
+      <i *ngIf="buttonVals === 4" class="glyphicon glyphicon-triangle-bottom" style="margin-left: 250px;"></i>
+    </div>
   </div>
   <div class="col-md-12 col-xs-12 co-sm-12">
     <router-outlet></router-outlet>
