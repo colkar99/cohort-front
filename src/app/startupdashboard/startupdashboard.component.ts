@@ -14,6 +14,7 @@ export class StartupdashboardComponent implements OnInit {
 
   CLIENT_ID:string;API_KEY: string;DISCOVERY_DOCS:any;SCOPES: string;
   // authorizeButton: HTMLElement;signoutButton: HTMLElement;
+  buttonVals: number = 0;
   startupprofile: any = {}
   startupid: any
   authToken: any
@@ -51,6 +52,22 @@ export class StartupdashboardComponent implements OnInit {
     })
       
 
+  }
+  buttonVal(val){
+    this.buttonVals = 0;
+    if (val === "view") {
+      this.buttonVals = 1;
+    }
+    else if (val === "roadmap"){
+      this.buttonVals = 2;
+    }
+    else if (val === "content"){
+      this.buttonVals = 3;
+    }
+    else {
+      this.buttonVals = 4;
+
+    }
   }
   handleInputChange(e) {
     ImageCompressService.filesToCompressedImageSource(e.target.files).then(observableImages => {

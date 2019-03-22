@@ -138,16 +138,20 @@
   <div class="col-md-6" style="margin-left:2%;">
     <br>
     <div class="col-md-3">
-      <button type="button" class="button" routerLink="profile">OverView</button>
+      <button type="button" class="button" routerLink="profile" (click)="buttonVal('view')">OverView</button>
+      <i *ngIf="buttonVals === 1" class="glyphicon glyphicon-triangle-bottom" style="margin-left: 42%;"></i>
     </div>
     <div class="col-md-3">
-      <button type="button" class="button" routerLink="road-map">RoadMap</button>
+      <button type="button" class="button" routerLink="road-map"  (click)="buttonVal('roadmap')">RoadMap</button>
+      <i *ngIf="buttonVals === 2" class="glyphicon glyphicon-triangle-bottom"  style="margin-left: 42%;"></i>
     </div>
     <div class="col-md-3">
-      <button type="button" class="button" routerLink="view-activities">Contents</button>
+      <button type="button" class="button" routerLink="view-activities"  (click)="buttonVal('content')">Contents</button>
+      <i *ngIf="buttonVals === 3" class="glyphicon glyphicon-triangle-bottom" style="margin-left: 42%;"></i>
     </div>
     <div class="col-md-3">
-      <button type="button" class="button" routerLink="status-updates">Updates</button>
+      <button type="button" class="button" routerLink="status-updates" (click)="buttonVal('update')">Updates</button>
+      <i *ngIf="buttonVals === 4" class="glyphicon glyphicon-triangle-bottom" style="margin-left: 42%;"></i>
     </div>
 
 
