@@ -270,7 +270,8 @@ export class ProgramSessionsComponent implements OnInit {
           {'method': 'email', 'minutes': 24 * 60},
           {'method': 'popup', 'minutes': 10}
         ]
-      }
+      },
+      "guestsCanSeeOtherGuests": false
       // 'id': event.id
     };
      let users = event.users;
