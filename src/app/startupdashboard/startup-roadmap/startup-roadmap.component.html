@@ -171,8 +171,9 @@
       <label>Goals by Month</label>
       <br>
       <div class="btn-group">
-        <button type="button" class="btn btn-default" (click)="maingoal()">Main Goal</button>
-        <button type="button" class="btn btn-default" *ngFor="let item of roadmap.milestones;let i = index" (click)="milegoal(item,i)">{{item.month}}</button>
+        <button type="button" class="btn btn-default" [ngClass]="{'seleclass': roadmapMonth == 5000}"  (click)="maingoal(5000)">Main Goal</button>
+        <button type="button" class="btn btn-default" *ngFor="let item of roadmap.milestones;let i = index" (click)="milegoal(item,i)" [ngClass]="{'seleclass': roadmapMonth == i}">{{item.month}}</button>
+
        
       </div>
     </div>
