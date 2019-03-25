@@ -5,6 +5,7 @@ import { ApiCommunicationService } from '../../../api-communication.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 declare var $: any;
+declare var require: any
 
 
 @Component({

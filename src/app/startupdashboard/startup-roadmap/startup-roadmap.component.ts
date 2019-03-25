@@ -10,6 +10,8 @@ declare var $: any
   styleUrls: ['./startup-roadmap.component.css']
 })
 export class StartupRoadmapComponent implements OnInit {
+
+  roadmapMonth: number;
   startupprofile: any = {}
   authToken: any
   roadmapresponse: any = {}
@@ -35,6 +37,7 @@ export class StartupRoadmapComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.roadmapMonth = 5000;
     let url = "program/startup/get-program-road_map-for-startup"
     let params = { startup_profile_id: this.startupprofile.id };
     this.apiCom.postDataWithToken(url, params, this.authToken).subscribe((res) => {
@@ -49,7 +52,7 @@ export class StartupRoadmapComponent implements OnInit {
         this.apiCom.postDataWithToken(url, params, this.authToken).subscribe((res) => {
           res;
           this.roadmap = res
-          this.maingoal();
+          this.maingoal(5000);
         })
       } else {
 
@@ -65,7 +68,7 @@ export class StartupRoadmapComponent implements OnInit {
           } else {
             this.roadmap.milestones.push({ month: string })
           }
-          this.maingoal();
+          this.maingoal(5000);
         }
         console.log("months", this.montharray)
       }
@@ -233,7 +236,9 @@ export class StartupRoadmapComponent implements OnInit {
   closeresource() {
     $("#resourcesneeded").modal('hide')
   }
-  maingoal() {
+  maingoal(val) {
+    this.roadmapMonth =  val;
+    console.log(this.roadmapMonth);
     if(this.mileindex != -1){
       this.roadmap.milestones[this.mileindex].name = this.kpigoal
       this.roadmap.milestones[this.mileindex].metric = this.kpimetric
@@ -245,6 +250,7 @@ export class StartupRoadmapComponent implements OnInit {
       this.kpigoal = this.roadmap.goal
   }
   milegoal(item, i) {
+    this.roadmapMonth =  i;
     if (this.mileindex == -1) {
       this.roadmap.goal = this.kpigoal
       this.roadmap.strategy = this.kpimetric
