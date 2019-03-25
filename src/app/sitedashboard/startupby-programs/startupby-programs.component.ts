@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,OnDestroy } from '@angular/core';
 // import { FormControl, FormGroup } from '@angular/forms';
 import { ApiCommunicationService } from '../../api-communication.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -16,7 +16,7 @@ import { ActionCableService, Channel } from 'angular2-actioncable';
   templateUrl: './startupby-programs.component.html',
   styleUrls: ['./startupby-programs.component.css']
 })
-export class StartupbyProgramsComponent implements OnInit {
+export class StartupbyProgramsComponent implements OnInit,OnDestroy {
   subscription: Subscription;
   message: any
   authToken: string;
@@ -88,6 +88,11 @@ export class StartupbyProgramsComponent implements OnInit {
       debugger
       this.showfeeds();
     });
+  }
+  ngOnDestroy() {
+    // Unsubscribing from the messages Observable automatically
+    // unsubscribes from the ActionCable channel as well
+    this.subscription.unsubscribe();
   }
   // newMessage() {
   //   this.sharedDataService.changeMessage('Hello World');

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,OnDestroy } from '@angular/core';
 import { ApiCommunicationService } from '../../api-communication.service'
 import { Router } from '@angular/router'
 import { CookieService } from 'ngx-cookie-service';
@@ -16,7 +16,7 @@ import { ActionCableService, Channel } from 'angular2-actioncable';
   templateUrl: './startup-updates.component.html',
   styleUrls: ['./startup-updates.component.css']
 })
-export class StartupUpdatesComponent implements OnInit {
+export class StartupUpdatesComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
   startupid:any
@@ -52,6 +52,12 @@ export class StartupUpdatesComponent implements OnInit {
       debugger
       this.showfeeds();
     });
+  }
+
+  ngOnDestroy() {
+    // Unsubscribing from the messages Observable automatically
+    // unsubscribes from the ActionCable channel as well
+    this.subscription.unsubscribe();
   }
   showfeeds(){
     let url= "program/show-news-feeds"
