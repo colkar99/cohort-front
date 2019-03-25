@@ -8,16 +8,16 @@ import { SharedDataService } from '../../shared-data.service'
 declare var $:any
 import { ImageCompressService } from  'ng2-image-compress';
 // import { PusherService } from '../../pusher.service';
-import { Subscription } from 'rxjs';
-import { ActionCableService, Channel } from 'angular2-actioncable';
+// import { Subscription } from 'rxjs';
+// import { ActionCableService, Channel } from 'angular2-actioncable';
 
 @Component({
   selector: 'app-startupby-programs',
   templateUrl: './startupby-programs.component.html',
   styleUrls: ['./startupby-programs.component.css']
 })
-export class StartupbyProgramsComponent implements OnInit,OnDestroy {
-  subscription: Subscription;
+export class StartupbyProgramsComponent implements OnInit{
+  // subscription: Subscription;
   message: any
   authToken: string;
   loggedIn: boolean;
@@ -48,7 +48,7 @@ export class StartupbyProgramsComponent implements OnInit,OnDestroy {
     private cookieService: CookieService,
     private router: Router,
     private sharedDataService: SharedDataService,
-    private cableService: ActionCableService
+    // private cableService: ActionCableService
     // private pusherService: PusherService
   ) { }
 
@@ -80,20 +80,20 @@ export class StartupbyProgramsComponent implements OnInit,OnDestroy {
     //   this.message = message;
     // })
     // this.newMessage();
-    const channel: Channel = this.cableService
-    .cable('ws://ec2-54-172-0-213.compute-1.amazonaws.com/cable')
+    // const channel: Channel = this.cableService
+    // .cable('ws://ec2-54-172-0-213.compute-1.amazonaws.com/cable')
     // .cable('ws://localhost:3000/cable')
-    .channel('NewsFeedsChannel');
-    this.subscription = channel.received().subscribe(message => {
-      debugger
-      this.showfeeds();
-    });
+    // .channel('NewsFeedsChannel');
+    // this.subscription = channel.received().subscribe(message => {
+      // debugger
+      // this.showfeeds();
+    // });
   }
-  ngOnDestroy() {
+  // ngOnDestroy() {
     // Unsubscribing from the messages Observable automatically
     // unsubscribes from the ActionCable channel as well
-    this.subscription.unsubscribe();
-  }
+    // this.subscription.unsubscribe();
+  // }
   // newMessage() {
   //   this.sharedDataService.changeMessage('Hello World');
   // }
