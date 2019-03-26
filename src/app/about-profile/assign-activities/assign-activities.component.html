@@ -14,7 +14,7 @@
             <span><strong>Course</strong></span><br>
           <span style="font-size: 20px;" [innerHTML]="course.title"></span>
           <span><strong>Activities</strong></span><br>
-          <h5 *ngFor="let ac of course.activities;let i = index"><span [ngStyle]="{'color': ac.admin_responsed? 'green':'red'}" [innerHTML]="ac.name" ></span></h5>
+          <h5 style="font-size:15px !important;" *ngFor="let ac of course.activities;let i = index"><span [ngStyle]="{'color': ac.admin_responsed? 'green':'red'}" [innerHTML]="ac.name" ></span></h5>
           <!-- <h5 >{{course.description}}</h5> -->
         </div>
         <div class="col-md-7">

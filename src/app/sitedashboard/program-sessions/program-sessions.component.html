@@ -24,18 +24,23 @@
                     <label>Filterby Type</label>
                     <select class="form-control" name="filterfeild" [(ngModel)]="filterfeild">
                         <option [value]="undefined" hidden selected>---Select---</option>
-                        <option value="application_status">Status</option>
-                        <option value="score">Score</option>
-                        <option value="app_status_description">Status description</option>
-                        <option value="startup_name">Startup Name</option>
-
+                        <option value="title">Title</option>
+                        <option value="description">Description</option>
+                        <option value="start_date_time">Start Date time</option>
+                        <option value="end_date_time">End Date Time</option>
+                        <option value="where">Location</option>
                     </select>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="form-group">
+                <div class="form-group" *ngIf="filterfeild != ('start_date_time' || 'end_date_time')">
                     <label>Value</label>
-                    <input [disabled]="filterfeild == ('' || null || undefined)" class="form-control" name="filtervalue"
+                    <input type="text" [disabled]="filterfeild == ('' || null || undefined)" class="form-control" name="filtervalue"
+                        #or [(ngModel)]="filtervalue" (ngModelChange)="filtervalues(or.value)">
+                </div>
+                <div class="form-group" *ngIf="filterfeild == ('start_date_time' || 'end_date_time')">
+                    <label>Value</label>
+                    <input type="datetime-local" [disabled]="filterfeild == ('' || null || undefined)" class="form-control" name="filtervalue"
                         #or [(ngModel)]="filtervalue" (ngModelChange)="filtervalues(or.value)">
                 </div>
             </div>
