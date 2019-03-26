@@ -81,7 +81,7 @@ export class StartupbyProgramsComponent implements OnInit,OnDestroy{
     // })
     // this.newMessage();
     const channel: Channel = this.cableService
-    .cable('ws://ec2-54-172-0-213.compute-1.amazonaws.com:3334/cable')
+    .cable('ws://ec2-54-172-0-213.compute-1.amazonaws.com/cable')
     // .cable('ws://localhost:3000/cable')
     .channel('NewsFeedsChannel');
     this.subscription = channel.received().subscribe(message => {
