@@ -283,7 +283,7 @@ export class StartupbyProgramsComponent implements OnInit {
   showfeeds(){
     let url= "program/show-news-feeds"
     let params = JSON.stringify({program:{id:this.programselected}})
-    this.apiCom.putDataWithToken(url,params,this.authToken).subscribe((res)=>{
+    this.apiCom.loadfeeds(url,params,this.authToken).subscribe((res)=>{
       res;
       this.allfeeds = res;
       console.log("allfeeds",this.allfeeds)
