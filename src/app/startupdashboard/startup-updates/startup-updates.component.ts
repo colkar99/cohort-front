@@ -8,7 +8,7 @@ import { sharingData } from '../../sharingdata'
 import { ImageCompressService } from  'ng2-image-compress';
 // import { PusherService } from '../../pusher.service';
 import { Subscription } from 'rxjs';
-// import { ActionCableService, Channel } from 'angular2-actioncable';
+import { ActionCableService, Channel } from 'angular2-actioncable';
 
 
 @Component({
@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './startup-updates.component.html',
   styleUrls: ['./startup-updates.component.css']
 })
-export class StartupUpdatesComponent implements OnInit {
+export class StartupUpdatesComponent implements OnInit,OnDestroy {
   subscription: Subscription;
 
   startupid:any
@@ -32,7 +32,7 @@ export class StartupUpdatesComponent implements OnInit {
     private router: Router,
     // private pusherService: PusherService,
     private cookieService: CookieService,
-    // private cableService: ActionCableService
+    private cableService: ActionCableService
     ) {
     this.startupid = this.getCookie('startup_profile_id');
     this.authToken = this.getCookie('Authorization');
@@ -45,19 +45,19 @@ export class StartupUpdatesComponent implements OnInit {
     // this.pusherService.channel.bind('news-feed-data', data => {
     //   this.showfeeds();
     // });
-    // const channel: Channel = this.cableService
-    // .cable('ws://ec2-54-172-0-213.compute-1.amazonaws.com/cable')
-    // .cable('ws://localhost:3000/cable')
-    // .channel('NewsFeedsChannel');
-    // this.subscription = channel.received().subscribe(message => {
-    //   debugger
-    //   this.showfeeds();
-    // });
+    const channel: Channel = this.cableService
+    .cable('ws://ec2-54-172-0-213.compute-1.amazonaws.com/cable')
+    // .cable("ws://localhost:3334/cable")
+    .channel('NewsFeedsChannel');
+    this.subscription = channel.received().subscribe(message => {
+      debugger
+      this.showfeeds();
+    });
   }
 
-  // ngOnDestroy() {
-  //   this.subscription.unsubscribe();
-  // }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
   showfeeds(){
     let url= "program/show-news-feeds"
     console.log("this.startupprofile",this.startupprofile)
