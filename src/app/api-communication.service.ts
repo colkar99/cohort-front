@@ -64,6 +64,18 @@ export class ApiCommunicationService {
       
     );
   }
+  loadfeeds(url: string,params: {},auth: string): Observable<any>{
+    this.domainUrl = `${this.url}${url}`;
+    let headers = this._headers.append('Authorization', auth);
+    debugger
+   // this.spinnerservice.show()
+    return this.http.put<any>(this.domainUrl,params,{headers: headers})
+    .pipe(
+      map((res) =>{res;return res;})).pipe(
+      catchError((error:HttpErrorResponse)=>{return throwError(error.error.message)})
+      
+    );
+  }
   putDataWithoutToken(url: string,params: {}): Observable<any>{
     this.domainUrl = `${this.url}${url}`;
    

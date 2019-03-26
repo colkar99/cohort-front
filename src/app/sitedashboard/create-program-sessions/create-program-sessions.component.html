@@ -15,8 +15,7 @@
             </div>
             <div class="col-md-6 form-group">
               <label>Description</label>
-              <textarea class="form-control"  name="description"
-                [(ngModel)]="session.description"></textarea>
+              <textarea class="form-control" name="description" [(ngModel)]="session.description"></textarea>
             </div>
             <div class="col-md-6 form-group">
               <label>Start Date</label>
@@ -49,57 +48,56 @@
 
           </div>
           <div class="col-md-12">
-            <button class="btn btn-success pull-right" [disabled]="!Sessionscreate.valid" (click)="Sessionscreate.valid && updateForm()"><i
-                class="glyphicon glyphicon-floppy-saved"></i> {{!session.id?
+            <button class="btn btn-success pull-right" [disabled]="!Sessionscreate.valid"
+              (click)="Sessionscreate.valid && updateForm()"><i class="glyphicon glyphicon-floppy-saved"></i> {{!session.id?
                             'Next':'Update'}}</button>
             <button *ngIf="session.id != (null && undefined && 0)" class="btn btn-danger pull-right"
               (click)="deleteform()"><i class="glyphicon glyphicon-trash"></i> Delete</button>
           </div>
           <div class="col-md-12">
-            <fieldset [disabled]="!session.id">
-              <div class="row">
-                <div class="panel panel-default">
-                  <div class="panel-heading" style="height:57px;">List of Attendees <button
-                      class="btn btn-info pull-right" type="button" (click)="addattendees()"><i
-                        class="glyphicon glyphicon-plus-sign"></i>Add
-                      Attendees</button></div>
-                  <div class="panel-body">
 
-                    <div class="row">
-                      <div class="col-md-12 col-xs-12 table-responsive">
-                        <table class="table table-bordered">
-                          <thead>
-                            <tr>
-                              <th>Name</th>
-                              <th>Email</th>
-                              <th>User Type</th>
-                              <th>Actions</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr *ngFor="let startup of session_attendees;let i = index" style="cursor: pointer; ">
-                              <td>{{startup.full_name}}</td>
-                              <td>{{startup.email }}</td>
-                              <td>{{startup.user_type}}</td>
-                              <td><button class="btn btn-danger" (click)="deleteAttendees(startup,i)"><i
-                                    class="glyphicon glyphicon-trash"></i> Remove</button></td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
+            <br>
+            <br>
+            <div class="panel panel-default">
+              <div class="panel-heading" style="height:57px;">List of Attendees <button class="btn btn-info pull-right"
+                  [disabled]="!session.id" type="button" (click)="addattendees()"><i
+                    class="glyphicon glyphicon-plus-sign"></i>Add
+                  Attendees</button></div>
+              <div class="panel-body">
+
+                <div class="row">
+                  <div class="col-md-12 col-xs-12 table-responsive">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Email</th>
+                          <th>User Type</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let startup of session_attendees;let i = index" style="cursor: pointer; ">
+                          <td>{{startup.full_name}}</td>
+                          <td>{{startup.email }}</td>
+                          <td>{{startup.user_type}}</td>
+                          <td><button class="btn btn-danger" (click)="deleteAttendees(startup,i)"><i
+                                class="glyphicon glyphicon-trash"></i> Remove</button></td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
+            </div>
 
-
-              <!-- <div class="col-md-12">
+            <!-- <div class="col-md-12">
                 <button class="btn btn-success" type="button" (click)="updateProgramSession()"><i
                     class="glyphicon glyphicon-floppy-saved"></i>Update Program Session
                 </button>
               </div> -->
 
-            </fieldset>
+
           </div>
 
 
@@ -115,7 +113,7 @@
                 <h4 class="modal-title">Add Attendees</h4>
               </div>
               <div class="modal-body">
-               
+
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <div class="panel panel-default">
                     <div class="panel-heading">
@@ -131,17 +129,16 @@
                                 <th><strong>StartupName</strong><br></th>
                                 <th>Email</th>
                                 <th>User Type</th>
-                                
+
                               </tr>
                             </thead>
                             <tbody>
                               <tr *ngFor="let item of allattendees.startup_users;let i = index">
-                                <td><input type="checkbox"
-                                    (change)="selectvalues($event.target.checked,item)"></td>
+                                <td><input type="checkbox" (change)="selectvalues($event.target.checked,item)"></td>
                                 <td><strong>{{item.startup_name}}</strong><br></td>
                                 <td>{{item.startup_users.email}}</td>
                                 <td>{{item.startup_users.user_type}}</td>
-                                
+
                               </tr>
                             </tbody>
                           </table>
@@ -167,17 +164,16 @@
                                 <th><strong>Name</strong><br></th>
                                 <th>Email</th>
                                 <th>User Type</th>
-                                
+
                               </tr>
                             </thead>
                             <tbody>
                               <tr *ngFor="let item of allattendees.mentors;let i = index">
-                                <td><input type="checkbox"
-                                    (change)="selectvalues1($event.target.checked,item)"></td>
+                                <td><input type="checkbox" (change)="selectvalues1($event.target.checked,item)"></td>
                                 <td><strong>{{item.full_name}}</strong><br></td>
                                 <td>{{item.email}}</td>
                                 <td>{{item.user_type}}</td>
-                                
+
                               </tr>
                             </tbody>
                           </table>
@@ -191,44 +187,44 @@
 
                 <!--SiteUser-->
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="panel panel-default">
-                      <div class="panel-heading">
-                        <h3 class="panel-title">List of SiteUsers<br></h3>
-                      </div>
-                      <div class="panel-body">
-                        <div class="col-md-12" style="height:200px;overflow-y:auto;">
-                          <div class="table-responsive" style="margin-top:2px;">
-                              <table class="table table-striped">
-                                  <thead>
-                                    <tr>
-                                      <th>Select</th>
-                                      <th><strong>Name</strong><br></th>
-                                      <th>Email</th>
-                                      <th>User Type</th>
-                                      
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    <tr *ngFor="let item of allattendees.site_users;let i = index">
-                                      <td><input type="checkbox"
-                                          (change)="selectvalues2($event.target.checked,item)"></td>
-                                      <td><strong>{{item.full_name}}</strong><br></td>
-                                      <td>{{item.email}}</td>
-                                      <td>{{item.user_type}}</td>
-                                      
-                                    </tr>
-                                  </tbody>
-                                </table>
-                          </div>
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">List of SiteUsers<br></h3>
+                    </div>
+                    <div class="panel-body">
+                      <div class="col-md-12" style="height:200px;overflow-y:auto;">
+                        <div class="table-responsive" style="margin-top:2px;">
+                          <table class="table table-striped">
+                            <thead>
+                              <tr>
+                                <th>Select</th>
+                                <th><strong>Name</strong><br></th>
+                                <th>Email</th>
+                                <th>User Type</th>
+
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let item of allattendees.site_users;let i = index">
+                                <td><input type="checkbox" (change)="selectvalues2($event.target.checked,item)"></td>
+                                <td><strong>{{item.full_name}}</strong><br></td>
+                                <td>{{item.email}}</td>
+                                <td>{{item.user_type}}</td>
+
+                              </tr>
+                            </tbody>
+                          </table>
                         </div>
-  
                       </div>
+
                     </div>
                   </div>
+                </div>
                 <!--SiteUser-->
               </div>
-              <div class="modal-footer"><button class="btn btn-success" type="submit" (click)="updateProgramSession()"><i class="glyphicon glyphicon-floppy-saved"></i> Update Attendees
-                  </button><button class="btn btn-default" type="button" (click)="closeattend()">Close</button></div>
+              <div class="modal-footer"><button class="btn btn-success" type="submit"
+                  (click)="updateProgramSession()"><i class="glyphicon glyphicon-floppy-saved"></i> Update Attendees
+                </button><button class="btn btn-default" type="button" (click)="closeattend()">Close</button></div>
             </div>
           </div>
         </div>

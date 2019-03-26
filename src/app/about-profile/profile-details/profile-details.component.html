@@ -45,8 +45,9 @@
 
         <!-- </div> -->
     </div>
-    <div class="col-md-12" *ngIf="startup.application_status == 'RMD' ||startup.application_status == 'VDC' || startup.application_status == 'VDCC'">
-            <h3 style="text-decoration:underline;text-align: center">Courses & Activities</h3><br>
+    <div class="col-md-12"
+        *ngIf="startup.application_status == 'RMD' ||startup.application_status == 'VDC' || startup.application_status == 'VDCC'">
+        <h3 style="text-decoration:underline;text-align: center">Courses & Activities</h3><br>
         <div *ngIf="courses.length >0">
             <div class="row">
                 <button class="btn btn-success pull-right" type="button" (click)="assigncourses()">Assign
@@ -63,8 +64,8 @@
                             <span><strong>Course</strong></span><br>
                             <span style="font-size: 20px;" [innerHTML]="course.title"></span>
                             <span><strong>Activities</strong></span><br>
-                            <h5  style="font-size:15px !important;" *ngFor="let ac of course.activities;let i = index"><span
-                                    [ngStyle]="{'color': ac.admin_responsed? 'green':'red'}"
+                            <h5 style="font-size:15px !important;" *ngFor="let ac of course.activities;let i = index">
+                                <span [ngStyle]="{'color': ac.admin_responsed? 'green':'red'}"
                                     [innerHTML]="ac.name"></span></h5>
                             <!-- <h5 >{{course.description}}</h5> -->
                         </div>
@@ -198,7 +199,7 @@
     </div>
     <div class="col-md-12">
         <h3 style="text-decoration:underline;text-align: center">Current State</h3><br>
-        <div class="panel panel-default">
+        <div class="panel panel-default hidden-sm hidden-xs">
             <div class="panel-body">
                 <div class="col-md-12">
                     <h4 class="page-heading"></h4>
@@ -372,10 +373,77 @@
 
             </div>
         </div>
+        <div class="col-md-12 hidden-md hidden-lg">
+            <table class="table table-bordered">
+
+                <tbody>
+                    <tr>
+                        <td>REVENUE</td>
+                        <td>{{currentstateform.revenue}}</td>
+                    </tr>
+                    <tr>
+                        <td>TRACTION</td>
+                        <td>{{currentstateform.traction}}</td>
+                    </tr>
+                    <tr>
+                        <td>SOLUTION READINESS</td>
+                        <td>{{currentstateform.solution_readiness}}</td>
+                    </tr>
+                    <tr>
+                        <td>INVESTMENT</td>
+                        <td>{{currentstateform.investment}}</td>
+                    </tr>
+                    <tr>
+                        <td>TEAM VELOCITY</td>
+                        <td>{{currentstateform.team_velocity}}</td>
+                    </tr>
+                    <tr>
+                        <td>PARTNERS</td>
+                        <td>{{currentstateform.partners}}</td>
+                    </tr>
+                    <tr>
+                        <td>VENDORS</td>
+                        <td>{{currentstateform.vendors}}</td>
+                    </tr>
+                    <tr>
+                        <td>VENDOR COSTS</td>
+                        <td>{{currentstateform.vendors_costs}}</td>
+                    </tr>
+                    <tr>
+                        <td>EXPERIMENT TESTING</td>
+                        <td>{{currentstateform.experiment_testing}}</td>
+                    </tr>
+                    <tr>
+                        <td>CUSTOMER SEGMENT</td>
+                        <td>{{currentstateform.customer_segment}}</td>
+                    </tr>
+                    <tr>
+                        <td>PROBLEM VALIDATION</td>
+                        <td>{{currentstateform.problem_validation}}</td>
+                    </tr>
+                    <tr>
+                        <td>CHANNELS</td>
+                        <td>{{currentstateform.channels}}</td>
+                    </tr>
+                    <tr>
+                        <td>GOVERNANCE</td>
+                        <td>{{currentstateform.governance}}</td>
+                    </tr>
+                    <tr>
+                        <td>ADMIN FEEDBACK</td>
+                        <td>{{currentstateform.reviewer_feedback}}</td>
+                    </tr>
+                    <tr>
+                        <td>CUSTOMER RATING</td>
+                        <td>{{currentstateform.reviewer_rating}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
     <div class="col-md-12">
         <h3 style="text-decoration:underline;text-align: center">Startup Details</h3><br>
-        <div class="panel panel-default">
+        <div class="panel panel-default hidden-sm hidden-xs">
             <div class="panel-body">
                 <div class="col-md-12">
                     <h4 class="page-heading">Company info</h4>
@@ -602,6 +670,94 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row hidden-lg hidden-md">
+            <table class="table table-bordered">
+
+                <tbody>
+                    <tr style="font-weight:bold">Company Info</tr>
+                    <tr>
+                        <td>STARTUP NAME</td>
+                        <td>{{startup.startup_name}}</td>
+                    </tr>
+                    <tr>
+                        <td>FOUNDED DATE</td>
+                        <td>{{startup.founded_date}}</td>
+                    </tr>
+                    <tr>
+                        <td>ENTITY TYPE</td>
+                        <td>{{startup.entity_type}}</td>
+                    </tr>
+                    <tr>
+                        <td>COMPANY WEBSITE</td>
+                        <td>{{startup.website_url}}</td>
+                    </tr>
+                    <tr style="font-weight:bold">Application status</tr>
+                    <tr>
+                        <td>APPLICATION STATUS</td>
+                        <td>{{startup.application_status}}</td>
+                    </tr>
+                    <tr>
+                        <td>STATUS DESCRIPTION</td>
+                        <td>{{startup.app_status_description}}</td>
+                    </tr>
+                    <tr style="font-weight:bold">Founder info</tr>
+                    <tr>
+                        <td>FOUNDER NAME</td>
+                        <td>{{startup.founder_name}}</td>
+                    </tr>
+                    <tr>
+                        <td>EMAIL</td>
+                        <td>{{startup.founder_email}}</td>
+                    </tr>
+                    <tr>
+                        <td>CONTACT NUMBER</td>
+                        <td>{{startup.founder_phone_number}}</td>
+                    </tr>
+                    <tr>
+                        <td>SKILLS</td>
+                        <td>{{startup.founder_skills}}</td>
+                    </tr>
+                    <tr>
+                        <td>COMMITMENT</td>
+                        <td>{{startup.founder_commitment}}</td>
+                    </tr>
+                    <tr>
+                        <td>EXPERIENCE</td>
+                        <td>{{startup.founder_experience}}</td>
+                    </tr>
+                    <tr>
+                        <td>CREDENTIALS</td>
+                        <td>{{startup.founder_credentials}}</td>
+                    </tr>
+                    <tr style="font-weight:bold">Startup Address</tr>
+                    <tr>
+                        <td>ADDRESS LINE 1</td>
+                        <td>{{startup.startup_address_line_1}}</td>
+                    </tr>
+                    <tr>
+                        <td>ADDRESS LINE 2</td>
+                        <td>{{startup.startup_address_line_2}}</td>
+                    </tr>
+                    <tr>
+                        <td>CITY</td>
+                        <td>{{startup.startup_city}}</td>
+                    </tr>
+                    <tr>
+                        <td>STATE</td>
+                        <td>{{startup.startup_state_province_region}}</td>
+                    </tr>
+                    <tr>
+                        <td>COUNTRY</td>
+                        <td>{{startup.startup_country}}</td>
+                    </tr>
+                    <tr>
+                        <td>ZIP / PINCODE</td>
+                        <td>{{startup.startup_zip_pincode_postalcode}}</td>
+                    </tr>
+
+                </tbody>
+            </table>
         </div>
     </div>
 
