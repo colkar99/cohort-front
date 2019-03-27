@@ -17,7 +17,7 @@ export class AboutProfileComponent implements OnInit {
   description:any
   authToken:any
   currentstateform:any ={}
-  companylogo: any = "assets/photo.png"
+  companylogo: any = "assets/avatar_2x.png"
   CompanyName: any = "PETRAS"
   Mentors: any = "Stanly,Selwyn"
   bio: any = "Bootstrap 4 Grid Examples. Three Equal Columns. Use the .col class on a specified number of elements and Bootstrap will recognize how many elements there are (and create equal-width columns). Three Equal Columns Using Numbers. You can also use numbers to control the column width."
@@ -27,6 +27,9 @@ export class AboutProfileComponent implements OnInit {
     private cookieService:CookieService) {
     this.sharedservice.currentMessage.subscribe((res)=>{res;this.startupdata = res;})
     console.log("startupdata",this.startupdata)
+    if(this.startupdata.main_image.url != null){
+      this.companylogo = this.apiCom.imgUrl + this.startupdata.main_image.url
+    }
     this.roadmap = this.startupdata.road_map
     this.authToken = this.getCookie("Authorization")
    }

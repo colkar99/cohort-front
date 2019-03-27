@@ -1,182 +1,193 @@
+<div class="col-md-12" *ngIf="formSubmitted == true">
+    <button class="btn btn-default" (click)="formSubmitted = false"><i
+            class="glyphicon glyphicon-arrow-left">Back</i></button>
+</div>
+<div class="col-md-12">
+    <div class="col-md-1">
 
-    <div class="col-md-12">
-        <div class="col-md-1">
-
-        </div>
-        <div class="col-md-10">
-            <h2 class="mar-top" style="text-align: center;font-weight: bold">VIVE ACCELERATOR</h2>
-            <h5 style="text-align: center;color: gray">Apply for the 90 day Innovation Program</h5>
-            <br>
-            <h5>Let's start with some basic info. </h5>
-            <div *ngIf="!formSubmitted">
-                
-                    <form #registerform="ngForm" [ngClass]="!registerform.valid && registerform.submitted? 'form submitted ng-invalid':'none'" (ngSubmit)="registerform.valid && handleFormSubmit(registerform)"
-                        novalidate>
-                        <div class="row">
-                            <div class="col-md-12 form-group">
-                                <label>Startup Name</label>
-                                <input type="text" class="form-control input-lg" name="startup_name" placeholder="Startup Name"
-                                    #startup_name="ngModel" ngModel
-                                    [ngClass]="{errmsg: registerform.submitted && startup_name.invalid}" required />
-                                <!-- <span *ngIf="registerform.startup_name.touched && !registerform.startup_name.valid">Please enter the startup name</span> -->
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>Founded date</label>
-                                <input type="date" class="form-control" name="founded_date" #founded_date="ngModel"
-                                    ngModel [ngClass]="{errmsg: registerform.submitted && founded_date.invalid}"
-                                    required />
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>Website Url </label>
-                                <input type="text" class="form-control" name="website_url" #website_url="ngModel"
-                                    ngModel [ngClass]="{errmsg: registerform.submitted && website_url.invalid}"
-                                    placeholder="www.startup.com" required />
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>Entity Type </label>
-                                <input type="text" class="form-control" name="entity_type" #entity_type="ngModel"
-                                    ngModel [ngClass]="{errmsg: registerform.submitted && entity_type.invalid}"
-                                    placeholder="Entity type" required />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <h3 class="page-heading">Founder info</h3>
-                            <div class="col-md-6 form-group">
-                                <label>Name</label>
-                                <input type="text" class="form-control" name="founder_name" #founder_name="ngModel"
-                                    ngModel [ngClass]="{errmsg: registerform.submitted && founder_name.invalid}"
-                                    placeholder="Enter founder name" required />
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>Email (Note: Please Provide a valid email for communication)</label>
-                                <input type="email" class="form-control" name="founder_email" #founder_email="ngModel"
-                                    ngModel [ngClass]="{errmsg: registerform.submitted && founder_email.invalid}"
-                                    placeholder="Founder@mail.com" required />
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>Contact No</label>
-                                <input type="number" class="form-control" name="founder_phone_number"
-                                    #founder_phone_number="ngModel" ngModel
-                                    [ngClass]="{errmsg: registerform.submitted && founder_phone_number.invalid}"
-                                    placeholder="Enter your Contact Number" required />
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>Skills</label>
-                                <textarea class="form-control" name="founder_skills" #founder_skills="ngModel" ngModel
-                                    [ngClass]="{errmsg: registerform.submitted && founder_skills.invalid}"
-                                    placeholder="Enter your skills seperated by comma" required></textarea>
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>Credentials</label>
-                                <textarea class="form-control" name="founder_credentials" #founder_credentials="ngModel"
-                                    ngModel [ngClass]="{errmsg: registerform.submitted && founder_credentials.invalid}"
-                                    placeholder="Enter credentials" required></textarea>
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>Experience</label>
-                                <textarea class="form-control" name="founder_experience" #founder_experience="ngModel"
-                                    ngModel [ngClass]="{errmsg: registerform.submitted && founder_experience.invalid}"
-                                    placeholder="Enter your experience" required></textarea>
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>Commitment</label>
-                                <textarea class="form-control" name="founder_commitment" #founder_commitment="ngModel"
-                                    ngModel [ngClass]="{errmsg: registerform.submitted && founder_commitment.invalid}"
-                                    placeholder="Enter your commitments" required></textarea>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <h3 class="page-heading">Startup Address</h3>
-                            <div class="col-md-6 form-group">
-                                <label>Address line 1</label>
-                                <input type="text" class="form-control" name="startup_address_line_1"
-                                    #startup_address_line_1="ngModel" ngModel
-                                    [ngClass]="{errmsg: registerform.submitted && startup_address_line_1.invalid}"
-                                    placeholder="Enter your startup address line 1" required />
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>Address line 2</label>
-                                <input type="text" class="form-control" name="startup_address_line_2"
-                                    #startup_address_line_2="ngModel" ngModel
-                                    [ngClass]="{errmsg: registerform.submitted && startup_address_line_2.invalid}"
-                                    placeholder="Enter your startup address line 2" required />
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>City</label>
-                                <input type="text" class="form-control" name="startup_city" #startup_city="ngModel"
-                                    ngModel [ngClass]="{errmsg: registerform.submitted && startup_city.invalid}"
-                                    placeholder="Enter your city name" required />
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>State/Province/Region</label>
-                                <input type="text" class="form-control" name="startup_state_province_region"
-                                    #startup_state_province_region="ngModel" ngModel
-                                    [ngClass]="{errmsg: registerform.submitted && startup_state_province_region.invalid}"
-                                    placeholder="Enter your State/Province/Region" required />
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>Country</label>
-                                <input type="text" class="form-control" name="startup_country"
-                                    #startup_country="ngModel" ngModel
-                                    [ngClass]="{errmsg: registerform.submitted && startup_country.invalid}"
-                                    placeholder="Enter your country name" required />
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>Zipcode/postalcode</label>
-                                <input type="text" class="form-control" name="startup_zip_pincode_postalcode"
-                                    #startup_zip_pincode_postalcode="ngModel" ngModel
-                                    [ngClass]="{errmsg: registerform.submitted && startup_zip_pincode_postalcode.invalid}"
-                                    placeholder="Enter your Zipcode/postalcode" required />
-                            </div>
-                            <div class="col-md-12 text-center">
-                                <button class="btn btn-info" type="submit">Section Complete,Next Answer Questions</button>
-                            </div>
-                        </div>
-
-                    </form>
-                
-            </div>
-
-            <div class="panel panel-default" *ngIf="formSubmitted">
-                <!-- <div class="panel panel-default"> -->
-                <div class="panel-heading">Please give the best answers.</div>
-                <!-- <div class="panel panel-default"> -->
-                <div class="panel-body">
-                    
-                        <form [formGroup]="application_questions_form"
-                            (ngSubmit)="initAppQuesSubmit(application_questions_form)"
-                            validate>
-                            <div class="row" style="padding:15px;" formArrayName="application_question"
-                                *ngFor="let item of application_questions_form.get('application_question').controls; let i = index;">
-                                <div [formGroupName]="i">
-                                    <div class="col-md-12">
-                                        <p><span>{{i +1}}</span>) {{application_questions[i].title}}</p>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <p>{{application_questions[i].question}}</p>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <p>{{application_questions[i].description}}</p>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <textarea formControlName="response"
-                                            placeholder="{{application_questions[i].placeholder}}" class="form-control"
-                                            [ngClass]="{errmsg: application_questions_form.controls.application_question.controls[i].invalid && submitted}"
-                                            required></textarea>
-                                    </div>
-                                    <p style="color: red" *ngIf="application_questions_form.controls.application_question.controls[i].invalid && submitted">Please fill the above fields</p>
-                                </div>
-                            </div>
-                            <div class="col-md-12 text-center">
-                                <button class="btn btn-success" type="submit">Submit</button>
-                            </div>
-                        </form>
-                    
-                </div>
-            </div>
-
-        </div>
-        <div class="col-md-1">
-
-        </div>
     </div>
+    <div class="col-md-10">
+        <h2 class="mar-top" style="text-align: center;font-weight: bold">VIVE ACCELERATOR</h2>
+        <h5 style="text-align: center;color: gray">Apply for the 90 day Innovation Program</h5>
+        <br>
+        <h5>Let's start with some basic info. </h5>
+        <div [hidden]="formSubmitted">
+
+            <form #registerform="ngForm"
+                [ngClass]="!registerform.valid && registerform.submitted? 'form submitted ng-invalid':'none'"
+                (ngSubmit)="registerform.valid && handleFormSubmit(registerform)" novalidate>
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <label>Startup Name</label>
+                        <input type="text" class="form-control input-lg" name="startup_name" placeholder="Startup Name"
+                            #startup_name="ngModel" ngModel
+                            [ngClass]="{errmsg: registerform.submitted && startup_name.invalid}" required />
+                        <!-- <span *ngIf="registerform.startup_name.touched && !registerform.startup_name.valid">Please enter the startup name</span> -->
+                    </div>
+                    <div class="col-md-6 form-group input-container">
+                        <label>Founded date</label>
+                        <input id="calendar" type="date" onkeydown="return false" class="form-control"
+                            name="founded_date" max="{{dd}}" #founded_date="ngModel" ngModel
+                            [ngClass]="{errmsg: registerform.submitted && founded_date.invalid}" required />
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Website Url </label>
+                        <input type="text" class="form-control" name="website_url"
+                            pattern="^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}"
+                            #website_url="ngModel" ngModel
+                            [ngClass]="{errmsg: registerform.submitted && website_url.invalid}"
+                            placeholder="www.startup.com" required />
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Entity Type </label>
+                        <input type="text" class="form-control" name="entity_type" #entity_type="ngModel" ngModel
+                            [ngClass]="{errmsg: registerform.submitted && entity_type.invalid}"
+                            placeholder="Entity type" required />
+                    </div>
+                </div>
+                <div class="row">
+                    <h3 class="page-heading">Founder info</h3>
+                    <div class="col-md-6 form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control" name="founder_name" #founder_name="ngModel" ngModel
+                            [ngClass]="{errmsg: registerform.submitted && founder_name.invalid}"
+                            placeholder="Enter founder name" required />
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Email (Note: Please Provide a valid email for communication)</label>
+                        <input type="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" class="form-control"
+                            name="founder_email" #founder_email="ngModel" ngModel
+                            [ngClass]="{errmsg: registerform.submitted && founder_email.invalid}"
+                            placeholder="Founder@mail.com" required />
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Contact No</label>
+                        <input type="text" class="form-control" name="founder_phone_number" min="0" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                            #founder_phone_number="ngModel" ngModel
+                            [ngClass]="{errmsg: registerform.submitted && founder_phone_number.invalid}"
+                            placeholder="Enter your Contact Number" required />
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Skills</label>
+                        <textarea class="form-control" name="founder_skills" #founder_skills="ngModel" ngModel
+                            [ngClass]="{errmsg: registerform.submitted && founder_skills.invalid}"
+                            placeholder="Enter your skills seperated by comma" required></textarea>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Credentials</label>
+                        <textarea class="form-control" name="founder_credentials" #founder_credentials="ngModel" ngModel
+                            [ngClass]="{errmsg: registerform.submitted && founder_credentials.invalid}"
+                            placeholder="Enter credentials" required></textarea>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Experience</label>
+                        <textarea class="form-control" name="founder_experience" #founder_experience="ngModel" ngModel
+                            [ngClass]="{errmsg: registerform.submitted && founder_experience.invalid}"
+                            placeholder="Enter your experience" required></textarea>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Commitment</label>
+                        <textarea class="form-control" name="founder_commitment" #founder_commitment="ngModel" ngModel
+                            [ngClass]="{errmsg: registerform.submitted && founder_commitment.invalid}"
+                            placeholder="Enter your commitments" required></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <h3 class="page-heading">Startup Address</h3>
+                    <div class="col-md-6 form-group">
+                        <label>Address line 1</label>
+                        <input type="text" class="form-control" name="startup_address_line_1"
+                            #startup_address_line_1="ngModel" ngModel
+                            [ngClass]="{errmsg: registerform.submitted && startup_address_line_1.invalid}"
+                            placeholder="Enter your startup address line 1" required />
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Address line 2</label>
+                        <input type="text" class="form-control" name="startup_address_line_2"
+                            #startup_address_line_2="ngModel" ngModel
+                            [ngClass]="{errmsg: registerform.submitted && startup_address_line_2.invalid}"
+                            placeholder="Enter your startup address line 2" required />
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>City</label>
+                        <input type="text" class="form-control" name="startup_city" #startup_city="ngModel" ngModel
+                            [ngClass]="{errmsg: registerform.submitted && startup_city.invalid}"
+                            placeholder="Enter your city name" required />
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>State/Province/Region</label>
+                        <input type="text" class="form-control" name="startup_state_province_region"
+                            #startup_state_province_region="ngModel" ngModel
+                            [ngClass]="{errmsg: registerform.submitted && startup_state_province_region.invalid}"
+                            placeholder="Enter your State/Province/Region" required />
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Country</label>
+                        <input type="text" class="form-control" name="startup_country" #startup_country="ngModel"
+                            ngModel [ngClass]="{errmsg: registerform.submitted && startup_country.invalid}"
+                            placeholder="Enter your country name" required />
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Zipcode/postalcode</label>
+                        <input type="text" class="form-control" name="startup_zip_pincode_postalcode"
+                            #startup_zip_pincode_postalcode="ngModel" ngModel
+                            [ngClass]="{errmsg: registerform.submitted && startup_zip_pincode_postalcode.invalid}"
+                            placeholder="Enter your Zipcode/postalcode" required />
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-info" type="submit">Section Complete,Next Answer Questions</button>
+                    </div>
+                    <div class="col-md-12 text-center" *ngIf="!registerform.valid && registerform.submitted">
+                        <span style="color:red">Please fill all the fields before submitting</span>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+        <div class="panel panel-default" [hidden]="!formSubmitted">
+            <!-- <div class="panel panel-default"> -->
+
+            <div class="panel-heading">Please give the best answers.</div>
+            <!-- <div class="panel panel-default"> -->
+            <div class="panel-body">
+
+                <form [formGroup]="application_questions_form"
+                    (ngSubmit)="initAppQuesSubmit(application_questions_form)" validate>
+                    <div class="row" style="padding:15px;" formArrayName="application_question"
+                        *ngFor="let item of application_questions_form.get('application_question').controls; let i = index;">
+                        <div [formGroupName]="i">
+                            <div class="col-md-12">
+                                <p><span>{{i +1}}</span>) {{application_questions[i].title}}</p>
+                            </div>
+                            <div class="col-md-12">
+                                <p>{{application_questions[i].question}}</p>
+                            </div>
+                            <div class="col-md-12">
+                                <p>{{application_questions[i].description}}</p>
+                            </div>
+                            <div class="col-md-12">
+                                <textarea formControlName="response"
+                                    placeholder="{{application_questions[i].placeholder}}" class="form-control"
+                                    [ngClass]="{errmsg: application_questions_form.controls.application_question.controls[i].invalid && submitted}"
+                                    required></textarea>
+                            </div>
+                            <p style="color: red"
+                                *ngIf="application_questions_form.controls.application_question.controls[i].invalid && submitted">
+                                Please fill the above fields</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-success" type="submit">Submit</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-1">
+
+    </div>
+</div>
