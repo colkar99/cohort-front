@@ -55,7 +55,7 @@ export class StartupRoadmapComponent implements OnInit {
           this.maingoal(5000);
         })
       } else {
-
+        this.roadedit = false
         let string: any
         let startdatemonth = new Date(this.program.start_date).getMonth();
         let enddatemonth = new Date(this.program.end_date).getMonth();

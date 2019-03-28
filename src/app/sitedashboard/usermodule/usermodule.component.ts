@@ -24,6 +24,7 @@ export class UsermoduleComponent implements OnInit {
     unfilteredvalue = []
     filterfeild
     filtervalue
+    userOptions1:any = []
     constructor(private formBuilder: FormBuilder,
         private apiService: ApiCommunicationService,
         private cookieService: CookieService) {
@@ -77,6 +78,12 @@ export class UsermoduleComponent implements OnInit {
         this.userOptions = [
             { name: "Site user", value: "site" },
             { name: "Mentor user", value: "mentor" }
+           
+        ]
+        this.userOptions1 = [
+            { name: "Site user", value: "site" },
+            { name: "Mentor user", value: "mentor" },
+            { name: "Startup", value: "startup" }
         ]
     }
     onSubmit(user: {}) {
@@ -87,7 +94,7 @@ export class UsermoduleComponent implements OnInit {
         this.apiService.postDataWithToken('create-user-by-admin', data, this.auth)
             .subscribe(
                 data => {
-                    $("#createUserModel").modal('show')
+                    $("#createUserModel").modal('hide')
                     this.getUsersList();
                     console.log(data);
                 },
@@ -123,10 +130,13 @@ export class UsermoduleComponent implements OnInit {
             );
     }
     filtervalues(value: string) {
+        console.log(this.filterfeild,value)
         if (this.filterfeild != 'phone_number') {
             console.log(this.filterfeild)
             this.all_users = this.unfilteredvalue.filter((list) => list[this.filterfeild].toLowerCase().includes(value.toLowerCase()))
         } else if (value != "") {
+            this.unfilteredvalue
+            debugger
             this.all_users = this.unfilteredvalue.filter((list) => list[this.filterfeild].includes(value))
         } else {
             this.all_users = this.unfilteredvalue

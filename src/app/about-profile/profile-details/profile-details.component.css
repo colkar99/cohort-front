@@ -261,4 +261,23 @@
         bottom: 100%;
         right: 160px;
       }
+
+@media (max-width: 575.98px) { 
+  .circle2{
+    right: auto;
+    font-size: 253%;
+    width: 52px;
+    height: 48px;
+    top: 0;
+       }
+  }
+  .removepad{
+    padding: 0;
+  }
+
+  @media (min-width: 768px) { 
+    .contbox{
+     padding: 0px 39px 0px;
+         }
+    }
    

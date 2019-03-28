@@ -47,7 +47,7 @@
                             </div>  -->
 
           </div>
-          <div class="col-md-12">
+          <div class="row">
             <button class="btn btn-success pull-right" [disabled]="!Sessionscreate.valid"
               (click)="Sessionscreate.valid && updateForm()"><i class="glyphicon glyphicon-floppy-saved"></i> {{!session.id?
                             'Next':'Update'}}</button>
@@ -59,7 +59,7 @@
             <br>
             <br>
             <div class="panel panel-default">
-              <div class="panel-heading" style="height:57px;">List of Attendees <button class="btn btn-info pull-right"
+              <div class="panel-heading" style="height:57px;">List of Attendees <button class="btn btn-info btn-sm pull-right"
                   [disabled]="!session.id" type="button" (click)="addattendees()"><i
                     class="glyphicon glyphicon-plus-sign"></i>Add
                   Attendees</button></div>

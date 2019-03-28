@@ -26,10 +26,10 @@ export class ProfileDetailsComponent implements OnInit {
     if(this.startupdata.current_status.status == "SPC"){
       this.slidervalue = 25
     }else if(this.startupdata.current_status.status == "RMD"){
-      this.slidervalue = 50
+      this.slidervalue = 40
     }
     else if(this.startupdata.current_status.status == "VDC"){
-      this.slidervalue = 75
+      this.slidervalue = 70
     }
     else if(this.startupdata.current_status.status == "RMD"){
       this.slidervalue = 100

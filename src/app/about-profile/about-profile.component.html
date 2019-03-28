@@ -1,6 +1,6 @@
-<div class="container">
+<div class="contbox">
 
-  <div class="row container-fluid">
+  <div class="col-md-12">
     <button class="btn btn-default" routerLink="/admin/dashboard/startups-by-programs"><i
         class="glyphicon glyphicon-arrow-left">Back</i></button>
 
@@ -9,7 +9,7 @@
   <div class="col-md-12">
     <div class="col-md-2">
       <br>
-      <img src="{{companylogo}}" style="height:150px;width: 150px;border-radius: 50%;border:2px solid">
+      <img class="img-responsive profileimg" src="{{companylogo}}" >
     </div>
     <div class="col-md-10 pull-left">
       <h4 >{{startupdata.startup_name}}</h4>
@@ -48,7 +48,7 @@
               <!-- <i *ngIf="buttonVals === 1" class="glyphicon glyphicon-triangle-bottom" style="margin-left: 42%;"></i> -->
               <button type="button" class="btn btn-primary" routerLink="road-map" >View RoadMap</button>
               <!-- <i *ngIf="buttonVals === 2" class="glyphicon glyphicon-triangle-bottom" style="margin-left: 42%;"></i> -->
-              <button type="button" class="btn btn-primary" routerLink="assign-review-activities">Assign & Review Activities</button>
+              <button type="button" class="btn btn-primary" routerLink="assign-review-activities"> Activities</button>
               <!-- <i *ngIf="buttonVals === 3" class="glyphicon glyphicon-triangle-bottom" style="margin-left: 42%;"></i> -->
               <!-- <button type="button" class="btn btn-primary" routerLink="status-updates" (click)="buttonVal('update')">Updates</button> -->
               <!-- <i *ngIf="buttonVals === 4" class="glyphicon glyphicon-triangle-bottom" style="margin-left: 42%;"></i> -->

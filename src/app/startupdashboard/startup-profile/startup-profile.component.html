@@ -189,10 +189,10 @@
 </head>
 
 <body>
-  <div class="container">
+  <div class="col-md-12 removepad">
     <br>
     <br>
-    <div class="col-md-12">
+    <div class="col-md-12 removepad">
       <ul class="nav nav-pills navbar-default">
         <li class="active"><a href="#set1a" data-toggle="tab">Social Networks</a></li>
         <li><a href="#set1b" data-toggle="tab">Official Docs</a></li>
@@ -256,13 +256,15 @@
         </form>
       </div>
       <div id="set1b" class="tab-pane fade">
-        <div class="col-md-12" style="margin-top:5%;">
+        <div class="col-md-12 removepad" style="margin-top:5%;">
           <h4><strong>About Us</strong></h4>
           <p>{{startupprofile.description}}</p>
           <div class="panel panel-default">
             <div class="panel-heading" style="height:57px;">Funding
-              <button class="button pull-right" (click)="addfunding()"><i class="glyphicon glyphicon-plus-sign"></i>
+              <button class="button pull-right hidden-sm hidden-xs" (click)="addfunding()"><i class="glyphicon glyphicon-plus-sign"></i>
                 Fund</button>
+                <button class="btn btn-primary btn-sm pull-right hidden-lg hidden-md" (click)="addfunding()"><i class="glyphicon glyphicon-plus-sign"></i>
+                  Fund</button>
             </div>
             <div class="panel-body">
               <table class="table table-bordered">
@@ -293,8 +295,10 @@
           </div>
           <div class="panel panel-default">
             <div class="panel-heading" style="height:57px;">Achievements & Milestones
-              <button class="button pull-right" (click)="addmilestones()"><i class="glyphicon glyphicon-plus-sign"></i>
+              <button class="button pull-right hidden-sm hidden-xs" (click)="addmilestones()"><i class="glyphicon glyphicon-plus-sign"></i>
                 Achievement</button>
+                <button class="btn btn-sm btn-primary pull-right hidden-lg hidden-md" (click)="addmilestones()"><i class="glyphicon glyphicon-plus-sign"></i>
+                  Achievement</button>
             </div>
             <div class="panel-body">
               <table class="table table-bordered table-responsive">
@@ -318,7 +322,7 @@
           </div>
           <div class="panel panel-default">
             <div class="panel-body">
-              <div class="col-md-12">
+              <div class="col-md-12 removepad">
                 <div class="row">
                   <a href="#profile" class="btn btn-info" data-toggle="collapse" style="width:100%;"><i
                       class="glyphicon glyphicon-eye-open"></i> View Profile</a>

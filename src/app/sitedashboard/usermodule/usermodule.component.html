@@ -110,7 +110,7 @@
                     <select class="form-control" name="filtervalue" [(ngModel)]="filtervalue" (ngModelChange)="filtervalues($event)">
                         <option value="">---Select---</option>
                         
-                        <option *ngFor="let value of userOptions" value="{{value.value}}">{{value.name}}</option>
+                        <option *ngFor="let value of userOptions1" value="{{value.value}}">{{value.name}}</option>
     
                       </select>
                   </div>
@@ -144,8 +144,8 @@
                     </td>
                     <td *ngIf="user.roles.length <= 0">No roles</td>
                     <td>
-                      <button class="btn btn-default" routerLink="controller/{{user.id}}"><i class="glyphicon glyphicon-eye-open"></i>
-                        Show user</button>
+                      <i style="cursor: pointer;" class="glyphicon glyphicon-eye-open" title="view user" routerLink="controller/{{user.id}}"></i>
+                       
                     </td>
                   </tr>
                 </tbody>

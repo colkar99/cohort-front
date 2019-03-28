@@ -54,9 +54,8 @@
                                     <td>{{framework.description}}</td>
                                     <td>{{framework.level}}</td>
                                     <!-- <td>{{framework.thumb_image}}</td> -->
-                                    <td><button class="btn btn-default" routerLink="edit/{{framework.id}}"><i
-                                                class="glyphicon glyphicon-eye-open"></i>
-                                            View</button></td>
+                                    <td><i class="glyphicon glyphicon-eye-open"  routerLink="edit/{{framework.id}}" title="view"></i>
+                                            </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -119,9 +118,7 @@
                                     <td [innerHTML]="framework.title"></td>
                                     <!-- <td [innerHTML]="framework.description"></td>
                                     <td [innerHTML]="framework.additional_description"></td> -->
-                                    <td><button class="btn btn-default" (click)="setsourceedit(framework)"
-                                            routerLink="editcourse/{{framework.id}}"><i
-                                                class="glyphicon glyphicon-eye-open"></i> View</button></td>
+                                    <td><i  class="glyphicon glyphicon-eye-open" title="view" routerLink="editcourse/{{framework.id}}" (click)="setsourceedit(framework)"></i></td>
                                 </tr>
                             </tbody>
                         </table>

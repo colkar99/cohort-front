@@ -5,8 +5,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 // import { HttpErrorResponse } from '@angular/common/http';
 import { SharedDataService } from '../../shared-data.service'
-declare var $:any
-import { ImageCompressService } from  'ng2-image-compress';
+declare var $: any
+import { ImageCompressService } from 'ng2-image-compress';
 // import { PusherService } from '../../pusher.service';
 import { Subscription } from 'rxjs';
 import { ActionCableService, Channel } from 'angular2-actioncable';
@@ -38,12 +38,13 @@ export class StartupbyProgramsComponent implements OnInit {
   courses: any
   selectedcourses: any = []
   startupsidall: any = []
-  selected_startups:any = []
-  allfeeds:any = []
-  feed:any = {}
-  commentobj:any = {}
-  showcomments:any = []
-  comment:any = []
+  selected_startups: any = []
+  allfeeds: any = []
+  feed: any = {}
+  commentobj: any = {}
+  showcomments: any = []
+  comment: any = []
+  selectarray: any = []
   constructor(private apiCom: ApiCommunicationService,
     private cookieService: CookieService,
     private router: Router,
@@ -81,9 +82,9 @@ export class StartupbyProgramsComponent implements OnInit {
     // })
     // this.newMessage();
     const channel: Channel = this.cableService
-    .cable('ws://ec2-54-172-0-213.compute-1.amazonaws.com/cable')
-    // .cable('ws://localhost:3000/cable')
-    .channel('NewsFeedsChannel');
+      .cable('ws://ec2-54-172-0-213.compute-1.amazonaws.com/cable')
+      // .cable('ws://localhost:3000/cable')
+      .channel('NewsFeedsChannel');
     this.subscription = channel.received().subscribe(message => {
       debugger
       this.showfeeds();
@@ -154,7 +155,7 @@ export class StartupbyProgramsComponent implements OnInit {
           for (let i = 0; i < this.unfilteredvalue.length; i++) {
             this.startupsidall.push(this.unfilteredvalue[i].id)
           }
-          console.log("this.startupsidall",this.startupsidall)
+          console.log("this.startupsidall", this.startupsidall)
           this.getAllCourses();
         }
       }, error => {
@@ -178,10 +179,10 @@ export class StartupbyProgramsComponent implements OnInit {
     this.sharedDataService.changeMessage(item);
     this.router.navigate(['admin/dashboard/about-profile'])
   }
-  setmsg(i, item,e) {
-    console.log("helloitem",item,e)
+  setmsg(i, item, e) {
+    console.log("helloitem", item, e)
     this.courses[i].target_date = e
-}
+  }
 
   filtervalues(value: string) {
     let item = value.toLowerCase();
@@ -222,46 +223,63 @@ export class StartupbyProgramsComponent implements OnInit {
     }
 
   }
-  assigncourses(){
-    if(this.selectedcourses != (null && undefined) && this.selectedcourses.length >0){
-      let url = "framework/course/assign_activities_to_startup"
-      let params = JSON.stringify({ courses: this.selectedcourses, program_id: this.programselected, startups: this.startupsidall,singular:false })
-      console.log(params)
-      this.apiCom.putDataWithToken(url, params, this.authToken).subscribe((res) => {
-        res;
-        console.log("assignres", res);
-        alert("Courses Assigned Successfully")
-        $("#selectstarts").modal("hide");
-        this.getAllCourses();
-        this.selectedcourses = [];
+  assigncourses() {
+    if (this.selectedcourses != (null && undefined) && this.selectedcourses.length > 0) {
+      if (this.checkcourses() == true) {
+        alert("Some of the Startups not drafted the roadmap, Please Use the Select Startups option to assign Courses")
+      } else {
+        let url = "framework/course/assign_activities_to_startup"
+        let params = JSON.stringify({ courses: this.selectedcourses, program_id: this.programselected, startups: this.startupsidall, singular: false })
+        console.log(params)
+        this.apiCom.putDataWithToken(url, params, this.authToken).subscribe((res) => {
+          res;
+          console.log("assignres", res);
+          alert("Courses Assigned Successfully")
+          $("#selectstarts").modal("hide");
+          this.getAllCourses();
+          this.selectedcourses = [];
 
-      })
-    }else{
+        })
+      }
+
+    } else {
       alert("Select atleast one course to assign")
     }
   }
-  openstartups(){
-    $("#selectstarts").modal("show");
-    this.selected_startups = []
-  }
-  assignselectcourses(){
-    let url = "framework/course/assign_activities_to_startup"
-      let params = JSON.stringify({ courses: this.selectedcourses, program_id: this.programselected, startups: this.selected_startups,singular:false })
-      console.log(params)
-      this.apiCom.putDataWithToken(url, params, this.authToken).subscribe((res) => {
-        res;
-        console.log("assignres", res);
-        this.getAllCourses();
-        alert("Courses Assigned Successfully")
-        $("#selectstarts").modal("hide");
-      })
+  checkcourses() {
+    let value = false;
+    let array = this.unfilteredvalue.find((list) => list.startup_registration.application_status == "SPC")
+    if (array != undefined) {
+      value = true
+      return value;
+    } else {
+      return value;
+    }
 
   }
-  closestartpopup(){
+  openstartups() {
+    $("#selectstarts").modal("show");
+    this.selected_startups = []
+    this.selectarray = this.allStartups.filter((list) => list.startup_registration.application_status != "SPC")
+  }
+  assignselectcourses() {
+    let url = "framework/course/assign_activities_to_startup"
+    let params = JSON.stringify({ courses: this.selectedcourses, program_id: this.programselected, startups: this.selected_startups, singular: false })
+    console.log(params)
+    this.apiCom.putDataWithToken(url, params, this.authToken).subscribe((res) => {
+      res;
+      console.log("assignres", res);
+      this.getAllCourses();
+      alert("Courses Assigned Successfully")
+      $("#selectstarts").modal("hide");
+    })
+
+  }
+  closestartpopup() {
     $("#selectstarts").modal("hide");
     this.selected_startups = []
   }
-  setstartupsids(checked,item){
+  setstartupsids(checked, item) {
     if (checked == true) {
       if (this.selected_startups == (null || undefined)) {
         this.selected_startups = []
@@ -280,118 +298,118 @@ export class StartupbyProgramsComponent implements OnInit {
       }
     }
   }
-  showfeeds(){
-    let url= "program/show-news-feeds"
-    let params = JSON.stringify({program:{id:this.programselected}})
-    this.apiCom.loadfeeds(url,params,this.authToken).subscribe((res)=>{
+  showfeeds() {
+    let url = "program/show-news-feeds"
+    let params = JSON.stringify({ program: { id: this.programselected } })
+    this.apiCom.loadfeeds(url, params, this.authToken).subscribe((res) => {
       res;
       this.allfeeds = res;
-      console.log("allfeeds",this.allfeeds)
-      
+      console.log("allfeeds", this.allfeeds)
+
     })
   }
-  openfeedspop(){
-    $("#newsfeeds").modal("show"); 
+  openfeedspop() {
+    $("#newsfeeds").modal("show");
   }
-  createfeed(){
+  createfeed() {
     let url = "program/create-news-feed"
-    let params = JSON.stringify({news_feed:{title:null,description:this.feed.description,images:this.feed.images,program_id:this.programselected}})
-    this.apiCom.postDataWithToken(url,params,this.authToken).subscribe((res)=>{
+    let params = JSON.stringify({ news_feed: { title: null, description: this.feed.description, images: this.feed.images, program_id: this.programselected } })
+    this.apiCom.postDataWithToken(url, params, this.authToken).subscribe((res) => {
       res;
-      console.log("createdfeed",res);
+      console.log("createdfeed", res);
       alert("Feeds posted Successfully")
-     this.feed = {}
+      this.feed = {}
     })
   }
-  addfeedimages(){
+  addfeedimages() {
     document.getElementById("images").click()
   }
-  closefeeds(){
+  closefeeds() {
     $("#newsfeeds").modal("hide");
   }
   handleInputChange(e) {
     ImageCompressService.filesToCompressedImageSource(e.target.files).then(observableImages => {
       observableImages.subscribe((image) => {
-        console.log("image",image)
+        console.log("image", image)
         this.feed.images = image.compressedImage.imageDataUrl;
-       // this.submitprofile();
+        // this.submitprofile();
       }, (error) => {
         console.log("Error while converting");
       }, () => {
-                 
+
       });
     });
   }
-  editfeed(item){
+  editfeed(item) {
     $("#editfeeds").modal("show");
-    this.feed = Object.assign({},item)
+    this.feed = Object.assign({}, item)
 
   }
-  updatefeed(){
+  updatefeed() {
     let url = "program/update-news-feed"
-    let params = JSON.stringify({news_feed:{id:this.feed.id,title:this.feed.title,description:this.feed.description,images:this.feed.images,program_id:this.programselected}})
-    this.apiCom.putDataWithToken(url,params,this.authToken).subscribe((res)=>{
+    let params = JSON.stringify({ news_feed: { id: this.feed.id, title: this.feed.title, description: this.feed.description, images: this.feed.images, program_id: this.programselected } })
+    this.apiCom.putDataWithToken(url, params, this.authToken).subscribe((res) => {
       res;
-      console.log("createdfeed",res);
+      console.log("createdfeed", res);
       alert("Feeds Updated Successfully")
-     this.feed = {}
-     $("#editfeeds").modal("hide");
+      this.feed = {}
+      $("#editfeeds").modal("hide");
     })
   }
-  closeupdatefeed(){
+  closeupdatefeed() {
     this.feed = {}
     $("#editfeeds").modal("hide");
   }
-  deletefeed(feeds){
+  deletefeed(feeds) {
     let url = "program/delete-news-feed"
-    let params = JSON.stringify({news_feed:{id:feeds.id}})
-    this.apiCom.putDataWithToken(url,params,this.authToken).subscribe((res)=>{
+    let params = JSON.stringify({ news_feed: { id: feeds.id } })
+    this.apiCom.putDataWithToken(url, params, this.authToken).subscribe((res) => {
       res;
-      console.log("createdfeed",res);
+      console.log("createdfeed", res);
       alert("Feeds Deleted Successfully")
-     this.feed = {}
+      this.feed = {}
     })
   }
-  createcomment(id,i){
+  createcomment(id, i) {
     let url = "program/create-news-feed-comment"
-    let params = JSON.stringify({news_feed_comment:{news_feed_id:id,comment:this.comment[i]}});
-    this.apiCom.postDataWithToken(url,params,this.authToken).subscribe((res)=>{
+    let params = JSON.stringify({ news_feed_comment: { news_feed_id: id, comment: this.comment[i] } });
+    this.apiCom.postDataWithToken(url, params, this.authToken).subscribe((res) => {
       res;
       this.comment[i] = undefined
     })
   }
-  updatecomments(){
+  updatecomments() {
     let url = "program/update-news-feed-comment";
-    let params = JSON.stringify({news_feed_comment:{id:this.commentobj.id,comment:this.commentobj.comment,news_feed_id:this.commentobj.news_feed_id}})
-    this.apiCom.putDataWithToken(url,params,this.authToken).subscribe((res)=>{
+    let params = JSON.stringify({ news_feed_comment: { id: this.commentobj.id, comment: this.commentobj.comment, news_feed_id: this.commentobj.news_feed_id } })
+    this.apiCom.putDataWithToken(url, params, this.authToken).subscribe((res) => {
       res;
       $("#editcommentpop").modal("hide")
     })
   }
-  opencomments(news_feed_comments){
+  opencomments(news_feed_comments) {
     this.showcomments = news_feed_comments;
     $("#commentspop").modal("show")
   }
-  closecomments(){
+  closecomments() {
     $("#commentspop").modal("hide");
     this.showcomments = [];
   }
-  editcomments(com){
-    this.commentobj = Object.assign({},com)
+  editcomments(com) {
+    this.commentobj = Object.assign({}, com)
     $("#editcommentpop").modal("show")
   }
-  closeeditcomment(){
-    this.commentobj ={}
+  closeeditcomment() {
+    this.commentobj = {}
     $("#editcommentpop").modal("hide")
   }
-  deletecomments(com){
+  deletecomments(com) {
     let url = "program/delete-news-feed-comment"
-    let params = JSON.stringify({news_feed_comment:{id:com.id}})
-    this.apiCom.putDataWithToken(url,params,this.authToken).subscribe((res)=>{
+    let params = JSON.stringify({ news_feed_comment: { id: com.id } })
+    this.apiCom.putDataWithToken(url, params, this.authToken).subscribe((res) => {
       res;
-      console.log("createdfeed",res);
+      console.log("createdfeed", res);
       alert("Comments Deleted Successfully")
-     this.commentobj = {}
+      this.commentobj = {}
     })
   }
 }
