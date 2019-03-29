@@ -75,20 +75,20 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="col-md-12">
         <div class="col-md-12">
             <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" style="width:100%;">Show
                 Privileges</button>
             <div id="demo" class="collapse">
                 <div class="panel panel-default">
-                    <div class="panel-heading" style="height: 60px;">List of User Privileges
-                        <button class="btn btn-default pull-right" (click)="defaultprevileges()"><i class="glyphicon glyphicon-plus-sign" ></i>
+                    <div class="panel-heading panelheight" >List of User Privileges
+                        <button class="btn btn-default btn-sm pull-right" (click)="defaultprevileges()"><i class="glyphicon glyphicon-plus-sign" ></i>
                             Create Default privileges</button>
-                        <button class="btn btn-info pull-right" data-toggle="modal" data-target="#createPrivilegemodel"><i class="glyphicon glyphicon-plus-sign"></i>
+                        <button class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#createPrivilegemodel"><i class="glyphicon glyphicon-plus-sign"></i>
                             new privileges</button>
                     </div>
-                    <div class="panel-body">Panel Content
-                        <div class="row" *ngFor="let privilege of privileges">
+                    <div class="panel-body">
+                        <div class="col-md-12 removepad" *ngFor="let privilege of privileges">
                             <h3>Previleges for {{privilege.module_type_name}} module</h3>
                             <div class="col-md-4">
                                 <label>Module Type: <span>{{privilege.module_type_name}}</span></label>

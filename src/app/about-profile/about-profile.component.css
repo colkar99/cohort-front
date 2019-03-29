@@ -1,3 +1,14 @@
 
-
-  
+@media (max-width: 575.98px) { 
+    .profileimg{
+        height:150px;width: 150px;border-radius: 50%;border:2px solid;margin-left:23%;
+    }
+    .removepad{
+      padding: 0;
+    }
+}
+    @media (min-width: 768px) { 
+        .profileimg{
+            height:150px;width: 150px;border-radius: 50%;border:2px solid;
+        }
+    }

@@ -112,6 +112,7 @@
     .bg {
       max-width: 48%;
       margin: 1%;
+      margin-left: 5%;
     }
   }
   @media screen and (max-width: 768px) {
@@ -119,12 +120,22 @@
       float: none;
       max-width: 80%;
       margin: 1% auto;
+      margin-left: 5%;
     }
   }
 
   @media screen and (max-width: 480px) {
     .nav {
-      font-size:8px;
+      font-size:6px;
+    }
+    .removepad{
+      padding: 0;
+    }
+    .bg {
+      float: none;
+      max-width: 80%;
+      margin: 1% auto;
+      margin-top: 10%;
     }
   }
 

@@ -57,8 +57,7 @@
                                     <td>{{program.end_date}}</td>
                                     <td>{{program.duration}}</td>
                                     <td>{{program.seat_size}}</td>
-                                    <td><button routerLink="edit-program/{{program.id}}" (click)="viewprogram(program)"
-                                            class="btn btn-default"><i class="glyphicon glyphicon-eye-open"> </i> View</button></td>
+                                    <td><i class="glyphicon glyphicon-eye-open" routerLink="edit-program/{{program.id}}" (click)="viewprogram(program)" title="view"> </i></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -123,8 +122,7 @@
                                     <td>{{program_type.program_type_description}}</td>
                                     <td>{{program_type.program_type_logo}}</td>
                                     <td>{{program_type.program_type_duration}}</td>
-                                    <td><button data-toggle="modal" data-target="#programTypemodel" (click)="initProgramTypeValue(program_type)" class="btn btn-default"><i
-                                                class="glyphicon glyphicon-eye-open"> </i> View</button></td>
+                                    <td><i class="glyphicon glyphicon-eye-open" data-toggle="modal" data-target="#programTypemodel" (click)="initProgramTypeValue(program_type)" title="view"> </i></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -194,8 +192,8 @@
                                     <td>{{program_location.city}}</td>
                                     <td>{{program_location.address_line_1}}</td>
                                     <td>{{program_location.zip_pincode_postalcode}}</td>
-                                    <td><button (click)="initProgramlocationValue(program_location)" class="btn btn-default"><i
-                                                class="glyphicon glyphicon-eye-open"> </i> View</button></td>
+                                    <td><i (click)="initProgramlocationValue(program_location)" title="view"
+                                                class="glyphicon glyphicon-eye-open"> </i> </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -259,8 +257,8 @@
                                     <td>{{ques.title}}</td>
                                     <td>{{ques.question}}</td>
                                     <td>{{ques.description}}</td>
-                                    <td><button (click)="initQuestionsvalue(ques,i)" class="btn btn-default"><i class="glyphicon glyphicon-eye-open">
-                                            </i> View</button></td>
+                                    <td><i class="glyphicon glyphicon-eye-open" (click)="initQuestionsvalue(ques,i)" title="view">
+                                            </i></td>
                                 </tr>
                             </tbody>
                         </table>

@@ -16,10 +16,10 @@
             <strong>Oops!</strong> No startup have accepted for this program.
         </div>
     </div>
-    <div class="row" *ngIf="startups && startups.length > 0">
+    <div class="col-md-12" *ngIf="startups && startups.length > 0">
         <div class="panel panel-default">
             <div class="panel-body">
-                <div class="col-md-12">
+                <div class="col-md-12 table-responsive">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -135,5 +135,15 @@
 
             </div>
         </div>
+    </div>
+    <div class="col-md-12" *ngIf="startups.length <5">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
     </div>
 </div>
