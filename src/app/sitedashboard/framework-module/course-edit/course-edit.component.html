@@ -71,10 +71,10 @@
                                                     <td [innerHTML]="item.description"></td>
                                                     <td>{{item.placeholder}}</td>
                                                     <td>{{item.order}}</td>
-                                                    <td><i  class="glyphicon glyphicon-eye-open" (click)="viewactivities(item)"></i>
-                                                            
-                                                            
-                                                            <i class="glyphicon glyphicon-trash" title="delete" (click)="deleteactivities(item.id,i)"></i> 
+                                                    <td><i class="glyphicon glyphicon-eye-open" title="view"
+                                                            (click)="viewactivities(item)"></i>
+                                                        <i style="padding-left: 14px;" class="glyphicon glyphicon-trash"
+                                                            title="delete" (click)="deleteactivities(item.id,i)"></i>
                                                     </td>
 
                                                 </tr>
@@ -89,37 +89,37 @@
                             <div class="panel-heading" style="height:57px;">List of Checklists <button type="button"
                                     class="btn btn-info pull-right" (click)="addchecklists()"><i
                                         class="glyphicon glyphicon-plus-sign"></i> Add</button></div>
-                                        <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-md-12 col-xs-12 table-responsive">
-                                            <table class="table table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Name</th>
-                                                        <th>Description</th>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12 col-xs-12 table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Description</th>
 
-                                                        <th>Actions</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr *ngFor="let item of course.checklists;let i = index">
-                                                        <td>{{item.name}}</td>
-                                                        <td>{{item.description}}</td>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let item of course.checklists;let i = index">
+                                                    <td>{{item.name}}</td>
+                                                    <td>{{item.description}}</td>
 
-                                                        <td><button type="button" class="btn btn-default"
-                                                                (click)="viewchecklists(item)"><i
-                                                                    class="glyphicon glyphicon-eye-open"></i>
-                                                                View Checklist</button><button type="button"
-                                                                class="btn btn-danger"
-                                                                (click)="deletechecklists(item.id,i)"><i
-                                                                    class="glyphicon glyphicon-trash"></i>
-                                                                Delete Checklist</button></td>
+                                                    <td><button type="button" class="btn btn-default"
+                                                            (click)="viewchecklists(item)"><i
+                                                                class="glyphicon glyphicon-eye-open"></i>
+                                                            View Checklist</button><button type="button"
+                                                            class="btn btn-danger"
+                                                            (click)="deletechecklists(item.id,i)"><i
+                                                                class="glyphicon glyphicon-trash"></i>
+                                                            Delete Checklist</button></td>
 
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
+                                </div>
                             </div>
                         </div>
 
@@ -127,7 +127,7 @@
 
 
                     </div>
-                
+
 
 
                 </form>

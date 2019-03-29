@@ -438,7 +438,7 @@
             </div>
           </div>
           <div class="text-center" style="height:200px;margin-left:5%;">
-            <div class=" bg" style="height:120px;margin-left: 5%;" (click)="viewuser(item,i)"  *ngFor="let item of startupprofile.users;let i= index">
+            <div class=" bg" style="height:120px;" (click)="viewuser(item,i)"  *ngFor="let item of startupprofile.users;let i= index">
               <img src="assets/avatar_2x.png" alt="" style="height:125px;width: 125px;">
               <div class="overlay">
                 <h4>{{item.full_name}}</h4>

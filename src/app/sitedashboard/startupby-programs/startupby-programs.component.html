@@ -90,9 +90,8 @@
                                         <td>{{startup.startup_registration.app_status_description}}</td>
                                         <td>{{startup.startup_registration.score}}</td>
                                         <td>
-                                            <button class="btn btn-default" (click)="viewprofile(startup)"><i
-                                                    class="glyphicon glyphicon-eye-open"></i>
-                                                View</button>
+                                            <i (click)="viewprofile(startup)" title="view"  class="glyphicon glyphicon-eye-open"></i>
+                                               
                                         </td>
                                     </tr>
                                 </tbody>

@@ -81,8 +81,7 @@
                           <td>{{startup.full_name}}</td>
                           <td>{{startup.email }}</td>
                           <td>{{startup.user_type}}</td>
-                          <td><button class="btn btn-danger" (click)="deleteAttendees(startup,i)"><i
-                                class="glyphicon glyphicon-trash"></i> Remove</button></td>
+                          <td><i (click)="deleteAttendees(startup,i)" title="Remove" class="glyphicon glyphicon-trash"></i></td>
                         </tr>
                       </tbody>
                     </table>
