@@ -24,7 +24,7 @@ export class ProfileDetailsComponent implements OnInit {
     this.sharedservice.currentMessage.subscribe((res)=>{res;this.startupdata = res;
       this.startup = res.startup_registration
     if(this.startupdata.current_status.status == "SPC"){
-      this.slidervalue = 25
+      this.slidervalue = 5
     }else if(this.startupdata.current_status.status == "RMD"){
       this.slidervalue = 40
     }

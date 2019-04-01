@@ -59,6 +59,8 @@ export class ContractformEditComponent implements OnInit {
       console.log("res,res", res);
       this.startup = res.startup_application
       this.contractdetails = res.contract_form
+      this.contractdetails.from_date = this.contractdetails.from_date.slice(0,10)
+      this.contractdetails.to_date = this.contractdetails.to_date.slice(0,10)
       
     })
   }
