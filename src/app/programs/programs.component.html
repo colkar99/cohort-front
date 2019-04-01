@@ -58,26 +58,26 @@
             <a  href="#exp{{i}}" class="btn btn-info" data-toggle="collapse" style="width:100%;border-radius: 0;" [innerHTML]="exp.title"></a>
             <div id="exp{{i}}" class="collapse row">
                 <div class="row">
-                  <div clas="col-md-12">
-                    <h3>Programs name: </h3>
+                  <div clas="col-md-12 text-center" style="text-align:center;">
+                    <!-- <h3>Programs name: </h3> -->
                     <h4 [innerHTML]="exp.title"></h4>
                   </div>
-                  <div clas="col-md-12">
-                      <h3>Programs Descriptions:</h3>
+                  <div clas="col-md-12 text-center" style="text-align:center;">
+                      <!-- <h3>Programs Descriptions:</h3> -->
                       <h4 [innerHTML]="exp.description"></h4>
                   </div>
-                  <div clas="col-md-12">
+                  <div clas="col-md-12 text-center" style="text-align:center;">
                     <h3>Application dates</h3>
-                    <div class="col-md-6">
+                    <div class="col-md-6 " style="text-align:center;">
                       <h3>Application Start date</h3>
                       <h4>{{exp.application_start_date | date}}</h4>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6" style="text-align:center;">
                       <h3>Application End date</h3>
                       <h4>{{exp.application_end_date | date}}</h4>
                     </div>
                   </div>
-                  <div class="col-md-12">
+                  <div class="col-md-12" style="text-align:center;">
                     <h3>Program duration</h3>
                     <h4>{{exp.duration}} </h4>
                   </div>

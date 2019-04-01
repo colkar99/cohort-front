@@ -178,11 +178,11 @@
             <div class="row">
               <div class="col-md-6 form-group">
                 <label>Contract from date</label>
-                <input class="form-control" name="from_date" ngModel type="date">
+                <input class="form-control" name="from_date" [(ngModel)]="contractdetails.from_date" type="date">
               </div>
               <div class="col-md-6 form-group">
                 <label>Contract to date</label>
-                <input class="form-control" name="to_date" ngModel type="date">
+                <input class="form-control" name="to_date"  [(ngModel)]="contractdetails.to_date" type="date">
               </div>
               <div class="col-md-6 form-group">
                 <label>Contract duration in month</label>

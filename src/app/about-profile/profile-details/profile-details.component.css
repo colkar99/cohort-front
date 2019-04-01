@@ -270,14 +270,21 @@
     height: 48px;
     top: 0;
        }
+       .removepad{
+        padding: 0;
+      }
   }
-  .removepad{
-    padding: 0;
-  }
+  
 
   @media (min-width: 768px) { 
     .contbox{
      padding: 0px 39px 0px;
          }
     }
+
+  @media (max-width: 1180px) { 
+      .contbox{
+       padding: 0px 39px 0px;
+           }
+      }
    
