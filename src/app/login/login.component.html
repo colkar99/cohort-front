@@ -15,6 +15,10 @@
   </form>
 </div> -->
 <div class="container">
+    <div class="alert alert-danger alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Warning!</strong> Site users credentials are changed from gmail to ymail.
+      </div>
   <div class="login-card"><img src="assets/avatar_2x.png" class="profile-img-card">
       <p class="profile-name-card"> </p>
       <form class="form-signin"  [formGroup]="loginForm" (ngSubmit)="onSubmit()"><span class="reauth-email"> </span>
@@ -60,12 +64,7 @@
           
         </div>
       </div>
-<div class="row">
-  <div class="alert alert-danger alert-dismissible">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong>Success!</strong> Site users credentials are changed from gmail to ymail.
-  </div>
-</div>
+
 
 <app-error-display></app-error-display>
 <div class="row">
